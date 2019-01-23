@@ -1,13 +1,13 @@
-#include "MensBathroom.h"
+#include "FirstFloorHallway.h"
 
 
-MensBathroom::MensBathroom() : Space("Men's Bathroom")
+FirstFloorHallway::FirstFloorHallway() : Space("First Floor Hallway")
 {
 	
 }
 
 
-int MensBathroom::menu(vector<string> *i)
+int FirstFloorHallway::menu(vector<string> *i)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
@@ -28,26 +28,26 @@ int MensBathroom::menu(vector<string> *i)
 }
 
 
-void MensBathroom::inspectToilet()
+void FirstFloorHallway::inspectToilet()
 {
 
 }
 
 
-bool MensBathroom::firstTime()
+bool FirstFloorHallway::firstTime()
 {
 	firstTry = false;
 	return firstTry;
 }
 
 
-bool MensBathroom::coltGone()
+bool FirstFloorHallway::coltGone()
 {
 	return goneColt;
 }
 
 
-bool MensBathroom::itemSearch(vector<string> inv, string a)
+bool FirstFloorHallway::itemSearch(vector<string> inv, string a)
 {
 	for (int i = 0; i < inv.size(); i++)
 	{

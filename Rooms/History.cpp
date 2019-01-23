@@ -1,13 +1,13 @@
-#include "MensBathroom.h"
+#include "History.h"
 
 
-MensBathroom::MensBathroom() : Space("Men's Bathroom")
+History::History() : Space("History")
 {
 	
 }
 
 
-int MensBathroom::menu(vector<string> *i)
+int History::menu(vector<string> *i)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
@@ -28,26 +28,26 @@ int MensBathroom::menu(vector<string> *i)
 }
 
 
-void MensBathroom::inspectToilet()
+void History::inspectToilet()
 {
 
 }
 
 
-bool MensBathroom::firstTime()
+bool History::firstTime()
 {
 	firstTry = false;
 	return firstTry;
 }
 
 
-bool MensBathroom::coltGone()
+bool History::coltGone()
 {
 	return goneColt;
 }
 
 
-bool MensBathroom::itemSearch(vector<string> inv, string a)
+bool History::itemSearch(vector<string> inv, string a)
 {
 	for (int i = 0; i < inv.size(); i++)
 	{
