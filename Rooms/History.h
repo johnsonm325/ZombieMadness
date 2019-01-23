@@ -1,9 +1,9 @@
-#ifndef MENSBATHROOM_H
-#define MENSBATHROOM_H
+#ifndef HISTORY_H
+#define HISTORY_H
 
-#include "Space.h"
+#include "Library.h"
 
-class MensBathroom : public Space
+class History : public Space
 {
 private:
 	string action;		//string action typed in by the user
@@ -11,7 +11,7 @@ private:
 	     goneColt = false;
 
 public:
-	MensBathroom();
+	History();
 	int menu(vector<string>*);
 	void inspectToilet();
 	bool firstTime();
