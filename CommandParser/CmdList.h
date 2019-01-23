@@ -7,14 +7,14 @@
 class CmdList{
 private:
 	string command;
-	vector<vector<CmdWord>> list;
+	vector<vector<CmdWord*>> list;
 public:
 	CmdList();
 	~CmdList();
 	void deleteList();
 	CmdList* getList();
-	void setList(CmdList list);
-	void addItemToList(CmdWord word);
+	void setList(CmdList* list);
+	void addItemToList(CmdWord* word);
 	CmdWord* foundCommand(string cmd);
 	bool foundType(string type);
 	unsigned int getSize();

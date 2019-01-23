@@ -13,12 +13,12 @@ public:
 	CmdParser();	
 	~CmdParser();
 
-	int findCommand(string cmd);	
 	void handleCommand(string cmd);
 	string getCurrentCmd();
 	void initCmdList();
 	CmdList* getCmdList();
 
+	void addCmdToHistory(string cmd);
 	void printCmdHistory();
 	void clearCmdHistory();
 };

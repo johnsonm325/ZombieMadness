@@ -1,6 +1,6 @@
 #include "MensBathroom.h"
 #include "Space.h"
-#include "Command Parser/CmdList.h"
+#include "CommandParser/CmdList.h"
 
 
 int main()
