@@ -1,20 +1,21 @@
 #ifndef MENSBATHROOM_H
 #define MENSBATHROOM_H
 
-#include "Space.h"
+
+//#include "<someFile>.h"
 
 class MensBathroom : public Space
 {
 private:
 	string action;		//string action typed in by the user
 	bool firstTry = true,
-	goneColt = false;
+	     goneColt = false;
 
 public:
 	MensBathroom();
 	int menu(vector<string>*);
+	void inspectToilet();
 	bool firstTime();
-	void inspectToilet(vector<string>);
 	bool coltGone();
 	bool itemSearch(vector<string>, string); 	//function used to search character's inventory to see if they have items needed for a particular action
 };
