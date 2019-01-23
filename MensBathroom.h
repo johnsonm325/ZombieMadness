@@ -1,14 +1,14 @@
 #ifndef MENSBATHROOM_H
 #define MENSBATHROOM_H
 
-//#include "BlankSpace.h"
+#include "Space.h"
 
 class MensBathroom : public Space
 {
 private:
 	string action;		//string action typed in by the user
 	bool firstTry = true,
-	     goneColt = false;
+	goneColt = false;
 
 public:
 	MensBathroom();
