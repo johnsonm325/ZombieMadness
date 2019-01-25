@@ -34,3 +34,8 @@ string Object::getLocation()
 {
 	return location;
 }
+
+int Object::getHealthBoost()
+{
+	return healthBoost;
+}

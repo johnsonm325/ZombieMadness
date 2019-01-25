@@ -12,6 +12,7 @@ protected:
 	string location;
 	int attack;
 	int defense;
+	int healthBoost;
 public:
 	Object();
 	virtual ~Object();
@@ -21,6 +22,7 @@ public:
 	virtual void setLocation(string) = 0;
 	int getAttack();
 	int getDefense();
+	int getHealthBoost();
 	virtual void useItem() = 0;
 };
 
