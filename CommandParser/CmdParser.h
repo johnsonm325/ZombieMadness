@@ -3,6 +3,7 @@
 
 #include "Globals.h"
 #include "CmdList.h"
+#include <algorithm>
 
 class CmdParser {
 private:
@@ -17,6 +18,7 @@ public:
 	string getCurrentCmd();
 	void initCmdList();
 	CmdList* getCmdList();
+	vector<string> generateCmdArray(string cmd);
 
 	void addCmdToHistory(string cmd);
 	void printCmdHistory();
