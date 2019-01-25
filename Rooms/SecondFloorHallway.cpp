@@ -1,13 +1,13 @@
-#include "SecondFloorHallway.h"
+#include "SecondFloorHallway1.h"
 
 
-SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
+SecondFloorHallway1::SecondFloorHallway1() : Space("Second Floor Hallway")
 {
 	
 }
 
 
-int SecondFloorHallway::menu(vector<string> *i)
+int SecondFloorHallway1::menu(vector<string> *i)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
@@ -28,26 +28,26 @@ int SecondFloorHallway::menu(vector<string> *i)
 }
 
 
-void SecondFloorHallway::inspectToilet()
+void SecondFloorHallway1::inspectToilet()
 {
 
 }
 
 
-bool SecondFloorHallway::firstTime()
+bool SecondFloorHallway1::firstTime()
 {
 	firstTry = false;
 	return firstTry;
 }
 
 
-bool SecondFloorHallway::coltGone()
+bool SecondFloorHallway1::coltGone()
 {
 	return goneColt;
 }
 
 
-bool SecondFloorHallway::itemSearch(vector<string> inv, string a)
+bool SecondFloorHallway1::itemSearch(vector<string> inv, string a)
 {
 	for (int i = 0; i < inv.size(); i++)
 	{
