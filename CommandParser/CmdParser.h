@@ -19,6 +19,7 @@ public:
 	void initCmdList();
 	CmdList* getCmdList();
 	vector<string> generateCmdArray(string cmd);
+	bool tryMovingRooms(string room);
 
 	void addCmdToHistory(string cmd);
 	void printCmdHistory();

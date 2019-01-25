@@ -34,25 +34,29 @@ void CmdParser::handleCommand(string cmd) {
 			cmdList->printListDetailed();
 		}
 		if (foundCmd->type == "inventory") { //stub 
-			cout << " ===Inventory===\n";
+			cout << "\n ===Inventory===\n";
 			cout << "Empty inventory\n";
 		}
 		//Syntax: go <north> or go <room>
 		if (foundCmd->type == "go") {		//stub 
-			cout << "Moving rooms...\n";
+			cout << "\nMoving rooms...\n";
 			tryMovingRooms(cmdArray[1]);
 		}
 		if (foundCmd->type == "look") {		//stub 
 			if (cmdArray.size() == 1) {		//Look command
-				cout << "Printing long form room description\n";
+				cout << "\nPrinting long form room description\n";
 			}
 			else if (cmdArray.size() > 1) {
-				if (cmdArray[2] == "at") {	//Look at command
-					cout << "Printing description of item/feature\n";
+				if (cmdArray[1] == "at") {
+					//Look at command
+					cout << "\nPrinting description of item/feature\n";
 					//Object* currentItem = game->getCurrentItem(); //Get current item to be interacted with
 					//cout << currentItem->description << endl;		//Print its description
 				}
 			}
+		}
+		if (foundCmd->type == "take") {
+			cout << "Taking an item\n";
 		}
 		if (foundCmd->type == "savegame") { //stub
 			cout << "Saving game...\n";
@@ -79,8 +83,6 @@ string CmdParser::getCurrentCmd() {
 	return command;
 }
 
-
-
 void CmdParser::initCmdList() {
 	cmdList = new CmdList();
 
@@ -90,7 +92,7 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("go", "run"));
 	cmdList->addItemToList(new CmdWord("look", "look", " - display long form description of the room"));
 	cmdList->addItemToList(new CmdWord("look", "see"));
-	cmdList->addItemToList(new CmdWord("look at", "look", " - display description of an object or feature"));
+	cmdList->addItemToList(new CmdWord("look at", "look at", " - display description of an object or feature"));
 	cmdList->addItemToList(new CmdWord("help", "help", " - show list of all available commands"));
 	cmdList->addItemToList(new CmdWord("inventory", "inventory", " - shows player's current inventory"));
 	cmdList->addItemToList(new CmdWord("inventory", "show inventory"));
@@ -109,7 +111,7 @@ CmdList* CmdParser::getCmdList() {
 }
 
 vector<string> CmdParser::generateCmdArray(string cmd) {
-	string delimiter = " ";
+	string delimiter = " ";	//character used to split up input array
 	vector<string> cmdArray;
 	size_t pos = 0;
 	string token;
@@ -125,11 +127,12 @@ vector<string> CmdParser::generateCmdArray(string cmd) {
 	return cmdArray;
 }
 
-bool tryMovingRooms(string room) {
+bool CmdParser::tryMovingRooms(string room) {
 	bool movedRooms = false;
+	cout << "\nTrying to move Rooms\n" << endl;
 	//Space* currentRoom = School->getCurrentRoom();
-	//vector<Space*> availableExits= currentRoom->getExits();
-	//vector<strings> availableDirs= currentRoom->getDirections();
+	//vector<Space*> availableExits= currentRoom->getExitRooms();
+	//vector<strings> availableDirs= currentRoom->getExitDirections();
 
 	//for(int i = 0; i < availableExits.size(); i++){	//Check for available rooms connected to current room
 	//	if (room == availableExits[i].getRoomName()) {
@@ -144,7 +147,7 @@ bool tryMovingRooms(string room) {
 	//	}
 	//}
 	if (!movedRooms) {
-		cout << "Invalid command" << endl;
+		cout << "Invalid command\n";
 	}
 	return movedRooms;
 }
@@ -156,8 +159,9 @@ void CmdParser::addCmdToHistory(string cmd) {
 	historyItem += " - " + cmd;
 	cmdHistory.push_back(historyItem);
 }
+
 void CmdParser::printCmdHistory() {
-	cout << " ===Command history===\n";
+	cout << "\n ===Command history===\n";
 	for (unsigned int i = 0; i < cmdHistory.size(); i++) {
 		cout << cmdHistory[i] << endl;
 	}
@@ -165,6 +169,7 @@ void CmdParser::printCmdHistory() {
 		cout << "Empty history\n";
 	}
 }
+
 void CmdParser::clearCmdHistory() {
 	cmdHistory.clear();
 }

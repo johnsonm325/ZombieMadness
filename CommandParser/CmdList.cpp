@@ -63,7 +63,7 @@ unsigned int CmdList::getSize() {
 }
 
 void CmdList::printList() {
-	cout << "=== Printing list contents ===\n";
+	cout << "\n=== Printing list contents ===\n";
 	if (!isListEmpty()) {
 		for (unsigned int i = 0; i < list.size(); i++) {
 			for (unsigned int j = 0; j < list[i].size(); j++) {
@@ -82,7 +82,7 @@ void CmdList::printList() {
 void CmdList::printListDetailed(){
 
 	int cmdNum = 0;
-	cout << " === List of Commands ===";
+	cout << "\n === List of Commands ===";
 	if (!isListEmpty()) {
 		for (unsigned int i = 0; i < list.size(); i++) {
 			for (unsigned int j = 0; j < list[i].size(); j++) {
