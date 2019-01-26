@@ -3,6 +3,7 @@
 
 #include "Globals.h"
 #include "CmdList.h"
+#include <algorithm>
 
 class CmdParser {
 private:
@@ -17,11 +18,16 @@ public:
 	string getCurrentCmd();
 	void initCmdList();
 	CmdList* getCmdList();
+	vector<string> generateCmdArray(string cmd);
+	bool tryMovingRooms(string room);
 
 	void addCmdToHistory(string cmd);
 	void printCmdHistory();
 	void clearCmdHistory();
 };
 
+//Functions that should be moved to Space/derived room files
+	//vector<Space*> Space::getExits();
+	//vector<string> Space::getExitDirections();
 
 #endif
