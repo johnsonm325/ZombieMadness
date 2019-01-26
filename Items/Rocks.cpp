@@ -3,6 +3,7 @@
 Rocks::Rocks() : Object()
 {
 	this->count = 10;
+	this->name = "Rocks";
 }
 
 void Rocks::decrementRocks()

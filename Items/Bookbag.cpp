@@ -3,6 +3,7 @@
 Bookbag::Bookbag() : Object()
 {
 	//undefined
+	this->name = "Bookbag";
 }
 
 void Bookbag::increaseSize()

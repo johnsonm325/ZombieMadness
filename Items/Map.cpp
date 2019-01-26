@@ -3,6 +3,7 @@
 Map::Map() : Object()
 {
 	//TBD
+	this->name = "Map";
 }
 
 void Map::useItem()

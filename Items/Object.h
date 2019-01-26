@@ -7,18 +7,20 @@ using std::string;
 class Object
 {
 protected:
-	string type;
-	string description;
-	string location;
+	string type;		//Weapon, etc
+	string description;	//Object descriptoin
+	string location;	
+	string name;		//Specific name of object, ex: "Baseball Bat", used in inventory listing
 	int attack;
 	int defense;
 	int healthBoost;
 public:
 	Object();
 	virtual ~Object();
-	string getDesc();
 	string getType();
+	string getDesc();
 	string getLocation();
+	string getName();
 	virtual void setLocation(string) = 0;
 	int getAttack();
 	int getDefense();

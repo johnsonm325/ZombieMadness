@@ -1,11 +1,5 @@
 #include "CmdParser.h"
 
-
-//	string getCurrentCmd();
-//	void printCmdHistory();
-//	void clearCmdHistory();
-//	void clearCmdList();
-
 CmdParser::CmdParser() {
 
 }
