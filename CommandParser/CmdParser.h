@@ -26,8 +26,4 @@ public:
 	void clearCmdHistory();
 };
 
-//Functions that should be moved to Space/derived room files
-	//vector<Space*> Space::getExits();
-	//vector<string> Space::getExitDirections();
-
 #endif
