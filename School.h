@@ -35,11 +35,10 @@ private:
 	Space *west;	// and west nodes
 	Space *north;   // and north nodes
 	Space *south;   // and south nodes
-	//Space *newRoom; // Temporary new room object
 	Space *currentRoom;
-	int steps = 0,
-		choice;
+	int steps = 0;
 	char input;
+	string choice;
 	vector<string> inventory;
 
 	//Rooms

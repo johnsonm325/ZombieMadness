@@ -49,12 +49,4 @@ bool Literature::coltGone()
 
 bool Literature::itemSearch(vector<string> inv, string a)
 {
-	for (int i = 0; i < inv.size(); i++)
-	{
-		if (a == inv[i])
-		{
-			return true;
-		}
-	}
-	return false;
 }

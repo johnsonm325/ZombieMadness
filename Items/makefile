@@ -41,7 +41,7 @@ OBJ = $(SRC:.cpp=.o)
 #
 # Compiler Flags
 #
-CFLAGS = -Wall -pedantic -std=c++11
+CFLAGS = -g -Wall -pedantic -std=c++11
 
 #
 # Default Behavior:

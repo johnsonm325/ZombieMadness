@@ -5,10 +5,10 @@ School::School()
 {
 	mb = new MensBathroom();
 	wb = new WomensBathroom();
-	sfh1 = new SecondFloorHallway1();
-	sfh2 = new SecondFloorHallway1();
-	sfh3 = new SecondFloorHallway1();
-	sfh4 = new SecondFloorHallway1();
+	sfh1 = new SecondFloorHallway();
+	sfh2 = new SecondFloorHallway();
+	sfh3 = new SecondFloorHallway();
+	sfh4 = new SecondFloorHallway();
 	hist = new History();
 	lit = new Literature();
 	infr = new Infirmary();
@@ -16,10 +16,10 @@ School::School()
 	gym2 = new GymnasiumFloor2();
 	gym1 = new GymnasiumFloor1();
 	fb = new Football();
-	ffh1 = new FirstFloorHallway1();
-	ffh2 = new FirstFloorHallway1();
-	ffh3 = new FirstFloorHallway1();
-	ffh4 = new FirstFloorHallway1();
+	ffh1 = new FirstFloorHallway();
+	ffh2 = new FirstFloorHallway();
+	ffh3 = new FirstFloorHallway();
+	ffh4 = new FirstFloorHallway();
 	cafe = new Cafeteria();
 	chem = new Chemistry();
 	cs = new ComputerScience();
@@ -70,14 +70,60 @@ void School::beginGame()
 	
 }
 
-int main(){
-
-	return 0;
-}
-
 
 int School::playGame()
 {
+	while(currentRoom != NULL)
+	{
+		cout << "You are in the " << currentRoom->getType() << endl << endl;
+		cout << "Please enter choice" << endl;
+		cin >> choice;
+
+		if (choice == "q")
+		{
+			return 0;
+		}
+
+		else if(choice == "w")
+		{
+			cout << currentRoom->getNorth()->getType() << endl;
+		}
+
+		else if(choice == "a")
+		{
+			cout << currentRoom->getWest()->getType() << endl;
+		}
+		
+		else if(choice == "s")
+		{
+			cout << currentRoom->getSouth()->getType() << endl;
+		}
+
+		else if(choice == "d")
+		{
+			cout << currentRoom->getEast()->getType() << endl;
+		}
+
+		else if(choice == "i")
+		{
+			moveNorth();
+		}
+
+		else if(choice == "j")
+		{
+			moveWest();
+		}
+
+		else if(choice == "k")
+		{
+			moveSouth();
+		}
+
+		else if(choice == "l")
+		{
+			moveEast();
+		}
+	}
 	return 0;
 }
 
@@ -119,9 +165,6 @@ void School::connectRooms() {
 	Space *currentRoom = mb;
 }
 
-/****************************************************************************************************
-**				Adds a value to the back of the list. Same set up as QueueList
-****************************************************************************************************/
 void School::addRoom(char direction, Space *nextRoom, Space *prevRoom)
 {
 	
@@ -224,9 +267,6 @@ void School::addItem(string i)
 }
 
 
-/****************************************************************************************************
-**				Removes item in the inventory to make space for new item
-****************************************************************************************************/
 void School::removeItem(string a)
 {
 	for (int i = 0; i < inventory.size(); i++)
@@ -239,9 +279,6 @@ void School::removeItem(string a)
 }
 
 
-/****************************************************************************************************
-**							Searches for item in the inventory
-****************************************************************************************************/
 bool School::itemSearch(string a)
 {
 	for (int i = 0; i < inventory.size(); i++)

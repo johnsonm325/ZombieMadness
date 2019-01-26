@@ -11,12 +11,12 @@ $(CXX) = g++
 #
 # Compiler Flags
 #
-CFLAGS = -Wall -pedantic -std=c++11
+CFLAGS = -g -Wall -pedantic -std=c++11
 
 #
 # Source Files
 #
-SRC  = School.cpp
+SRC  = Main.cpp School.cpp
 
 #
 # Create an object for each source file
