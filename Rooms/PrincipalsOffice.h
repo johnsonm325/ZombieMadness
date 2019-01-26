@@ -1,7 +1,7 @@
 #ifndef PRINCIPALSOFFICE_H
 #define PRINCIPALSOFFICE_H
 
-#include "FrontOffice.h"
+#include "Space.h"
 
 class PrincipalsOffice : public Space
 {

@@ -1,7 +1,7 @@
 #ifndef LOCKERROOM_H
 #define LOCKERROOM_H
 
-#include "Literature.h"
+#include "Space.h"
 
 class LockerRoom : public Space
 {

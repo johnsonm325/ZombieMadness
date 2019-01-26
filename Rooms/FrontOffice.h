@@ -1,7 +1,7 @@
 #ifndef FRONTOFFICE_H
 #define FRONTOFFICE_H
 
-#include "FrontLobby.h"
+#include "Space.h"
 
 class FrontOffice : public Space
 {

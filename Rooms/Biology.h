@@ -1,7 +1,7 @@
 #ifndef BIOLOGY_H
 #define BIOLOGY_H
 
-#include "Math.h"
+#include "Space.h"
 
 class Biology : public Space
 {

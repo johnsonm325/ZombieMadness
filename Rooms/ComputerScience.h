@@ -1,7 +1,7 @@
 #ifndef COMPUTERSCIENCE_H
 #define COMPUTERSCIENCE_H
 
-#include "Cafeteria.h"
+#include "Space.h"
 
 class ComputerScience : public Space
 {

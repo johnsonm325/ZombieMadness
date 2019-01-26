@@ -1,9 +1,9 @@
 #ifndef LITERATURE_H
 #define LITERATURE_H
 
-#include "SecondFloorHallway.h"
+#include "Space.h"
 
-class SecondFloorHallway : public Space
+class Literature : public Space
 {
 private:
 	string action;		//string action typed in by the user
@@ -11,7 +11,7 @@ private:
 	     goneColt = false;
 
 public:
-	SecondFloorHallway();
+	Literature();
 	int menu(vector<string>*);
 	void inspectToilet();
 	bool firstTime();

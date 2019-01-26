@@ -1,7 +1,7 @@
 #ifndef FRONTLOBBY_H
 #define FRONTLOBBY_H
 
-#include "Biology.h"
+#include "Space.h"
 
 class FrontLobby : public Space
 {

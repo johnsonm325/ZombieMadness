@@ -1,7 +1,7 @@
 #ifndef CAFETERIA_H
 #define CAFETERIA_H
 
-#include "FirstFloorHallway.h"
+#include "Space.h"
 
 class Cafeteria : public Space
 {

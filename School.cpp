@@ -3,33 +3,79 @@
 
 School::School()
 {
-	Space *mb = new MensBathroom();
-	Space *wb = new WomensBathroom();
-	Space *sfh1 = new SecondFloorHallway();
-	Space *sfh2 = new SecondFloorHallway();
-	Space *sfh3 = new SecondFloorHallway();
-	Space *sfh4 = new SecondFloorHallway();
-	Space *hist = new History();
-	Space *lit = new Literature();
-	Space *infr = new Infirmary();
-	Space *lr = new LockerRoom();
-	Space *gym2 = new GymnasiumSecondFloor();
-	Space *gym1 = new GymnasiumFirstFloor();
-	Space *fb = new Football();
-	Space *ffh1 = new FirstFloorHallway();
-	Space *ffh2 = new FirstFloorHallway();
-	Space *ffh3 = new FirstFloorHallway();
-	Space *ffh4 = new FirstFloorHallway();
-	Space *cafe = new Cafeteria();
-	Space *chem = new Chemistry();
-	Space *cs = new ComputerScience();
-	Space *bio = new Biology();
-	Space *math = new Math();
-	Space *libr = new Library();
-	Space *fl = new FrontLobby();
-	Space *fo = new FrontOffice();
-	Space *prin = new PrincipalsOffice();
+	mb = new MensBathroom();
+	wb = new WomensBathroom();
+	sfh1 = new SecondFloorHallway1();
+	sfh2 = new SecondFloorHallway1();
+	sfh3 = new SecondFloorHallway1();
+	sfh4 = new SecondFloorHallway1();
+	hist = new History();
+	lit = new Literature();
+	infr = new Infirmary();
+	lr = new LockerRoom();
+	gym2 = new GymnasiumFloor2();
+	gym1 = new GymnasiumFloor1();
+	fb = new Football();
+	ffh1 = new FirstFloorHallway1();
+	ffh2 = new FirstFloorHallway1();
+	ffh3 = new FirstFloorHallway1();
+	ffh4 = new FirstFloorHallway1();
+	cafe = new Cafeteria();
+	chem = new Chemistry();
+	cs = new ComputerScience();
+	bio = new Biology();
+	math = new Math();
+	libr = new Library();
+	fl = new FrontLobby();
+	fo = new FrontOffice();
+	prin = new PrincipalsOffice();
 
+	connectRooms();
+}
+
+School::~School()
+{
+	delete mb;
+	delete wb;
+	delete sfh1;
+	delete sfh2;
+	delete sfh3;
+	delete sfh4;
+	delete hist;
+	delete lit;
+	delete infr;
+	delete lr;
+	delete gym2;
+	delete gym1;
+	delete fb;
+	delete ffh1;
+	delete ffh2;
+	delete ffh3;
+	delete ffh4;
+	delete cafe;
+	delete chem;
+	delete cs;
+	delete bio;
+	delete math;
+	delete libr;
+	delete fl;
+	delete fo;
+	delete prin;
+	delete currentRoom;
+}
+
+
+void School::beginGame()
+{
+}
+
+
+int School::playGame()
+{
+}
+
+
+void School::connectRooms() {
 	addRoom('s', wb, mb);
 	addRoom('w', sfh1, mb);
 	addRoom('w', sfh2, wb);
@@ -63,49 +109,7 @@ School::School()
 	addRoom('e', fo, fl);
 	addRoom('e', prin, fo);
 
-	Space *startingRoom = mb;
-}
-
-
-School::~School()
-{
-	delete mb;
-	delete wb;
-	delete sfh1;
-	delete sfh2;
-	delete sfh3;
-	delete sfh4;
-	delete hist;
-	delete lit;
-	delete infr;
-	delete lr;
-	delete gym2;
-	delete gym1;
-	delete fb;
-	delete ffh1;
-	delete ffh2;
-	delete ffh3;
-	delete ffh4;
-	delete cafe;
-	delete chem;
-	delete cs;
-	delete bio;
-	delete math;
-	delete libr;
-	delete fl;
-	delete fo;
-	delete prin;
-	delete startingRoom;
-}
-
-
-void School::beginGame()
-{
-}
-
-
-int School::playGame()
-{
+	Space *currentRoom = mb;
 }
 
 /****************************************************************************************************
@@ -139,6 +143,9 @@ void School::addRoom(char direction, Space *nextRoom, Space *prevRoom)
 	}
 }
 
+Space* School::getCurrentRoom() {
+	return currentRoom;
+}
 
 Space *School::moveEast()
 {

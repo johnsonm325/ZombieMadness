@@ -1,7 +1,7 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
-#include "PrincipalsOffice.h"
+#include "Space.h"
 
 class Library : public Space
 {
