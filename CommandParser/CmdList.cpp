@@ -44,7 +44,7 @@ bool CmdList::foundType(string type) {
 	return false;
 }
 
-CmdWord* CmdList::findCommand(string keyCmd) {
+CmdWord* CmdList::foundCommand(string keyCmd) {
 	for (unsigned int i = 0; i < list.size(); i++) {
 		for (unsigned int j = 0; j < list[i].size(); j++) {
 			if (list[i][j]->command.compare(keyCmd) == 0) {
@@ -63,7 +63,7 @@ unsigned int CmdList::getSize() {
 }
 
 void CmdList::printList() {
-	cout << "\n=== Printing list contents ===\n";
+	cout << "=== Printing list contents ===\n";
 	if (!isListEmpty()) {
 		for (unsigned int i = 0; i < list.size(); i++) {
 			for (unsigned int j = 0; j < list[i].size(); j++) {
@@ -82,7 +82,7 @@ void CmdList::printList() {
 void CmdList::printListDetailed(){
 
 	int cmdNum = 0;
-	cout << "\n === List of Commands ===";
+	cout << " === List of Commands ===";
 	if (!isListEmpty()) {
 		for (unsigned int i = 0; i < list.size(); i++) {
 			for (unsigned int j = 0; j < list[i].size(); j++) {

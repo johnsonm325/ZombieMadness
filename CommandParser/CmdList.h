@@ -15,7 +15,7 @@ public:
 	CmdList* getList();
 	void setList(CmdList* list);
 	void addItemToList(CmdWord* word);
-	CmdWord* findCommand(string cmd);
+	CmdWord* foundCommand(string cmd);
 	bool foundType(string type);
 	unsigned int getSize();
 	bool isListEmpty();
