@@ -1,7 +1,13 @@
 #ifndef SCHOOL_H
 #define SCHOOL_H
 
-#include "Football.h"
+#include "Rooms/Football.h"
+#include "Rooms/Space.h"
+
+#include <string>	
+#include <vector>
+using std::string;
+using std::vector;
 
 class School
 {
@@ -27,8 +33,8 @@ public:
 	Space *moveNorth();
 	Space *moveSouth();
 	void addSteps(int);
-	void addItem(string);
-	void removeItem(string);
-	bool itemSearch(string);
+	void addItem(string item);
+	void removeItem(string item);
+	bool itemSearch(string item);
 };
 #endif

@@ -2,6 +2,7 @@
 
 FirstAid::FirstAid() : Object()
 {
+	this->name = "First Aid";
 	this->healthBoost = 10;
 }
 

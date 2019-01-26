@@ -3,6 +3,7 @@
 Paperclip::Paperclip() : Object()
 {
 	//undefined
+	this->name = "Paperclip";
 }
 
 bool Paperclip::canPickLock()

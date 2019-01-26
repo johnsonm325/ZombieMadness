@@ -63,39 +63,43 @@ string Space::getType()
 	return type;
 }
 
+// Return a vector of available room pointers that
+// player can move to from current room = this
 vector<Space*> Space::getExits() {
 	vector<Space*> exitList;
 	Space* exit;
 	 
-	if ((exit = room->getNorth()) != 0) {
-			exitList.push_back(exit);
-	}
-	if ((exit = room->getSouth()) != 0) {
+	if ((exit = this->getNorth()) != 0) {
 		exitList.push_back(exit);
 	}
-	if ((exit = room->getEast()) != 0) {
+	if ((exit = this->getSouth()) != 0) {
 		exitList.push_back(exit);
 	}
-	if ((exit = room->getWest()) != 0) {
+	if ((exit = this->getEast()) != 0) {
+		exitList.push_back(exit);
+	}
+	if ((exit = this->getWest()) != 0) {
 		exitList.push_back(exit);
 	}
 	return exitList;
 }
 
+// Return a vector of available room direction strings(north, south, etc)
+// that player can move to from current room
 vector<string> Space::getExitDirections() {
 	vector<string> exitList;
 	Space* exit;
 
-	if ((exit = room->getNorth()) != 0) {
+	if ((exit = this->getNorth()) != 0) {
 		exitList.push_back("north");
 	}
-	if ((exit = room->getSouth()) != 0) {
+	if ((exit = this->getSouth()) != 0) {
 		exitList.push_back("south");
 	}
-	if ((exit = room->getEast()) != 0) {
+	if ((exit = this->getEast()) != 0) {
 		exitList.push_back("east");
 	}
-	if ((exit = room->getWest()) != 0) {
+	if ((exit = this->getWest()) != 0) {
 		exitList.push_back("west");
 	}
 	return exitList;

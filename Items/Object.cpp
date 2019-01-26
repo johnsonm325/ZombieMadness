@@ -10,14 +10,24 @@ Object::~Object()
 	//undefined
 }
 
+string Object::getType()
+{
+	return type;
+}
+
 string Object::getDesc()
 {
 	return description;
 }
 
-string Object::getType()
+string Object::getLocation()
 {
-	return type;
+	return location;
+}
+
+string Object::getName()
+{
+	return name;
 }
 
 int Object::getAttack()
@@ -30,10 +40,6 @@ int Object::getDefense()
 	return defense;
 }
 
-string Object::getLocation()
-{
-	return location;
-}
 
 int Object::getHealthBoost()
 {

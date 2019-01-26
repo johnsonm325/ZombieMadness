@@ -3,6 +3,7 @@
 Key::Key() : Object()
 {
 	//undefined
+	this->name = "Key";
 }
 
 bool Key::canUnlock()

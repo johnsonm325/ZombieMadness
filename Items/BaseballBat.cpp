@@ -4,6 +4,7 @@ BaseballBat::BaseballBat() : Object()
 {
 	this->description = "Swing away Colt.  Use this mid-leveled weapon to bash some zombies!";
 	this->type = "Weapon";
+	this->name = "Baseball Bat";
 	this->attack = 6;
 	this->defense = 0;
 }

@@ -2,6 +2,7 @@
 
 BiteCure::BiteCure() : Object()
 {
+	this->name = "Bite Cure";
 	this->healthBoost = 100; // whatever full health is determined to be
 }
 
