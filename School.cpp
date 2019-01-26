@@ -67,6 +67,12 @@ School::~School()
 
 void School::beginGame()
 {
+	
+}
+
+int main(){
+
+	return 0;
 }
 
 

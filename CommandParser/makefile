@@ -1,7 +1,7 @@
 #
 # Project Name
 #
-PROJ = Rooms
+PROJ = CmdParser
 
 #
 # Compiler
@@ -11,27 +11,8 @@ $(CXX) = g++
 #
 # Source Files
 #
-SRC  = Biology.cpp
-SRC += Cafeteria.cpp
-SRC += Chemistry.cpp
-SRC += ComputerScience.cpp
-SRC += FirstFloorHallway.cpp
-SRC += Football.cpp
-SRC += FrontLobby.cpp
-SRC += FrontOffice.cpp
-SRC += GymnasiumFloor1.cpp
-SRC += GymnasiumFloor2.cpp
-SRC += History.cpp
-SRC += Infirmary.cpp
-SRC += Library.cpp
-SRC += Literature.cpp
-SRC += LockerRoom.cpp
-SRC += Math.cpp
-SRC += MensBathroom.cpp
-SRC += PrincipalsOffice.cpp
-SRC += SecondFloorHallway.cpp
-SRC += Space.cpp
-SRC += WomensBathroom.cpp
+SRC  = CmdList.cpp
+SRC += CmdParser.cpp
 
 #
 # Create an object for each source file
