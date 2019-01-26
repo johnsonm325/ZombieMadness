@@ -10,12 +10,12 @@ using std::vector;
 class Space
 {
 protected:
-	InputValid inputVal1;
+	//InputValid inputVal1;
 	Space *north = NULL;		// Pointer to space for up
 	Space *east;			// Pointer to space for forward
 	Space *south = NULL;		// Pointer to space for down
 	Space *west;			// Pointer to space for back
-	Character character;
+	//Character character;
 	string type;
 
 public:

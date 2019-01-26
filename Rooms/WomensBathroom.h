@@ -1,7 +1,7 @@
 #ifndef WOMENSBATHROOM_H
 #define WOMENSBATHROOM_H
 
-#include "MensBathroom.h"
+#include "Space.h"
 
 class WomensBathroom : public Space
 {

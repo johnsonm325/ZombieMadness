@@ -1,7 +1,7 @@
 #ifndef FOOTBALL_H
 #define FOOTBALL_H
 
-#include "History.h"
+#include "Space.h"
 
 class Football : public Space
 {

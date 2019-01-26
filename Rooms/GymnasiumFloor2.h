@@ -1,7 +1,7 @@
 #ifndef GYMNASIUMFLOOR2_H
 #define GYMNASIUMFLOOR2_H
 
-#include "LockerRoom.h"
+#include "Space.h"
 
 class GymnasiumFloor2 : public Space
 {

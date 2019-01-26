@@ -1,7 +1,7 @@
 #ifndef INFIRMARY_H
 #define INFIRMARY_H
 
-#include "Football.h"
+#include "Space.h"
 
 class Infirmary : public Space
 {

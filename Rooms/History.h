@@ -1,7 +1,7 @@
 #ifndef HISTORY_H
 #define HISTORY_H
 
-#include "Library.h"
+#include "Space.h"
 
 class History : public Space
 {

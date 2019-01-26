@@ -1,7 +1,7 @@
 #ifndef FIRSTFLOORHALLWAY1_H
 #define FIRSTFLOORHALLWAY1_H
 
-#include "GymnasiumFloor1.h"
+#include "Space.h"
 
 class FirstFloorHallway1 : public Space
 {
