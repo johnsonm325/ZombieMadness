@@ -41,6 +41,7 @@ int main() {
 
 	testCmds.push_back("help");
 	testCmds.push_back("inventory");
+	testCmds.push_back("show inventory");
 
 	testCmds.push_back("take plunger");
 	testCmds.push_back("grab plunger");
@@ -70,5 +71,6 @@ int main() {
 		}
 		testParser->handleCommand(input);
 	} while(input.compare("quit") != 0);
+	return 0;
 	
 }

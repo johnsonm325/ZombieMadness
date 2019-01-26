@@ -44,7 +44,7 @@ bool CmdList::foundType(string type) {
 	return false;
 }
 
-CmdWord* CmdList::foundCommand(string keyCmd) {
+CmdWord* CmdList::findCommand(string keyCmd) {
 	for (unsigned int i = 0; i < list.size(); i++) {
 		for (unsigned int j = 0; j < list[i].size(); j++) {
 			if (list[i][j]->command.compare(keyCmd) == 0) {

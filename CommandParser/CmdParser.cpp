@@ -17,18 +17,35 @@ CmdParser::~CmdParser() {
 void CmdParser::handleCommand(string cmd) {
 	if (cmd.length() == 0) { return; }	//Empty command
 
+	this->command = cmd;
+	CmdWord* foundCmd = 0;
+
 	//Convert input to lower case to make parsing easier
 	transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
 
 	//Generate cmd array, moving words into separate elements
 	vector<string> cmdArray = generateCmdArray(cmd);
 
-	//Search for command in list
-	CmdWord* foundCmd = cmdList->foundCommand(cmdArray[0]);
+	//Search for command in cmdList
+	//Command with 2 words or more
+	if (cmdArray.size() > 1) {	
+		//Search for valid 2-word command
+		string cmd2words = cmdArray[0] + " " + cmdArray[1];
+		foundCmd = cmdList->findCommand(cmd2words);
+
+		//Didn't find valid 2-word command, search for 1-word command
+		if (foundCmd == 0) {
+			foundCmd = cmdList->findCommand(cmdArray[0]);
+		}
+	}
+	// Command with 1 word only
+	else {
+		foundCmd = cmdList->findCommand(cmdArray[0]);
+	}
+
 	addCmdToHistory(cmd);
 
 	if (foundCmd != 0) {	//Found a matching command from pre-set command list
-		command = cmd;
 		if (foundCmd->type == "help") {
 			//Print available commands
 			cmdList->printListDetailed();
@@ -39,34 +56,29 @@ void CmdParser::handleCommand(string cmd) {
 		}
 		//Syntax: go <north> or go <room>
 		if (foundCmd->type == "go") {		//stub 
-			cout << "\nMoving rooms...\n";
+			//cout << "\nMoving rooms...\n";
 			tryMovingRooms(cmdArray[1]);
 		}
 		if (foundCmd->type == "look") {		//stub 
 			if (cmdArray.size() == 1) {		//Look command
 				cout << "\nPrinting long form room description\n";
 			}
-			else if (cmdArray.size() > 1) {
-				if (cmdArray[1] == "at") {
-					//Look at command
-					cout << "\nPrinting description of item/feature\n";
-					//Object* currentItem = game->getCurrentItem(); //Get current item to be interacted with
-					//cout << currentItem->description << endl;		//Print its description
-				}
-			}
+		}
+		if (foundCmd->type == "look at") {
+			cout << "\nPrinting description of item/feature\n";
 		}
 		if (foundCmd->type == "take") {
-			cout << "Taking an item\n";
+			cout << "\nTaking an item\n";
 		}
 		if (foundCmd->type == "savegame") { //stub
-			cout << "Saving game...\n";
+			cout << "\nSaving game...\n";
 		}
 		if (foundCmd->type == "loadgame") { //stub 
-			cout << "Loading game...\n";
+			cout << "\nLoading game...\n";
 			cout << "There are no saved games to load from!\n";
 		}
 		if (foundCmd->type == "quit") { //stub 
-			cout << "Exiting game...\n";
+			cout << "\nExiting game...\n";
 		}
 		if (foundCmd->type == "debug") {
 			printCmdHistory();
@@ -110,6 +122,7 @@ CmdList* CmdParser::getCmdList() {
 	return cmdList;
 }
 
+// Split up string into array of words, delimited by spaces
 vector<string> CmdParser::generateCmdArray(string cmd) {
 	string delimiter = " ";	//character used to split up input array
 	vector<string> cmdArray;
@@ -118,10 +131,8 @@ vector<string> CmdParser::generateCmdArray(string cmd) {
 
 	while ((pos = cmd.find(delimiter)) != string::npos) {
 		token = cmd.substr(0, pos);
-		//cout << token << endl;
 		cmdArray.push_back(token);
 		cmd = cmd.substr(pos + delimiter.length());
-		//cout << cmd << endl;
 	}
 	cmdArray.push_back(cmd);
 	return cmdArray;
@@ -131,23 +142,23 @@ bool CmdParser::tryMovingRooms(string room) {
 	bool movedRooms = false;
 	cout << "\nTrying to move Rooms\n" << endl;
 	//Space* currentRoom = School->getCurrentRoom();
-	//vector<Space*> availableExits= currentRoom->getExitRooms();
-	//vector<strings> availableDirs= currentRoom->getExitDirections();
+	//vector<Space*> availableExits = currentRoom->getExits();
+	//vector<strings> availableDirs = currentRoom->getExitDirections();
 
 	//for(int i = 0; i < availableExits.size(); i++){	//Check for available rooms connected to current room
-	//	if (room == availableExits[i].getRoomName()) {
-	//		School->moveToRoom(availableExits[i]);
+	//	if (room == availableExits[i].getType()) {
+	//		School->moveToRoom(room);
 	//		return true;
 	//	}
 	//}
 	//for(int i = 0; i < availableDirs.size(); i++){ //Check for available directions connected to current room
 	//	if (room == availableDirs[i]) {
-	//		School->moveToRoom(availableDirs[i]);
+	//		School->moveToRoom(room);
 	//		return true;		
 	//	}
 	//}
 	if (!movedRooms) {
-		cout << "Invalid command\n";
+		cout << "Invalid room\n";
 	}
 	return movedRooms;
 }
@@ -161,7 +172,8 @@ void CmdParser::addCmdToHistory(string cmd) {
 }
 
 void CmdParser::printCmdHistory() {
-	cout << "\n ===Command history===\n";
+	cout << "\n====Command history====\n";
+	cout << "  #     Command\n";
 	for (unsigned int i = 0; i < cmdHistory.size(); i++) {
 		cout << cmdHistory[i] << endl;
 	}
@@ -173,3 +185,41 @@ void CmdParser::printCmdHistory() {
 void CmdParser::clearCmdHistory() {
 	cmdHistory.clear();
 }
+
+//vector<Space*> Space::getExits() {
+//	vector<Space*> exitList;
+//	Space* exit;
+//	 
+//	if ((exit = room->getNorth()) != 0) {
+//			exitList.push_back(exit);
+//	}
+//	if ((exit = room->getSouth()) != 0) {
+//		exitList.push_back(exit);
+//	}
+//	if ((exit = room->getEast()) != 0) {
+//		exitList.push_back(exit);
+//	}
+//	if ((exit = room->getWest()) != 0) {
+//		exitList.push_back(exit);
+//	}
+//	return exitList;
+//}
+
+//vector<string> Space::getExitDirections() {
+//	vector<string> exitList;
+//	Space* exit;
+//
+//	if ((exit = room->getNorth()) != 0) {
+//		exitList.push_back("north");
+//	}
+//	if ((exit = room->getSouth()) != 0) {
+//		exitList.push_back("south");
+//	}
+//	if ((exit = room->getEast()) != 0) {
+//		exitList.push_back("east");
+//	}
+//	if ((exit = room->getWest()) != 0) {
+//		exitList.push_back("west");
+//	}
+//	return exitList;
+//}
