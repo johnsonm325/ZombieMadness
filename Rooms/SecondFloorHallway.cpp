@@ -1,4 +1,4 @@
-#include "SecondFloorHallway1.h"
+#include "SecondFloorHallway.h"
 
 
 SecondFloorHallway1::SecondFloorHallway1() : Space("Second Floor Hallway")

@@ -9,6 +9,7 @@ Key::Key() : Object()
 bool Key::canUnlock()
 {
 	//return true or false if key can unlock
+	return true;
 }
 
 void Key::unlock()

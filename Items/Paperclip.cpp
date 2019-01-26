@@ -9,6 +9,7 @@ Paperclip::Paperclip() : Object()
 bool Paperclip::canPickLock()
 {
 	//return true or false depending on different params
+	return true;
 }
 
 void Paperclip::pickLock()

@@ -25,8 +25,8 @@
 
 #include <string>	
 #include <vector>
-using std::string;
-using std::vector;
+#include <iostream>
+using namespace std;
 
 class School
 {
@@ -49,7 +49,7 @@ private:
 	Space *infr, *lr;
 	Space *gym2, *gym1, *fb;
 	Space *ffh1, *ffh2, *ffh3, *ffh4;
-	Space *cafe, *fl, *fo, *prin;
+	Space *fl, *fo, *prin;
 
 public:
 	School();

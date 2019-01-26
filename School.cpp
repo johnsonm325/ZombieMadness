@@ -72,6 +72,7 @@ void School::beginGame()
 
 int School::playGame()
 {
+	return 0;
 }
 
 
