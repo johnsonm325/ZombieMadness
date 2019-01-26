@@ -62,3 +62,41 @@ string Space::getType()
 {
 	return type;
 }
+
+vector<Space*> Space::getExits() {
+	vector<Space*> exitList;
+	Space* exit;
+	 
+	if ((exit = room->getNorth()) != 0) {
+			exitList.push_back(exit);
+	}
+	if ((exit = room->getSouth()) != 0) {
+		exitList.push_back(exit);
+	}
+	if ((exit = room->getEast()) != 0) {
+		exitList.push_back(exit);
+	}
+	if ((exit = room->getWest()) != 0) {
+		exitList.push_back(exit);
+	}
+	return exitList;
+}
+
+vector<string> Space::getExitDirections() {
+	vector<string> exitList;
+	Space* exit;
+
+	if ((exit = room->getNorth()) != 0) {
+		exitList.push_back("north");
+	}
+	if ((exit = room->getSouth()) != 0) {
+		exitList.push_back("south");
+	}
+	if ((exit = room->getEast()) != 0) {
+		exitList.push_back("east");
+	}
+	if ((exit = room->getWest()) != 0) {
+		exitList.push_back("west");
+	}
+	return exitList;
+}

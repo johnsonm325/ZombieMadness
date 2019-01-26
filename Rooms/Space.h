@@ -28,5 +28,8 @@ public:
 	virtual int menu(vector<string>*) = 0;	// For abstract class
 	virtual bool firstTime() = 0;			// For abstract class
 	virtual string getType();
+
+	vector<Space*> getExits();
+	vector<string> getExitDirections();
 };
 #endif
