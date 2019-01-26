@@ -36,7 +36,7 @@ SRC += LockerRoom.cpp
 SRC += Math.cpp
 SRC += MensBathroom.cpp
 SRC += PrincipalsOffice.cpp
-SRC += SeconfFloorHallway.cpp
+SRC += SecondFloorHallway.cpp
 SRC += Space.cpp
 SRC += WomensBathroom.cpp
 
