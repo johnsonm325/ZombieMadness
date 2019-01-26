@@ -1,21 +1,24 @@
 #ifndef SPACE_H
 #define SPACE_H
 
-//#include "Dragon.h" 
+#include <iostream>
+#include <ctime>
 #include <string>
 #include <vector>
+
 using std::string;
 using std::vector;
+using std::cout;
+using std::cin;
+using std::endl;
 
 class Space
 {
 protected:
-	//InputValid inputVal1;
 	Space *north = NULL;		// Pointer to space for up
 	Space *east;			// Pointer to space for forward
 	Space *south = NULL;		// Pointer to space for down
 	Space *west;			// Pointer to space for back
-	//Character character;
 	string type;
 
 public:

@@ -1,9 +1,9 @@
-#ifndef FIRSTFLOORHALLWAY1_H
-#define FIRSTFLOORHALLWAY1_H
+#ifndef FIRSTFLOORHALLWAY_H
+#define FIRSTFLOORHALLWAY_H
 
 #include "Space.h"
 
-class FirstFloorHallway1 : public Space
+class FirstFloorHallway : public Space
 {
 private:
 	string action;		//string action typed in by the user
@@ -11,7 +11,7 @@ private:
 	     goneColt = false;
 
 public:
-	FirstFloorHallway1();
+	FirstFloorHallway();
 	int menu(vector<string>*);
 	void inspectToilet();
 	bool firstTime();
