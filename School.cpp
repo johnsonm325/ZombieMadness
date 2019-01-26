@@ -67,11 +67,18 @@ School::~School()
 
 void School::beginGame()
 {
+	
+}
+
+int main(){
+
+	return 0;
 }
 
 
 int School::playGame()
 {
+	return 0;
 }
 
 

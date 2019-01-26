@@ -159,7 +159,7 @@ bool CmdParser::tryMovingRooms(string room) {
 
 void CmdParser::addCmdToHistory(string cmd) {
 	char count[16];
-	snprintf(count, sizeof(count), "[ %d ]", cmdHistory.size()+1);
+	snprintf(count, sizeof(count), "[ %d ]", (int) cmdHistory.size()+1);
 	string historyItem = count;
 	historyItem += " - " + cmd;
 	cmdHistory.push_back(historyItem);
