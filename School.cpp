@@ -162,7 +162,7 @@ void School::connectRooms() {
 	addRoom('e', fo, fl);
 	addRoom('e', prin, fo);
 
-	Space *currentRoom = mb;
+	this->currentRoom = mb;
 }
 
 void School::addRoom(char direction, Space *nextRoom, Space *prevRoom)
@@ -188,8 +188,17 @@ void School::addRoom(char direction, Space *nextRoom, Space *prevRoom)
 
 	else if (direction == 's')
 	{
-		prevRoom->setSouth(nextRoom);
-		nextRoom->setSouth(prevRoom);
+		// to set the non-standard joining of chemistry and infirmary rooms
+		if (prevRoom->getType() == "chem")
+		{
+			prevRoom->setSouth(nextRoom);
+			nextRoom->setSouth(prevRoom);
+		}
+		else
+		{
+			prevRoom->setSouth(nextRoom);
+			nextRoom->setNorth(prevRoom);
+		}
 	}
 }
 
