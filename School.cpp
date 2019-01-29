@@ -76,7 +76,7 @@ int School::playGame()
 	while(currentRoom != NULL)
 	{
 		cout << "You are in the " << currentRoom->getType() << endl << endl;
-		cout << "Please enter choice" << endl;
+		cout << "Please enter choice:" << endl;
 		cin >> choice;
 
 		if (choice == "q")
@@ -86,22 +86,30 @@ int School::playGame()
 
 		else if(choice == "w")
 		{
-			cout << currentRoom->getNorth()->getType() << endl;
+			if(currentRoom->getNorth() != NULL){	
+				cout << currentRoom->getNorth()->getType() << endl;
+			}
 		}
 
 		else if(choice == "a")
 		{
-			cout << currentRoom->getWest()->getType() << endl;
+			if(currentRoom->getWest() != NULL){
+				cout << currentRoom->getWest()->getType() << endl;
+			}
 		}
 		
 		else if(choice == "s")
 		{
-			cout << currentRoom->getSouth()->getType() << endl;
+			if(currentRoom->getSouth() != NULL){
+				cout << currentRoom->getSouth()->getType() << endl;
+			}
 		}
 
 		else if(choice == "d")
 		{
-			cout << currentRoom->getEast()->getType() << endl;
+			if(currentRoom->getEast() != NULL){
+				cout << currentRoom->getEast()->getType() << endl;
+			}
 		}
 
 		else if(choice == "i")
@@ -210,7 +218,7 @@ Space *School::moveEast()
 {
 	if (currentRoom->getEast() == NULL)
 	{
-		cout << "You can't go that direction." << endl;
+		cout << "move east, You can't go that direction." << endl;
 	}
 	else
 	{
@@ -224,7 +232,7 @@ Space *School::moveWest()
 {
 	if (currentRoom->getWest() == NULL)
 	{
-		cout << "You can't go that direction." << endl;
+		cout << "move west, You can't go that direction." << endl;
 	}
 	else
 	{
@@ -238,7 +246,7 @@ Space *School::moveNorth()
 {
 	if (currentRoom->getNorth() == NULL)
 	{
-		cout << "You can't go that direction." << endl;
+		cout << "move north, You can't go that direction." << endl;
 	}
 	else
 	{
@@ -252,7 +260,7 @@ Space *School::moveSouth()
 {
 	if (currentRoom->getSouth() == NULL)
 	{
-		cout << "You can't go that direction." << endl;
+		cout << "move south, You can't go that direction." << endl;
 	}
 	else
 	{
@@ -278,7 +286,7 @@ void School::addItem(string i)
 
 void School::removeItem(string a)
 {
-	for (int i = 0; i < inventory.size(); i++)
+	for (unsigned int i = 0; i < inventory.size(); i++)
 	{
 		if (a == inventory[i])
 		{
@@ -290,7 +298,7 @@ void School::removeItem(string a)
 
 bool School::itemSearch(string a)
 {
-	for (int i = 0; i < inventory.size(); i++)
+	for (unsigned int i = 0; i < inventory.size(); i++)
 	{
 		if (a == inventory[i])
 		{

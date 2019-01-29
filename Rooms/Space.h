@@ -15,10 +15,10 @@ using std::endl;
 class Space
 {
 protected:
-	Space *north = NULL;		// Pointer to space for up
-	Space *east;			// Pointer to space for forward
-	Space *south = NULL;		// Pointer to space for down
-	Space *west;			// Pointer to space for back
+	Space *north;		// Pointer to space for up
+	Space *east;		// Pointer to space for forward
+	Space *south;		// Pointer to space for down
+	Space *west;		// Pointer to space for back
 	string type;
 
 public:

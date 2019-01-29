@@ -3,6 +3,10 @@
 Space::Space(string t)
 {
 	type = t;
+	north = NULL;
+	east = NULL;
+	south = NULL;
+	west = NULL;
 }
 
 Space::~Space()
@@ -20,14 +24,11 @@ void Space::setEast(Space *e)
 
 Space * Space::getEast()
 {
-	if (east != NULL)
-	{
-		return east;
-	}
-	else
+	if(east == NULL)
 	{
 		cout << "Nothing is in that direction" << endl;
 	}
+	return east;
 }
 
 void Space::setWest(Space *w)
@@ -37,14 +38,11 @@ void Space::setWest(Space *w)
 
 Space * Space::getWest()
 {
-	if (west != NULL)
+	if(west == NULL)
 	{
-		return west;
+		cout << "Nothing is in that direction" << endl;	 
 	}
-	else
-	{
-		cout << "Nothing is in that direction" << endl;
-	}
+	return west;
 }
 
 void Space::setNorth(Space *n)
@@ -54,14 +52,11 @@ void Space::setNorth(Space *n)
 
 Space * Space::getNorth()
 {
-	if (north != NULL)
-	{
-		return north;
-	}
-	else
+	if (north == NULL)
 	{
 		cout << "Nothing is in that direction" << endl;
 	}
+	return north;
 }
 
 void Space::setSouth(Space *s)
@@ -71,14 +66,11 @@ void Space::setSouth(Space *s)
 
 Space * Space::getSouth()
 {
-	if (south != NULL)
-	{
-		return south;
-	}
-	else
+	if (south == NULL)
 	{
 		cout << "Nothing is in that direction" << endl;
 	}
+	return south;
 }
 
 int Space::menu(vector<string> *i)
