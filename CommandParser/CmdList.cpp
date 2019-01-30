@@ -1,7 +1,12 @@
 #include "CmdList.h"
 
-CmdList::CmdList(){}
-CmdList::~CmdList(){}
+CmdList::CmdList(){
+
+}
+
+CmdList::~CmdList(){
+
+}
 
 void CmdList::deleteList() {
 	list.clear();

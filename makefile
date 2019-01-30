@@ -46,6 +46,9 @@ ROOMS_OBJS += Rooms/Football.o Rooms/FrontLobby.o Rooms/FrontOffice.o Rooms/Gymn
 ROOMS_OBJS += Rooms/History.o Rooms/Infirmary.o Rooms/Library.o Rooms/Literature.o Rooms/LockerRoom.o Rooms/Math.o 
 ROOMS_OBJS += Rooms/MensBathroom.o Rooms/PrincipalsOffice.o Rooms/SecondFloorHallway.o Rooms/WomensBathroom.o
 ROOMS_OBJS += Rooms/Chemistry.o
+
+CMD_PARSER_OBJS = CommandParser/CmdWord.o CommandParser/CmdList.o CommandParser/CmdParser.o
+
 #
 # % is a wildcard. Anything that ends in ".o" will match this tag, and each
 # tag depends on the same matching wildcard, but ending in ".cpp"
@@ -54,7 +57,7 @@ ROOMS_OBJS += Rooms/Chemistry.o
 	@echo "CC	$^"
 	@$(CXX) $(CFLAGS) -c $^
 
-$(BIN): $(OBJ) $(ROOMS_OBJS)
+$(BIN): $(OBJ) $(ROOMS_OBJS) $(CMD_PARSER_OBJS)
 	@echo "CC	$@"
 	@$(CXX) $(CFLAGS) $^ -o $@
 
