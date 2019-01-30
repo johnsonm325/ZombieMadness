@@ -40,6 +40,7 @@ build_folders: clean $(OBJ)
 	$(MAKE) -C Rooms
 	$(MAKE) -C Items
 	$(MAKE) -C CommandParser
+	$(MAKE) -C GameState
 
 ROOMS_OBJS  = Rooms/Space.o Rooms/Biology.o Rooms/Cafeteria.o Rooms/ComputerScience.o Rooms/FirstFloorHallway.o 
 ROOMS_OBJS += Rooms/Football.o Rooms/FrontLobby.o Rooms/FrontOffice.o Rooms/GymnasiumFloor1.o Rooms/GymnasiumFloor2.o  
