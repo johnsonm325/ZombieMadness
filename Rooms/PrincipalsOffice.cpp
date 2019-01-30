@@ -49,4 +49,5 @@ bool PrincipalsOffice::coltGone()
 
 bool PrincipalsOffice::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

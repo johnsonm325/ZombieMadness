@@ -49,4 +49,5 @@ bool Infirmary::coltGone()
 
 bool Infirmary::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

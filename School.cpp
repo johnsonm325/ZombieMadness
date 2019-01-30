@@ -219,6 +219,7 @@ Space *School::moveEast()
 	if (currentRoom->getEast() == NULL)
 	{
 		cout << "move east, You can't go that direction." << endl;
+		return NULL;
 	}
 	else
 	{
@@ -233,6 +234,7 @@ Space *School::moveWest()
 	if (currentRoom->getWest() == NULL)
 	{
 		cout << "move west, You can't go that direction." << endl;
+		return NULL;
 	}
 	else
 	{
@@ -247,6 +249,7 @@ Space *School::moveNorth()
 	if (currentRoom->getNorth() == NULL)
 	{
 		cout << "move north, You can't go that direction." << endl;
+		return NULL;
 	}
 	else
 	{
@@ -261,6 +264,7 @@ Space *School::moveSouth()
 	if (currentRoom->getSouth() == NULL)
 	{
 		cout << "move south, You can't go that direction." << endl;
+		return NULL;
 	}
 	else
 	{

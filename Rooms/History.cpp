@@ -49,4 +49,5 @@ bool History::coltGone()
 
 bool History::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

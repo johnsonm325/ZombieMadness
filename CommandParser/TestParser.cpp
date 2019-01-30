@@ -59,18 +59,20 @@ int main() {
 			cout << "idx " << j << ": " << tmpVect[j] << endl;
 		}
 	}
-*/
+
 	int cmdIdx = 0;
 	do {
 		cout << "\nEnter command: ";
 		//getline(cin, input);
-		if (cmdIdx < testCmds.size()) {
+		if ((unsigned int) cmdIdx < testCmds.size()) {
 			input = testCmds[cmdIdx];
 			cout << input;
 			cmdIdx++;
 		}
 		testParser->handleCommand(input);
 	} while(input.compare("quit") != 0);
+
+	*/
 	return 0;
 	
 }

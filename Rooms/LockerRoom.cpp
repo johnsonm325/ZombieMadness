@@ -49,4 +49,5 @@ bool LockerRoom::coltGone()
 
 bool LockerRoom::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

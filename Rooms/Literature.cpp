@@ -49,4 +49,5 @@ bool Literature::coltGone()
 
 bool Literature::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

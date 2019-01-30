@@ -6,20 +6,21 @@
 #include <algorithm>
 #include <iostream>
 using std::vector;
+using std::remove;
 
 class Inventory
 {
 protected:
     int size;
-    vector<Object> objects;
+    vector<Object*> objects;
     string type;
 public:
     Inventory();
     virtual ~Inventory();
     string getInventoryType();
-    vector<Object> getObjects();
-    virtual void addObject(Object);
-    virtual void removeObject(Object);
+    vector<Object*> getObjects();
+    virtual void addObject(Object*);
+    virtual void removeObject(Object*);
 };
 
 #endif

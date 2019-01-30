@@ -49,4 +49,5 @@ bool Math::coltGone()
 
 bool Math::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

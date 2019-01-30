@@ -1,5 +1,5 @@
 #include "SchoolInventory.h"
-using std::remove;
+
 
 
 SchoolInventory::SchoolInventory() : Inventory()

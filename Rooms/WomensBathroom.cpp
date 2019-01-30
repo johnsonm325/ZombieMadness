@@ -49,4 +49,5 @@ bool WomensBathroom::coltGone()
 
 bool WomensBathroom::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

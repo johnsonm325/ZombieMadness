@@ -49,4 +49,5 @@ bool Football::coltGone()
 
 bool Football::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }
