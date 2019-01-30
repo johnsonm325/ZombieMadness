@@ -13,7 +13,7 @@ using std::string;
 
 int main()
 {
-	char choice;
+	//char choice;
 
 	School school;
 	school.playGame();

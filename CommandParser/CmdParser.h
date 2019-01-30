@@ -14,9 +14,11 @@ public:
 	CmdParser();	
 	~CmdParser();
 
-	void handleCommand(string cmd);
-	string getCurrentCmd();
 	void initCmdList();
+
+	void handleCommand(string cmd);
+	void setCommand(string cmd);
+	string getCommand();
 	CmdList* getCmdList();
 	vector<string> generateCmdArray(string cmd);
 	bool tryMovingRooms(string room);
