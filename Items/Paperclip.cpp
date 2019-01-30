@@ -21,3 +21,5 @@ void Paperclip::setLocation(string l)
 {
 	this->location = l;
 }
+
+

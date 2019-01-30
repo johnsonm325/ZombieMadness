@@ -2,6 +2,7 @@
 #define SCHOOL_INVENTORY_H
 
 #include "Inventory.h"
+using std::remove;
 
 class SchoolInventory : public Inventory
 {

@@ -1,5 +1,4 @@
 #include "Inventory.h"
-using std::remove;
 
 Inventory::Inventory()
 {
@@ -11,7 +10,7 @@ Inventory::~Inventory()
     // undefined
 }
 
-vector<Object> Inventory::getObjects()
+vector<Object*> Inventory::getObjects()
 {
     return objects;
 }
@@ -21,12 +20,16 @@ string Inventory::getInventoryType()
     return type;
 }
 
-void Inventory::addObject(Object obj)
+void Inventory::addObject(Object* obj)
 {
     objects.push_back(obj);
 }
 
-void Inventory::removeObject(Object obj)
+void Inventory::removeObject(Object* obj)
 {
     objects.erase(remove(objects.begin(), objects.end(), obj), objects.end());
+}
+
+void Inventory::printInventory() {
+
 }

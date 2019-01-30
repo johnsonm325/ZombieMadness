@@ -24,6 +24,7 @@ int Chemistry::menu(vector<string> *i)
 	{
 
 	}
+
 }
 
 
@@ -48,7 +49,7 @@ bool Chemistry::coltGone()
 
 bool Chemistry::itemSearch(vector<string> inv, string a)
 {
-	for (int i = 0; i < inv.size(); i++)
+	for (unsigned int i = 0; i < inv.size(); i++)
 	{
 		if (a == inv[i])
 		{

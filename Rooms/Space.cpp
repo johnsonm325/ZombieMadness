@@ -24,10 +24,6 @@ void Space::setEast(Space *e)
 
 Space * Space::getEast()
 {
-	if(east == NULL)
-	{
-		cout << "Nothing is in that direction" << endl;
-	}
 	return east;
 }
 
@@ -38,10 +34,6 @@ void Space::setWest(Space *w)
 
 Space * Space::getWest()
 {
-	if(west == NULL)
-	{
-		cout << "Nothing is in that direction" << endl;	 
-	}
 	return west;
 }
 
@@ -52,10 +44,6 @@ void Space::setNorth(Space *n)
 
 Space * Space::getNorth()
 {
-	if (north == NULL)
-	{
-		cout << "Nothing is in that direction" << endl;
-	}
 	return north;
 }
 
@@ -66,10 +54,6 @@ void Space::setSouth(Space *s)
 
 Space * Space::getSouth()
 {
-	if (south == NULL)
-	{
-		cout << "Nothing is in that direction" << endl;
-	}
 	return south;
 }
 
@@ -123,4 +107,13 @@ vector<string> Space::getExitDirections() {
 		exitList.push_back("west");
 	}
 	return exitList;
+}
+
+void Space::printDirection(Space* direction) {
+	if (direction == NULL) {
+		cout << "Nothing is in that direction" << endl;
+	}
+	else{
+		cout << direction->getType() << endl;
+	}
 }

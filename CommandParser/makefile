@@ -11,8 +11,7 @@ $(CXX) = g++
 #
 # Source Files
 #
-SRC  = CmdList.cpp
-SRC += CmdParser.cpp
+SRC  = CmdWord.cpp CmdList.cpp CmdParser.cpp
 
 #
 # Create an object for each source file

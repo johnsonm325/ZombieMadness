@@ -11,27 +11,9 @@ $(CXX) = g++
 #
 # Source Files
 #
-SRC  = Biology.cpp
-SRC += Cafeteria.cpp
-SRC += Chemistry.cpp
-SRC += ComputerScience.cpp
-SRC += FirstFloorHallway.cpp
-SRC += Football.cpp
-SRC += FrontLobby.cpp
-SRC += FrontOffice.cpp
-SRC += GymnasiumFloor1.cpp
-SRC += GymnasiumFloor2.cpp
-SRC += History.cpp
-SRC += Infirmary.cpp
-SRC += Library.cpp
-SRC += Literature.cpp
-SRC += LockerRoom.cpp
-SRC += Math.cpp
-SRC += MensBathroom.cpp
-SRC += PrincipalsOffice.cpp
-SRC += SecondFloorHallway.cpp
-SRC += Space.cpp
-SRC += WomensBathroom.cpp
+SRC  = Biology.cpp Cafeteria.cpp Chemistry.cpp ComputerScience.cpp FirstFloorHallway.cpp Football.cpp FrontLobby.cpp
+SRC += FrontOffice.cpp GymnasiumFloor1.cpp GymnasiumFloor2.cpp History.cpp Infirmary.cpp Library.cpp Literature.cpp
+SRC += LockerRoom.cpp Math.cpp MensBathroom.cpp PrincipalsOffice.cpp SecondFloorHallway.cpp Space.cpp WomensBathroom.cpp
 
 #
 # Create an object for each source file

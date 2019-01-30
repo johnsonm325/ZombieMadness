@@ -10,11 +10,12 @@ private:
     int usedSlots;
 public:
     PlayerInventory();
-    void addObject(Object);
-    void removeObject(Object, bool);
+    void addObject(Object*);
+    void removeObject(Object*, bool);
     bool isFull();
     bool isEmpty();
     void increaseSize(); // called when backpack is obtained
+	void printInventory();
 };
 
 #endif

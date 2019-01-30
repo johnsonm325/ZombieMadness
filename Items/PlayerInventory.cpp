@@ -31,14 +31,14 @@ void PlayerInventory::increaseSize()
     size += 6; // TBD the size we will increase it to
 }
 
-void PlayerInventory::addObject(Object obj)
+void PlayerInventory::addObject(Object* obj)
 {
-    if (!isFull)
+    if (!isFull())
     {
         objects.push_back(obj);
         openSlots--;
         usedSlots++;
-        cout << obj.getName() << " was successfully added to your inventory." << endl;
+        cout << obj->getName() << " was successfully added to your inventory." << endl;
     }
 
     else
@@ -48,9 +48,9 @@ void PlayerInventory::addObject(Object obj)
 
 // game will pass wasUsed as true if player used the item from their inventory
 // wasUsed should otherwise be false
-void PlayerInventory::removeObject(Object obj, bool wasUsed)
+void PlayerInventory::removeObject(Object* obj, bool wasUsed)
 {
-    if (!isEmpty)
+    if (!isEmpty())
     {
         objects.erase(remove(objects.begin(), objects.end(), obj), objects.end());
         openSlots++;
@@ -59,11 +59,23 @@ void PlayerInventory::removeObject(Object obj, bool wasUsed)
         if (wasUsed)
             return;
         else
-            cout << obj.getName() << " was succesfully removed from your inventory." << endl;
+            cout << obj->getName() << " was succesfully removed from your inventory." << endl;
         
     }
 
     else
         cout << "Your inventory has nothing in it!" << endl;
     
+}
+
+void PlayerInventory::printInventory() {
+	cout << "=== Player's Inventory" << endl;
+	if (isEmpty()) {
+		cout << "EMPTY" << endl;
+	}
+	else {
+		for (unsigned int i = 0; i < objects.size(); i++) {
+			cout << (i + 1) << ": " << objects[i]->getName() << endl;
+		}
+	}
 }

@@ -1,6 +1,7 @@
 #ifndef SCHOOL_H
 #define SCHOOL_H
 
+//Room includes
 #include "Rooms/Space.h"
 #include "Rooms/Biology.h"
 #include "Rooms/Cafeteria.h"
@@ -22,6 +23,9 @@
 #include "Rooms/PrincipalsOffice.h"
 #include "Rooms/SecondFloorHallway.h"
 #include "Rooms/WomensBathroom.h"
+
+//CommandParser
+#include "CommandParser/CmdParser.h"
 
 #include <string>	
 #include <vector>
@@ -66,5 +70,7 @@ public:
 	void addItem(string item);
 	void removeItem(string item);
 	bool itemSearch(string item);
+
+	void processCommand(CmdParser* parser, string cmd);
 };
 #endif

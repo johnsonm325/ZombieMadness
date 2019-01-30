@@ -1,15 +1,28 @@
 #include "CmdList.h"
 
-CmdList::CmdList(){}
-CmdList::~CmdList(){}
+CmdList::CmdList(){
+
+}
+
+CmdList::~CmdList(){
+
+}
 
 void CmdList::deleteList() {
 	list.clear();
 }
 
+vector<vector<CmdWord*>> CmdList::getList() {
+	return list;
+}
+
+void CmdList::setList(vector<vector<CmdWord*>> list) {
+	this->list = list;
+}
+
 //Add command word to list
 void CmdList::addItemToList(CmdWord* word) {
-	if (!foundType(word->type)) {	//Word with that command type is not in the list
+	if (!foundType(word->getType())) {	//Word with that command type is not in the list
 		vector<CmdWord*> newVect;
 		newVect.push_back(word);
 		list.push_back(newVect);
@@ -17,7 +30,7 @@ void CmdList::addItemToList(CmdWord* word) {
 	else {		//Word with that command type is  in the list
 		for (unsigned int i = 0; i < list.size(); i++) {
 			for (unsigned int j = 0; j < list[i].size(); j++) {
-				if (list[i][j]->type.compare(word->type) == 0) {
+				if (list[i][j]->getType().compare(word->getType()) == 0) {
 					//cout << "Found same type, adding another word\n";
 					list[i].push_back(word);
 				}
@@ -32,7 +45,7 @@ bool CmdList::foundType(string type) {
 	for (unsigned int i = 0; i < list.size(); i++) {
 		for (unsigned int j = 0; j < list[i].size(); j++) {
 			//Found command type
-			if (list[i][j]->type.compare(type) == 0) {
+			if (list[i][j]->getType().compare(type) == 0) {
 				return true;
 			}
 			//Go to next command type
@@ -47,7 +60,7 @@ bool CmdList::foundType(string type) {
 CmdWord* CmdList::findCommand(string keyCmd) {
 	for (unsigned int i = 0; i < list.size(); i++) {
 		for (unsigned int j = 0; j < list[i].size(); j++) {
-			if (list[i][j]->command.compare(keyCmd) == 0) {
+			if (list[i][j]->getCommand().compare(keyCmd) == 0) {
 				return list[i][j];
 			}
 		}
@@ -68,9 +81,9 @@ void CmdList::printList() {
 		for (unsigned int i = 0; i < list.size(); i++) {
 			for (unsigned int j = 0; j < list[i].size(); j++) {
 				if (j == 0 && list[i].size() > 0) {
-					cout << "\nType: " << list[i][0]->type << "  commands: ";
+					cout << "\nType: " << list[i][0]->getType() << "  commands: ";
 				}
-				cout  << list[i][j]->command << ", ";
+				cout  << list[i][j]->getCommand() << ", ";
 			}
 		}
 	}
@@ -88,7 +101,7 @@ void CmdList::printListDetailed(){
 			for (unsigned int j = 0; j < list[i].size(); j++) {
 				if (j == 0 && list[i].size() > 0) {
 					cmdNum++;
-					cout << "\n " << cmdNum << ": " << list[i][0]->type << list[i][0]->description;
+					cout << "\n " << cmdNum << ": " << list[i][0]->getType() << list[i][0]->getDescription();
 					break;
 				}
 			}

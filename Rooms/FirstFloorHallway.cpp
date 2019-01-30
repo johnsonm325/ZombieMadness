@@ -49,4 +49,5 @@ bool FirstFloorHallway::coltGone()
 
 bool FirstFloorHallway::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

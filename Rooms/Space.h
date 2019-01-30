@@ -37,7 +37,10 @@ public:
 	virtual string getType();
 
 	void addItem(string item);		//Add items to a specific room
+
 	vector<Space*> getExits();
 	vector<string> getExitDirections();
+	void printDirection(Space* direction);
+
 };
 #endif

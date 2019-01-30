@@ -49,4 +49,5 @@ bool GymnasiumFloor2::coltGone()
 
 bool GymnasiumFloor2::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

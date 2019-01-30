@@ -49,4 +49,5 @@ bool FrontLobby::coltGone()
 
 bool FrontLobby::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

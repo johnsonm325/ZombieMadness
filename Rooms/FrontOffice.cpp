@@ -49,4 +49,5 @@ bool FrontOffice::coltGone()
 
 bool FrontOffice::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

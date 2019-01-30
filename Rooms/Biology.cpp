@@ -25,6 +25,7 @@ int Biology::menu(vector<string> *i)
 	{
 
 	}
+
 }
 
 
@@ -49,4 +50,5 @@ bool Biology::coltGone()
 
 bool Biology::itemSearch(vector<string> inv, string a)
 {
+	return false;
 }

@@ -1,91 +1,93 @@
 #include "CmdParser.h"
 
 CmdParser::CmdParser() {
-
+	initCmdList();
 }
 
 CmdParser::~CmdParser() {
-	
 }
 	
-void CmdParser::handleCommand(string cmd) {
-	if (cmd.length() == 0) { return; }	//Empty command
+//void processCommand(CmdParser* parser, string cmd) {
+//	if (cmd.length() == 0) { return; }	//Empty command
+//
+//	parser->setCommand(cmd);
+//	CmdWord* foundCmd = 0;
+//
+//	//Convert input to lower case to make parsing easier
+//	transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
+//
+//	//Generate cmd array, moving words into separate elements
+//	vector<string> cmdArray = parser->generateCmdArray(cmd);
+//
+//	//Search for command in cmdList
+//	//Command with 2 words or more
+//	if (cmdArray.size() > 1) {	
+//		//Search for valid 2-word command
+//		string cmd2words = cmdArray[0] + " " + cmdArray[1];
+//		foundCmd = parser->getCmdList()->findCommand(cmd2words);
+//
+//		//Didn't find valid 2-word command, search for 1-word command
+//		if (foundCmd == 0) {
+//			foundCmd = parser->getCmdList()->findCommand(cmdArray[0]);
+//		}
+//	}
+//	// Command with 1 word only
+//	else {
+//		foundCmd = parser->getCmdList()->findCommand(cmdArray[0]);
+//	}
+//
+//	parser->addCmdToHistory(cmd);
+//
+//	if (foundCmd != 0) {	//Found a matching command from pre-set command list
+//		if (foundCmd->getType() == "help") {
+//			//Print available commands
+//			parser->getCmdList()->printListDetailed();
+//		}
+//		if (foundCmd->getType() == "inventory") { //stub 
+//			cout << "\n ===Inventory===\n";
+//			cout << "Empty inventory\n";
+//		}
+//		//Syntax: go <north> or go <room>
+//		if (foundCmd->getType() == "go") {		//stub 
+//			//cout << "\nMoving rooms...\n";
+//			//parser->tryMovingRooms(cmdArray[1]);
+//		}
+//		if (foundCmd->getType() == "look") {		//stub 
+//			if (cmdArray.size() == 1) {		//Look command
+//				cout << "\nPrinting long form room description\n";
+//			}
+//		}
+//		if (foundCmd->getType() == "look at") {
+//			cout << "\nPrinting description of item/feature\n";
+//		}
+//		if (foundCmd->getType() == "take") {
+//			cout << "\nTaking an item\n";
+//		}
+//		if (foundCmd->getType() == "savegame") { //stub
+//			cout << "\nSaving game...\n";
+//		}
+//		if (foundCmd->getType() == "loadgame") { //stub 
+//			cout << "\nLoading game...\n";
+//			cout << "There are no saved games to load from!\n";
+//		}
+//		if (foundCmd->getType() == "quit") { //stub 
+//			cout << "\nExiting game...\n";
+//		}
+//		if (foundCmd->getType() == "debug") {
+//			parser->printCmdHistory();
+//		}
+//	}
+//	//Else, search room name without adding prefix like go.
+//	// Ex: cmd = math classroom, cmd = north 
+//	else {
+//		//parser->tryMovingRooms(cmdArray[0]);
+//	}
+//}
 
-	this->command = cmd;
-	CmdWord* foundCmd = 0;
-
-	//Convert input to lower case to make parsing easier
-	transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
-
-	//Generate cmd array, moving words into separate elements
-	vector<string> cmdArray = generateCmdArray(cmd);
-
-	//Search for command in cmdList
-	//Command with 2 words or more
-	if (cmdArray.size() > 1) {	
-		//Search for valid 2-word command
-		string cmd2words = cmdArray[0] + " " + cmdArray[1];
-		foundCmd = cmdList->findCommand(cmd2words);
-
-		//Didn't find valid 2-word command, search for 1-word command
-		if (foundCmd == 0) {
-			foundCmd = cmdList->findCommand(cmdArray[0]);
-		}
-	}
-	// Command with 1 word only
-	else {
-		foundCmd = cmdList->findCommand(cmdArray[0]);
-	}
-
-	addCmdToHistory(cmd);
-
-	if (foundCmd != 0) {	//Found a matching command from pre-set command list
-		if (foundCmd->type == "help") {
-			//Print available commands
-			cmdList->printListDetailed();
-		}
-		if (foundCmd->type == "inventory") { //stub 
-			cout << "\n ===Inventory===\n";
-			cout << "Empty inventory\n";
-		}
-		//Syntax: go <north> or go <room>
-		if (foundCmd->type == "go") {		//stub 
-			//cout << "\nMoving rooms...\n";
-			tryMovingRooms(cmdArray[1]);
-		}
-		if (foundCmd->type == "look") {		//stub 
-			if (cmdArray.size() == 1) {		//Look command
-				cout << "\nPrinting long form room description\n";
-			}
-		}
-		if (foundCmd->type == "look at") {
-			cout << "\nPrinting description of item/feature\n";
-		}
-		if (foundCmd->type == "take") {
-			cout << "\nTaking an item\n";
-		}
-		if (foundCmd->type == "savegame") { //stub
-			cout << "\nSaving game...\n";
-		}
-		if (foundCmd->type == "loadgame") { //stub 
-			cout << "\nLoading game...\n";
-			cout << "There are no saved games to load from!\n";
-		}
-		if (foundCmd->type == "quit") { //stub 
-			cout << "\nExiting game...\n";
-		}
-		if (foundCmd->type == "debug") {
-			printCmdHistory();
-		}
-	}
-	//Else, search room name without adding prefix like go.
-	// Ex: cmd = math classroom, cmd = north 
-	else {
-		tryMovingRooms(cmdArray[0]);
-	}
+void CmdParser::setCommand(string cmd) {
+	command = cmd;
 }
-	
-string CmdParser::getCurrentCmd() {
+string CmdParser::getCommand() {
 	return command;
 }
 
@@ -96,6 +98,23 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("go", "go", " - go <direction>, moves players through the indicated direction to the next room"));
 	cmdList->addItemToList(new CmdWord("go", "walk"));	
 	cmdList->addItemToList(new CmdWord("go", "run"));
+	cmdList->addItemToList(new CmdWord("go", "go north"));
+	cmdList->addItemToList(new CmdWord("go", "north"));
+	cmdList->addItemToList(new CmdWord("go", "i"));
+	cmdList->addItemToList(new CmdWord("go", "go south"));
+	cmdList->addItemToList(new CmdWord("go", "south"));
+	cmdList->addItemToList(new CmdWord("go", "k"));
+	cmdList->addItemToList(new CmdWord("go", "go east"));
+	cmdList->addItemToList(new CmdWord("go", "east"));
+	cmdList->addItemToList(new CmdWord("go", "l"));
+	cmdList->addItemToList(new CmdWord("go", "go west"));
+	cmdList->addItemToList(new CmdWord("go", "west"));
+	cmdList->addItemToList(new CmdWord("go", "j"));
+	cmdList->addItemToList(new CmdWord("dir", "dir", " - displays all available exits in current room"));
+	cmdList->addItemToList(new CmdWord("dir", "w"));
+	cmdList->addItemToList(new CmdWord("dir", "a"));
+	cmdList->addItemToList(new CmdWord("dir", "s"));
+	cmdList->addItemToList(new CmdWord("dir", "d"));
 	cmdList->addItemToList(new CmdWord("look", "look", " - display long form description of the room"));
 	cmdList->addItemToList(new CmdWord("look", "see"));
 	cmdList->addItemToList(new CmdWord("look at", "look at", " - display description of an object or feature"));
@@ -110,6 +129,7 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("debug", "debug", " - shows useful debug info for developers"));
 	cmdList->addItemToList(new CmdWord("quit", "quit", " - quits game"));
 	cmdList->addItemToList(new CmdWord("quit", "exit"));
+	cmdList->addItemToList(new CmdWord("quit", "q"));
 }
 
 CmdList* CmdParser::getCmdList() {
@@ -130,31 +150,6 @@ vector<string> CmdParser::generateCmdArray(string cmd) {
 	}
 	cmdArray.push_back(cmd);
 	return cmdArray;
-}
-
-bool CmdParser::tryMovingRooms(string room) {
-	bool movedRooms = false;
-	cout << "\nTrying to move Rooms\n" << endl;
-	//Space* currentRoom = School->getCurrentRoom();
-	//vector<Space*> availableExits = currentRoom->getExits();
-	//vector<strings> availableDirs = currentRoom->getExitDirections();
-
-	//for(int i = 0; i < availableExits.size(); i++){	//Check for available rooms connected to current room
-	//	if (room == availableExits[i].getType()) {
-	//		School->moveToRoom(room);
-	//		return true;
-	//	}
-	//}
-	//for(int i = 0; i < availableDirs.size(); i++){ //Check for available directions connected to current room
-	//	if (room == availableDirs[i]) {
-	//		School->moveToRoom(room);
-	//		return true;		
-	//	}
-	//}
-	if (!movedRooms) {
-		cout << "Invalid room\n";
-	}
-	return movedRooms;
 }
 
 void CmdParser::addCmdToHistory(string cmd) {
