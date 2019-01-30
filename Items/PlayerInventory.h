@@ -15,6 +15,7 @@ public:
     bool isFull();
     bool isEmpty();
     void increaseSize(); // called when backpack is obtained
+	void printInventory();
 };
 
 #endif

@@ -67,3 +67,15 @@ void PlayerInventory::removeObject(Object* obj, bool wasUsed)
         cout << "Your inventory has nothing in it!" << endl;
     
 }
+
+void PlayerInventory::printInventory() {
+	cout << "=== Player's Inventory" << endl;
+	if (isEmpty()) {
+		cout << "EMPTY" << endl;
+	}
+	else {
+		for (unsigned int i = 0; i < objects.size(); i++) {
+			cout << (i + 1) << ": " << objects[i]->getName() << endl;
+		}
+	}
+}
