@@ -21,11 +21,11 @@ public:
 	string getDesc();
 	string getLocation();
 	string getName();
-	virtual void setLocation(string);
+	//virtual void setLocation(string);
 	int getAttack();
 	int getDefense();
 	int getHealthBoost();
-	virtual void useItem();
+	//virtual void useItem();
 };
 
 #endif

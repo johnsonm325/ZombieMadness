@@ -49,5 +49,4 @@ bool ComputerScience::coltGone()
 
 bool ComputerScience::itemSearch(vector<string> inv, string a)
 {
-	return false;
 }

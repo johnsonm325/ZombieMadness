@@ -1,7 +1,7 @@
 #include "CmdParser.h"
 #include "CmdList.h"
 
-int main() {
+int main2() {
 	CmdParser* testParser = new CmdParser();
 	testParser->initCmdList();
 	//testParser->getCmdList()->printList();
