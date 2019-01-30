@@ -7,6 +7,14 @@ void CmdList::deleteList() {
 	list.clear();
 }
 
+vector<vector<CmdWord*>> CmdList::getList() {
+	return list;
+}
+
+void CmdList::setList(vector<vector<CmdWord*>> list) {
+	this->list = list;
+}
+
 //Add command word to list
 void CmdList::addItemToList(CmdWord* word) {
 	if (!foundType(word->getType())) {	//Word with that command type is not in the list

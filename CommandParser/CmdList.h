@@ -1,8 +1,14 @@
 #ifndef CMD_LIST_H
 #define CMD_LIST_H
 
-#include "Globals.h"
 #include "CmdWord.h"
+#include <string>
+#include <vector>
+#include <iostream>
+
+using std::string;
+using std::vector;
+using std::cout;
 
 class CmdList{
 private:
@@ -12,8 +18,8 @@ public:
 	CmdList();
 	~CmdList();
 	void deleteList();
-	CmdList* getList();
-	void setList(CmdList* list);
+	vector<vector<CmdWord*>> getList();
+	void setList(vector<vector<CmdWord*>> list);
 	void addItemToList(CmdWord* word);
 	CmdWord* findCommand(string cmd);
 	bool foundType(string type);

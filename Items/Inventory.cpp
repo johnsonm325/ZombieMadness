@@ -29,3 +29,7 @@ void Inventory::removeObject(Object* obj)
 {
     objects.erase(remove(objects.begin(), objects.end(), obj), objects.end());
 }
+
+void Inventory::printInventory() {
+
+}

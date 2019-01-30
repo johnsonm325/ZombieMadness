@@ -21,6 +21,7 @@ public:
     vector<Object*> getObjects();
     virtual void addObject(Object*);
     virtual void removeObject(Object*);
+	virtual void printInventory();
 };
 
 #endif

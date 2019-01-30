@@ -11,22 +11,9 @@ $(CXX) = g++
 #
 # Source Files
 #
-SRC  = BaseballBat.cpp
-SRC += BiteCure.cpp
-SRC += Bookbag.cpp
-SRC += EnergyDrink.cpp
-SRC += FireExtinguisher.cpp
-SRC += FirstAid.cpp
-SRC += Gun.cpp
-SRC += Jersey.cpp
-SRC += Key.cpp
-SRC += Knife.cpp
-SRC += Map.cpp
-SRC += Object.cpp
-SRC += Paperclip.cpp
-SRC += Rocks.cpp
-SRC += SteelLid.cpp
-SRC += Sword.cpp
+SRC  = Object.cpp BaseballBat.cpp BiteCure.cpp Bookbag.cpp EnergyDrink.cpp FireExtinguisher.cpp 
+SRC += FirstAid.cpp Gun.cpp Jersey.cpp Key.cpp Knife.cpp Map.cpp Paperclip.cpp Rocks.cpp
+SRC += SteelLid.cpp Sword.cpp
 
 #
 # Create an object for each source file
