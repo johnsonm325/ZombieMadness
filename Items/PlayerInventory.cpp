@@ -3,7 +3,7 @@ using std::remove;
 using std::cout;
 using std::endl;
 
-PlayerInventory::PlayerInventory() : Inventory()
+PlayerInventory::PlayerInventory() : Inventory("Player")
 {
     this->type = "Player";
     this->size = 6; // TBD how many opening slots player should have

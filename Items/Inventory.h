@@ -15,7 +15,7 @@ protected:
     vector<Object*> objects;
     string type;
 public:
-    Inventory();
+    Inventory(string);
     virtual ~Inventory();
     string getInventoryType();
     vector<Object*> getObjects();
