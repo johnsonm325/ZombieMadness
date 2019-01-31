@@ -4,6 +4,11 @@
 
 class GameState 
 {
+private:
+	//Space* currentRoom;
+	string choice;
+	int steps; 
+	
 public:
 	GameState();
 	~GameState();

@@ -67,6 +67,21 @@ string Space::getType()
 	return type;
 }
 
+void Space::pickUpItem(Object* item)
+{
+	//This is to remove object from room
+	roomInventory->removeObject(item);
+
+	//Need to characterInventory->addObject(item);
+}
+
+void Space::dropItem(Object* item)
+{
+	roomInventory->addObject(item);
+
+	//Need to characterInventory->removeObject(item);
+}
+
 // Return a vector of available room pointers that
 // player can move to from current room = this
 vector<Space*> Space::getExits() {

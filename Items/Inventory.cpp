@@ -1,8 +1,9 @@
 #include "Inventory.h"
 
-Inventory::Inventory()
+Inventory::Inventory(string t)
 {
     // attributes decided in subclasses
+    type = t;
 }
 
 Inventory::~Inventory()

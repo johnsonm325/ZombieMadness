@@ -1,6 +1,8 @@
 #ifndef SPACE_H
 #define SPACE_H
 
+#include "../Items/Inventory.h"
+
 #include <iostream>
 #include <ctime>
 #include <string>
@@ -20,6 +22,7 @@ protected:
 	Space *south;		// Pointer to space for down
 	Space *west;		// Pointer to space for back
 	string type;
+	Inventory* roomInventory = new Inventory(this->getType());
 
 public:
 	Space(string);
@@ -36,7 +39,8 @@ public:
 	virtual bool firstTime() = 0;			// For abstract class
 	virtual string getType();
 
-	void addItem(string item);		//Add items to a specific room
+	void pickUpItem(Object*);		//Pick up item from room
+	void dropItem(Object*);			//Drop item in room
 
 	vector<Space*> getExits();
 	vector<string> getExitDirections();
