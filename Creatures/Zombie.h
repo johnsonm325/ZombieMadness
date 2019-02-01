@@ -1,5 +1,5 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef ZOMBIE_H
+#define ZOMBIE_H
 
 #include "Creature.h"
 
