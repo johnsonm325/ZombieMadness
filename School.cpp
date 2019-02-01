@@ -146,7 +146,7 @@ int School::playGame()
 		cin >> choice;
 
 		processCommand(parser, choice);
-	} while (choice != "q");
+	} while (choice != "q" && choice != "quit");
 
 	return 0;
 }
@@ -238,6 +238,9 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		if (foundCmd->getType() == "take") {
 			cout << "\nTaking an item\n";
+		}
+		if (foundCmd->getType() == "drop") {
+			cout << "\nDropping an item\n";
 		}
 		if (foundCmd->getType() == "savegame") { //stub
 			cout << "\nSaving game...\n";

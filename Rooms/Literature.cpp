@@ -25,6 +25,7 @@ int Literature::menu(vector<string> *i)
 	{
 
 	}
+	return 0;
 }
 
 

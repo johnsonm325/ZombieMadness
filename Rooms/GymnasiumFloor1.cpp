@@ -25,6 +25,7 @@ int GymnasiumFloor1::menu(vector<string> *i)
 	{
 
 	}
+	return 0;
 }
 
 

@@ -25,6 +25,7 @@ int FrontLobby::menu(vector<string> *i)
 	{
 
 	}
+	return 0;
 }
 
 

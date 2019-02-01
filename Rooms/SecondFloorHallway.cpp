@@ -25,6 +25,7 @@ int SecondFloorHallway::menu(vector<string> *i)
 	{
 
 	}
+	return 0;
 }
 
 

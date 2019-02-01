@@ -21,10 +21,7 @@ int Biology::menu(vector<string> *i)
 		firstTime();
 	}
 
-	else 
-	{
-
-	}
+	return 0;
 
 }
 

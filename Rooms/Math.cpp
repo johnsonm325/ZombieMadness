@@ -25,6 +25,7 @@ int Math::menu(vector<string> *i)
 	{
 
 	}
+	return 0;
 }
 
 
