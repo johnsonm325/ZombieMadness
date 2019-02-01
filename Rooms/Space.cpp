@@ -82,8 +82,12 @@ void Space::dropItem(Object* item)
 	//Need to characterInventory->removeObject(item);
 }
 
+Inventory* Space::getInventory() {
+	return roomInventory;
+}
+
 // Return a vector of available room pointers that
-// player can move to from current room = this
+// player can move to from current room 
 vector<Space*> Space::getExits() {
 	vector<Space*> exitList;
 	Space* exit;

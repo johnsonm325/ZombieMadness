@@ -26,7 +26,7 @@ protected:
 
 public:
 	Space(string);
-	~Space();
+	virtual ~Space();
 	void setEast(Space*);
 	Space* getEast();
 	void setWest(Space*);
@@ -37,14 +37,16 @@ public:
 	Space* getSouth();
 	virtual int menu(vector<string>*) = 0;	// For abstract class
 	virtual bool firstTime() = 0;			// For abstract class
-	virtual string getType();
+	string getType();
 
 	void pickUpItem(Object*);		//Pick up item from room
 	void dropItem(Object*);			//Drop item in room
+	Inventory* getInventory();		//Return inventory vector
 
 	vector<Space*> getExits();
 	vector<string> getExitDirections();
 	void printDirection(Space* direction);
 
 };
+
 #endif

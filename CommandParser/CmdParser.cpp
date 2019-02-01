@@ -7,83 +7,6 @@ CmdParser::CmdParser() {
 CmdParser::~CmdParser() {
 }
 	
-//void processCommand(CmdParser* parser, string cmd) {
-//	if (cmd.length() == 0) { return; }	//Empty command
-//
-//	parser->setCommand(cmd);
-//	CmdWord* foundCmd = 0;
-//
-//	//Convert input to lower case to make parsing easier
-//	transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
-//
-//	//Generate cmd array, moving words into separate elements
-//	vector<string> cmdArray = parser->generateCmdArray(cmd);
-//
-//	//Search for command in cmdList
-//	//Command with 2 words or more
-//	if (cmdArray.size() > 1) {	
-//		//Search for valid 2-word command
-//		string cmd2words = cmdArray[0] + " " + cmdArray[1];
-//		foundCmd = parser->getCmdList()->findCommand(cmd2words);
-//
-//		//Didn't find valid 2-word command, search for 1-word command
-//		if (foundCmd == 0) {
-//			foundCmd = parser->getCmdList()->findCommand(cmdArray[0]);
-//		}
-//	}
-//	// Command with 1 word only
-//	else {
-//		foundCmd = parser->getCmdList()->findCommand(cmdArray[0]);
-//	}
-//
-//	parser->addCmdToHistory(cmd);
-//
-//	if (foundCmd != 0) {	//Found a matching command from pre-set command list
-//		if (foundCmd->getType() == "help") {
-//			//Print available commands
-//			parser->getCmdList()->printListDetailed();
-//		}
-//		if (foundCmd->getType() == "inventory") { //stub 
-//			cout << "\n ===Inventory===\n";
-//			cout << "Empty inventory\n";
-//		}
-//		//Syntax: go <north> or go <room>
-//		if (foundCmd->getType() == "go") {		//stub 
-//			//cout << "\nMoving rooms...\n";
-//			//parser->tryMovingRooms(cmdArray[1]);
-//		}
-//		if (foundCmd->getType() == "look") {		//stub 
-//			if (cmdArray.size() == 1) {		//Look command
-//				cout << "\nPrinting long form room description\n";
-//			}
-//		}
-//		if (foundCmd->getType() == "look at") {
-//			cout << "\nPrinting description of item/feature\n";
-//		}
-//		if (foundCmd->getType() == "take") {
-//			cout << "\nTaking an item\n";
-//		}
-//		if (foundCmd->getType() == "savegame") { //stub
-//			cout << "\nSaving game...\n";
-//		}
-//		if (foundCmd->getType() == "loadgame") { //stub 
-//			cout << "\nLoading game...\n";
-//			cout << "There are no saved games to load from!\n";
-//		}
-//		if (foundCmd->getType() == "quit") { //stub 
-//			cout << "\nExiting game...\n";
-//		}
-//		if (foundCmd->getType() == "debug") {
-//			parser->printCmdHistory();
-//		}
-//	}
-//	//Else, search room name without adding prefix like go.
-//	// Ex: cmd = math classroom, cmd = north 
-//	else {
-//		//parser->tryMovingRooms(cmdArray[0]);
-//	}
-//}
-
 void CmdParser::setCommand(string cmd) {
 	command = cmd;
 }
@@ -124,6 +47,7 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("take", "take", " - get an object, place it in inventory"));
 	cmdList->addItemToList(new CmdWord("take", "grab"));
 	cmdList->addItemToList(new CmdWord("take", "pick up"));
+	cmdList->addItemToList(new CmdWord("drop", "drop", " - drop an object from player's inventory"));
 	cmdList->addItemToList(new CmdWord("savegame", "savegame", " - save the current game state to a file"));
 	cmdList->addItemToList(new CmdWord("loadgame", "loadgame", " - on user confirmation, loads previous game state from file"));
 	cmdList->addItemToList(new CmdWord("debug", "debug", " - shows useful debug info for developers"));

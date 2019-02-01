@@ -21,10 +21,7 @@ int ComputerScience::menu(vector<string> *i)
 		firstTime();
 	}
 
-	else 
-	{
-
-	}
+	return 0;
 }
 
 

@@ -8,18 +8,12 @@ private:
 	//Space* currentRoom;
 	string choice;
 	int steps; 
-	
+	string time;
 public:
 	GameState();
 	~GameState();
-	//Loading game state from file
-	GameState* readSaveFile(string filename);
-	void loadState(GameState* state, School* game);
-
-	//Writing game state to file
-	GameState* saveState(School* game);
-	void writeSaveFile(GameState* state, string filename);
-
+	string getTime();
+	void setTime();
 };
 
 #endif
