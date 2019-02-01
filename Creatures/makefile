@@ -1,7 +1,7 @@
 #
 # Project Name
 #
-PROJ = CmdParser
+PROJ = Creatures
 
 #
 # Compiler
@@ -11,7 +11,7 @@ $(CXX) = g++
 #
 # Source Files
 #
-SRC  = GameState.cpp StateManager.cpp
+SRC  = Creature.cpp Player.cpp Zombie.cpp
 
 #
 # Create an object for each source file

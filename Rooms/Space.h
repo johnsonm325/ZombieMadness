@@ -41,10 +41,12 @@ public:
 
 	void pickUpItem(Object*);		//Pick up item from room
 	void dropItem(Object*);			//Drop item in room
+	Inventory* getInventory();		//Return inventory vector
 
 	vector<Space*> getExits();
 	vector<string> getExitDirections();
 	void printDirection(Space* direction);
 
 };
+
 #endif
