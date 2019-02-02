@@ -7,7 +7,7 @@
 class Bookbag : public Object
 {
 private:
-	PlayerInventory *inventory;
+	PlayerInventory *inventory; // passed in player inventory
 public:
 	Bookbag(PlayerInventory*);
 	void increaseSize();

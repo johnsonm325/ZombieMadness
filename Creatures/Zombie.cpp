@@ -4,6 +4,13 @@ Zombie::Zombie(int level) : Creature("Zombie")
 {
 	setLevel(level);
 	
+	if (level == 1)
+		this->description = "A level 1 zombie, shouldn't be too bad... it's never good to let your guard down though...";
+	else if (level == 2)
+		this->description = "A level 2 zombie, you better be careful with this one.  These guys are faster, stronger, and have higher health.";
+	else
+		this->description = "Oh boy, a level 3 zombie.  Watch out, these zombies are real tough, takes a lot to take them down and their attack damage is very high. Be prepared!";
+	
 }
 
 Zombie::~Zombie()

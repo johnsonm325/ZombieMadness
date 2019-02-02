@@ -7,7 +7,7 @@ class BiteCure : public Object
 {
 public:
 	BiteCure();
-	void fullHealth();
+	void fullHealth(Creature*);
 	void setLocation(string);
 };
 

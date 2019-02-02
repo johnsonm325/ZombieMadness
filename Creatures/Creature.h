@@ -18,7 +18,6 @@ protected:
 	int defense;
 	int health;
 	bool isDead;
-	Inventory* creatureInventory = new Inventory(this->getType());
 
 public:
 	Creature();
@@ -31,13 +30,11 @@ public:
 	void setLocation(Space* location);
 	int getAttack();
 	int getDefense();
-	int getHealthBoost();
-	virtual void useItem(Object* item) = 0;
+	int getHealth();
+	void setHealth(int);
+	// virtual void useItem(Object* item) = 0;
 	virtual void attackEnemy(Creature* enemy) = 0;
-
-	void pickUpItem(Object* item);		//Pick up item from room
-	void dropItem(Object* item);		//Drop item in room
-	Inventory* getInventory();
+	virtual void takeDamage(int);
 };
 
 #endif

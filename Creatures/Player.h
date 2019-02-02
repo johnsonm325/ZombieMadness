@@ -12,13 +12,13 @@ class Player: public Creature
 {
 private:
 	PlayerInventory *playerInventory;
-	Inventory *roomInventory;
+	Inventory *roomInventory; // room's inventory class is passed in here
+	Creature *enemy; // passed in enemy
 public:
-	Player(PlayerInventory*, Inventory*);
+	Player(Inventory*);
 	~Player();
 	void useItem(Object* item);
-	void attackEnemy(Creature* enemy);
-
+	void attackEnemy(string);
 };
 
 #endif

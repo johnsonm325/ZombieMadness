@@ -8,9 +8,9 @@ BiteCure::BiteCure() : Object()
 	this->type = "Supply";
 }
 
-void BiteCure::fullHealth()
+void BiteCure::fullHealth(Creature *player)
 {
-	// set players health to full health
+	player->setHealth(this->healthBoost);
 }
 
 void BiteCure::setLocation(string l)
