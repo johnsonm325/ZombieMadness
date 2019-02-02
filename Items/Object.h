@@ -26,6 +26,7 @@ public:
 	int getDefense();
 	int getHealthBoost();
 	//virtual void useItem();
+	void setDummyItem(string, string);
 };
 
 #endif

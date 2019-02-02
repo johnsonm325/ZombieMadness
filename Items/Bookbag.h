@@ -2,11 +2,14 @@
 #define BOOKBAG_H
 
 #include "Object.h"
+#include "PlayerInventory.h"
 
 class Bookbag : public Object
 {
+private:
+	PlayerInventory *inventory;
 public:
-	Bookbag();
+	Bookbag(PlayerInventory*);
 	void increaseSize();
 	void setLocation(string);
 };
