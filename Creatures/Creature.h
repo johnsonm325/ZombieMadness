@@ -16,7 +16,7 @@ protected:
 	string name;		//Specific name of creature, if necessary
 	int attack;
 	int defense;
-	int healthBoost;
+	int health;
 	bool isDead;
 	Inventory* creatureInventory = new Inventory(this->getType());
 

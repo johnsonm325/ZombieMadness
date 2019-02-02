@@ -50,7 +50,7 @@ int Creature::getDefense()
 
 int Creature::getHealthBoost()
 {
-	return healthBoost;
+	return health;
 }
 
 void Creature::pickUpItem(Object* item)	//Pick up item from room

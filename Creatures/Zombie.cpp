@@ -18,19 +18,19 @@ void Zombie::setLevel(int level) {
 		case 1:
 			this->attack = 3;
 			this->defense = 4;
-			this->healthBoost = 8;
+			this->health = 8;
 			this->name = "Medium Zombie";
 			break;
 		case 2:
 			this->attack = 6;
 			this->defense = 8;
-			this->healthBoost = 10;
+			this->health = 10;
 			this->name = "Medium Zombie";
 			break;
 		case 3:
 			this->attack = 12;
 			this->defense = 11;
-			this->healthBoost = 12;
+			this->health = 12;
 			this->name = "High Zombie";
 			break;
 	}
