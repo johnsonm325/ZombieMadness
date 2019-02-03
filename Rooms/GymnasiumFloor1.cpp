@@ -19,15 +19,37 @@ int GymnasiumFloor1::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
-	}
+		if(zombiesDead == true) {
+			cout << "Dead zombies litter the floor. Great thing you decided to cut those ropes or else you'd have a tough fight" << endl;
+			cout << "on your hands. Basketball doesn't seem like such of an important event when you're having to fight your way" << endl;
+			cout << "out of this place to stay alive." << endl;
+			cout << endl;
+		}
 
-	else 
-	{
+		else {
+			cout << "You are surrounded by zombies. Packs of them notice your presence and slowly begin to shuffle their way in" << endl;
+			cout << "your direction." << endl;
+			cout << endl;
+		}
 
+		cout << "Basketball goals are mounted against the west and east walls, and bleachers are pulled out along the south wall." << endl;
+		cout << endl;
+		cout << "What do you do now?" << endl;
+		cout << endl;
 	}
 	return 0;
 }
 
+bool GymnasiumFloor1::ropesCut()
+{
+	zombiesDead();
+}
+
+bool GymnasiumFloor1::zombiesDead()
+{
+	zombiesDead = true;
+	return zombiesDead;
+}
 
 void GymnasiumFloor1::inspectToilet()
 {

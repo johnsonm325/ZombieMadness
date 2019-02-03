@@ -19,11 +19,20 @@ int PrincipalsOffice::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
+		cout << "As soon as you open the door, you are attacked from the north. You are quick enough to fight off the first push" << endl;
+		cout << "as you grab the zombie by the throat and shove it back. As it falls down, you realize it's already working to" << endl;
+		cout << "get itself back up. You know you don't have much time." << endl;
+		cout << endl;
+		cout << "What do you do?" << endl;
+		cout << endl;
 	}
 
-	else 
+	if (zombieDead() == true)
 	{
-
+		cout << "There is a single desk in the room." << endl;
+		cout << endl;
+		cout << "What do you do?" << endl;
+		cout << endl;
 	}
 	return 0;
 }
@@ -32,6 +41,12 @@ int PrincipalsOffice::menu(vector<string> *i)
 void PrincipalsOffice::inspectToilet()
 {
 
+}
+
+bool PrincipalsOffice::zombieDead()
+{
+	deadZombie = true;
+	return deadZombie;
 }
 
 

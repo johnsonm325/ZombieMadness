@@ -19,12 +19,17 @@ int History::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
+		cout << "Dusty books and pictures of presidents on the wall, must be in history class. 'I've fallen asleep one too many" << endl;
+		cout << "times in here. If I have to hear about one more amendment ... Wait, there are more important matters.'" << endl;
+		cout << endl;
 	}
 
-	else 
-	{
-
-	}
+	cout << "The north and south walls are lined will bookshelves and desks fill the center of the room. A chalkboard is mounted" << endl;
+	cout << "on the west wall." << endl;
+	cout << endl;
+	cout << "What do you do now?" << endl;
+	cout << endl;
+	
 	return 0;
 }
 

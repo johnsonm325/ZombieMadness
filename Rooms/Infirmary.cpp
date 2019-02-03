@@ -19,12 +19,18 @@ int Infirmary::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
+		cout << "'I'll never forget the story Jacob told about when he accidently walked into the glass door of the front lobby." << endl;
+		cout << "This must be where they bandaged up the cut on his head. He walked around the school for days with that gauze" << endl;
+		cout << "on his forehead.'" << endl;
+		cout << endl;
 	}
 
-	else 
-	{
-
-	}
+	cout << "Lots of medical supplies are neatly tucked into containers and a bed sits along the north wall. 'I might be able to" << endl;
+	cout << "find something useful for myself in here.'" << endl;
+	cout << endl;
+	cout << "What do you do now?" << endl;
+	cout << endl;
+	
 	return 0;
 }
 

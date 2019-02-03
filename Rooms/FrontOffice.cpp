@@ -19,12 +19,16 @@ int FrontOffice::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
+		cout << "As you step in, you hear a sound closeby, you're not sure if it's in the room you are in, or if it's in another." << endl;
+		cout << "The stench is strong here though, and it gives you a very uneasy feeling in your stomach." << endl;
+		cout << endl;
 	}
 
-	else 
-	{
-
-	}
+	cout << "Two desks sit at the north wall, each with a computer." << endl;
+	cout << endl;
+	cout << "What do you do now?" << endl;
+	cout << endl;
+	
 	return 0;
 }
 

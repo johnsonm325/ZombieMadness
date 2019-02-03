@@ -8,11 +8,13 @@ class PrincipalsOffice : public Space
 private:
 	string action;		//string action typed in by the user
 	bool firstTry = true,
-	     goneColt = false;
+	     goneColt = false,
+	     deadZombie = false;
 
 public:
 	PrincipalsOffice();
 	int menu(vector<string>*);
+	bool zombieDead();
 	void inspectToilet();
 	bool firstTime();
 	bool coltGone();
