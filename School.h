@@ -72,5 +72,9 @@ public:
 	bool itemSearch(string item);
 
 	void processCommand(CmdParser* parser, string cmd);
+
+	void addRoomToList(Space* room);
+	void createRoomsList();
+	vector<Space*> getRoomsList();
 };
 #endif

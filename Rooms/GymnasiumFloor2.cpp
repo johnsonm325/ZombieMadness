@@ -19,12 +19,16 @@ int GymnasiumFloor2::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
+		cout << "You've never been up here! It looks like the rafters of the gym. 'This door is always locked so I'm surprised it's" << endl;
+		cout << "open now.' << endl;
+		cout << endl;
 	}
-
-	else 
-	{
-
-	}
+	
+	cout << "Rafters circle the room. There are lots of lights and ropes secured under the rafters." << endl;
+	cout << endl;
+	cout << "What do you do now?" << endl;
+	cout << endl;
+	
 	return 0;
 }
 

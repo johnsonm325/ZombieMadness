@@ -18,10 +18,18 @@ int Chemistry::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
+		cout << "'Just when I thought chemistry was a useless subject.' You realize that all of your learning may" << endl;
+		cout << "finally pay off. You can access some of that 'useless' knowledge to create some useful items now." << endl;
+		cout << endl;
 	}
 
+	cout << "Beakers, flasks and bunsen burners sit atop tables pushed against the west and east walls and in the" << endl;
+	cout << "center of the room. Various ingredients can be found inside of cabinets set against the south wall." << endl;
+	cout << endl;
+	cout << "What do you do now?" << endl;
+	cout << endl;
+	
 	return 0;
-
 }
 
 

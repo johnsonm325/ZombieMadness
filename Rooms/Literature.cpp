@@ -19,12 +19,17 @@ int Literature::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
+		cout << "To be or not to be, that is the question. 'More like, to get out of here or die!' Maybe that Shakespeare was" << endl;
+		cout << "on to something. Perhaps I can find some useful items in here to help me get out of here." << endl;
+		cout << endl;
 	}
 
-	else 
-	{
-
-	}
+	cout << "Bookshelves line the north and south walls and a chalkboard is mounted on the east wall. The teachers desk" << endl;
+	cout << "sits in front of the chalkboard and desks in the middle of the floor face the chalkboard." << endl;
+	cout << endl;
+	cout << "What do you do now?" << endl;
+	cout << endl;
+	
 	return 0;
 }
 

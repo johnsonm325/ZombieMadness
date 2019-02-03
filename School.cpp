@@ -438,3 +438,40 @@ bool School::itemSearch(string a)
 	}
 	return false;
 }
+
+void School::createRoomsList() {
+
+	addRoomToList(mb);
+	addRoomToList(wb);
+	addRoomToList(cafe);
+	addRoomToList(libr);
+	addRoomToList(sfh1);
+	addRoomToList(sfh2);
+	addRoomToList(sfh3);
+	addRoomToList(sfh4);
+	addRoomToList(hist);
+	addRoomToList(lit);
+	addRoomToList(chem);
+	addRoomToList(cs);
+	addRoomToList(bio);
+	addRoomToList(math);
+	addRoomToList(infr);
+	addRoomToList(lr);
+	addRoomToList(gym1);
+	addRoomToList(gym2);
+	addRoomToList(fb);
+	addRoomToList(ffh1);
+	addRoomToList(ffh2);
+	addRoomToList(ffh3);
+	addRoomToList(ffh4);
+	addRoomToList(fl);
+	addRoomToList(fo);
+	addRoomToList(prin);
+}
+void School::addRoomToList(Space* room) {
+	rooms.push_back(room);
+}
+
+vector<Space*> School::getRoomsList() {
+	return rooms;
+}
