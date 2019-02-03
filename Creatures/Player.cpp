@@ -32,17 +32,7 @@ void Player::useItem(Object* item) {
 
 void Player::attackEnemy(string item) 
 {
-	vector<Object*> objs = this->playerInventory->getObjects();
-	Object *weapon;
-
-	for (int index = 0; index < objs.size(); index++)
-	{
-		if (objs[index]->getName() == item)
-		{
-			weapon = objs[index];
-			break;
-		}
-	}
+	Object *weapon = this->playerInventory->findItem(item);
 
 	if (!weapon)
 	{
