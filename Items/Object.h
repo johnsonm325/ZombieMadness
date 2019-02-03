@@ -1,6 +1,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include "../Creatures/Creature.h"
 #include <string>
 using std::string;
 
@@ -25,7 +26,9 @@ public:
 	int getAttack();
 	int getDefense();
 	int getHealthBoost();
-	//virtual void useItem();
+	virtual void useItem();
+	virtual void damageZombie(Creature*);
+	void setDummyItem(string, string);
 };
 
 #endif

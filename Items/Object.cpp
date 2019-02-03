@@ -45,3 +45,12 @@ int Object::getHealthBoost()
 {
 	return healthBoost;
 }
+
+void Object::setDummyItem(string desc, string name)
+{
+	this->description = desc;
+	this->name = name;
+	this->attack= 0;
+	this->defense = 0;
+	this->healthBoost = 0;
+}

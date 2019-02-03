@@ -2,18 +2,24 @@
 #define PLAYER_H
 
 #include "Creature.h"
+#include "../Items/PlayerInventory.h"
+#include "../Items/Inventory.h";
 
 #include <string>
 using std::string;
 
 class Player: public Creature
 {
+private:
+	PlayerInventory *playerInventory;
+	Inventory *roomInventory; // room's inventory class is passed in here
+	Creature *enemy; // passed in enemy
 public:
 	Player();
 	~Player();
+	void setRoom(Inventory*);
 	void useItem(Object* item);
-	void attackEnemy(Creature* enemy);
-
+	void attackEnemy(string);
 };
 
 #endif

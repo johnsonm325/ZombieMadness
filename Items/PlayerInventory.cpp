@@ -72,10 +72,36 @@ void PlayerInventory::printInventory() {
 	cout << "=== Player's Inventory" << endl;
 	if (isEmpty()) {
 		cout << "EMPTY" << endl;
+        return;
 	}
-	else {
-		for (unsigned int i = 0; i < objects.size(); i++) {
-			cout << (i + 1) << ": " << objects[i]->getName() << endl;
-		}
-	}
+
+    for (unsigned int i = 0; i < objects.size(); i++) {
+        cout << (i + 1) << ": " << objects[i]->getName() << endl;
+    }
+}
+
+void PlayerInventory::printAvailableWeapons()
+{
+    cout << "Available Weapons" << endl;
+
+    if (isEmpty()) {
+        cout << "None!" << endl;
+        return;
+    }
+
+    for (int index = 0;  index < objects.size(); index++)
+    {
+        if (objects[index]->getType() == "Weapon")
+            cout << objects[index]->getName() << endl;
+    }
+}
+
+int PlayerInventory::getOpenSlots()
+{
+    return openSlots;
+}
+
+int PlayerInventory::getUsedSlots()
+{
+    return usedSlots;
 }

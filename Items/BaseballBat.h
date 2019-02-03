@@ -6,7 +6,7 @@ class BaseballBat : public Object
 {
 public:
 	BaseballBat();
-	void useItem();
+	void damageZombie(Creature*);
 	void setLocation(string);
 };
 

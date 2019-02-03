@@ -16,6 +16,17 @@ vector<Object*> Inventory::getObjects()
     return objects;
 }
 
+Object* Inventory::findItem(string name)
+{
+    for (int index = 0; index < this->objects.size(); index++)
+    {
+        if (this->objects[index]->getName() == name)
+            return this->objects[index];
+    }
+
+    return NULL;
+}
+
 string Inventory::getInventoryType()
 {
     return type;

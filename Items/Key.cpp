@@ -4,6 +4,8 @@ Key::Key() : Object()
 {
 	//undefined
 	this->name = "Key";
+	this->description = "Time to explore! This key will unlock various rooms, explore to find out which ones!";
+	this->type = "Misc";
 }
 
 bool Key::canUnlock()

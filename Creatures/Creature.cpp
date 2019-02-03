@@ -1,4 +1,6 @@
 #include "Creature.h"
+using std::cout;
+using std::endl;
 
 Creature::Creature()
 {
@@ -48,27 +50,30 @@ int Creature::getDefense()
 }
 
 
-int Creature::getHealthBoost()
+int Creature::getHealth()
 {
-	return healthBoost;
+	return health;
 }
 
-void Creature::pickUpItem(Object* item)	//Pick up item from room
+void Creature::setHealth(int newHealth)
 {
-	if (item == NULL) { return; }
-
-	//Check if item is removable from room first
-	creatureInventory->addObject(item);
-	location->dropItem(item);
-
-}
-void Creature::dropItem(Object* item) {	//Drop item from creature
-	if (item == NULL) { return; }
-
-	location->pickUpItem(item);
-	creatureInventory->removeObject(item);
+	this->health =  newHealth;
 }
 
-Inventory* Creature::getInventory() {
-	return creatureInventory;
+void Creature::takeDamage(int damage)
+{
+	this->health -= damage;
+
+	if (this->health <= 0)
+	{
+		this->isDead = true;
+		this->health = 0;
+		cout << "Zombie killed!" << endl;
+	}
+
+	else
+	{
+		cout << "Zombie's health now at " << this->health << endl;
+	}
+	
 }

@@ -19,6 +19,7 @@ public:
     virtual ~Inventory();
     string getInventoryType();
     vector<Object*> getObjects();
+    Object* findItem(string);
     virtual void addObject(Object*);
     virtual void removeObject(Object*);
 	virtual void printInventory();
