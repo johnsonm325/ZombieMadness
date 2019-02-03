@@ -20,7 +20,7 @@ int GymnasiumFloor2::menu(vector<string> *i)
 	{
 		firstTime();
 		cout << "You've never been up here! It looks like the rafters of the gym. 'This door is always locked so I'm surprised it's" << endl;
-		cout << "open now.' << endl;
+		cout << "open now.'" << endl;
 		cout << endl;
 	}
 	
