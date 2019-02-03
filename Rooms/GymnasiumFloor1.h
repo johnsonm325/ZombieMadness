@@ -9,7 +9,7 @@ private:
 	string action;		//string action typed in by the user
 	bool firstTry = true,
 	     goneColt = false,
-	     zombiesDead = false;
+	     deadZombies = false;
 
 public:
 	GymnasiumFloor1();

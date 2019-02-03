@@ -53,6 +53,7 @@ private:
 	Space *gym2, *gym1, *fb;
 	Space *ffh1, *ffh2, *ffh3, *ffh4;
 	Space *fl, *fo, *prin;
+	vector<Space*> rooms;
 
 public:
 	School();

@@ -19,7 +19,7 @@ int GymnasiumFloor1::menu(vector<string> *i)
 	if (firstTry == true)
 	{
 		firstTime();
-		if(zombiesDead == true) {
+		if(deadZombies == true) {
 			cout << "Dead zombies litter the floor. Great thing you decided to cut those ropes or else you'd have a tough fight" << endl;
 			cout << "on your hands. Basketball doesn't seem like such of an important event when you're having to fight your way" << endl;
 			cout << "out of this place to stay alive." << endl;
@@ -47,8 +47,8 @@ bool GymnasiumFloor1::ropesCut()
 
 bool GymnasiumFloor1::zombiesDead()
 {
-	zombiesDead = true;
-	return zombiesDead;
+	deadZombies = true;
+	return deadZombies;
 }
 
 void GymnasiumFloor1::inspectToilet()
