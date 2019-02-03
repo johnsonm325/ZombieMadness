@@ -2,7 +2,7 @@
 using std::cout;
 using std::endl;
 
-Player::Player(Inventory *rooms) : Creature("Player")
+Player::Player() : Creature("Player")
 {
 	//will be defined in sub classes
 	this->name = "Colt";
@@ -10,12 +10,16 @@ Player::Player(Inventory *rooms) : Creature("Player")
 	// this->defense = 5;
 	this->health = 100;
 	this->playerInventory = new PlayerInventory();
-	this->roomInventory = rooms;
 }
 
 Player::~Player()
 {
 	delete this->playerInventory;
+}
+
+void Player::setRoom(Inventory* curRoom)
+{
+	this->roomInventory = curRoom;
 }
 
 void Player::useItem(Object* item) {

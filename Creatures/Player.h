@@ -15,8 +15,9 @@ private:
 	Inventory *roomInventory; // room's inventory class is passed in here
 	Creature *enemy; // passed in enemy
 public:
-	Player(Inventory*);
+	Player();
 	~Player();
+	void setRoom(Inventory*);
 	void useItem(Object* item);
 	void attackEnemy(string);
 };
