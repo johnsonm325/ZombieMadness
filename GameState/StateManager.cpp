@@ -20,31 +20,31 @@ bool StateManager::foundExistingSaves() {
 vector<string> StateManager::getSaveFileList() {
 	vector<string> fileList;
 
-#ifdef _WIN32
+
 	fileList.push_back("./save.001");
-#elif
 
-	char targetDirPrefix[] = "save.00"; /* Prefix we're looking for */
-	DIR* dirToCheck; /* Holds the directory we're starting in */
-	struct dirent *fileInDir; /* Holds the current subdir of the starting dir */
-	struct stat dirAttributes; /* Holds information we've gained about subdir */
-	int j, foundAll = 0;
 
-	dirToCheck = opendir("."); /* Open up the directory this program was run in */
+	//char targetDirPrefix[] = "save.00"; /* Prefix we're looking for */
+	//DIR* dirToCheck; /* Holds the directory we're starting in */
+	//struct dirent *fileInDir; /* Holds the current subdir of the starting dir */
+	//struct stat dirAttributes; /* Holds information we've gained about subdir */
+	//int j, foundAll = 0;
 
-	if (dirToCheck > 0) /* Make sure current directory could be opened */
-	{
-		j = 0;
-		while ((fileInDir = readdir(dirToCheck)) != NULL) /* Check each entry in directory */
-		{
-			if (strstr(fileInDir->d_name, targetDirPrefix) != NULL) /* If entry has prefix */
-			{
-				fileList.push_back(std::string(fileInDir->d_name));
-			}
-		}
-		closedir(dirToCheck); /* Close opened directory */
-	}
-#endif
+	//dirToCheck = opendir("."); /* Open up the directory this program was run in */
+
+	//if (dirToCheck > 0) /* Make sure current directory could be opened */
+	//{
+	//	j = 0;
+	//	while ((fileInDir = readdir(dirToCheck)) != NULL) /* Check each entry in directory */
+	//	{
+	//		if (strstr(fileInDir->d_name, targetDirPrefix) != NULL) /* If entry has prefix */
+	//		{
+	//			fileList.push_back(std::string(fileInDir->d_name));
+	//		}
+	//	}
+	//	closedir(dirToCheck); /* Close opened directory */
+	//}
+
 
 	return fileList;
 }
@@ -276,12 +276,8 @@ bool StateManager::haveSaves() {
 }
 
 void StateManager::changeWorkingDir() {
-#ifdef _WIN32
-	chdir("../");
-	chdir("./ZombieMadness/GameState/");
-#elif
-	chdir("./GameState/");
-#endif
+
+chdir("./GameState/");
 }
 
 void StateManager::resetWorkingDir() {
