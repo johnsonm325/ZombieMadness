@@ -22,9 +22,11 @@ void GameState::setTime() {
 	strftime(buffer, sizeof(buffer), "%d-%m-%Y %H:%M:%S", timeinfo);
 	std::string str(buffer);
 	timeStamp = str;
-
 }
 
+void GameState::setTime(string time) {
+	timeStamp = time;
+}
 void GameState::addRoomList(vector<Space*> rooms) {
 	this->rooms = rooms;
 }

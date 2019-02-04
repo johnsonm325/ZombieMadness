@@ -69,7 +69,7 @@ SAVE_STATE_OBJS = GameState/GameState.o GameState/StateManager.o
 	@echo "CC	$^"
 	@$(CXX) $(CFLAGS) -c $^
 
-$(BIN): $(OBJ) $(ROOMS_OBJS) $(CMD_PARSER_OBJS) $(ITEMS_OBJS)
+$(BIN): $(OBJ) $(ROOMS_OBJS) $(ITEMS_OBJS) $(CMD_PARSER_OBJS)
 	@echo "CC	$@"
 	@$(CXX) $(CFLAGS) $^ -o $@
 

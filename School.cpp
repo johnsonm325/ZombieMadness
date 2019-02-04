@@ -31,6 +31,7 @@ School::School()
 	prin = new PrincipalsOffice();
 
 	connectRooms();
+	createRoomsList();
 }
 
 School::~School()
@@ -137,8 +138,6 @@ void School::beginGame()
 
 int School::playGame()
 {
-	CmdParser* parser = new CmdParser();
-
 	do 
 	{
 		cout << "You are in the " << currentRoom->getType() << endl << endl;

@@ -55,6 +55,8 @@ private:
 	Space *fl, *fo, *prin;
 	vector<Space*> rooms;
 
+	CmdParser* parser = new CmdParser();
+
 public:
 	School();
 	~School();

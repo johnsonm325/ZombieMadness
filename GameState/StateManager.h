@@ -2,6 +2,8 @@
 #define STATE_MANAGER_H
 
 #include "GameState.h"
+#include "../School.h"
+#include <fstream>
 
 #ifdef _WIN32
 	#include <windows.h>
@@ -26,17 +28,19 @@ public:
 	StateManager();
 	~StateManager();
 	//Loading game state from file
-	bool findExistingSaves();
+	bool foundExistingSaves();
 	vector<string> getSaveFileList();
 	void readAllSaves();
-	GameState* readSaveFile(string filename);
-	void promptToLoadGame();
+	GameState* readSaveFile(string filename);	
+	GameState* processFileData(vector<string> lines);
 	void loadState(GameState* state, School* game);
+	void promptToLoadGame(School* game);
 
 	//Writing game state to file
 	GameState* createState(School* game);
 	void saveState(School* game);
 	void writeSaveFile(GameState* state, string filename);
+	void promptToSaveGame(School* game);
 
 	//Managing states list
 	void addGameState(GameState* state);
