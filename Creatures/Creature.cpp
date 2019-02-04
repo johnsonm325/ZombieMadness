@@ -1,6 +1,5 @@
 #include "Creature.h"
-using std::cout;
-using std::endl;
+
 
 Creature::Creature()
 {
@@ -26,18 +25,18 @@ string Creature::getDesc()
 	return description;
 }
 
-Space* Creature::getLocation()
-{
-	return location;
-}
+//Space* Creature::getLocation()
+//{
+//	return location;
+//}
 
 string Creature::getName()
 {
 	return name;
 }
-void Creature::setLocation(Space* loc) {
-	this->location = loc;
-}
+//void Creature::setLocation(Space* loc) {
+//	this->location = loc;
+//}
 
 int Creature::getAttack()
 {

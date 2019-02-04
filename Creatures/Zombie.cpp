@@ -43,9 +43,9 @@ void Zombie::setLevel(int level) {
 	}
 }
 
-void Zombie::useItem(Object* item) {
-
-}
+//void Zombie::useItem(Object* item) {
+//
+//}
 
 void Zombie::attackEnemy(Creature* enemy) {
 

@@ -42,7 +42,7 @@ int GymnasiumFloor1::menu(vector<string> *i)
 
 bool GymnasiumFloor1::ropesCut()
 {
-	zombiesDead();
+	return zombiesDead();
 }
 
 bool GymnasiumFloor1::zombiesDead()

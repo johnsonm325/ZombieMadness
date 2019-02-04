@@ -1,18 +1,20 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 
-#include "../Items/Inventory.h"
-#include "../Rooms/Space.h"
+//#include "../Rooms/Space.h"
 
 #include <string>
+#include <iostream>
 using std::string;
+using std::cout;
+using std::endl;
 
 class Creature
 {
 protected:
 	string type;		//Zombie, player, type of creature
 	string description;	//Creature description
-	Space* location;	//Which room creature is in
+	//Space* location;	//Which room creature is in
 	string name;		//Specific name of creature, if necessary
 	int attack;
 	int defense;
@@ -25,9 +27,9 @@ public:
 	virtual ~Creature();
 	string getType();
 	string getDesc();
-	Space* getLocation();
+	//Space* getLocation();
 	string getName();
-	void setLocation(Space* location);
+	//void setLocation(Space* location);
 	int getAttack();
 	int getDefense();
 	int getHealth();

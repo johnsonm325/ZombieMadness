@@ -3,7 +3,7 @@
 
 #include "Creature.h"
 #include "../Items/PlayerInventory.h"
-#include "../Items/Inventory.h";
+//#include "../Items/Inventory.h"
 
 #include <string>
 using std::string;

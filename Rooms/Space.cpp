@@ -136,3 +136,18 @@ void Space::printDirection(Space* direction) {
 		cout << direction->getType() << endl;
 	}
 }
+
+//Add creature to room
+void Space::addCreature(Creature* creature) {
+	creatures.push_back(creature);
+}
+
+//Add creature to room
+void Space::removeCreature(Creature* creature) {
+	creatures.erase(remove(creatures.begin(), creatures.end(), creature), creatures.end());
+}
+
+//Get list of creatures from room, including player
+vector<Creature*> Space::getCreatures() {
+	return creatures;
+}

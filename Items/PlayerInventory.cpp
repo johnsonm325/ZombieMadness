@@ -1,7 +1,4 @@
 #include "PlayerInventory.h"
-using std::remove;
-using std::cout;
-using std::endl;
 
 PlayerInventory::PlayerInventory() : Inventory("Player")
 {
@@ -89,7 +86,7 @@ void PlayerInventory::printAvailableWeapons()
         return;
     }
 
-    for (int index = 0;  index < objects.size(); index++)
+    for (unsigned int index = 0;  index < objects.size(); index++)
     {
         if (objects[index]->getType() == "Weapon")
             cout << objects[index]->getName() << endl;
