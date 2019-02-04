@@ -2,6 +2,9 @@
 #define PLAYER_INVENTORY_H
 
 #include "Inventory.h"
+using std::remove;
+using std::cout;
+using std::endl;
 
 class PlayerInventory : public Inventory
 {

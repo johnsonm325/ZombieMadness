@@ -18,6 +18,9 @@ void CmdParser::initCmdList() {
 	cmdList = new CmdList();
 
 	//Adding all command words with their synonyms to list
+	cmdList->addItemToList(new CmdWord("help", "help", " - show list of all available commands"));
+
+	//Moving player through rooms
 	cmdList->addItemToList(new CmdWord("go", "go", " - go <direction>, moves players through the indicated direction to the next room"));
 	cmdList->addItemToList(new CmdWord("go", "walk"));	
 	cmdList->addItemToList(new CmdWord("go", "run"));
@@ -38,18 +41,39 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("dir", "a"));
 	cmdList->addItemToList(new CmdWord("dir", "s"));
 	cmdList->addItemToList(new CmdWord("dir", "d"));
+	cmdList->addItemToList(new CmdWord("backtrack", "backtrack", " - player can head back to previous room"));
+	cmdList->addItemToList(new CmdWord("backtrack", "bk"));
+	cmdList->addItemToList(new CmdWord("where", "where", " - displays room player is currently in"));
+
+	//Interacting with room
 	cmdList->addItemToList(new CmdWord("look", "look", " - display long form description of the room"));
 	cmdList->addItemToList(new CmdWord("look", "see"));
+
+	//Interacting with objects
 	cmdList->addItemToList(new CmdWord("look at", "look at", " - display description of an object or feature"));
-	cmdList->addItemToList(new CmdWord("help", "help", " - show list of all available commands"));
 	cmdList->addItemToList(new CmdWord("inventory", "inventory", " - shows player's current inventory"));
 	cmdList->addItemToList(new CmdWord("inventory", "show inventory"));
 	cmdList->addItemToList(new CmdWord("take", "take", " - get an object, place it in inventory"));
 	cmdList->addItemToList(new CmdWord("take", "grab"));
 	cmdList->addItemToList(new CmdWord("take", "pick up"));
 	cmdList->addItemToList(new CmdWord("drop", "drop", " - drop an object from player's inventory"));
+	cmdList->addItemToList(new CmdWord("use", "use", " - use an item player has obtained, results in some event"));
+	cmdList->addItemToList(new CmdWord("interact", "interact", " - interact with an object in the room, not always meaningful"));
+
+	//Player actions
+	cmdList->addItemToList(new CmdWord("jump", "jump", " - jump to higher ground or over an obstacle"));
+	cmdList->addItemToList(new CmdWord("crouch", "crouch", " - jump to higher ground or over an obstacle"));
+	cmdList->addItemToList(new CmdWord("attack", "attack", " - attack zombie with a selected weapon"));
+	cmdList->addItemToList(new CmdWord("attack", "hit"));
+	cmdList->addItemToList(new CmdWord("block", "block", " - in fight with zombie, player can block to reduce damage"));
+	cmdList->addItemToList(new CmdWord("open", "open", " - open door"));
+	   
+	//Saving/Loading Game
 	cmdList->addItemToList(new CmdWord("savegame", "savegame", " - save the current game state to a file"));
 	cmdList->addItemToList(new CmdWord("loadgame", "loadgame", " - on user confirmation, loads previous game state from file"));
+	cmdList->addItemToList(new CmdWord("cleargames", "cleargames", " - on user confirmation, clears alls saved games from list"));
+	
+	//Debug and quit actions
 	cmdList->addItemToList(new CmdWord("debug", "debug", " - shows useful debug info for developers"));
 	cmdList->addItemToList(new CmdWord("quit", "quit", " - quits game"));
 	cmdList->addItemToList(new CmdWord("quit", "exit"));

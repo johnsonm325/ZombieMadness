@@ -2,6 +2,7 @@
 #define SPACE_H
 
 #include "../Items/Inventory.h"
+#include "../Creatures/Creature.h"
 
 #include <iostream>
 #include <ctime>
@@ -10,9 +11,9 @@
 
 using std::string;
 using std::vector;
-using std::cout;
-using std::cin;
-using std::endl;
+//using std::cout;
+//using std::cin;
+//using std::endl;
 
 class Space
 {
@@ -23,6 +24,7 @@ protected:
 	Space *west;		// Pointer to space for back
 	string type;
 	Inventory* roomInventory = new Inventory(this->getType());
+	vector<Creature*> creatures;	//list of creatures in room
 
 public:
 	Space(string);
@@ -42,6 +44,10 @@ public:
 	void pickUpItem(Object*);		//Pick up item from room
 	void dropItem(Object*);			//Drop item in room
 	Inventory* getInventory();		//Return inventory vector
+
+	void addCreature(Creature* creature);	//Add creature to room
+	void removeCreature(Creature* creature);	//Add creature to room
+	vector<Creature*> getCreatures();		//Get list of creatures from room, including player
 
 	vector<Space*> getExits();
 	vector<string> getExitDirections();

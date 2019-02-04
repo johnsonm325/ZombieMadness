@@ -14,7 +14,7 @@ public:
 	Zombie(int level);
 	~Zombie();
 	void setLevel(int level);
-	void useItem(Object* item);
+	//void useItem(Object* item);
 	void attackEnemy(Creature* enemy);
 
 };
