@@ -5,16 +5,10 @@
 #include "../School.h"
 #include <fstream>
 
-#ifdef _WIN32
-	#include <windows.h>
-	#include <direct.h>
-	#define getcwd _getcwd // stupid MSFT "deprecation" warning
-	#define chdir _chdir
-#elif
-	#include <unistd.h>
-	#include <dirent.h>
-	#include <sys/types.h>
-#endif
+#include <unistd.h>
+#include <dirent.h>
+#include <sys/types.h>
+
 //#include <string>
 //#include <iostream>
 
