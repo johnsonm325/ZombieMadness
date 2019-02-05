@@ -13,6 +13,7 @@ private:
 
 public:
 	PrincipalsOffice();
+	void printIntro();
 	int menu(vector<string>*);
 	bool zombieDead();
 	void inspectToilet();

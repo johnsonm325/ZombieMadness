@@ -13,6 +13,7 @@ private:
 
 public:
 	GymnasiumFloor1();
+	void printIntro();
 	int menu(vector<string>*);
 	bool ropesCut();
 	bool zombiesDead();

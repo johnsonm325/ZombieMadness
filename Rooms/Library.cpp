@@ -6,16 +6,8 @@ Library::Library() : Space("Library")
 	
 }
 
-
-int Library::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
-	// Prints the first time the room is visited
+void Library::printIntro(){
+	// Prints the first time the room is visited	
 	if (firstTry == true)
 	{
 		firstTime();
@@ -30,6 +22,16 @@ int Library::menu(vector<string> *i)
 	cout << endl;
 	cout << "What do you do now?" << endl;
 	cout << endl;
+}
+
+int Library::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();
 	
 	return 0;
 }

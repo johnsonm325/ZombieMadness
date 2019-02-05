@@ -8,6 +8,10 @@ PlayerInventory::PlayerInventory() : Inventory("Player")
     this->usedSlots = 0;
 }
 
+PlayerInventory::~PlayerInventory(){
+    
+}
+
 bool PlayerInventory::isFull()
 {
     if (usedSlots == size)
@@ -66,7 +70,7 @@ void PlayerInventory::removeObject(Object* obj, bool wasUsed)
 }
 
 void PlayerInventory::printInventory() {
-	cout << "=== Player's Inventory" << endl;
+	cout << "=== Player's Inventory ===" << endl;
 	if (isEmpty()) {
 		cout << "EMPTY" << endl;
         return;

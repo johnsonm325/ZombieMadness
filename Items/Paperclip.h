@@ -7,9 +7,10 @@ class Paperclip : public Object
 {
 public:
 	Paperclip();
+	void useItem();
 	bool canPickLock();
 	void pickLock();
-	void setLocation(string);
+	void setLocation(string);	
 };
 
 #endif

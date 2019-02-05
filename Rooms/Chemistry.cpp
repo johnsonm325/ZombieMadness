@@ -5,15 +5,7 @@ Chemistry::Chemistry() : Space("Chemistry")
 	
 }
 
-
-int Chemistry::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void Chemistry::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -28,16 +20,23 @@ int Chemistry::menu(vector<string> *i)
 	cout << endl;
 	cout << "What do you do now?" << endl;
 	cout << endl;
-	
-	return 0;
 }
 
+int Chemistry::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();
+	return 0;
+}
 
 void Chemistry::inspectToilet()
 {
 
 }
-
 
 bool Chemistry::firstTime()
 {
@@ -45,12 +44,10 @@ bool Chemistry::firstTime()
 	return firstTry;
 }
 
-
 bool Chemistry::coltGone()
 {
 	return goneColt;
 }
-
 
 bool Chemistry::itemSearch(vector<string> inv, string a)
 {

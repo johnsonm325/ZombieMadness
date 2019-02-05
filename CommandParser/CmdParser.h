@@ -1,3 +1,7 @@
+#ifndef DEBUG_PARSER
+	//#define DEBUG_PARSER
+#endif
+
 #ifndef CMD_PARSER_H
 #define CMD_PARSER_H
 
@@ -20,6 +24,8 @@ public:
 	void setCommand(string cmd);
 	string getCommand();
 	CmdList* getCmdList();
+	void printCmdArray(vector<string> cmdArray);
+	string convertToItem(vector<string> cmdArray);
 	vector<string> generateCmdArray(string cmd);
 
 	void addCmdToHistory(string cmd);

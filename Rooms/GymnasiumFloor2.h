@@ -12,6 +12,7 @@ private:
 
 public:
 	GymnasiumFloor2();
+	void printIntro();
 	int menu(vector<string>*);
 	void inspectToilet();
 	bool firstTime();

@@ -6,15 +6,7 @@ GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 	
 }
 
-
-int GymnasiumFloor2::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void GymnasiumFloor2::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -29,6 +21,16 @@ int GymnasiumFloor2::menu(vector<string> *i)
 	cout << "What do you do now?" << endl;
 	cout << endl;
 	
+}
+
+int GymnasiumFloor2::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();
 	return 0;
 }
 

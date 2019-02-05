@@ -9,10 +9,14 @@ BaseballBat::BaseballBat() : Object()
 	this->defense = 0;
 }
 
-void BaseballBat::damageZombie(Creature *enemy)
-{
-	enemy->takeDamage(this->attack);
+void BaseballBat::useItem(){
+
 }
+
+// void BaseballBat::damageZombie(Creature *enemy)
+// {
+// 	enemy->takeDamage(this->attack);
+// }
 
 void BaseballBat::setLocation(string l)
 {

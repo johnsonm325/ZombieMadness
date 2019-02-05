@@ -12,6 +12,7 @@ private:
 
 public:
 	Infirmary();
+	void printIntro();
 	int menu(vector<string>*);
 	void inspectToilet();
 	bool firstTime();

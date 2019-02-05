@@ -6,15 +6,7 @@ Math::Math() : Space("Math")
 	
 }
 
-
-int Math::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void Math::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -31,6 +23,16 @@ int Math::menu(vector<string> *i)
 	cout << endl;
 	cout << "What do you do now?" << endl;
 	cout << endl;
+}
+
+int Math::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();	
 	
 	return 0;
 }
