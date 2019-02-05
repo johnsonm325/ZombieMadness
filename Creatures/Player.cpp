@@ -2,13 +2,14 @@
 using std::cout;
 using std::endl;
 
-Player::Player() : Creature("Player")
+Player::Player() 
 {
 	//will be defined in sub classes
-	this->name = "Colt";
+	player = new Creature();
+	player->setName("Cold");
 	// this->attack = 4;
 	// this->defense = 5;
-	this->health = 100;
+	player->setHealth(100);
 	this->playerInventory = new PlayerInventory();
 }
 
@@ -17,22 +18,32 @@ Player::~Player()
 	delete this->playerInventory;
 }
 
-void Player::setRoom(Inventory* curRoom)
-{
-	this->roomInventory = curRoom;
+void Player::movetoRoom(Space* room){
+	currentRoom = room;
+	this->roomInventory = room->getInventory();
+}
+
+PlayerInventory* Player::getInventory(){
+	return playerInventory;
+}
+Inventory* Player::getRoomInventory(){
+	return roomInventory;
+}
+
+void Player::clearInventory(){
+	playerInventory->clearInventory();
 }
 
 void Player::useItem(Object* item) {
-	item->useItem();
-	
-	playerInventory->removeObject(item, true);
 
+	item->useItem();	
+	playerInventory->removeObject(item, true);
 	roomInventory->removeObject(item);
 }
 
 void Player::attackEnemy(string item) 
 {
-	Object *weapon = this->playerInventory->findItem(item);
+	Object *weapon = this->playerInventory->findObject(item);
 
 	if (!weapon)
 	{
@@ -41,4 +52,20 @@ void Player::attackEnemy(string item)
 	}
 
 	weapon->useItem();
+}
+// void Player::attackEnemy(Creature* enemy) 
+// {
+
+// }
+
+void Player::takeItem(Object* item){
+
+	playerInventory->addObject(item);
+	roomInventory->removeObject(item);
+}
+
+void Player::dropItem(Object* item){
+	
+	playerInventory->removeObject(item, false);
+	roomInventory->addObject(item);
 }

@@ -1,20 +1,11 @@
 #include "Cafeteria.h"
 
-
 Cafeteria::Cafeteria() : Space("Cafeteria")
 {
 	
 }
 
-
-int Cafeteria::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void Cafeteria::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -29,7 +20,16 @@ int Cafeteria::menu(vector<string> *i)
 	cout << "thrown about the room." << endl;
 	cout << endl;
 	cout << "What do you do now?" << endl;
-	
+}
+
+int Cafeteria::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();
 	return 0;
 }
 

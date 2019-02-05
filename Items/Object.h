@@ -27,7 +27,7 @@ public:
 	int getDefense();
 	int getHealthBoost();
 	virtual void useItem() = 0;
-	virtual void damageZombie(Creature*) = 0;
+	//virtual void damageZombie(Creature*);
 	void setDummyItem(string, string);
 };
 

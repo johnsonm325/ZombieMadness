@@ -6,15 +6,7 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	
 }
 
-
-int PrincipalsOffice::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void PrincipalsOffice::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -34,6 +26,16 @@ int PrincipalsOffice::menu(vector<string> *i)
 		cout << "What do you do?" << endl;
 		cout << endl;
 	}
+}
+
+int PrincipalsOffice::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();
 	return 0;
 }
 

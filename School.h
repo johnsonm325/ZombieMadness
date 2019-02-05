@@ -27,6 +27,16 @@
 //CommandParser
 #include "CommandParser/CmdParser.h"
 
+//Creatures
+#include "Creatures/Creature.h"
+#include "Creatures/Player.h"
+#include "Creatures/Zombie.h"
+
+//Items
+#include "Items/BaseballBat.h"
+#include "Items/Paperclip.h"
+#include "Items/BiteCure.h"
+
 #include <string>	
 #include <vector>
 #include <iostream>
@@ -43,7 +53,6 @@ private:
 	int steps = 0;
 	char input;
 	string choice;
-	vector<string> inventory;
 
 	//Rooms
 	Space *mb, *wb, *cafe, *libr;
@@ -56,6 +65,7 @@ private:
 	vector<Space*> rooms;
 
 	CmdParser* parser = new CmdParser();
+	Player* player = new Player();
 
 public:
 	School();
@@ -69,15 +79,19 @@ public:
 	Space* moveWest();
 	Space* moveNorth();
 	Space* moveSouth();
+	void addItemsToRooms();
 	void addSteps(int);
-	void addItem(string item);
-	void removeItem(string item);
-	bool itemSearch(string item);
+	
+	//Object/Item related
 
 	void processCommand(CmdParser* parser, string cmd);
 
 	void addRoomToList(Space* room);
 	void createRoomsList();
 	vector<Space*> getRoomsList();
+
+	//Player methods
+	void setupPlayer();
+	
 };
 #endif

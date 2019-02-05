@@ -5,16 +5,7 @@ SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
 {
 	
 }
-
-
-int SecondFloorHallway::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void SecondFloorHallway::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -33,7 +24,16 @@ int SecondFloorHallway::menu(vector<string> *i)
 	cout << endl;
 	cout << "What do you do now?" << endl;
 	cout << endl;
-	
+}
+
+int SecondFloorHallway::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();	
 	return 0;
 }
 

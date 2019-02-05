@@ -6,15 +6,7 @@ Infirmary::Infirmary() : Space("Infirmary")
 	
 }
 
-
-int Infirmary::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void Infirmary::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -30,6 +22,17 @@ int Infirmary::menu(vector<string> *i)
 	cout << endl;
 	cout << "What do you do now?" << endl;
 	cout << endl;
+}
+
+int Infirmary::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	
+	printIntro();
 	
 	return 0;
 }

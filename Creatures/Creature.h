@@ -25,17 +25,20 @@ public:
 	Creature();
 	Creature(string type);
 	virtual ~Creature();
+	//getters
 	string getType();
 	string getDesc();
-	//Space* getLocation();
 	string getName();
-	//void setLocation(Space* location);
 	int getAttack();
 	int getDefense();
 	int getHealth();
+
+	//setters
+	void setName(string);
 	void setHealth(int);
 	// virtual void useItem(Object* item) = 0;
-	virtual void attackEnemy(Creature* enemy) = 0;
+	void attackEnemy(string item);	//Version that Player uses
+	//virtual void attackEnemy(Creature*); = 0;	//original
 	virtual void takeDamage(int);
 };
 

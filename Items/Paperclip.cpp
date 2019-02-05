@@ -8,6 +8,10 @@ Paperclip::Paperclip() : Object()
 	this->type = "Room Object";
 }
 
+void Paperclip::useItem(){
+	
+}
+
 bool Paperclip::canPickLock()
 {
 	//return true or false depending on different params

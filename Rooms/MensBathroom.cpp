@@ -6,15 +6,7 @@ MensBathroom::MensBathroom() : Space("Men's Bathroom")
 	
 }
 
-
-int MensBathroom::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 0;
-	}
-	
+void MensBathroom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -35,6 +27,17 @@ int MensBathroom::menu(vector<string> *i)
 	cout << endl;
 	cout << "What do you do now?" << endl;
 	cout << endl;
+}
+
+int MensBathroom::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 0;
+	}
+	
+	printIntro();
 	
 	return 0;
 }
@@ -44,7 +47,6 @@ void MensBathroom::inspectToilet()
 {
 
 }
-
 
 bool MensBathroom::firstTime()
 {
@@ -63,3 +65,4 @@ bool MensBathroom::itemSearch(vector<string> inv, string a)
 {
 	return false;
 }
+

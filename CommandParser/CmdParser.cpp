@@ -50,12 +50,17 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("look", "see"));
 
 	//Interacting with objects
+	//debug
+	cmdList->addItemToList(new CmdWord("room inventory", "room inventory", " - display all room items"));
+	cmdList->addItemToList(new CmdWord("room inventory", "ri"));
+	//debug
 	cmdList->addItemToList(new CmdWord("look at", "look at", " - display description of an object or feature"));
 	cmdList->addItemToList(new CmdWord("inventory", "inventory", " - shows player's current inventory"));
 	cmdList->addItemToList(new CmdWord("inventory", "show inventory"));
+	cmdList->addItemToList(new CmdWord("inventory", "inv"));
 	cmdList->addItemToList(new CmdWord("take", "take", " - get an object, place it in inventory"));
 	cmdList->addItemToList(new CmdWord("take", "grab"));
-	cmdList->addItemToList(new CmdWord("take", "pick up"));
+	cmdList->addItemToList(new CmdWord("take", "pickup"));
 	cmdList->addItemToList(new CmdWord("drop", "drop", " - drop an object from player's inventory"));
 	cmdList->addItemToList(new CmdWord("use", "use", " - use an item player has obtained, results in some event"));
 	cmdList->addItemToList(new CmdWord("interact", "interact", " - interact with an object in the room, not always meaningful"));
@@ -84,6 +89,28 @@ CmdList* CmdParser::getCmdList() {
 	return cmdList;
 }
 
+void CmdParser::printCmdArray(vector<string> cmdArray){
+	for(unsigned int i = 0; i < cmdArray.size(); i++){
+		cout << i << ": " << cmdArray[i] << endl;
+	}
+}
+
+string CmdParser::convertToItem(vector<string> cmdArray){
+	string item;
+	if(cmdArray.size() < 2){
+		item = cmdArray[0];
+	}
+	else{
+		for(unsigned int i = 1; i < cmdArray.size(); i++){
+			item += cmdArray[i];
+			if(i < cmdArray.size() - 1){
+				item +=" ";
+			}
+		}
+	}
+	return item;
+}
+
 // Split up string into array of words, delimited by spaces
 vector<string> CmdParser::generateCmdArray(string cmd) {
 	string delimiter = " ";	//character used to split up input array
@@ -97,6 +124,9 @@ vector<string> CmdParser::generateCmdArray(string cmd) {
 		cmd = cmd.substr(pos + delimiter.length());
 	}
 	cmdArray.push_back(cmd);
+#ifdef DEBUG_PARSER
+	printCmdArray(cmdArray);
+#endif
 	return cmdArray;
 }
 

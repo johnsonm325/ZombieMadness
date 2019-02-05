@@ -5,16 +5,7 @@ Football::Football() : Space("Football Field")
 {
 	
 }
-
-
-int Football::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void Football::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -32,7 +23,16 @@ int Football::menu(vector<string> *i)
 
 	cout << "What do you do?" << endl;
 	cout << endl;
-	
+}
+
+int Football::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();	
 	return 0;
 }
 

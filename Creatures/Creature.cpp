@@ -54,6 +54,11 @@ int Creature::getHealth()
 	return health;
 }
 
+void Creature::setName(string name)
+{
+	this->name = name;
+}
+
 void Creature::setHealth(int newHealth)
 {
 	this->health =  newHealth;
@@ -74,5 +79,9 @@ void Creature::takeDamage(int damage)
 	{
 		cout << "Zombie's health now at " << this->health << endl;
 	}
+	
+}
+
+void Creature::attackEnemy(string item){
 	
 }

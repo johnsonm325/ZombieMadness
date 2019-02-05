@@ -6,15 +6,7 @@ FrontOffice::FrontOffice() : Space("Front Office")
 	
 }
 
-
-int FrontOffice::menu(vector<string> *i)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
+void FrontOffice::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
@@ -28,7 +20,16 @@ int FrontOffice::menu(vector<string> *i)
 	cout << endl;
 	cout << "What do you do now?" << endl;
 	cout << endl;
-	
+}
+
+int FrontOffice::menu(vector<string> *i)
+{
+	// Evaluates if player is dead and exits the function
+	if (coltGone())
+	{
+		return 40;
+	}
+	printIntro();
 	return 0;
 }
 
