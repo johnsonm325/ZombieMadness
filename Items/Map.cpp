@@ -1,6 +1,6 @@
 #include "Map.h"
 
-Map::Map() : Object()
+Map::Map() : Item()
 {
 	//TBD
 	this->name = "Map";

@@ -1,9 +1,9 @@
 #ifndef KEY_H
 #define KEY_H
 
-#include "Object.h"
+#include "Item.h"
 
-class Key : public Object
+class Key : public Item
 {
 public:
 	Key();

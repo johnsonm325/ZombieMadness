@@ -1,9 +1,9 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include "Object.h"
+#include "Item.h"
 
-class Map : public Object
+class Map : public Item
 {
 public:
 	Map();

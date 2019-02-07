@@ -1,6 +1,6 @@
 #include "Bookbag.h"
 
-Bookbag::Bookbag(PlayerInventory *bag) : Object()
+Bookbag::Bookbag(PlayerInventory *bag) : Item()
 {
 	//undefined
 	this->name = "Bookbag";

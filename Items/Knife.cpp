@@ -1,6 +1,6 @@
 #include "Knife.h"
 
-Knife::Knife() : Object()
+Knife::Knife() : Item()
 {
 	this->description = "Probably the weakest weapon you can find, but hey, better than trying to fist fight a zombie huh?";
 	this->type = "Weapon";

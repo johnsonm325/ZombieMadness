@@ -1,8 +1,8 @@
 #ifndef SWORD_H
 #define SWORD_H
-#include "Object.h"
+#include "Item.h"
 
-class Sword : public Object
+class Sword : public Item
 {
 public:
 	Sword();

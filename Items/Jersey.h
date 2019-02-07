@@ -1,8 +1,8 @@
 #ifndef JERSEY_H
 #define JERSEY_H
-#include "Object.h"
+#include "Item.h"
 
-class Jersey : public Object
+class Jersey : public Item
 {
 public:
 	Jersey();

@@ -1,6 +1,6 @@
 #include "BiteCure.h"
 
-BiteCure::BiteCure() : Object()
+BiteCure::BiteCure() : Item()
 {
 	this->name = "Bite Cure";
 	this->healthBoost = 100; // whatever full health is determined to be

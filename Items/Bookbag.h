@@ -1,10 +1,10 @@
 #ifndef BOOKBAG_H
 #define BOOKBAG_H
 
-#include "Object.h"
+#include "Item.h"
 #include "PlayerInventory.h"
 
-class Bookbag : public Object
+class Bookbag : public Item
 {
 private:
 	PlayerInventory *inventory; // passed in player inventory

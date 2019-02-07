@@ -5,7 +5,7 @@
 #include <string>
 using std::string;
 
-class Object
+class Item
 {
 protected:
 	string type;		//Weapon, etc
@@ -16,8 +16,8 @@ protected:
 	int defense;
 	int healthBoost;
 public:
-	Object();
-	virtual ~Object();
+	Item();
+	virtual ~Item();
 	string getType();
 	string getDesc();
 	string getLocation();

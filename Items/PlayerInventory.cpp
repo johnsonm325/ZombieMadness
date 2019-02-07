@@ -32,7 +32,7 @@ void PlayerInventory::increaseSize()
     size += 6; // TBD the size we will increase it to
 }
 
-void PlayerInventory::addObject(Object* obj)
+void PlayerInventory::addObject(Item* obj)
 {
     if (!isFull())
     {
@@ -49,7 +49,7 @@ void PlayerInventory::addObject(Object* obj)
 
 // game will pass wasUsed as true if player used the item from their inventory
 // wasUsed should otherwise be false
-void PlayerInventory::removeObject(Object* obj, bool wasUsed)
+void PlayerInventory::removeObject(Item* obj, bool wasUsed)
 {
     if (!isEmpty())
     {

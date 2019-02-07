@@ -11,7 +11,7 @@ Inventory::~Inventory()
     // undefined
 }
 
-vector<Object*> Inventory::getObjects()
+vector<Item*> Inventory::getObjects()
 {
     return objects;
 }
@@ -19,7 +19,7 @@ bool Inventory::isEmpty(){
     return objects.size() == 0;
 }
 
-Object* Inventory::findObject(string name)
+Item* Inventory::findObject(string name)
 {
     for (unsigned int index = 0; index < this->objects.size(); index++)
     {
@@ -32,9 +32,9 @@ Object* Inventory::findObject(string name)
     return NULL;
 }
 
-Object* Inventory::selectObject(string item){
+Item* Inventory::selectObject(string item){
 
-	Object* selectedItem = findObject(item);
+	Item* selectedItem = findObject(item);
 	if(selectedItem == NULL){
 		cout << "Item not found in inventory!" << endl;
 		return 0;
@@ -54,12 +54,12 @@ string Inventory::getInventoryType()
     return type;
 }
 
-void Inventory::addObject(Object* obj)
+void Inventory::addObject(Item* obj)
 {
     objects.push_back(obj);
 }
 
-void Inventory::removeObject(Object* obj)
+void Inventory::removeObject(Item* obj)
 {
     objects.erase(remove(objects.begin(), objects.end(), obj), objects.end());
 }

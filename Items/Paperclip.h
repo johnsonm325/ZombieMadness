@@ -1,9 +1,9 @@
 #ifndef PAPERCLIP_H
 #define PAPERCLIP_H
 
-#include "Object.h"
+#include "Item.h"
 
-class Paperclip : public Object
+class Paperclip : public Item
 {
 public:
 	Paperclip();

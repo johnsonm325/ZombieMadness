@@ -11,7 +11,7 @@ $(CXX) = g++
 #
 # Source Files
 #
-SRC  = Object.cpp BaseballBat.cpp BiteCure.cpp Bookbag.cpp EnergyDrink.cpp FireExtinguisher.cpp 
+SRC  = Item.cpp BaseballBat.cpp BiteCure.cpp Bookbag.cpp EnergyDrink.cpp FireExtinguisher.cpp 
 SRC += FirstAid.cpp Gun.cpp Jersey.cpp Key.cpp Knife.cpp Map.cpp Paperclip.cpp Rocks.cpp
 SRC += SteelLid.cpp Sword.cpp
 SRC += Inventory.cpp PlayerInventory.cpp

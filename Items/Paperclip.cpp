@@ -1,6 +1,6 @@
 #include "Paperclip.h"
 
-Paperclip::Paperclip() : Object()
+Paperclip::Paperclip() : Item()
 {
 	//undefined
 	this->name = "Paperclip";

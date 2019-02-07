@@ -1,8 +1,8 @@
 #ifndef FIRE_EXTINGUISHER_H
 #define FIRE_EXTINGUISHER_H
-#include "Object.h"
+#include "Item.h"
 
-class FireExtinguisher : public Object
+class FireExtinguisher : public Item
 {
 public:
 	FireExtinguisher();

@@ -1,6 +1,6 @@
 #include "Key.h"
 
-Key::Key() : Object()
+Key::Key() : Item()
 {
 	//undefined
 	this->name = "Key";

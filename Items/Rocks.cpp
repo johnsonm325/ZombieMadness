@@ -1,6 +1,6 @@
 #include "Rocks.h"
 
-Rocks::Rocks() : Object()
+Rocks::Rocks() : Item()
 {
 	this->count = 10;
 	this->name = "Rocks";
