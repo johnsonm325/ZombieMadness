@@ -181,7 +181,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			string item = parser->convertToItem(cmdArray);
 
 			//Try to select item from room's inventory
-			Object* selectedItem = player->getRoomInventory()->selectObject(item);
+			Item* selectedItem = player->getRoomInventory()->selectObject(item);
 			if(selectedItem != NULL){
 				//Found item, dropping it
 				player->takeItem(selectedItem);
@@ -190,7 +190,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		if (foundCmd->getType() == "drop") {
 			string item = parser->convertToItem(cmdArray);
 			//Try to select item from player's inventory
-			Object* selectedItem = player->getInventory()->selectObject(item);	
+			Item* selectedItem = player->getInventory()->selectObject(item);	
 			if(selectedItem != NULL){
 				//Found item, dropping it
 				player->dropItem(selectedItem);
