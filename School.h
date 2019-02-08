@@ -79,6 +79,7 @@ public:
 	Space* moveWest();
 	Space* moveNorth();
 	Space* moveSouth();
+	bool moveRooms(vector<string> cmdArray, string cmd);
 	void addItemsToRooms();
 	void addSteps(int);
 	

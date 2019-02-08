@@ -80,9 +80,9 @@ int School::playGame()
 	{
 		cout << "\nPlease enter choice:" << endl;
 		getline(cin, choice);
-
 		processCommand(parser, choice);
-	} while (choice != "q" && choice != "quit");
+		
+	} while (choice != "q" && choice != "quit" && choice !="exit");
 
 	return 0;
 }
@@ -128,25 +128,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		//Syntax: go <direction> 
 		if (foundCmd->getType() == "go") {		
-
-			//Go in a specific direction
-			if (cmd == "north" || cmd == "go north" || cmd == "i") {
-				moveNorth();
-				player->movetoRoom(currentRoom);
-			}
-			else if (cmd == "west" || cmd == "go west" || cmd == "j") {
-				moveWest();
-				player->movetoRoom(currentRoom);
-			}
-			else if (cmd == "south" || cmd == "go south" || cmd == "k") {
-				moveSouth();
-				player->movetoRoom(currentRoom);
-			}
-			else if (cmd == "east" || cmd == "go east" || cmd == "l") {
-				moveEast();
-				player->movetoRoom(currentRoom);
-			}
-			cout << "You are in the " << currentRoom->getType() << endl ;
+			moveRooms(cmdArray, cmd);
 		}
 		if (foundCmd->getType() == "dir") {
 			if (cmd == "w") {
@@ -166,31 +148,32 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			}
 		}
 
-		if (foundCmd->getType() == "look") {		//stub 
+		if (foundCmd->getType() == "look") {		
 			if (cmdArray.size() == 1) {		//Look command
-				cout << "\nPrinting long form room description\n";
+				currentRoom->printIntro();
 			}
 		}
 		if (foundCmd->getType() == "room inventory") {
 			currentRoom->getInventory()->printInventory();
 		}
 		if (foundCmd->getType() == "look at") {
-			cout << "\nPrinting description of item/feature\n";
+			string item = parser->extractArgument(cmdArray, foundCmd->getType());
+			player->lookAtItems(item);
 		}
 		if (foundCmd->getType() == "take") {
-			string item = parser->convertToItem(cmdArray);
+			string item = parser->extractArgument(cmdArray, foundCmd->getType());
 
 			//Try to select item from room's inventory
-			Item* selectedItem = player->getRoomInventory()->selectObject(item);
+			Item* selectedItem = player->getRoomInventory()->selectItem(item);
 			if(selectedItem != NULL){
 				//Found item, dropping it
 				player->takeItem(selectedItem);
 			}
 		}
 		if (foundCmd->getType() == "drop") {
-			string item = parser->convertToItem(cmdArray);
+			string item = parser->extractArgument(cmdArray, foundCmd->getType());
 			//Try to select item from player's inventory
-			Item* selectedItem = player->getInventory()->selectObject(item);	
+			Item* selectedItem = player->getInventory()->selectItem(item);	
 			if(selectedItem != NULL){
 				//Found item, dropping it
 				player->dropItem(selectedItem);
@@ -210,10 +193,13 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			parser->printCmdHistory();
 		}
 	}
-	//Else,go to room name without adding prefix like go <room>.
-	// Ex: cmd = math classroom
+	// Else, go to room name without prefix go -> <room>.
+	// Ex: cmd = women's bathroom
 	else {
-		
+		bool moved = moveRooms(cmdArray, cmd);
+		if(!moved){	//Didn't move rooms
+			cout << "Invalid command!" << endl;
+		}
 	}
 }
 
@@ -353,11 +339,63 @@ Space *School::moveSouth()
 		return currentRoom;
 	}
 }
+bool School::moveRooms(vector<string> cmdArray, string cmd){
+	Space* nextRoom = NULL;
+	// go <direction> or <direction> command
+	if (cmd == "north" || cmd == "go north" || cmd == "i") {
+		nextRoom = moveNorth();
+		player->movetoRoom(currentRoom);
+
+	}
+	else if (cmd == "west" || cmd == "go west" || cmd == "j") {
+		nextRoom = moveWest();
+		player->movetoRoom(currentRoom);
+	}
+	else if (cmd == "south" || cmd == "go south" || cmd == "k") {
+		nextRoom = moveSouth();
+		player->movetoRoom(currentRoom);
+	}
+	else if (cmd == "east" || cmd == "go east" || cmd == "l") {	
+		nextRoom = moveEast();
+		player->movetoRoom(currentRoom);
+	}
+	else{	// go <room> command
+		string roomName = parser->extractArgument(cmdArray, "go");
+		Space* adjacentRoom = currentRoom->findAdjRoom(roomName);
+		if(adjacentRoom != NULL){
+			if(adjacentRoom == currentRoom->getNorth()){
+				nextRoom = moveNorth();
+				player->movetoRoom(currentRoom);
+			}
+			else if(adjacentRoom == currentRoom->getWest()){
+				nextRoom = moveWest();
+				player->movetoRoom(currentRoom);
+			}
+			else if(adjacentRoom == currentRoom->getSouth()){
+				nextRoom = moveSouth();
+				player->movetoRoom(currentRoom);
+			}
+			else if(adjacentRoom == currentRoom->getEast()){
+				nextRoom = moveEast();
+				player->movetoRoom(currentRoom);
+			}
+			else{
+				cout << "Invalid room name!" << endl;
+			}
+		}
+	}
+	cout << "You are in the " << currentRoom->getType() << endl ;
+
+	if(nextRoom != NULL){
+		return true;
+	}
+	return false;
+}
 
 void School::addItemsToRooms(){
-	mb->getInventory()->addObject(new BaseballBat());
-	mb->getInventory()->addObject(new BaseballBat());
-	wb->getInventory()->addObject(new Paperclip());
+	mb->getInventory()->addItem(new BaseballBat());
+	mb->getInventory()->addItem(new BaseballBat());
+	wb->getInventory()->addItem(new Paperclip());
 }
 
 void School::addSteps(int newSteps){
@@ -401,18 +439,17 @@ void School::addRoomToList(Space* room) {
 }
 
 void School::copyRoomsListToSpace() {
-	for (int i = 0; i < rooms.size(); i++) {
+	for (unsigned int i = 0; i < rooms.size(); i++) {
 		rooms[i]->addRoomsListToSpace(rooms);
 	}
 }
-
 
 vector<Space*> School::getRoomsList() {
 	return rooms;
 }
 
 void School::setupPlayer(){
-	
+
 	player->clearInventory();
 	player->movetoRoom(currentRoom);
 }
