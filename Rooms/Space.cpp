@@ -69,7 +69,7 @@ string Space::getType()
 
 void Space::addRoomsListToSpace(vector<Space*> roomsVector)
 {
-	for(int i = 0; i < roomsVector.size(); i++)
+	for(unsigned int i = 0; i < roomsVector.size(); i++)
 	{
 		roomsList.push_back(roomsVector[i]);
 	}
@@ -77,7 +77,7 @@ void Space::addRoomsListToSpace(vector<Space*> roomsVector)
 
 Space* Space::findRoom(string roomName)
 {
-	for(int i = 0; i < roomsList.size(); i++)
+	for(unsigned int i = 0; i < roomsList.size(); i++)
 	{
 		if(roomsList[i]->getType() == roomName)
 		{
@@ -88,19 +88,20 @@ Space* Space::findRoom(string roomName)
 	return 0;
 }
 
-void Space::pickUpItem(Item* item)
-{
-	//This is to remove object from room
-	roomInventory->removeObject(item);
-
-	//Need to characterInventory->addObject(item);
+Space* Space::findAdjRoom(string roomName){
+	vector<Space*> adjacentRooms = getExits();
+	for(unsigned int i = 0; i < adjacentRooms.size(); i++){
+		string roomNameLower = strToLowerCase(adjacentRooms[i]->getType());
+		if((roomName == adjacentRooms[i]->getType()) || (roomName == roomNameLower) ){
+			return adjacentRooms[i];
+		} 
+	}
+	return NULL;
 }
 
-void Space::dropItem(Item* item)
-{
-	roomInventory->addObject(item);
-
-	//Need to characterInventory->removeObject(item);
+string Space::strToLowerCase(string input){
+    transform(input.begin(), input.end(), input.begin(), ::tolower);
+    return input;
 }
 
 Inventory* Space::getInventory() {

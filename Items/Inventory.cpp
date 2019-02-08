@@ -11,30 +11,30 @@ Inventory::~Inventory()
     // undefined
 }
 
-vector<Item*> Inventory::getObjects()
+vector<Item*> Inventory::getItems()
 {
-    return objects;
+    return items;
 }
 bool Inventory::isEmpty(){
-    return objects.size() == 0;
+    return items.size() == 0;
 }
 
-Item* Inventory::findObject(string name)
+Item* Inventory::findItem(string name)
 {
-    for (unsigned int index = 0; index < this->objects.size(); index++)
+    for (unsigned int index = 0; index < this->items.size(); index++)
     {
-        string nameLC = strToLowerCase(this->objects[index]->getName());
-        if ((this->objects[index]->getName() == name) || (nameLC == name)){
-            return this->objects[index];
+        string nameLC = strToLowerCase(this->items[index]->getName());
+        if ((this->items[index]->getName() == name) || (nameLC == name)){
+            return this->items[index];
         }
     }
 
     return NULL;
 }
 
-Item* Inventory::selectObject(string item){
+Item* Inventory::selectItem(string item){
 
-	Item* selectedItem = findObject(item);
+	Item* selectedItem = findItem(item);
 	if(selectedItem == NULL){
 		cout << "Item not found in inventory!" << endl;
 		return 0;
@@ -54,14 +54,14 @@ string Inventory::getInventoryType()
     return type;
 }
 
-void Inventory::addObject(Item* obj)
+void Inventory::addItem(Item* item)
 {
-    objects.push_back(obj);
+    items.push_back(item);
 }
 
-void Inventory::removeObject(Item* obj)
+void Inventory::removeItem(Item* item)
 {
-    objects.erase(remove(objects.begin(), objects.end(), obj), objects.end());
+    items.erase(remove(items.begin(), items.end(), item), items.end());
 }
 
 void Inventory::printInventory() {
@@ -71,11 +71,11 @@ void Inventory::printInventory() {
         return;
 	}
 
-    for (unsigned int i = 0; i < objects.size(); i++) {
-        cout << (i + 1) << ": " << objects[i]->getName() << endl;
+    for (unsigned int i = 0; i < items.size(); i++) {
+        cout << (i + 1) << ": " << items[i]->getName() << endl;
     }
 }
 
 void Inventory::clearInventory(){
-    objects.clear();
+    items.clear();
 }

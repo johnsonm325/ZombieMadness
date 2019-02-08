@@ -25,7 +25,8 @@ public:
 	string getCommand();
 	CmdList* getCmdList();
 	void printCmdArray(vector<string> cmdArray);
-	string convertToItem(vector<string> cmdArray);
+	string extractArgument(vector<string> cmdArray, string cmdType);
+	string buildArgString(vector<string> cmdArray, int start);
 	vector<string> generateCmdArray(string cmd);
 
 	void addCmdToHistory(string cmd);

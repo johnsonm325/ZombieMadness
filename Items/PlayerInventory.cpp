@@ -32,14 +32,14 @@ void PlayerInventory::increaseSize()
     size += 6; // TBD the size we will increase it to
 }
 
-void PlayerInventory::addObject(Item* obj)
+void PlayerInventory::addItem(Item* item)
 {
     if (!isFull())
     {
-        objects.push_back(obj);
+        items.push_back(item);
         openSlots--;
         usedSlots++;
-        cout << obj->getName() << " was successfully added to your inventory." << endl;
+        cout << item->getName() << " was successfully added to your inventory." << endl;
     }
 
     else
@@ -49,18 +49,18 @@ void PlayerInventory::addObject(Item* obj)
 
 // game will pass wasUsed as true if player used the item from their inventory
 // wasUsed should otherwise be false
-void PlayerInventory::removeObject(Item* obj, bool wasUsed)
+void PlayerInventory::removeItem(Item* item, bool wasUsed)
 {
     if (!isEmpty())
     {
-        objects.erase(remove(objects.begin(), objects.end(), obj), objects.end());
+        items.erase(remove(items.begin(), items.end(), item), items.end());
         openSlots++;
         usedSlots--;
 
         if (wasUsed)
             return;
         else
-            cout << obj->getName() << " was succesfully removed from your inventory." << endl;
+            cout << item->getName() << " was succesfully removed from your inventory." << endl;
         
     }
 
@@ -76,8 +76,8 @@ void PlayerInventory::printInventory() {
         return;
 	}
 
-    for (unsigned int i = 0; i < objects.size(); i++) {
-        cout << (i + 1) << ": " << objects[i]->getName() << endl;
+    for (unsigned int i = 0; i < items.size(); i++) {
+        cout << (i + 1) << ": " << items[i]->getName() << endl;
     }
 }
 
@@ -90,10 +90,10 @@ void PlayerInventory::printAvailableWeapons()
         return;
     }
 
-    for (unsigned int index = 0;  index < objects.size(); index++)
+    for (unsigned int index = 0;  index < items.size(); index++)
     {
-        if (objects[index]->getType() == "Weapon")
-            cout << objects[index]->getName() << endl;
+        if (items[index]->getType() == "Weapon")
+            cout << items[index]->getName() << endl;
     }
 }
 

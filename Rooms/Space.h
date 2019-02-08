@@ -11,9 +11,6 @@
 
 using std::string;
 using std::vector;
-//using std::cout;
-//using std::cin;
-//using std::endl;
 
 class Space
 {
@@ -38,22 +35,23 @@ public:
 	Space* getNorth();
 	void setSouth(Space*);
 	Space* getSouth();
-	virtual void printIntro() = 0;
+	virtual void printIntro() = 0;		// For abstract class
 	virtual int menu() = 0;				// For abstract class
-	virtual bool firstTime() = 0;			// For abstract class
+	virtual bool firstTime() = 0;		// For abstract class
 	string getType();
-	void addRoomsListToSpace(vector<Space*>);
-	Space* findRoom(string);
 
-	void pickUpItem(Item*);		//Pick up item from room
-	void dropItem(Item*);			//Drop item in room
-	Inventory* getInventory();		//Return inventory vector
+	void addRoomsListToSpace(vector<Space*>);	
+	Space* findRoom(string);
+	Space* findAdjRoom(string);
+	string strToLowerCase(string input);
+
+	Inventory* getInventory();			//Return inventory vector
 
 	void addCreature(Creature* creature);	//Add creature to room
-	void removeCreature(Creature* creature);	//Add creature to room
-	vector<Creature*> getCreatures();		//Get list of creatures from room, including player
+	void removeCreature(Creature* creature);	//Remove creature to room
+	vector<Creature*> getCreatures();		//Get list of creatures from room, not including player
 
-	vector<Space*> getExits();
+	vector<Space*> getExits();			//Get available room exits as vector of Space pointers
 	vector<string> getExitDirections();
 	void printDirection(Space* direction);
 

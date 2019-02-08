@@ -37,13 +37,13 @@ void Player::clearInventory(){
 void Player::useItem(Item* item) {
 
 	item->useItem();	
-	playerInventory->removeObject(item, true);
-	roomInventory->removeObject(item);
+	playerInventory->removeItem(item, true);
+	roomInventory->removeItem(item);
 }
 
 void Player::attackEnemy(string item) 
 {
-	Item *weapon = this->playerInventory->findObject(item);
+	Item *weapon = this->playerInventory->findItem(item);
 
 	if (!weapon)
 	{
@@ -60,12 +60,24 @@ void Player::attackEnemy(string item)
 
 void Player::takeItem(Item* item){
 
-	playerInventory->addObject(item);
-	roomInventory->removeObject(item);
+	playerInventory->addItem(item);
+	roomInventory->removeItem(item);
 }
 
 void Player::dropItem(Item* item){
 	
-	playerInventory->removeObject(item, false);
-	roomInventory->addObject(item);
+	playerInventory->removeItem(item, false);
+	roomInventory->addItem(item);
+}
+
+void Player::lookAtItems(string item){
+	Item* roomItem =  roomInventory->findItem(item);
+	Item* playerItem = playerInventory->findItem(item);
+	
+	if(roomItem != NULL){
+		cout << roomItem->getDesc() << endl;
+	}
+	else if(playerItem != NULL){
+		cout << playerItem->getDesc() << endl;
+	}
 }

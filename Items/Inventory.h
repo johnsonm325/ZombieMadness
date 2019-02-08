@@ -16,19 +16,19 @@ class Inventory
 {
 protected:
     int size;
-    vector<Item*> objects;
+    vector<Item*> items;
     string type;
 public:
     Inventory(string);
     virtual ~Inventory();
     string getInventoryType();
-    vector<Item*> getObjects();
+    vector<Item*> getItems();
     virtual bool isEmpty();
-    Item* findObject(string);
-    Item* selectObject(string);
+    Item* findItem(string);
+    Item* selectItem(string);
     string strToLowerCase(string input);
-    virtual void addObject(Item*);
-    virtual void removeObject(Item*);
+    virtual void addItem(Item*);
+    virtual void removeItem(Item*);
 	virtual void printInventory();
     void clearInventory();
 };

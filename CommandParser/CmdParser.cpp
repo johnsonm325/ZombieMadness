@@ -95,17 +95,38 @@ void CmdParser::printCmdArray(vector<string> cmdArray){
 	}
 }
 
-string CmdParser::convertToItem(vector<string> cmdArray){
-	string item;
-	if(cmdArray.size() < 2){
-		item = cmdArray[0];
+string CmdParser::extractArgument(vector<string> cmdArray, string cmdType){
+	string item = "";
+	unsigned int i;
+
+	if(cmdType == "drop" || cmdType == "take"){	//drop|take <item name>
+		if(cmdArray.size() > 1){
+			item = buildArgString(cmdArray, 1);
+		}
 	}
-	else{
-		for(unsigned int i = 1; i < cmdArray.size(); i++){
-			item += cmdArray[i];
-			if(i < cmdArray.size() - 1){
-				item +=" ";
-			}
+	else if(cmdType == "look at"){ //look at <item name>
+		if(cmdArray.size() > 2){
+			item = buildArgString(cmdArray, 2);
+		}
+	}
+	else if(cmdType == "go"){	
+		if (cmdArray[0] != "go"){		//Just room name
+			item = buildArgString(cmdArray, 0);
+		}
+		else if(cmdArray.size() > 1){	//go <roomName>
+			item = buildArgString(cmdArray, 1);
+		}
+	}
+	return item;
+}
+
+string CmdParser::buildArgString(vector<string> cmdArray, int start){
+	string item;
+	unsigned int i;
+	for(i = start; i < cmdArray.size(); i++){
+		item += cmdArray[i];
+		if(i < cmdArray.size() - 1){
+			item +=" ";
 		}
 	}
 	return item;
