@@ -13,7 +13,7 @@ private:
 public:
 	Football();
 	void printIntro();
-	int menu(vector<string>*);
+	int menu();
 	void inspectToilet();
 	bool firstTime();
 	bool coltGone();

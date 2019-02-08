@@ -24,7 +24,7 @@ void Library::printIntro(){
 	cout << endl;
 }
 
-int Library::menu(vector<string> *i)
+int Library::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

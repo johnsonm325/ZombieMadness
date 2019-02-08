@@ -23,7 +23,7 @@ void History::printIntro(){
 	cout << endl;
 }
 
-int History::menu(vector<string> *i)
+int History::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

@@ -23,7 +23,7 @@ void LockerRoom::printIntro(){
 	cout << endl;
 }
 
-int LockerRoom::menu(vector<string> *i)
+int LockerRoom::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

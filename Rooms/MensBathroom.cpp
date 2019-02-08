@@ -29,7 +29,7 @@ void MensBathroom::printIntro(){
 	cout << endl;
 }
 
-int MensBathroom::menu(vector<string> *i)
+int MensBathroom::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

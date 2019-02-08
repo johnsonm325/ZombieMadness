@@ -23,21 +23,24 @@ void GymnasiumFloor2::printIntro(){
 	
 }
 
-int GymnasiumFloor2::menu(vector<string> *i)
+int GymnasiumFloor2::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
 	{
-		return 40;
+		return 0;
 	}
 	printIntro();
+
+	
 	return 0;
 }
 
 
-void GymnasiumFloor2::inspectToilet()
+void GymnasiumFloor2::cutRopes()
 {
-
+	gym1 = static_cast<GymnasiumFloor1*>(findRoom("Gymnasium First Floor"));
+	gym1->ropesCut();
 }
 
 

@@ -392,10 +392,20 @@ void School::createRoomsList() {
 	addRoomToList(fl);
 	addRoomToList(fo);
 	addRoomToList(prin);
+
+	copyRoomsListToSpace();
 }
+
 void School::addRoomToList(Space* room) {
 	rooms.push_back(room);
 }
+
+void School::copyRoomsListToSpace() {
+	for (int i = 0; i < rooms.size(); i++) {
+		rooms[i]->addRoomsListToSpace(rooms);
+	}
+}
+
 
 vector<Space*> School::getRoomsList() {
 	return rooms;
@@ -405,5 +415,4 @@ void School::setupPlayer(){
 	
 	player->clearInventory();
 	player->movetoRoom(currentRoom);
-
 }

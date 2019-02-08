@@ -22,7 +22,7 @@ void FrontOffice::printIntro(){
 	cout << endl;
 }
 
-int FrontOffice::menu(vector<string> *i)
+int FrontOffice::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
