@@ -79,7 +79,7 @@ Space* Space::findRoom(string roomName)
 {
 	for(int i = 0; i < roomsList.size(); i++)
 	{
-		if(roomsList[i] == roomName)
+		if(roomsList[i]->getType() == roomName)
 		{
 			return roomsList[i];
 		}

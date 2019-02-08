@@ -2,6 +2,7 @@
 #define GYMNASIUMFLOOR2_H
 
 #include "Space.h"
+#include "GymnasiumFloor1.h"
 
 class GymnasiumFloor2 : public Space
 {
@@ -9,7 +10,7 @@ private:
 	string action;		//string action typed in by the user
 	bool firstTry = true,
 	     goneColt = false;
-	Space *gym1;
+	GymnasiumFloor1 *gym1;
 
 public:
 	GymnasiumFloor2();

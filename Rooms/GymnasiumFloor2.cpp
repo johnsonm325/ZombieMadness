@@ -39,7 +39,7 @@ int GymnasiumFloor2::menu()
 
 void GymnasiumFloor2::cutRopes()
 {
-	gym1 = findRoom("Gymnasium First Floor");
+	gym1 = static_cast<GymnasiumFloor1*>(findRoom("Gymnasium First Floor"));
 	gym1->ropesCut();
 }
 
