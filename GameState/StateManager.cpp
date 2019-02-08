@@ -223,7 +223,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 			fprintf(saveFile, "Room: %s\n", state->rooms[i]->getType().c_str());
 
 			int numItems = state->rooms[i]->getInventory()->getObjects().size();
-			vector<Object*> items = state->rooms[i]->getInventory()->getObjects();
+			vector<Item*> items = state->rooms[i]->getInventory()->getObjects();
 			fprintf(saveFile, "Inventory:\n");
 			fprintf(saveFile, "Size: %d\n", numItems);
 			for (int j = 0; j < numItems; j++) {
