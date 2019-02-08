@@ -25,6 +25,7 @@ protected:
 	string type;
 	Inventory* roomInventory = new Inventory(this->getType());
 	vector<Creature*> creatures;	//list of creatures in room
+	vector<Space*> roomsList;
 
 public:
 	Space(string);
@@ -38,9 +39,11 @@ public:
 	void setSouth(Space*);
 	Space* getSouth();
 	virtual void printIntro() = 0;
-	virtual int menu(vector<string>*) = 0;	// For abstract class
+	virtual int menu() = 0;				// For abstract class
 	virtual bool firstTime() = 0;			// For abstract class
 	string getType();
+	void addRoomsListToSpace(vector<Space*>);
+	Space* findRoom(string);
 
 	void pickUpItem(Item*);		//Pick up item from room
 	void dropItem(Item*);			//Drop item in room

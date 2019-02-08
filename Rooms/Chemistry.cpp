@@ -22,7 +22,7 @@ void Chemistry::printIntro(){
 	cout << endl;
 }
 
-int Chemistry::menu(vector<string> *i)
+int Chemistry::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

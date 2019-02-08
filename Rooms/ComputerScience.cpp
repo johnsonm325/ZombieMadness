@@ -23,7 +23,7 @@ void ComputerScience::printIntro(){
 	cout << endl;
 }
 
-int ComputerScience::menu(vector<string> *i)
+int ComputerScience::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

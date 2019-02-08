@@ -57,7 +57,7 @@ Space * Space::getSouth()
 	return south;
 }
 
-int Space::menu(vector<string> *i)
+int Space::menu()
 {
 	return 0;
 }
@@ -65,6 +65,27 @@ int Space::menu(vector<string> *i)
 string Space::getType()
 {
 	return type;
+}
+
+void Space::addRoomsListToSpace(vector<Space*> roomsVector)
+{
+	for(int i = 0; i < roomsVector.size(); i++)
+	{
+		roomsList.push_back(roomsVector[i]);
+	}
+}
+
+Space* Space::findRoom(string roomName)
+{
+	for(int i = 0; i < roomsList.size(); i++)
+	{
+		if(roomsList[i] == roomName)
+		{
+			return roomsList[i];
+		}
+	}
+	cout << "Could not find room" << endl;
+	return 0;
 }
 
 void Space::pickUpItem(Item* item)

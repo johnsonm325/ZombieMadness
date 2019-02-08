@@ -28,7 +28,7 @@ void PrincipalsOffice::printIntro(){
 	}
 }
 
-int PrincipalsOffice::menu(vector<string> *i)
+int PrincipalsOffice::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

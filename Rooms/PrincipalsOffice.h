@@ -14,7 +14,7 @@ private:
 public:
 	PrincipalsOffice();
 	void printIntro();
-	int menu(vector<string>*);
+	int menu();
 	bool zombieDead();
 	void inspectToilet();
 	bool firstTime();

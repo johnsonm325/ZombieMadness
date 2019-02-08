@@ -22,7 +22,7 @@ void Cafeteria::printIntro(){
 	cout << "What do you do now?" << endl;
 }
 
-int Cafeteria::menu(vector<string> *i)
+int Cafeteria::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

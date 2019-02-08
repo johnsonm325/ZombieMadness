@@ -25,7 +25,7 @@ void Math::printIntro(){
 	cout << endl;
 }
 
-int Math::menu(vector<string> *i)
+int Math::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

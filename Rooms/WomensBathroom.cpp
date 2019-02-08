@@ -25,7 +25,7 @@ void WomensBathroom::printIntro(){
 	cout << endl;
 }
 
-int WomensBathroom::menu(vector<string> *i)
+int WomensBathroom::menu()
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

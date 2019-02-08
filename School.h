@@ -87,6 +87,7 @@ public:
 	void processCommand(CmdParser* parser, string cmd);
 
 	void addRoomToList(Space* room);
+	void copyRoomsListToSpace();
 	void createRoomsList();
 	vector<Space*> getRoomsList();
 
