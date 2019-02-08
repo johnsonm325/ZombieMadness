@@ -24,12 +24,12 @@ public:
 	PlayerInventory* getInventory();
 	Inventory* getRoomInventory();
 	void clearInventory();
-	void useItem(Object* item);
+	void useItem(Item* item);
 	void attackEnemy(string);
 	//void attackEnemy(Creature*);
 
-	void takeItem(Object*);
-	void dropItem(Object*);
+	void takeItem(Item*);
+	void dropItem(Item*);
 	
 };
 

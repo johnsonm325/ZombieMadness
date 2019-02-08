@@ -67,7 +67,7 @@ string Space::getType()
 	return type;
 }
 
-void Space::pickUpItem(Object* item)
+void Space::pickUpItem(Item* item)
 {
 	//This is to remove object from room
 	roomInventory->removeObject(item);
@@ -75,7 +75,7 @@ void Space::pickUpItem(Object* item)
 	//Need to characterInventory->addObject(item);
 }
 
-void Space::dropItem(Object* item)
+void Space::dropItem(Item* item)
 {
 	roomInventory->addObject(item);
 
