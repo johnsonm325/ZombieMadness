@@ -1,6 +1,6 @@
 #include "Gun.h"
 
-Gun::Gun() : Object()
+Gun::Gun() : Item()
 {
 	this->description = "Now this is some serious power.  This high-leveled weapon will cause some serious damage.";
 	this->type = "Weapon";

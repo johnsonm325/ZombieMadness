@@ -1,7 +1,7 @@
 #include "EnergyDrink.h"
 using std::to_string;
 
-EnergyDrink::EnergyDrink(int level) : Object()
+EnergyDrink::EnergyDrink(int level) : Item()
 {
 	this->level = level;
 	setName(level);

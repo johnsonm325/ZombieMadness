@@ -1,7 +1,7 @@
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
-#include "Object.h"
+#include "Item.h"
 
 #include <vector>
 #include <algorithm>
@@ -16,19 +16,19 @@ class Inventory
 {
 protected:
     int size;
-    vector<Object*> objects;
+    vector<Item*> objects;
     string type;
 public:
     Inventory(string);
     virtual ~Inventory();
     string getInventoryType();
-    vector<Object*> getObjects();
+    vector<Item*> getObjects();
     virtual bool isEmpty();
-    Object* findObject(string);
-    Object* selectObject(string);
+    Item* findObject(string);
+    Item* selectObject(string);
     string strToLowerCase(string input);
-    virtual void addObject(Object*);
-    virtual void removeObject(Object*);
+    virtual void addObject(Item*);
+    virtual void removeObject(Item*);
 	virtual void printInventory();
     void clearInventory();
 };

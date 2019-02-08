@@ -1,9 +1,9 @@
 #ifndef FIRST_AID_H
 #define FIRST_AID_H
 
-#include "Object.h"
+#include "Item.h"
 
-class FirstAid : public Object
+class FirstAid : public Item
 {
 public:
 	FirstAid();

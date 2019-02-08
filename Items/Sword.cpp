@@ -1,6 +1,6 @@
 #include "Sword.h"
 
-Sword::Sword() : Object()
+Sword::Sword() : Item()
 {
 	this->description = "Time to slice and dice!!  Use this high-powered weapon to really cut those zombies down to size.";
 	this->type = "Weapon";

@@ -1,8 +1,8 @@
 #ifndef KNIFE_H
 #define KNIFE_H
-#include "Object.h"
+#include "Item.h"
 
-class Knife : public Object
+class Knife : public Item
 {
 public:
 	Knife();

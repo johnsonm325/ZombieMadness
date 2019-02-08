@@ -1,52 +1,52 @@
-#include "Object.h"
+#include "Item.h"
 
-Object::Object()
+Item::Item()
 {
 	//will be defined in sub classes
 }
 
-Object::~Object()
+Item::~Item()
 {
 	//undefined
 }
 
-string Object::getType()
+string Item::getType()
 {
 	return type;
 }
 
-string Object::getDesc()
+string Item::getDesc()
 {
 	return description;
 }
 
-string Object::getLocation()
+string Item::getLocation()
 {
 	return location;
 }
 
-string Object::getName()
+string Item::getName()
 {
 	return name;
 }
 
-int Object::getAttack()
+int Item::getAttack()
 {
 	return attack;
 }
 
-int Object::getDefense()
+int Item::getDefense()
 {
 	return defense;
 }
 
 
-int Object::getHealthBoost()
+int Item::getHealthBoost()
 {
 	return healthBoost;
 }
 
-void Object::setDummyItem(string desc, string name)
+void Item::setDummyItem(string desc, string name)
 {
 	this->description = desc;
 	this->name = name;

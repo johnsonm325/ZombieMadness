@@ -34,7 +34,7 @@ void Player::clearInventory(){
 	playerInventory->clearInventory();
 }
 
-void Player::useItem(Object* item) {
+void Player::useItem(Item* item) {
 
 	item->useItem();	
 	playerInventory->removeObject(item, true);
@@ -43,7 +43,7 @@ void Player::useItem(Object* item) {
 
 void Player::attackEnemy(string item) 
 {
-	Object *weapon = this->playerInventory->findObject(item);
+	Item *weapon = this->playerInventory->findObject(item);
 
 	if (!weapon)
 	{
@@ -58,13 +58,13 @@ void Player::attackEnemy(string item)
 
 // }
 
-void Player::takeItem(Object* item){
+void Player::takeItem(Item* item){
 
 	playerInventory->addObject(item);
 	roomInventory->removeObject(item);
 }
 
-void Player::dropItem(Object* item){
+void Player::dropItem(Item* item){
 	
 	playerInventory->removeObject(item, false);
 	roomInventory->addObject(item);

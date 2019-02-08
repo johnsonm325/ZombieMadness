@@ -1,9 +1,9 @@
 #ifndef ENERGY_DRINK_H
 #define ENERGY_DRINK_H
 
-#include "Object.h"
+#include "Item.h"
 
-class EnergyDrink : public Object
+class EnergyDrink : public Item
 {
 private:
 	int level;

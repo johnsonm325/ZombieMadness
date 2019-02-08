@@ -1,6 +1,6 @@
 #include "FirstAid.h"
 
-FirstAid::FirstAid() : Object()
+FirstAid::FirstAid() : Item()
 {
 	this->name = "First Aid";
 	this->healthBoost = 10;

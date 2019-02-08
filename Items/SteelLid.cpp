@@ -1,6 +1,6 @@
 #include "SteelLid.h"
 
-SteelLid::SteelLid() : Object()
+SteelLid::SteelLid() : Item()
 {
 	this->description = "Throwing it back to the olden days.  Use this steel trashcan lid as a blocking mechanism.";
 	this->type = "Weapon";

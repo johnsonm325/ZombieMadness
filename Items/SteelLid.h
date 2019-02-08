@@ -1,8 +1,8 @@
 #ifndef STEEL_LID_H
 #define STEEL_LID_H
-#include "Object.h"
+#include "Item.h"
 
-class SteelLid : public Object
+class SteelLid : public Item
 {
 public:
 	SteelLid();

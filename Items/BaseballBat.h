@@ -1,8 +1,8 @@
 #ifndef BASEBALL_BAT_H
 #define BASEBALL_BAT_H
-#include "Object.h"
+#include "Item.h"
 
-class BaseballBat : public Object
+class BaseballBat : public Item
 {
 public:
 	BaseballBat();

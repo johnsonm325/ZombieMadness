@@ -1,9 +1,9 @@
 #ifndef BITE_CURE_H
 #define BITE_CURE_H
 
-#include "Object.h"
+#include "Item.h"
 
-class BiteCure : public Object
+class BiteCure : public Item
 {
 public:
 	BiteCure();

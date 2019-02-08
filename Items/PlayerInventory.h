@@ -11,8 +11,8 @@ private:
 public:
     PlayerInventory();
     ~PlayerInventory();
-    void addObject(Object*);
-    void removeObject(Object*, bool);
+    void addObject(Item*);
+    void removeObject(Item*, bool);
     int getUsedSlots();
     int getOpenSlots();
     bool isEmpty();

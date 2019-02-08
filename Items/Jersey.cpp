@@ -1,6 +1,6 @@
 #include "Jersey.h"
 
-Jersey::Jersey() : Object()
+Jersey::Jersey() : Item()
 {
 	this->description = "Ever imagine you'd be an All-Start athlete?  Well now you can with this Jersey!  Your defense increases while wearing this.";
 	this->type = "Weapon";

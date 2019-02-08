@@ -42,8 +42,8 @@ public:
 	virtual bool firstTime() = 0;			// For abstract class
 	string getType();
 
-	void pickUpItem(Object*);		//Pick up item from room
-	void dropItem(Object*);			//Drop item in room
+	void pickUpItem(Item*);		//Pick up item from room
+	void dropItem(Item*);			//Drop item in room
 	Inventory* getInventory();		//Return inventory vector
 
 	void addCreature(Creature* creature);	//Add creature to room

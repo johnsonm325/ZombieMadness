@@ -1,9 +1,9 @@
 #ifndef GUN_H
 #define GUN_H
 
-#include "Object.h"
+#include "Item.h"
 
-class Gun : public Object
+class Gun : public Item
 {
 public:
 	Gun();

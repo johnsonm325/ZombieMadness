@@ -1,9 +1,9 @@
 #ifndef ROCKS_H
 #define ROCKS_H
 
-#include "Object.h"
+#include "Item.h"
 
-class Rocks : public Object
+class Rocks : public Item
 {
 private:
 	int count;

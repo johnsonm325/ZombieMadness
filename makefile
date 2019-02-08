@@ -52,7 +52,7 @@ ROOMS_OBJS += Rooms/Chemistry.o
 
 ITEMS_OBJS = Items/Inventory.o Items/BaseballBat.o Items/BiteCure.o Items/Bookbag.o Items/EnergyDrink.o
 ITEMS_OBJS += Items/FireExtinguisher.o Items/FirstAid.o Items/Gun.o Items/Jersey.o Items/Key.o
-ITEMS_OBJS += Items/Knife.o Items/Map.o Items/Object.o Items/Paperclip.o Items/PlayerInventory.o
+ITEMS_OBJS += Items/Knife.o Items/Map.o Items/Item.o Items/Paperclip.o Items/PlayerInventory.o
 ITEMS_OBJS += Items/Rocks.o Items/SteelLid.o Items/Sword.o
 
 CREATURE_OBJS = Creatures/Creature.o Creatures/Player.o Creatures/Zombie.o

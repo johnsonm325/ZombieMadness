@@ -1,6 +1,6 @@
 #include "BaseballBat.h"
 
-BaseballBat::BaseballBat() : Object()
+BaseballBat::BaseballBat() : Item()
 {
 	this->description = "Swing away Colt.  Use this mid-leveled weapon to bash some zombies!";
 	this->type = "Weapon";
