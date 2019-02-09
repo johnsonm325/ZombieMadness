@@ -7,6 +7,8 @@ Library::Library() : Space("Library")
 	string description = "There is a ladder leaning against one of the bookshelves. It looks like you could climb it.";
 	string name = "ladder";
 	ladder->setDummyItem(description, name);
+
+	roomInventory->addItem(ladder);
 }
 
 void Library::printIntro(){

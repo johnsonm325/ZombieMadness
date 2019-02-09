@@ -7,6 +7,8 @@ History::History() : Space("History")
 	string description = "It's a solid stone bust of George Washington. Would be too heavy to carry. Doesn't seem to be anything special about this item.";
 	string name = "George Washington bust";
 	georgeWashingtonBust->setDummyItem(description, name);
+
+	roomInventory->addItem(georgeWashingtonBust);
 }
 
 void History::printIntro(){
