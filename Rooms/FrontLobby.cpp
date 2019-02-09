@@ -36,16 +36,15 @@ int FrontLobby::menu()
 }
 
 
-void FrontLobby::inspectToilet()
+void FrontLobby::zombiesDead()
 {
-
+	deadZombies = true;
 }
 
 
-bool FrontLobby::firstTime()
+void FrontLobby::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

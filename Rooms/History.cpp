@@ -3,7 +3,10 @@
 
 History::History() : Space("History")
 {
-	
+	georgeWashingtonBust = new Item();
+	string description = "It's a solid stone bust of George Washington. Would be too heavy to carry. Doesn't seem to be anything special about this item.";
+	string name = "George Washington bust";
+	georgeWashingtonBust->setDummyItem(description, name);
 }
 
 void History::printIntro(){
@@ -36,16 +39,16 @@ int History::menu()
 }
 
 
-void History::inspectToilet()
+void History::inspectBust()
 {
-
+	lit = static_cast<Literature*>(findRoom("Literature"));
+	lit->zombiesDead();
 }
 
 
-bool History::firstTime()
+void History::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

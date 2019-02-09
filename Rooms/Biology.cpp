@@ -39,10 +39,9 @@ void Biology::inspectToilet()
 }
 
 
-bool Biology::firstTime()
+void Biology::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

@@ -3,6 +3,7 @@
 
 #include "Space.h"
 #include "GymnasiumFloor1.h"
+#include "../Items/Item.h"
 
 class GymnasiumFloor2 : public Space
 {
@@ -11,13 +12,14 @@ private:
 	bool firstTry = true,
 	     goneColt = false;
 	GymnasiumFloor1 *gym1;
+	Item *ropes;
 
 public:
 	GymnasiumFloor2();
 	void printIntro();
 	int menu();
 	void cutRopes();
-	bool firstTime();
+	void firstTime();
 	bool coltGone();
 	bool itemSearch(vector<string>, string); 	//function used to search character's inventory to see if they have items needed for a particular action
 };

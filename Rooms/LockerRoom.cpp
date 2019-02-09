@@ -42,10 +42,9 @@ void LockerRoom::inspectToilet()
 }
 
 
-bool LockerRoom::firstTime()
+void LockerRoom::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

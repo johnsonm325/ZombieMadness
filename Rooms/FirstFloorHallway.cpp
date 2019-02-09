@@ -42,10 +42,9 @@ void FirstFloorHallway::inspectToilet()
 }
 
 
-bool FirstFloorHallway::firstTime()
+void FirstFloorHallway::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

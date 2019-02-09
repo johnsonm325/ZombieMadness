@@ -42,27 +42,19 @@ int GymnasiumFloor1::menu()
 	return 0;
 }
 
-bool GymnasiumFloor1::ropesCut()
+void GymnasiumFloor1::ropesCut()
 {
-	return zombiesDead();
+	zombiesDead();
 }
 
-bool GymnasiumFloor1::zombiesDead()
+void GymnasiumFloor1::zombiesDead()
 {
 	deadZombies = true;
-	return deadZombies;
 }
 
-void GymnasiumFloor1::inspectToilet()
-{
-
-}
-
-
-bool GymnasiumFloor1::firstTime()
+void GymnasiumFloor1::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

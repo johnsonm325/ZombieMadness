@@ -3,7 +3,10 @@
 
 FrontOffice::FrontOffice() : Space("Front Office")
 {
-	
+	paSystem = new Item();
+	string description = "This is the system that the principal uses to call students to the office. Maybe I can have a little fun with this.";
+	string name = "PA system";
+	paSystem->setDummyItem(description, name);
 }
 
 void FrontOffice::printIntro(){
@@ -34,16 +37,16 @@ int FrontOffice::menu()
 }
 
 
-void FrontOffice::inspectToilet()
+void FrontOffice::usePA()
 {
-
+	prin = static_cast<PrincipalsOffice*>(findRoom("Principals Office"));
+	prin->zombiesDead();
 }
 
 
-bool FrontOffice::firstTime()
+void FrontOffice::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

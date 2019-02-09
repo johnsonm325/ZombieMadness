@@ -15,10 +15,9 @@ public:
 	GymnasiumFloor1();
 	void printIntro();
 	int menu();
-	bool ropesCut();
-	bool zombiesDead();
-	void inspectToilet();
-	bool firstTime();
+	void ropesCut();
+	void zombiesDead();
+	void firstTime();
 	bool coltGone();
 	bool itemSearch(vector<string>, string); 	//function used to search character's inventory to see if they have items needed for a particular action
 };

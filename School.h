@@ -94,6 +94,5 @@ public:
 
 	//Player methods
 	void setupPlayer();
-	
 };
 #endif
