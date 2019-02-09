@@ -43,10 +43,9 @@ void WomensBathroom::inspectToilet()
 }
 
 
-bool WomensBathroom::firstTime()
+void WomensBathroom::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

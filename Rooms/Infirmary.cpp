@@ -44,10 +44,9 @@ void Infirmary::inspectToilet()
 }
 
 
-bool Infirmary::firstTime()
+void Infirmary::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

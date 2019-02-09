@@ -37,7 +37,7 @@ public:
 	Space* getSouth();
 	virtual void printIntro() = 0;		// For abstract class
 	virtual int menu() = 0;				// For abstract class
-	virtual bool firstTime() = 0;		// For abstract class
+	virtual void firstTime() = 0;		// For abstract class
 	string getType();
 
 	void addRoomsListToSpace(vector<Space*>);	

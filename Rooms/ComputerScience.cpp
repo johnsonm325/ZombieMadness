@@ -41,10 +41,9 @@ void ComputerScience::inspectToilet()
 }
 
 
-bool ComputerScience::firstTime()
+void ComputerScience::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

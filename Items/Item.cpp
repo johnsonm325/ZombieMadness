@@ -46,6 +46,10 @@ int Item::getHealthBoost()
 	return healthBoost;
 }
 
+void Item::useItem()
+{
+}
+
 void Item::setDummyItem(string desc, string name)
 {
 	this->description = desc;

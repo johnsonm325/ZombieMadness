@@ -44,10 +44,9 @@ void Math::inspectToilet()
 }
 
 
-bool Math::firstTime()
+void Math::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

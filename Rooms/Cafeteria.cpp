@@ -2,7 +2,10 @@
 
 Cafeteria::Cafeteria() : Space("Cafeteria")
 {
-	
+	food = new Item();
+	string description = "There are chunks of food strewn around the room. Some of it is gloopy, and you don't want to touch that. But some, you can pick up.";
+	string name = "food";
+	food->setDummyItem(description, name);
 }
 
 void Cafeteria::printIntro(){
@@ -34,16 +37,16 @@ int Cafeteria::menu()
 }
 
 
-void Cafeteria::inspectToilet()
+void Cafeteria::throwFood()
 {
-
+	chem = static_cast<Chemistry*>(findRoom("Chemistry"));
+	chem->zombiesDead();
 }
 
 
-bool Cafeteria::firstTime()
+void Cafeteria::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

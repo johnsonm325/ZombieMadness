@@ -36,16 +36,15 @@ int Literature::menu()
 }
 
 
-void Literature::inspectToilet()
+void Literature::zombiesDead()
 {
-
+	deadZombies = true;
 }
 
 
-bool Literature::firstTime()
+void Literature::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

@@ -33,15 +33,14 @@ int Chemistry::menu()
 	return 0;
 }
 
-void Chemistry::inspectToilet()
+void Chemistry::zombiesDead()
 {
-
+	deadZombies = true;
 }
 
-bool Chemistry::firstTime()
+void Chemistry::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 bool Chemistry::coltGone()

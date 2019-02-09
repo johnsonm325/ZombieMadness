@@ -3,7 +3,10 @@
 
 Library::Library() : Space("Library")
 {
-	
+	ladder = new Item();
+	string description = "There is a ladder leaning against one of the bookshelves. It looks like you could climb it.";
+	string name = "ladder";
+	ladder->setDummyItem(description, name);
 }
 
 void Library::printIntro(){
@@ -37,16 +40,16 @@ int Library::menu()
 }
 
 
-void Library::inspectToilet()
+void Library::useLadder()
 {
-
+	fl = static_cast<FrontLobby*>(findRoom("Front Lobby"));
+	fl->zombiesDead();
 }
 
 
-bool Library::firstTime()
+void Library::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

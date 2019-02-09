@@ -19,7 +19,7 @@ void PrincipalsOffice::printIntro(){
 		cout << endl;
 	}
 
-	if (zombieDead() == true)
+	if (deadZombies == true)
 	{
 		cout << "There is a single desk in the room." << endl;
 		cout << endl;
@@ -39,23 +39,15 @@ int PrincipalsOffice::menu()
 	return 0;
 }
 
-
-void PrincipalsOffice::inspectToilet()
+void PrincipalsOffice::zombiesDead()
 {
-
-}
-
-bool PrincipalsOffice::zombieDead()
-{
-	deadZombie = true;
-	return deadZombie;
+	deadZombies = true;
 }
 
 
-bool PrincipalsOffice::firstTime()
+void PrincipalsOffice::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

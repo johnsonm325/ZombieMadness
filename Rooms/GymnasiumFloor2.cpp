@@ -3,7 +3,10 @@
 
 GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 {
-	
+	ropes = new Item();
+	string description = "Ropes appear to be strung across the rafters, holding up many of the spotlights and scoreboards.";
+	string name = "ropes";
+	ropes->setDummyItem(description, name);
 }
 
 void GymnasiumFloor2::printIntro(){
@@ -44,10 +47,9 @@ void GymnasiumFloor2::cutRopes()
 }
 
 
-bool GymnasiumFloor2::firstTime()
+void GymnasiumFloor2::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 

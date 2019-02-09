@@ -37,16 +37,15 @@ int Football::menu()
 }
 
 
-void Football::inspectToilet()
+void Football::zombiesDead()
 {
-
+	deadZombies = true;
 }
 
 
-bool Football::firstTime()
+void Football::firstTime()
 {
 	firstTry = false;
-	return firstTry;
 }
 
 
