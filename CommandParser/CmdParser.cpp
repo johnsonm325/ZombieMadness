@@ -97,7 +97,6 @@ void CmdParser::printCmdArray(vector<string> cmdArray){
 
 string CmdParser::extractArgument(vector<string> cmdArray, string cmdType){
 	string item = "";
-	unsigned int i;
 
 	if(cmdType == "drop" || cmdType == "take"){	//drop|take <item name>
 		if(cmdArray.size() > 1){

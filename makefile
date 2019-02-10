@@ -3,10 +3,11 @@
 #
 PROJ = Game
 
+BIN = $(PROJ)
 #
 # Compiler
 #
-$(CXX) = g++
+CXX = g++
 
 #
 # Compiler Flags
@@ -14,62 +15,61 @@ $(CXX) = g++
 CFLAGS = -g -Wall -pedantic -std=c++11
 
 #
-# Source Files
+# Source and Object Files
 #
-SRC  = Main.cpp School.cpp
+#
 
-#
+ITEM_SRC = $(wildcard Items/*.cpp)
+ITEM_OBJ = $(patsubst Items/%.cpp, Items/%.o, $(ITEM_SRC))
+
+ROOM_SRC = $(wildcard Rooms/*.cpp)
+ROOM_OBJ = $(patsubst Rooms/%.cpp, Rooms/%.o, $(ROOM_SRC))
+
+CREATURE_SRC = $(wildcard Creatures/*.cpp)
+CREATURE_OBJ = $(patsubst Creatures/%.cpp, Creatures/%.o, $(CREATURE_SRC))
+
+PARSER_SRC = CommandParser/CmdWord.cpp CommandParser/CmdList.cpp CommandParser/CmdParser.cpp
+PARSER_OBJ = $(patsubst CommandParser/%.cpp, CommandParser/%.o, $(PARSER_SRC))
+
+STATE_SRC = GameState/GameState.cpp GameState/StateManager.cpp 
+STATE_OBJ = $(patsubst GameState/%.cpp, GameState/%.o, $(STATE_SRC))
+
+MAIN_SRC = Main.cpp School.cpp 
+MAIN_OBJ = $(patsubst %.cpp, %.o, $(MAIN_SRC))
+
+default: clean $(BIN) 
+
 # Create an object for each source file
 #
-OBJ = $(SRC:.cpp=.o)
+
+Items/%.o: Items/%.cpp
+	@echo "  CC $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+Rooms/%.o: Rooms/%.cpp
+	@echo "  CC $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+Creatures/%.o: Creatures/%.cpp
+	@echo "  CC $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+CommandParser/%.o: CommandParser/%.cpp
+	@echo "  CC $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+GameState/%.o: GameState/%.cpp
+	@echo "  CC $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+%.o: %.cpp
+	@echo "  CC $@"
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 #
 # Output binary
 #
-BIN = $(PROJ)
-#
-# Default Behavior:
-#     1. Remove everything to start from screatch
-#     2. Compile the binary
-#     3. Run it through valgrind for quicker debugging
-#
-
-all: build_folders $(BIN) 
-
-build_folders: clean $(OBJ)
-	$(MAKE) -C Rooms
-	$(MAKE) -C Items
-	$(MAKE) -C Creatures
-	$(MAKE) -C CommandParser
-	$(MAKE) -C GameState
-
-
-ROOMS_OBJS  = Rooms/Space.o Rooms/Biology.o Rooms/Cafeteria.o Rooms/ComputerScience.o Rooms/FirstFloorHallway.o 
-ROOMS_OBJS += Rooms/Football.o Rooms/FrontLobby.o Rooms/FrontOffice.o Rooms/GymnasiumFloor1.o Rooms/GymnasiumFloor2.o  
-ROOMS_OBJS += Rooms/History.o Rooms/Infirmary.o Rooms/Library.o Rooms/Literature.o Rooms/LockerRoom.o Rooms/Math.o 
-ROOMS_OBJS += Rooms/MensBathroom.o Rooms/PrincipalsOffice.o Rooms/SecondFloorHallway.o Rooms/WomensBathroom.o
-ROOMS_OBJS += Rooms/Chemistry.o
-
-ITEMS_OBJS = Items/Inventory.o Items/BaseballBat.o Items/BiteCure.o Items/Bookbag.o Items/EnergyDrink.o
-ITEMS_OBJS += Items/FireExtinguisher.o Items/FirstAid.o Items/Gun.o Items/Jersey.o Items/Key.o
-ITEMS_OBJS += Items/Knife.o Items/Map.o Items/Item.o Items/Paperclip.o Items/PlayerInventory.o
-ITEMS_OBJS += Items/Rocks.o Items/SteelLid.o Items/Sword.o
-
-CREATURE_OBJS = Creatures/Creature.o Creatures/Player.o Creatures/Zombie.o
-
-CMD_PARSER_OBJS = CommandParser/CmdWord.o CommandParser/CmdList.o CommandParser/CmdParser.o
-
-SAVE_STATE_OBJS = GameState/GameState.o GameState/StateManager.o
-
-#
-# % is a wildcard. Anything that ends in ".o" will match this tag, and each
-# tag depends on the same matching wildcard, but ending in ".cpp"
-#
-%.o: %.cpp
-	@echo "CC	$^"
-	@$(CXX) $(CFLAGS) -c $^
-
-$(BIN): $(OBJ) $(ROOMS_OBJS) $(ITEMS_OBJS) $(CREATURE_OBJS) $(CMD_PARSER_OBJS) 
+$(BIN): $(ITEM_OBJ) $(ROOM_OBJ) $(CREATURE_OBJ) $(PARSER_OBJ) $(STATE_OBJ) $(MAIN_OBJ)
 	@echo "CC	$@"
 	@$(CXX) $(CFLAGS) $^ -o $@
 
