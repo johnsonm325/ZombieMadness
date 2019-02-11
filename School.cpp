@@ -78,6 +78,7 @@ int School::playGame()
 	cout << "You are in the " << currentRoom->getType() << endl ;
 	do 
 	{
+		currentRoom->printIntro();
 		cout << "\nPlease enter choice:" << endl;
 		getline(cin, choice);
 		processCommand(parser, choice);
