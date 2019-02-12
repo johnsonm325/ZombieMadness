@@ -1,5 +1,5 @@
-#ifndef OBJECT_H
-#define OBJECT_H
+#ifndef ITEM_H
+#define ITEM_H
 
 #include "../Creatures/Creature.h"
 #include <string>

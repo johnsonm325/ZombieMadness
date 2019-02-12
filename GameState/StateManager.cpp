@@ -20,9 +20,7 @@ bool StateManager::foundExistingSaves() {
 vector<string> StateManager::getSaveFileList() {
 	vector<string> fileList;
 
-
 	fileList.push_back("./save.001");
-
 
 	//char targetDirPrefix[] = "save.00"; /* Prefix we're looking for */
 	//DIR* dirToCheck; /* Holds the directory we're starting in */
@@ -44,7 +42,6 @@ vector<string> StateManager::getSaveFileList() {
 	//	}
 	//	closedir(dirToCheck); /* Close opened directory */
 	//}
-
 
 	return fileList;
 }
