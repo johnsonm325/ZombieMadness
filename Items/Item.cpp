@@ -46,8 +46,9 @@ int Item::getHealthBoost()
 	return healthBoost;
 }
 
-void Item::useItem()
+int Item::getSize()
 {
+	return size;
 }
 
 void Item::setDummyItem(string desc, string name)

@@ -7,6 +7,7 @@ BaseballBat::BaseballBat() : Item()
 	this->name = "Baseball Bat";
 	this->attack = 6;
 	this->defense = 0;
+	this->size = 2;
 }
 
 void BaseballBat::useItem(){

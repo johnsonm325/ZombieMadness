@@ -15,6 +15,8 @@ protected:
 	int attack;
 	int defense;
 	int healthBoost;
+	int size;
+
 public:
 	Item();
 	virtual ~Item();
@@ -26,6 +28,7 @@ public:
 	int getAttack();
 	int getDefense();
 	int getHealthBoost();
+	int getSize();
 	virtual void useItem();
 	//virtual void damageZombie(Creature*);
 	void setDummyItem(string, string);

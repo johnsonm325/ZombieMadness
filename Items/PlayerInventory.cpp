@@ -27,6 +27,16 @@ bool PlayerInventory::isEmpty()
     return false;
 }
 
+bool PlayerInventory::canAdd(Item *item)
+{
+    int totalSize = usedSlots + item->getSize();
+
+    if (isFull() || totalSize > openSlots)
+        return false;
+
+    return true;
+}
+
 void PlayerInventory::increaseSize()
 {
     size += 6; // TBD the size we will increase it to
@@ -34,7 +44,7 @@ void PlayerInventory::increaseSize()
 
 void PlayerInventory::addItem(Item* item)
 {
-    if (!isFull())
+    if (!isFull() && canAdd(item))
     {
         items.push_back(item);
         openSlots--;
@@ -69,32 +79,39 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
     
 }
 
+void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
+{
+    if (isEmpty)
+    {
+        cout << "None!" << endl;
+    }
+
+    else if (!type.empty())
+    {
+        for (unsigned int i = 0; i < items.size(); i++)
+        {
+            if (items[i]->getType() == type)
+                cout << items[i]->getName() << endl;
+        }
+    }
+
+    else
+    {
+        for (unsigned int i = 0; i < items.size(); i++)
+            cout << (i + 1) << ": " << items[i]->getName() << endl;
+    }
+
+}
+
 void PlayerInventory::printInventory() {
 	cout << "=== Player's Inventory ===" << endl;
-	if (isEmpty()) {
-		cout << "EMPTY" << endl;
-        return;
-	}
-
-    for (unsigned int i = 0; i < items.size(); i++) {
-        cout << (i + 1) << ": " << items[i]->getName() << endl;
-    }
+	printInventoryHelper(items, "", isEmpty());
 }
 
 void PlayerInventory::printAvailableWeapons()
 {
     cout << "Available Weapons" << endl;
-
-    if (isEmpty()) {
-        cout << "None!" << endl;
-        return;
-    }
-
-    for (unsigned int index = 0;  index < items.size(); index++)
-    {
-        if (items[index]->getType() == "Weapon")
-            cout << items[index]->getName() << endl;
-    }
+    printInventoryHelper(items, "Weapon", isEmpty());
 }
 
 int PlayerInventory::getOpenSlots()
@@ -105,4 +122,25 @@ int PlayerInventory::getOpenSlots()
 int PlayerInventory::getUsedSlots()
 {
     return usedSlots;
+}
+
+void PlayerInventory::printAvailableSupplies()
+{
+    cout << "Available Supplies" << endl;
+
+    printInventoryHelper(items, "Supply", isEmpty());
+}
+
+void PlayerInventory::printAvailableRoomObjects()
+{
+    cout << "Available Room Objects" << endl;
+
+    printInventoryHelper(items, "Room Object", isEmpty());
+}
+
+void PlayerInventory::printAvailableMiscItems()
+{
+    cout << "Available Misc Items" << endl;
+
+    printInventoryHelper(items, "Misc", isEmpty());
 }

@@ -7,6 +7,7 @@ Gun::Gun() : Item()
 	this->name = "Gun";
 	this->attack = 14;
 	this->defense = 0;
+	this->size = 4;
 }
 
 void Gun::useItem()

@@ -6,6 +6,7 @@ Rocks::Rocks() : Item()
 	this->name = "Rocks";
 	this->description = "Everyone needs a distraction! Throw these Rocks to distract a zombie to buy you some time.";
 	this->type = "Room Object";
+	this->size = 2;
 }
 
 void Rocks::decrementRocks()

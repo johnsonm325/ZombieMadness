@@ -7,6 +7,7 @@ FireExtinguisher::FireExtinguisher() : Item()
 	this->name = "Fire Extinguisher";
 	this->attack = 8;
 	this->defense = 0;
+	this->size = 2;
 }
 
 void FireExtinguisher::useItem()
