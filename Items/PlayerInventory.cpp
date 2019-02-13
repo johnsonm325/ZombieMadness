@@ -31,7 +31,7 @@ bool PlayerInventory::canAdd(Item *item)
 {
     int totalSize = usedSlots + item->getSize();
 
-    if (isFull() || totalSize > openSlots)
+    if (totalSize > openSlots)
         return false;
 
     return true;
@@ -53,7 +53,7 @@ void PlayerInventory::addItem(Item* item)
     }
 
     else
-        cout << "Your inventory is full! Consider removing an item to add this one." << endl;
+        cout << "Your inventory is either full or the item size exceeds available capacity."<< endl;
     
 }
 
