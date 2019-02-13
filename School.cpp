@@ -4,7 +4,7 @@
 School::School()
 {
 	mb = new MensBathroom();
-	wb = new WomensBathroom();
+	wb = new WomensBathroom(player->getInventory());
 	sfh1 = new SecondFloorHallway();
 	sfh2 = new SecondFloorHallway();
 	sfh3 = new SecondFloorHallway();

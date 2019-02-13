@@ -1,9 +1,9 @@
 #include "WomensBathroom.h"
 
 
-WomensBathroom::WomensBathroom() : Space("Women's Bathroom")
+WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 {
-	
+	this->bag = bag;
 }
 
 void WomensBathroom::printIntro(){
@@ -58,4 +58,9 @@ bool WomensBathroom::coltGone()
 bool WomensBathroom::itemSearch(vector<string> inv, string a)
 {
 	return false;
+}
+
+void WomensBathroom::increaseBagSize()
+{
+	bag->increaseSize();
 }
