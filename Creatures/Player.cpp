@@ -6,7 +6,7 @@ Player::Player()
 {
 	//will be defined in sub classes
 	player = new Creature();
-	player->setName("Cold");
+	player->setName("Colt");
 	// this->attack = 4;
 	// this->defense = 5;
 	player->setHealth(100);
@@ -52,6 +52,7 @@ void Player::attackEnemy(string item)
 	}
 
 	weapon->useItem();
+	playerInventory->removeItem(weapon, true);
 }
 // void Player::attackEnemy(Creature* enemy) 
 // {
