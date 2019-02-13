@@ -28,15 +28,21 @@ void GymnasiumFloor2::printIntro(){
 	
 }
 
-int GymnasiumFloor2::menu()
+int GymnasiumFloor2::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
 	{
 		return 0;
 	}
-	printIntro();
 
+	if (commandVector[0].compare("cut") == 0 && commandVector[1].compare("ropes") == 0) {
+		cutRopes();
+	}
+
+	else {
+		cout << "You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << endl;
+	}
 	
 	return 0;
 }
@@ -44,6 +50,7 @@ int GymnasiumFloor2::menu()
 
 void GymnasiumFloor2::cutRopes()
 {
+	cout << "As you cut the ropes, the tension is released and all of the lights and scoreboards go crashing to the lower level of the gym." << endl << endl;
 	gym1 = static_cast<GymnasiumFloor1*>(findRoom("Gymnasium First Floor"));
 	gym1->ropesCut();
 }

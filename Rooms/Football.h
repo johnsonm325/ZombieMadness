@@ -14,7 +14,7 @@ private:
 public:
 	Football();
 	void printIntro();
-	int menu();
+	int menu(vector<string>);
 	void zombiesDead();
 	void firstTime();
 	bool coltGone();

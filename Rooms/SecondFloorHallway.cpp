@@ -26,7 +26,7 @@ void SecondFloorHallway::printIntro(){
 	cout << endl;
 }
 
-int SecondFloorHallway::menu()
+int SecondFloorHallway::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

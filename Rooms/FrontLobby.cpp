@@ -24,7 +24,7 @@ void FrontLobby::printIntro(){
 	cout << endl;
 }
 
-int FrontLobby::menu()
+int FrontLobby::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

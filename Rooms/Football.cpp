@@ -25,7 +25,7 @@ void Football::printIntro(){
 	cout << endl;
 }
 
-int Football::menu()
+int Football::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

@@ -17,7 +17,7 @@ private:
 public:
 	Library();
 	void printIntro();
-	int menu();
+	int menu(vector<string>);
 	void useLadder();
 	void firstTime();
 	bool coltGone();

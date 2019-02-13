@@ -27,21 +27,30 @@ void FrontOffice::printIntro(){
 	cout << endl;
 }
 
-int FrontOffice::menu()
+int FrontOffice::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
 	{
 		return 40;
 	}
-	printIntro();
+
+        if ((commandVector[0].compare("use") == 0 || commandVector[0].compare("talk") == 0) && (commandVector[1].compare("PA") == 0 || commandVector[1].compare("pa") == 0)) {
+                usePA();
+        }
+
+        else {
+                cout << "You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << endl;
+        }
+
 	return 0;
 }
 
 
 void FrontOffice::usePA()
 {
-	prin = static_cast<PrincipalsOffice*>(findRoom("Principals Office"));
+	cout << "You push the button and speak loudly over the intercom, 'GOOD MORNING VIETNAM!!!' ... No response.'" << endl << endl;
+	prin = static_cast<PrincipalsOffice*>(findRoom("Principal's Office"));
 	prin->zombiesDead();
 }
 

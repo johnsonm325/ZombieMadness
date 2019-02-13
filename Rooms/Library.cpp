@@ -29,14 +29,21 @@ void Library::printIntro(){
 	cout << endl;
 }
 
-int Library::menu()
+int Library::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
 	{
 		return 40;
 	}
-	printIntro();
+
+        if ((commandVector[0].compare("use") == 0 || commandVector[0].compare("climb") == 0) && commandVector[1].compare("ladder") == 0) {
+                useLadder();
+        }
+
+        else {
+                cout << "You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << endl;
+        }
 	
 	return 0;
 }
@@ -44,6 +51,7 @@ int Library::menu()
 
 void Library::useLadder()
 {
+	cout << "You climb the to the top of the ladder. The tops of the shelves are dusty and there are a lot of books you've never heard of. Doesn't seem to be anything special going on here." << endl << endl;
 	fl = static_cast<FrontLobby*>(findRoom("Front Lobby"));
 	fl->zombiesDead();
 }
