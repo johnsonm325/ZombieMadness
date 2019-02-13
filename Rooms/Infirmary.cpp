@@ -24,7 +24,7 @@ void Infirmary::printIntro(){
 	cout << endl;
 }
 
-int Infirmary::menu()
+int Infirmary::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

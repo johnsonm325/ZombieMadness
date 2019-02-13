@@ -63,6 +63,7 @@ private:
 	Space *ffh1, *ffh2, *ffh3, *ffh4;
 	Space *fl, *fo, *prin;
 	vector<Space*> rooms;
+	vector<string> commandVect;
 
 	CmdParser* parser = new CmdParser();
 	Player* player = new Player();
@@ -85,7 +86,7 @@ public:
 	
 	//Object/Item related
 
-	void processCommand(CmdParser* parser, string cmd);
+	vector<string> processCommand(CmdParser* parser, string cmd);
 
 	void addRoomToList(Space* room);
 	void copyRoomsListToSpace();

@@ -21,7 +21,7 @@ void Biology::printIntro(){
 	cout << endl;
 }
 
-int Biology::menu()
+int Biology::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

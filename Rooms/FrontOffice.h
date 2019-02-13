@@ -17,7 +17,7 @@ private:
 public:
 	FrontOffice();
 	void printIntro();
-	int menu();
+	int menu(vector<string>);
 	void usePA();
 	void firstTime();
 	bool coltGone();
