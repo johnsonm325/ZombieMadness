@@ -4,11 +4,8 @@ using std::endl;
 
 Player::Player() 
 {
-	//will be defined in sub classes
 	player = new Creature();
 	player->setName("Colt");
-	// this->attack = 4;
-	// this->defense = 5;
 	player->setHealth(100);
 	this->playerInventory = new PlayerInventory();
 }
@@ -51,13 +48,9 @@ void Player::attackEnemy(string item)
 		return;
 	}
 
-	weapon->useItem();
+	enemy->takeDamage(weapon->getAttack());
 	playerInventory->removeItem(weapon, true);
 }
-// void Player::attackEnemy(Creature* enemy) 
-// {
-
-// }
 
 void Player::takeItem(Item* item){
 
@@ -81,4 +74,20 @@ void Player::lookAtItems(string item){
 	else if(playerItem != NULL){
 		cout << playerItem->getDesc() << endl;
 	}
+}
+
+void Player::takeDamage(int damage)
+{
+	int healthLeft = player->getHealth() - damage;
+
+	if (healthLeft <= 0)
+	{
+		player->setHealth(0);
+		cout << "Game over, you were a zombie's gourmet meal!" << endl;
+		return;
+	}
+
+	else
+		cout << "Your health is now at " << player->getHealth() << endl;
+	
 }
