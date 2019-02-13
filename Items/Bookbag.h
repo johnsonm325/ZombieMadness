@@ -12,6 +12,7 @@ public:
 	Bookbag(PlayerInventory*);
 	void increaseSize();
 	void setLocation(string);
+	void useItem();
 };
 
 #endif

@@ -23,3 +23,8 @@ void Rocks::setLocation(string l)
 {
 	this->location = l;
 }
+
+void Rocks::useItem()
+{
+	// undefined
+}

@@ -4,6 +4,7 @@
 #include "Space.h"
 #include "GymnasiumFloor1.h"
 #include "../Items/Item.h"
+#include "../Items/Gun.h"
 
 class GymnasiumFloor2 : public Space
 {

@@ -20,7 +20,7 @@ protected:
 	Space *south;		// Pointer to space for down
 	Space *west;		// Pointer to space for back
 	string type;
-	Inventory* roomInventory = new Inventory(this->getType());
+	Inventory* roomInventory = new Inventory("Space");
 	vector<Creature*> creatures;	//list of creatures in room
 	vector<Space*> roomsList;
 

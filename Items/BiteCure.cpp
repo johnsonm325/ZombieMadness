@@ -18,3 +18,8 @@ void BiteCure::setLocation(string l)
 {
 	this->location = l;
 }
+
+void BiteCure::useItem()
+{
+	// undefined
+}

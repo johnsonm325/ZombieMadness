@@ -2,6 +2,8 @@
 #define LOCKERROOM_H
 
 #include "Space.h"
+#include "../Items/BaseballBat.h"
+#include "../Items/SteelLid.h"
 
 class LockerRoom : public Space
 {

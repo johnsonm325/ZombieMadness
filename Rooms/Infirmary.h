@@ -2,6 +2,7 @@
 #define INFIRMARY_H
 
 #include "Space.h"
+#include "../Items/BiteCure.h"
 
 class Infirmary : public Space
 {

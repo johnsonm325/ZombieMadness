@@ -3,7 +3,8 @@
 
 LockerRoom::LockerRoom() : Space("Locker Room")
 {
-	
+	this->roomInventory->addItem(new BaseballBat());
+	this->roomInventory->addItem(new SteelLid());
 }
 void LockerRoom::printIntro(){
 	// Prints the first time the room is visited

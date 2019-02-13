@@ -2,7 +2,7 @@
 
 Biology::Biology() : Space("Biology")
 {
-	
+	this->roomInventory->addItem(new Rocks());
 }
 
 void Biology::printIntro(){

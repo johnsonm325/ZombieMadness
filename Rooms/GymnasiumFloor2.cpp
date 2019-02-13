@@ -7,8 +7,8 @@ GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 	string description = "Ropes appear to be strung across the rafters, holding up many of the spotlights and scoreboards.";
 	string name = "ropes";
 	ropes->setDummyItem(description, name);
-
 	roomInventory->addItem(ropes);
+	roomInventory->addItem(new Gun());
 }
 
 void GymnasiumFloor2::printIntro(){

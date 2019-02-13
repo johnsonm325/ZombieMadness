@@ -18,3 +18,8 @@ void Bookbag::setLocation(string l)
 {
 	this->location = l;
 }
+
+void Bookbag::useItem()
+{
+	
+}
