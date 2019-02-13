@@ -10,6 +10,7 @@ public:
 	bool canUnlock();
 	void unlock();
 	void setLocation(string);
+	void useItem();
 };
 
 #endif

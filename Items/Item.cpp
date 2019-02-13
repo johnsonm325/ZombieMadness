@@ -51,6 +51,11 @@ int Item::getSize()
 	return size;
 }
 
+void Item::useItem()
+{
+	//undefined
+}
+
 void Item::setDummyItem(string desc, string name)
 {
 	this->description = desc;

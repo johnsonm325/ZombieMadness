@@ -24,3 +24,8 @@ void Key::setLocation(string l)
 {
 	this->location = l;
 }
+
+void Key::useItem()
+{
+	// undefined
+}
