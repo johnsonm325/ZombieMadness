@@ -85,19 +85,3 @@ void Player::lookAtItems(string item){
 		cout << playerItem->getDesc() << endl;
 	}
 }
-
-void Player::takeDamage(int damage)
-{
-	int healthLeft = player->getHealth() - damage;
-
-	if (healthLeft <= 0)
-	{
-		player->setHealth(0);
-		cout << "Game over, you were a zombie's gourmet meal!" << endl;
-		return;
-	}
-
-	else
-		cout << "Your health is now at " << player->getHealth() << endl;
-	
-}

@@ -29,7 +29,6 @@ public:
 	void takeItem(Item*);
 	void dropItem(Item*);
 	void lookAtItems(string item);
-	void takeDamage(int);
 };
 
 #endif
