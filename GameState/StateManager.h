@@ -1,50 +1,58 @@
 #ifndef STATE_MANAGER_H
 #define STATE_MANAGER_H
 
+#define STATE_DEBUG 0
+
 #include "GameState.h"
-#include "../School.h"
 #include <fstream>
+#include <string>
+#include <iostream>
+#include <algorithm>
+#include <cstdio>
+#include <cstdlib>
 
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/types.h>
+// #include <sys/stat.h>
 
-//#include <string>
-//#include <iostream>
+using namespace std;
 
 class StateManager
 {
 private:
+	vector<Space*> rooms;
 	vector<GameState*> states;
-	int maxStates = 3;
+	vector<string> fileList;
+	unsigned int maxStates = 3;
 
 public:
 	StateManager();
 	~StateManager();
+	void init();
 	//Loading game state from file
-	bool foundExistingSaves();
+	bool foundSaves();
 	vector<string> getSaveFileList();
 	void readAllSaves();
 	GameState* readSaveFile(string filename);	
 	GameState* processFileData(vector<string> lines);
-	void loadState(GameState* state, School* game);
-	void promptToLoadGame(School* game);
+	GameState* promptToLoadGame();
 
 	//Writing game state to file
-	GameState* createState(School* game);
-	void saveState(School* game);
+	void saveState(GameState* state);
 	void writeSaveFile(GameState* state, string filename);
-	void promptToSaveGame(School* game);
+	void promptToSaveGame(GameState* state);
 
 	//Managing states list
 	void addGameState(GameState* state);
 	void removeGameState(GameState* state);
+	void clearStates();
 	void printStates();
 	bool haveSaves();
 
+	void addRoomList(vector<Space*> rooms);
 	void changeWorkingDir();
 	void resetWorkingDir();
-
 };
 
 #endif

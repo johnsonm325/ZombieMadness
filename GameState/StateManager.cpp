@@ -4,71 +4,85 @@
 // Name: save.001, save.002, save.003, etc
 
 StateManager::StateManager() {
-	//if (foundExistingSaves()) {
-	//	readAllSaves();
-	//}
+	
 }
 
 StateManager::~StateManager() {
 
 }
 
-bool StateManager::foundExistingSaves() {
-	return getSaveFileList().size() > 0;
+void StateManager::init(){
+	changeWorkingDir();
+	
+	clearStates();
+	getSaveFileList();
+	if (foundSaves()) {
+
+#ifdef STATE_DEBUG
+	cout << "Found existing saves:" << fileList.size() << endl;
+
+	for(unsigned int i = 0; i < fileList.size(); i++){
+		cout << "File: " << fileList[i] << endl;
+	}
+#endif
+		readAllSaves();
+	}
+	resetWorkingDir();
+}
+
+bool StateManager::foundSaves() {
+	return fileList.size() > 0;
 }
 
 vector<string> StateManager::getSaveFileList() {
-	vector<string> fileList;
+	//fileList.push_back("./save.001");
 
-	fileList.push_back("./save.001");
-
-	//char targetDirPrefix[] = "save.00"; /* Prefix we're looking for */
-	//DIR* dirToCheck; /* Holds the directory we're starting in */
-	//struct dirent *fileInDir; /* Holds the current subdir of the starting dir */
+	char targetDirPrefix[] = "save.00"; /* Prefix we're looking for */
+	DIR* dirToCheck; /* Holds the directory we're starting in */
+	struct dirent *fileInDir; /* Holds the current subdir of the starting dir */
 	//struct stat dirAttributes; /* Holds information we've gained about subdir */
-	//int j, foundAll = 0;
+	//int j;
 
-	//dirToCheck = opendir("."); /* Open up the directory this program was run in */
+	dirToCheck = opendir("."); /* Open up the directory this program was run in */
 
-	//if (dirToCheck > 0) /* Make sure current directory could be opened */
-	//{
-	//	j = 0;
-	//	while ((fileInDir = readdir(dirToCheck)) != NULL) /* Check each entry in directory */
-	//	{
-	//		if (strstr(fileInDir->d_name, targetDirPrefix) != NULL) /* If entry has prefix */
-	//		{
-	//			fileList.push_back(std::string(fileInDir->d_name));
-	//		}
-	//	}
-	//	closedir(dirToCheck); /* Close opened directory */
-	//}
+	if (dirToCheck > 0) /* Make sure current directory could be opened */
+	{
+		while ((fileInDir = readdir(dirToCheck)) != NULL) /* Check each entry in directory */
+		{
+			string fileName = fileInDir->d_name;
+			if (fileName.find(targetDirPrefix) != std::string::npos) /* If entry has prefix */
+			{
+				fileList.push_back(std::string(fileInDir->d_name));
+			}
+		}
+		closedir(dirToCheck); /* Close opened directory */
+	}
+	
+	if(fileList.size() > 1){
+		//If list was created in reverse: save.003, save.002, save.001, reverse it back
+		if(fileList[fileList.size()-1] == "save.001"){
+			std::reverse(fileList.begin(), fileList.end());
+		}
+	}
 
 	return fileList;
 }
 
 //Reading all save files
 void StateManager::readAllSaves() {
-	changeWorkingDir();
-
-	vector<string> fileList = getSaveFileList();
 	for (unsigned int index = 0; index < fileList.size(); index++) {
 		GameState* newState = readSaveFile(fileList[index]);
 		if (newState != NULL) {
 			addGameState(newState);
 		}
 	}
-
-	resetWorkingDir();
 }
 
 //Reading save file into GameState object
 GameState* StateManager::readSaveFile(string filename) {
-	//FILE* saveFile;
 	GameState* newState = NULL;
-
 	string line;
 	vector<string> lines;
-
 
 	/* Opening file */
 	ifstream myfile(filename);
@@ -90,23 +104,35 @@ GameState* StateManager::readSaveFile(string filename) {
 
 GameState* StateManager::processFileData(vector<string> lines) {
 	GameState* newState = new GameState();
+
 	std::size_t foundRoom, foundInv;
-	std::size_t foundHeader[2];
-	string headerKeys[2];
+	std::size_t foundHeader[3];
+	string headerKeys[3];
 	headerKeys[0] = "Time stamp:";
 	headerKeys[1] = "Current room:";
+	headerKeys[2] = "Room idx:";
 	foundHeader[0] = lines[1].find(headerKeys[0]);
 	foundHeader[1] = lines[2].find(headerKeys[1]);
+	foundHeader[2] = lines[3].find(headerKeys[2]);
 
 	//Didn't find file header
-	if ((foundHeader[0] == std::string::npos) || (foundHeader[1] == std::string::npos)) {
-		return NULL;
-	}
+	if ((foundHeader[0] == std::string::npos) || (foundHeader[1] == std::string::npos) ||
+		(foundHeader[2] == std::string::npos)) 
+		{	return NULL;		}
+
 	//Found it
 	else {
 		// Save header first 
-		newState->timeStamp = lines[1].substr(foundHeader[0] + headerKeys[0].length());
-		string curRoom = lines[2].substr(foundHeader[1] + headerKeys[1].length());
+		string newTime = lines[1].substr(foundHeader[0] + headerKeys[0].length());
+
+		//Adding header info to state object;
+		int rIdx;
+		sscanf(lines[3].c_str(), "%*s %*s %d ", &rIdx);
+		//cout << "int rIdx:" << rIdx;
+
+		newState->setRooms(this->rooms);
+		newState->setCurrentRoom(rIdx);
+		newState->setTime(newTime);
 
 		for (unsigned int i = 0; i < lines.size(); i++) {
 			foundRoom = lines[i].find("Room:");	//Found room
@@ -114,19 +140,19 @@ GameState* StateManager::processFileData(vector<string> lines) {
 			if (foundRoom != std::string::npos) {
 				
 				string roomName = lines[i].substr(foundRoom+6);
-				cout << "Found room: " << roomName << endl;
+				//cout << "Found room: " << roomName << endl;
 				i++;
 				foundInv = lines[i].find("Inventory");	//Found inventory
 				
 				if (foundInv != std::string::npos) {
-					cout << "Found inventory" << endl;
+					//cout << "Found inventory" << endl;
 					i++;
 					foundInv = lines[i].find("Size:");
 					if (foundInv != std::string::npos) {
 						int numItems;
 						sscanf(lines[i].c_str(), "%*s %d ", &numItems);
 						//if (numItems > 0) {
-							cout << "Found " << numItems << " items in room " << endl;
+							//cout << "Found " << numItems << " items in room " << endl;
 
 						//}
 					}
@@ -138,67 +164,55 @@ GameState* StateManager::processFileData(vector<string> lines) {
 }
 
 //Transfer data from GameState to actual game 
-void StateManager::promptToLoadGame(School* game) {
+GameState* StateManager::promptToLoadGame() {
+	string choice;
+	int stateNum;
 
 	printStates();
 
 	if (haveSaves()) {
-		string choice;
-		int stateNum;
-
-		cout << "Select game state: " << 1 << "-" << states.size() <<  endl;
-		cin >> choice;
+		cout << "Select game state to load: " << 1 << "-" << states.size() << endl;
+		getline(cin, choice);
 		stateNum = atoi(choice.c_str());
 		if ((stateNum > 0) && (stateNum <= (int) states.size()) ) {
-			cout << "Loading state " << stateNum << endl;
-			loadState(states[stateNum - 1], game);
+			cout << "Loading state " << stateNum << "..." << endl;
+			stateNum--; //align with state vector's initial zero offset;
+			return states[stateNum];
 		}
 	}
-	else {
-		cout << "ERROR: Cannot load game state!" << endl;
-	}
+	return NULL;
 }
 
-//Transfer data from GameState to actual game 
-void StateManager::promptToSaveGame(School* game) {
+//Transfer data from actual game to GameState vector 
+void StateManager::promptToSaveGame(GameState* state) {
 	string choice;
 
-	cout << "Do you want to save current game? y/n" << endl;
-	cin >> choice;
+	printStates();
+	cout << "\nDo you want to save current game state? y/n" << endl;
+	getline(cin, choice);
 	if (choice == "y" || choice == "Y") {
-		saveState(game);
+		saveState(state);
 		printStates();
 	}
 }
 
-void StateManager::loadState(GameState* state, School* game) {
-
-}
-
 //Writing game state to file
-void StateManager::saveState(School* game) {
+void StateManager::saveState(GameState* state) {
 	char fileCnt[8];
-	GameState* newState = createState(game);
-	addGameState(newState);
-
 	changeWorkingDir(); //set working directory  to ./GameState
 
-	snprintf(fileCnt, sizeof(fileCnt), "%d", (int)states.size());
-	string fileName = "save.00";
-	fileName += fileCnt;
-	cout << "Writing save file: " << fileName << endl;
-	writeSaveFile(newState, fileName);
-
+	addGameState(state);
+	
+	//Update all save files
+	for(unsigned int i = 0; i < states.size(); i++){
+		snprintf(fileCnt, sizeof(fileCnt), "%d", i+1);
+		string fileName = "save.00";
+		fileName += fileCnt;
+		cout << "Writing save file: " << fileName << endl;
+		writeSaveFile(states[i], fileName);
+	}
+	
 	resetWorkingDir();	//reset directory back to root 
-}
-
-GameState* StateManager::createState(School* game) {
-	GameState* newState = new GameState();
-	newState->setTime();
-	newState->rooms = game->getRoomsList();
-	newState->currentRoom = game->getCurrentRoom();
-
-	return newState;
 }
 
 void StateManager::writeSaveFile(GameState* state, string filename) {
@@ -211,16 +225,17 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 	if (saveFile != 0) {
 		//fprintf(saveFile, "Number of save files: %d\n", (int) states.size());
 		fprintf(saveFile, "Filename: %s\n", filename.c_str());
-		fprintf(saveFile, "Time stamp: %s\n", state->timeStamp.c_str());
-		fprintf(saveFile, "Current room: %s\n", state->currentRoom->getType().c_str());
-		fprintf(saveFile, "Steps: %d\n", state->steps);
+		fprintf(saveFile, "Time stamp: %s\n", state->getTime().c_str());
+		fprintf(saveFile, "Current room: %s\n", state->getCurrentRoom()->getType().c_str());
+		fprintf(saveFile, "Room idx: %d\n", state->getRoomIdx());
+		fprintf(saveFile, "Steps: %d\n", state->getSteps());
 
-		for (unsigned int i = 0; i < state->rooms.size(); i++) {
-			fprintf(saveFile, "===\n");
-			fprintf(saveFile, "Room: %s\n", state->rooms[i]->getType().c_str());
+		for (unsigned int i = 0; i < state->getRooms().size(); i++) {
+			fprintf(saveFile, " \n");
+			fprintf(saveFile, "Room: %s\n", state->getRooms()[i]->getType().c_str());
 
-			int numItems = state->rooms[i]->getInventory()->getItems().size();
-			vector<Item*> items = state->rooms[i]->getInventory()->getItems();
+			int numItems = state->getRooms()[i]->getInventory()->getItems().size();
+			vector<Item*> items = state->getRooms()[i]->getInventory()->getItems();
 			fprintf(saveFile, "Inventory:\n");
 			fprintf(saveFile, "Size: %d\n", numItems);
 			for (int j = 0; j < numItems; j++) {
@@ -237,7 +252,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 
 //Managing states list
 void StateManager::addGameState(GameState* state) {
-	if (states.size() < 3) {
+	if (states.size() < maxStates) {
 		states.push_back(state);
 	}
 	else {
@@ -258,18 +273,29 @@ void StateManager::removeGameState(GameState* state) {
 void StateManager::printStates() {
 	cout << "=== SAVED GAME STATES ===" << endl;
 	if (haveSaves()) {
-		cout << " State       Date" << endl;
+		cout << "#      Room        Date" << endl;
 		for (unsigned int i = 0; i < states.size(); i++) {
-			cout << (i + 1) << ":   " << states[i]->getTime() << endl;
+			cout <<  (i + 1) << ": " << states[i]->getCurrentRoom()->getType() << "    " << states[i]->getTime() << endl;
 		}
 	}
 	else {
-		cout << "empty list" << endl;
+		cout << "Empty list" << endl;
 	}
+}
+
+void StateManager::clearStates(){
+	for(unsigned int i = 0; i < states.size(); i++){
+		delete states[i];
+	}
+	states.clear();
 }
 
 bool StateManager::haveSaves() {
 	return states.size() > 0;
+}
+
+void StateManager::addRoomList(vector<Space*> rooms){
+	this->rooms = rooms;
 }
 
 void StateManager::changeWorkingDir() {

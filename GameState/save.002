@@ -1,108 +1,141 @@
 Filename: save.002
-Time stamp: 04-02-2019 17:22:07
-Current room: Men's Bathroom
+Time stamp: 2019-02-14 07:13:44
+Current room: Women's Bathroom
+Room idx: 1
 Steps: 0
-===
+ 
 Room: Men's Bathroom
 Inventory:
-Size: 0
-===
+Size: 2
+Item 1
+Name: Baseball Bat
+Item 2
+Name: Baseball Bat
+ 
 Room: Women's Bathroom
 Inventory:
-Size: 0
-===
+Size: 1
+Item 1
+Name: Paperclip
+ 
 Room: Cafeteria
 Inventory:
-Size: 0
-===
+Size: 1
+Item 1
+Name: food
+ 
 Room: Library
 Inventory:
-Size: 0
-===
+Size: 1
+Item 1
+Name: ladder
+ 
 Room: Second Floor Hallway
 Inventory:
 Size: 0
-===
+ 
 Room: Second Floor Hallway
 Inventory:
 Size: 0
-===
+ 
 Room: Second Floor Hallway
 Inventory:
 Size: 0
-===
+ 
 Room: Second Floor Hallway
 Inventory:
 Size: 0
-===
+ 
 Room: History
 Inventory:
-Size: 0
-===
+Size: 2
+Item 1
+Name: George Washington bust
+Item 2
+Name: Knife
+ 
 Room: Literature
 Inventory:
 Size: 0
-===
+ 
 Room: Chemistry
 Inventory:
 Size: 0
-===
+ 
 Room: Computer Science
 Inventory:
-Size: 0
-===
+Size: 1
+Item 1
+Name: Sword
+ 
 Room: Biology
 Inventory:
-Size: 0
-===
+Size: 1
+Item 1
+Name: Rocks
+ 
 Room: Math
 Inventory:
 Size: 0
-===
+ 
 Room: Infirmary
 Inventory:
-Size: 0
-===
+Size: 1
+Item 1
+Name: Bite Cure
+ 
 Room: Locker Room
 Inventory:
-Size: 0
-===
+Size: 2
+Item 1
+Name: Baseball Bat
+Item 2
+Name: Steel Lid
+ 
 Room: Gymnasium First Floor
 Inventory:
 Size: 0
-===
+ 
 Room: Gymnasium Second Floor
 Inventory:
-Size: 0
-===
+Size: 2
+Item 1
+Name: ropes
+Item 2
+Name: Gun
+ 
 Room: Football Field
 Inventory:
 Size: 0
-===
+ 
 Room: First Floor Hallway
 Inventory:
 Size: 0
-===
+ 
 Room: First Floor Hallway
 Inventory:
 Size: 0
-===
+ 
 Room: First Floor Hallway
 Inventory:
 Size: 0
-===
+ 
 Room: First Floor Hallway
 Inventory:
 Size: 0
-===
+ 
 Room: Front Lobby
 Inventory:
 Size: 0
-===
+ 
 Room: Front Office
 Inventory:
-Size: 0
-===
+Size: 1
+Item 1
+Name: PA system
+ 
 Room: Principal's Office
 Inventory:
-Size: 0
+Size: 1
+Item 1
+Name: Fire Extinguisher
