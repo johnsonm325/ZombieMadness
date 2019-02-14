@@ -4,7 +4,7 @@
 FrontOffice::FrontOffice() : Space("Front Office")
 {
 	paSystem = new Item();
-	string description = "This is the system that the principal uses to call students to the office. Maybe I can have a little fun with this.";
+	string description = "# This is the system that the principal uses to call students to the office. Maybe I can have a little fun with this.";
 	string name = "PA system";
 	paSystem->setDummyItem(description, name);
 
@@ -16,15 +16,15 @@ void FrontOffice::printIntro(){
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "As you step in, you hear a sound closeby, you're not sure if it's in the room you are in, or if it's in another." << endl;
-		cout << "The stench is strong here though, and it gives you a very uneasy feeling in your stomach." << endl;
-		cout << endl;
+		cout << "# As you step in, you hear a sound closeby, you're not sure if it's in the room you are in, or if it's in another." << endl;
+		cout << "# The stench is strong here though, and it gives you a very uneasy feeling in your stomach." << endl;
+		cout << "#" << endl;
 	}
 
-	cout << "Two desks sit at the north wall, each with a computer." << endl;
-	cout << endl;
-	cout << "What do you do now?" << endl;
-	cout << endl;
+	cout << "# Two desks sit at the north wall, each with a computer." << endl;
+	cout << "#" << endl;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 int FrontOffice::menu(vector<string> commandVector)
@@ -40,7 +40,7 @@ int FrontOffice::menu(vector<string> commandVector)
         }
 
         else {
-                cout << "You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << endl;
+                cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
         }
 
 	return 0;
@@ -49,7 +49,7 @@ int FrontOffice::menu(vector<string> commandVector)
 
 void FrontOffice::usePA()
 {
-	cout << "You push the button and speak loudly over the intercom, 'GOOD MORNING VIETNAM!!!' ... No response.'" << endl << endl;
+	cout << "# You push the button and speak loudly over the intercom, 'GOOD MORNING VIETNAM!!!' ... No response.'" << endl << "#" << endl;
 	prin = static_cast<PrincipalsOffice*>(findRoom("Principal's Office"));
 	prin->zombiesDead();
 }

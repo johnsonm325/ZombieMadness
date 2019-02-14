@@ -10,17 +10,17 @@ void LockerRoom::printIntro(){
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "'Lots of memories in here getting hyped up for football and basketball games.' You can smell the sweaty jockstraps" << endl;
-		cout << "stored in lockers. Which is actually a plesant smell compared to the decaying and rotting flesh smell that is" << endl;
-		cout << "filling the hallways. 'I might be able to find a few items in here to help me take out these zombies.'" << endl;
-		cout << endl;
+		cout << "# 'Lots of memories in here getting hyped up for football and basketball games.' You can smell the sweaty jockstraps" << endl;
+		cout << "# stored in lockers. Which is actually a plesant smell compared to the decaying and rotting flesh smell that is" << endl;
+		cout << "# filling the hallways. 'I might be able to find a few items in here to help me take out these zombies.'" << endl;
+		cout << "#" << endl;
 	}
 
-	cout << "Lockers fill the room, lined against all walls and a few rows in the middle of the room. Sporting equipment also" << endl;
-	cout << "is propped up against the walls and lockers." << endl;
-	cout << endl;
-	cout << "What do you do now?" << endl;
-	cout << endl;
+	cout << "# Lockers fill the room, lined against all walls and a few rows in the middle of the room. Sporting equipment also" << endl;
+	cout << "# is propped up against the walls and lockers." << endl;
+	cout << "#" << endl;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 int LockerRoom::menu(vector<string> commandVector)

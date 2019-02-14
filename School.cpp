@@ -229,6 +229,7 @@ void School::connectRooms() {
 	addRoom('s', chem, infr);
 	addRoom('s', gym2, lr);
 	addRoom('s', ffh4, sfh4);
+	addRoom('s', sfh4, ffh4);
 	addRoom('w', gym1, gym2);
 	addRoom('s', fb, gym1);
 	addRoom('w', ffh4, gym1);
@@ -296,7 +297,7 @@ Space *School::moveEast()
 {
 	if (currentRoom->getEast() == NULL)
 	{
-		cout << "move east, You can't go that direction." << endl;
+		cout << "# move east, You can't go that direction." << endl;
 		return NULL;
 	}
 	else
@@ -311,7 +312,7 @@ Space *School::moveWest()
 {
 	if (currentRoom->getWest() == NULL)
 	{
-		cout << "move west, You can't go that direction." << endl;
+		cout << "# move west, You can't go that direction." << endl;
 		return NULL;
 	}
 	else
@@ -326,7 +327,7 @@ Space *School::moveNorth()
 {
 	if (currentRoom->getNorth() == NULL)
 	{
-		cout << "move north, You can't go that direction." << endl;
+		cout << "# move north, You can't go that direction." << endl;
 		return NULL;
 	}
 	else
@@ -340,7 +341,7 @@ Space *School::moveSouth()
 {
 	if (currentRoom->getSouth() == NULL)
 	{
-		cout << "move south, You can't go that direction." << endl;
+		cout << "# move south, You can't go that direction." << endl;
 		return NULL;
 	}
 	else

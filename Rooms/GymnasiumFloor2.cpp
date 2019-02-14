@@ -4,7 +4,7 @@
 GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 {
 	ropes = new Item();
-	string description = "Ropes appear to be strung across the rafters, holding up many of the spotlights and scoreboards.";
+	string description = "# Ropes appear to be strung across the rafters, holding up many of the spotlights and scoreboards.";
 	string name = "ropes";
 	ropes->setDummyItem(description, name);
 
@@ -16,15 +16,15 @@ void GymnasiumFloor2::printIntro(){
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "You've never been up here! It looks like the rafters of the gym. 'This door is always locked so I'm surprised it's" << endl;
-		cout << "open now.'" << endl;
-		cout << endl;
+		cout << "# You've never been up here! It looks like the rafters of the gym. 'This door is always locked so I'm surprised it's" << endl;
+		cout << "# open now.'" << endl;
+		cout << "#" << endl;
 	}
 	
-	cout << "Rafters circle the room. There are lots of lights and ropes secured under the rafters." << endl;
-	cout << endl;
-	cout << "What do you do now?" << endl;
-	cout << endl;
+	cout << "# Rafters circle the room. There are lots of lights and ropes secured under the rafters." << endl;
+	cout << "#" << endl;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 	
 }
 
@@ -41,7 +41,7 @@ int GymnasiumFloor2::menu(vector<string> commandVector)
 	}
 
 	else {
-		cout << "You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << endl;
+		cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
 	}
 	
 	return 0;
@@ -50,7 +50,7 @@ int GymnasiumFloor2::menu(vector<string> commandVector)
 
 void GymnasiumFloor2::cutRopes()
 {
-	cout << "As you cut the ropes, the tension is released and all of the lights and scoreboards go crashing to the lower level of the gym." << endl << endl;
+	cout << "# As you cut the ropes, the tension is released and all of the lights and scoreboards go crashing to the lower level of the gym." << endl << "#" << endl;
 	gym1 = static_cast<GymnasiumFloor1*>(findRoom("Gymnasium First Floor"));
 	gym1->ropesCut();
 }

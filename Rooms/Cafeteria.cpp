@@ -3,7 +3,7 @@
 Cafeteria::Cafeteria() : Space("Cafeteria")
 {
 	food = new Item();
-	string description = "There are chunks of food strewn around the room. Some of it is gloopy, and you don't want to touch that. But some, you can pick up.";
+	string description = "# There are chunks of food strewn around the room. Some of it is gloopy, and you don't want to touch that. But some, you can pick up.";
 	string name = "food";
 	food->setDummyItem(description, name);
 
@@ -15,16 +15,16 @@ void Cafeteria::printIntro(){
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "You look around a see a few stray zombies littered throughout the large room. There is a lot of" << endl;
-		cout << "space in between them, so taking them out shouldn't be too hard. 'If I'm smart, I may be able to" << endl;
-		cout << "avoid them altogether.'" << endl;
-		cout << endl;
+		cout << "# You look around a see a few stray zombies littered throughout the large room. There is a lot of" << endl;
+		cout << "# space in between them, so taking them out shouldn't be too hard. 'If I'm smart, I may be able to" << endl;
+		cout << "# avoid them altogether.'" << endl;
+		cout << "#" << endl;
 	}
 
-	cout << "Long lunch tables fill the room and lunch trays are littered on the tables and floor. Food debris is" << endl;
-	cout << "thrown about the room." << endl;
-	cout << endl;
-	cout << "What do you do now?" << endl;
+	cout << "# Long lunch tables fill the room and lunch trays are littered on the tables and floor. Food debris is" << endl;
+	cout << "# thrown about the room." << endl;
+	cout << "#" << endl;
+	cout << "# What do you do now?" << endl;
 }
 
 int Cafeteria::menu(vector<string> commandVector)
@@ -40,7 +40,7 @@ int Cafeteria::menu(vector<string> commandVector)
         }
 
         else {
-                cout << "You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << endl;
+                cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
         }
 
 	return 0;
@@ -49,7 +49,7 @@ int Cafeteria::menu(vector<string> commandVector)
 
 void Cafeteria::throwFood()
 {
-	cout << "You hurl the chunks of food across the room. They stick to the wall and satisfyingly slide down to the floor. 'I've always wanted to do that,' you say." << endl << endl;
+	cout << "# You hurl the chunks of food across the room. They stick to the wall and satisfyingly slide down to the floor. 'I've always wanted to do that,' you say." << endl << "#" << endl;
 	chem = static_cast<Chemistry*>(findRoom("Chemistry"));
 	chem->zombiesDead();
 }
