@@ -4,7 +4,7 @@ using std::endl;
 
 Player::Player() 
 {
-	player = new Creature();
+	player = new Creature("Player");
 	player->setName("Colt");
 	player->setHealth(100);
 	this->playerInventory = new PlayerInventory();
@@ -100,9 +100,4 @@ void Player::takeDamage(int damage)
 	else
 		cout << "Your health is now at " << player->getHealth() << endl;
 	
-}
-
-void Player::heal(int newHealth)
-{
-	this->player->setHealth(newHealth);
 }

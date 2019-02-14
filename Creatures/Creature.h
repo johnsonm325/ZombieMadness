@@ -39,7 +39,7 @@ public:
 	// virtual void useItem(Object* item) = 0;
 	void attackEnemy(string item);	//Version that Player uses
 	//virtual void attackEnemy(Creature*); = 0;	//original
-	virtual void takeDamage(int);
+	void takeDamage(int);
 };
 
 #endif
