@@ -8,6 +8,5 @@ class Gun : public Item
 public:
 	Gun();
 	void useItem();
-	void setLocation(string);
 };
 #endif

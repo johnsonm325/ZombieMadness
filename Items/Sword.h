@@ -7,7 +7,6 @@ class Sword : public Item
 public:
 	Sword();
 	void useItem();
-	void setLocation(string);
 };
 
 #endif

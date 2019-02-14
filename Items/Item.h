@@ -1,7 +1,6 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-#include "../Creatures/Creature.h"
 #include <string>
 using std::string;
 
@@ -10,7 +9,6 @@ class Item
 protected:
 	string type;		//Weapon, etc
 	string description;	//Object descriptoin
-	string location;	
 	string name;		//Specific name of object, ex: "Baseball Bat", used in inventory listing
 	int attack;
 	int defense;
@@ -22,15 +20,12 @@ public:
 	virtual ~Item();
 	string getType();
 	string getDesc();
-	string getLocation();
 	string getName();
-	//virtual void setLocation(string);
 	int getAttack();
 	int getDefense();
 	int getHealthBoost();
 	int getSize();
 	virtual void useItem();
-	//virtual void damageZombie(Creature*);
 	void setDummyItem(string, string);
 };
 

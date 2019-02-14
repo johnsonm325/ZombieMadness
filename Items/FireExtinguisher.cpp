@@ -14,8 +14,3 @@ void FireExtinguisher::useItem()
 {
 	//to be determined
 }
-
-void FireExtinguisher::setLocation(string l)
-{
-	this->location = l;
-}

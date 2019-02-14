@@ -12,7 +12,6 @@ public:
 	Rocks();
 	void decrementRocks();
 	void distract();
-	void setLocation(string);
 	void useItem();
 };
 

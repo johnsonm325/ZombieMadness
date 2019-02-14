@@ -2,13 +2,13 @@
 #define FIRST_AID_H
 
 #include "Item.h"
+#include "../Creatures/Player.h"
 
 class FirstAid : public Item
 {
 public:
 	FirstAid();
-	void useItem();
-	void setLocation(string);
+	void useItem(Player*);
 };
 
 #endif

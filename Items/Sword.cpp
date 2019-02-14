@@ -14,8 +14,3 @@ void Sword::useItem()
 {
 	//to be determined
 }
-
-void Sword::setLocation(string l)
-{
-	this->location = l;
-}

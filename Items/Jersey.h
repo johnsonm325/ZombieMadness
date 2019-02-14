@@ -7,7 +7,6 @@ class Jersey : public Item
 public:
 	Jersey();
 	void useItem();
-	void setLocation(string);
 };
 
 #endif

@@ -10,7 +10,6 @@ public:
 	void useItem();
 	bool canPickLock();
 	void pickLock();
-	void setLocation(string);	
 };
 
 #endif

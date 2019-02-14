@@ -14,6 +14,7 @@ private:
 
 public:
 	LockerRoom();
+	~LockerRoom();
 	void printIntro();
 	int menu();
 	void inspectToilet();

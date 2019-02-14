@@ -30,8 +30,3 @@ void EnergyDrink::setName(int level) {
 	this->name = "Energy Drink LV";
 	this->name += lvStr;
 }
-
-void EnergyDrink::setLocation(string l)
-{
-	this->location = l;
-}

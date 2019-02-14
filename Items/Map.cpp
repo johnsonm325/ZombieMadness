@@ -13,8 +13,3 @@ void Map::useItem()
 {
 	//TBD
 }
-
-void Map::setLocation(string l)
-{
-	this->location = l;
-}

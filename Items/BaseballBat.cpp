@@ -13,13 +13,3 @@ BaseballBat::BaseballBat() : Item()
 void BaseballBat::useItem(){
 
 }
-
-// void BaseballBat::damageZombie(Creature *enemy)
-// {
-// 	enemy->takeDamage(this->attack);
-// }
-
-void BaseballBat::setLocation(string l)
-{
-	this->location = l;
-}

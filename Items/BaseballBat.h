@@ -7,8 +7,6 @@ class BaseballBat : public Item
 public:
 	BaseballBat();
 	void useItem();
-	void damageZombie(Creature*);
-	void setLocation(string);
 };
 
 #endif

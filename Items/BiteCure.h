@@ -2,14 +2,13 @@
 #define BITE_CURE_H
 
 #include "Item.h"
+#include "../Creatures/Player.h"
 
 class BiteCure : public Item
 {
 public:
 	BiteCure();
-	void fullHealth(Creature*);
-	void setLocation(string);
-	void useItem();
+	void useItem(Player*);
 };
 
 #endif

@@ -7,7 +7,6 @@ class Knife : public Item
 public:
 	Knife();
 	void useItem();
-	void setLocation(string);
 };
 
 #endif

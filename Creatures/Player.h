@@ -30,6 +30,7 @@ public:
 	void dropItem(Item*);
 	void lookAtItems(string item);
 	void takeDamage(int);
+	void heal(int);
 };
 
 #endif

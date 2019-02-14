@@ -14,8 +14,3 @@ void Gun::useItem()
 {
 	//to be determined
 }
-
-void Gun::setLocation(string l)
-{
-	this->location = l;
-}

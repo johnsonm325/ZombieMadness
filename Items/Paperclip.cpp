@@ -24,9 +24,3 @@ void Paperclip::pickLock()
 	//TBD
 }
 
-void Paperclip::setLocation(string l)
-{
-	this->location = l;
-}
-
-

@@ -91,3 +91,8 @@ void Player::takeDamage(int damage)
 		cout << "Your health is now at " << player->getHealth() << endl;
 	
 }
+
+void Player::heal(int newHealth)
+{
+	this->player->setHealth(newHealth);
+}

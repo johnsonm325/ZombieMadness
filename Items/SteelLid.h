@@ -7,7 +7,6 @@ class SteelLid : public Item
 public:
 	SteelLid();
 	void useItem();
-	void setLocation(string);
 };
 
 #endif

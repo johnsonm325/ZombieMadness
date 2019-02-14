@@ -9,12 +9,7 @@ FirstAid::FirstAid() : Item()
 	this->size = 1;
 }
 
-void FirstAid::useItem()
+void FirstAid::useItem(Player *player)
 {
-	// to be determined
-}
-
-void FirstAid::setLocation(string l)
-{
-	this->location = l;
+	player->heal(this->healthBoost);
 }

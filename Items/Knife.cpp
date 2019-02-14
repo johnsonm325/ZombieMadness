@@ -14,8 +14,3 @@ void Knife::useItem()
 {
 	//to be determined
 }
-
-void Knife::setLocation(string l)
-{
-	this->location = l;
-}

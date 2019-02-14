@@ -14,8 +14,3 @@ void Jersey::useItem()
 {
 	//to be determined
 }
-
-void Jersey::setLocation(string l)
-{
-	this->location = l;
-}

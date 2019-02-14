@@ -8,7 +8,11 @@ Inventory::Inventory(string t)
 
 Inventory::~Inventory()
 {
-    // undefined
+    for(unsigned int i = 0; i < items.size(); i++)
+    {
+        delete items[i];
+        items[i] = nullptr;
+    }
 }
 
 vector<Item*> Inventory::getItems()

@@ -8,7 +8,6 @@ class Map : public Item
 public:
 	Map();
 	void useItem();
-	void setLocation(string);
 };
 
 #endif

@@ -20,10 +20,6 @@ string Item::getDesc()
 	return description;
 }
 
-string Item::getLocation()
-{
-	return location;
-}
 
 string Item::getName()
 {

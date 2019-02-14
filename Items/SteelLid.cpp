@@ -14,8 +14,3 @@ void SteelLid::useItem()
 {
 	//to be determined
 }
-
-void SteelLid::setLocation(string l)
-{
-	this->location = l;
-}
