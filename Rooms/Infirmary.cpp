@@ -3,7 +3,7 @@
 
 Infirmary::Infirmary() : Space("Infirmary")
 {
-	
+	this->roomInventory->addItem(new BiteCure());
 }
 
 void Infirmary::printIntro(){

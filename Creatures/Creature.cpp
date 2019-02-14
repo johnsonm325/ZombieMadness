@@ -67,17 +67,30 @@ void Creature::setHealth(int newHealth)
 void Creature::takeDamage(int damage)
 {
 	this->health -= damage;
+	string type = this->type;
 
 	if (this->health <= 0)
 	{
 		this->isDead = true;
 		this->health = 0;
-		cout << "Zombie killed!" << endl;
+		
+		if (type == "Player")
+			cout << "You were killed!" << endl;
+
+		else
+			cout << "Zombie killed!" << endl;
+		
+		
 	}
 
 	else
 	{
-		cout << "Zombie's health now at " << this->health << endl;
+		if (type == "Player")
+			cout << "Your health is now at " << this->health << endl;
+
+		else
+			cout << "Zombie's health is now at " << this->health << endl;
+		
 	}
 	
 }

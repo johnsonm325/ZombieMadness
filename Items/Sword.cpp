@@ -7,14 +7,10 @@ Sword::Sword() : Item()
 	this->name = "Sword";
 	this->attack = 10;
 	this->defense = 0;
+	this->size = 3;
 }
 
 void Sword::useItem()
 {
 	//to be determined
-}
-
-void Sword::setLocation(string l)
-{
-	this->location = l;
 }

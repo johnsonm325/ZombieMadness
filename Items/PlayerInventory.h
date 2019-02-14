@@ -8,6 +8,8 @@ class PlayerInventory : public Inventory
 private:
     int openSlots;
     int usedSlots;
+    int size;
+
 public:
     PlayerInventory();
     ~PlayerInventory();
@@ -20,7 +22,10 @@ public:
     void increaseSize(); // called when backpack is obtained
 	void printInventory();
     void printAvailableWeapons();
-
+    void printAvailableSupplies();
+    void printAvailableRoomObjects();
+    void printAvailableMiscItems();
+    bool canAdd(Item*);
 };
 
 #endif

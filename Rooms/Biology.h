@@ -2,6 +2,7 @@
 #define BIOLOGY_H
 
 #include "Space.h"
+#include "../Items/Rocks.h"
 
 class Biology : public Space
 {

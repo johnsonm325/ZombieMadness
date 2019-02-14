@@ -7,14 +7,10 @@ SteelLid::SteelLid() : Item()
 	this->name = "Steel Lid";
 	this->attack = 0;
 	this->defense = 4;
+	this->size = 2;
 }
 
 void SteelLid::useItem()
 {
 	//to be determined
-}
-
-void SteelLid::setLocation(string l)
-{
-	this->location = l;
 }

@@ -15,7 +15,6 @@ using std::endl;
 class Inventory
 {
 protected:
-    int size;
     vector<Item*> items;
     string type;
 public:

@@ -6,6 +6,7 @@ Key::Key() : Item()
 	this->name = "Key";
 	this->description = "Time to explore! This key will unlock various rooms, explore to find out which ones!";
 	this->type = "Misc";
+	this->size = 1;
 }
 
 bool Key::canUnlock()
@@ -19,7 +20,7 @@ void Key::unlock()
 	//TBD
 }
 
-void Key::setLocation(string l)
+void Key::useItem()
 {
-	this->location = l;
+	// undefined
 }

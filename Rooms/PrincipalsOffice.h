@@ -2,6 +2,7 @@
 #define PRINCIPALSOFFICE_H
 
 #include "Space.h"
+#include "../Items/FireExtinguisher.h"
 
 class PrincipalsOffice : public Space
 {

@@ -7,7 +7,6 @@ class FireExtinguisher : public Item
 public:
 	FireExtinguisher();
 	void useItem();
-	void setLocation(string);
 };
 
 #endif

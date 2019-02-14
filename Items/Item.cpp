@@ -20,10 +20,6 @@ string Item::getDesc()
 	return description;
 }
 
-string Item::getLocation()
-{
-	return location;
-}
 
 string Item::getName()
 {
@@ -46,14 +42,21 @@ int Item::getHealthBoost()
 	return healthBoost;
 }
 
+int Item::getSize()
+{
+	return size;
+}
+
 void Item::useItem()
 {
+	//undefined
 }
 
 void Item::setDummyItem(string desc, string name)
 {
 	this->description = desc;
 	this->name = name;
+	this->type = "Dummy";
 	this->attack= 0;
 	this->defense = 0;
 	this->healthBoost = 0;

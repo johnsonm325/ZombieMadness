@@ -7,14 +7,10 @@ Knife::Knife() : Item()
 	this->name = "Knife";
 	this->attack = 4;
 	this->defense = 0;
+	this->size = 1;
 }
 
 void Knife::useItem()
 {
 	//to be determined
-}
-
-void Knife::setLocation(string l)
-{
-	this->location = l;
 }

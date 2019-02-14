@@ -2,6 +2,7 @@
 #define COMPUTERSCIENCE_H
 
 #include "Space.h"
+#include "../Items/Sword.h"
 
 class ComputerScience : public Space
 {

@@ -2,7 +2,7 @@
 
 ComputerScience::ComputerScience() : Space("Computer Science")
 {
-	
+	this->roomInventory->addItem(new Sword());
 }
 
 void ComputerScience::printIntro(){

@@ -7,14 +7,10 @@ Jersey::Jersey() : Item()
 	this->name = "Jersey";
 	this->attack = 0;
 	this->defense = 6;
+	this->size = 2;
 }
 
 void Jersey::useItem()
 {
 	//to be determined
-}
-
-void Jersey::setLocation(string l)
-{
-	this->location = l;
 }

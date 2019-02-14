@@ -4,6 +4,7 @@
 #include "Space.h"
 #include "Literature.h"
 #include "../Items/Item.h"
+#include "../Items/Knife.h"
 
 class History : public Space
 {

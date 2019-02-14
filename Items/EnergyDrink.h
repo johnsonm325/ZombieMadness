@@ -11,7 +11,6 @@ private:
 public:
 	EnergyDrink(int);
 	void useItem();
-	void setLocation(string);
 	void setName(int level);
 };
 

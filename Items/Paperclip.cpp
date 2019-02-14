@@ -6,6 +6,7 @@ Paperclip::Paperclip() : Item()
 	this->name = "Paperclip";
 	this->description = "Not all locked doors need a key! Use a Paperclip to pick locks, but be warned... you may fail and end up breaking your Paperclip!";
 	this->type = "Room Object";
+	this->size = 1;
 }
 
 void Paperclip::useItem(){
@@ -22,10 +23,4 @@ void Paperclip::pickLock()
 {
 	//TBD
 }
-
-void Paperclip::setLocation(string l)
-{
-	this->location = l;
-}
-
 

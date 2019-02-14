@@ -4,11 +4,8 @@ using std::endl;
 
 Player::Player() 
 {
-	//will be defined in sub classes
-	player = new Creature();
-	player->setName("Cold");
-	// this->attack = 4;
-	// this->defense = 5;
+	player = new Creature("Player");
+	player->setName("Colt");
 	player->setHealth(100);
 	this->playerInventory = new PlayerInventory();
 }
@@ -36,7 +33,17 @@ void Player::clearInventory(){
 
 void Player::useItem(Item* item) {
 
-	item->useItem();	
+	string type = item->getType();
+
+	if (type == "Supply")
+		player->setHealth(item->getHealthBoost());
+
+	else if (type == "Weapon")
+		enemy->takeDamage(item->getAttack());
+
+	else
+		item->useItem();
+			
 	playerInventory->removeItem(item, true);
 	roomInventory->removeItem(item);
 }
@@ -51,12 +58,9 @@ void Player::attackEnemy(string item)
 		return;
 	}
 
-	weapon->useItem();
+	enemy->takeDamage(weapon->getAttack());
+	playerInventory->removeItem(weapon, true);
 }
-// void Player::attackEnemy(Creature* enemy) 
-// {
-
-// }
 
 void Player::takeItem(Item* item){
 

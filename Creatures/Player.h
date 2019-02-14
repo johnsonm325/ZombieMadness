@@ -26,8 +26,6 @@ public:
 	void clearInventory();
 	void useItem(Item* item);
 	void attackEnemy(string);
-	//void attackEnemy(Creature*);
-
 	void takeItem(Item*);
 	void dropItem(Item*);
 	void lookAtItems(string item);

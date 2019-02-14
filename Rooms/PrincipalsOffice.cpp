@@ -3,7 +3,7 @@
 
 PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
-	
+	this->roomInventory->addItem(new FireExtinguisher());
 }
 
 void PrincipalsOffice::printIntro(){

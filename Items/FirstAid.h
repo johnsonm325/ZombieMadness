@@ -8,7 +8,6 @@ class FirstAid : public Item
 public:
 	FirstAid();
 	void useItem();
-	void setLocation(string);
 };
 
 #endif
