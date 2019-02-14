@@ -9,7 +9,6 @@ FirstAid::FirstAid() : Item()
 	this->size = 1;
 }
 
-void FirstAid::useItem(Player *player)
+void FirstAid::useItem()
 {
-	player->heal(this->healthBoost);
 }

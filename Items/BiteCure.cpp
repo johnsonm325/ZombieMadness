@@ -9,7 +9,7 @@ BiteCure::BiteCure() : Item()
 	this->size = 3;
 }
 
-void BiteCure::useItem(Player *player)
+void BiteCure::useItem()
 {
-	player->heal(this->healthBoost);
+	
 }

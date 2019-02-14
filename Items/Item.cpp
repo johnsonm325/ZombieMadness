@@ -56,6 +56,7 @@ void Item::setDummyItem(string desc, string name)
 {
 	this->description = desc;
 	this->name = name;
+	this->type = "Dummy";
 	this->attack= 0;
 	this->defense = 0;
 	this->healthBoost = 0;

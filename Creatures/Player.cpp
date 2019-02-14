@@ -33,7 +33,17 @@ void Player::clearInventory(){
 
 void Player::useItem(Item* item) {
 
-	item->useItem();	
+	string type = item->getType();
+
+	if (type == "Supply")
+		player->setHealth(item->getHealthBoost());
+
+	else if (type == "Weapon")
+		enemy->takeDamage(item->getAttack());
+
+	else
+		item->useItem();
+			
 	playerInventory->removeItem(item, true);
 	roomInventory->removeItem(item);
 }
