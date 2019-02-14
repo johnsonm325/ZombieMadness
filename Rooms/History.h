@@ -18,7 +18,7 @@ private:
 public:
 	History();
 	void printIntro();
-	int menu();
+	int menu(vector<string>);
 	void inspectBust();
 	void firstTime();
 	bool coltGone();

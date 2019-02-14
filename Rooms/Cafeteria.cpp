@@ -27,20 +27,29 @@ void Cafeteria::printIntro(){
 	cout << "What do you do now?" << endl;
 }
 
-int Cafeteria::menu()
+int Cafeteria::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())
 	{
 		return 40;
 	}
-	printIntro();
+
+        if (commandVector[0].compare("throw") == 0 && commandVector[1].compare("food") == 0) {
+                throwFood();
+        }
+
+        else {
+                cout << "You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << endl;
+        }
+
 	return 0;
 }
 
 
 void Cafeteria::throwFood()
 {
+	cout << "You hurl the chunks of food across the room. They stick to the wall and satisfyingly slide down to the floor. 'I've always wanted to do that,' you say." << endl << endl;
 	chem = static_cast<Chemistry*>(findRoom("Chemistry"));
 	chem->zombiesDead();
 }

@@ -57,7 +57,7 @@ Space * Space::getSouth()
 	return south;
 }
 
-int Space::menu()
+int Space::menu(vector<string> commandVector)
 {
 	return 0;
 }

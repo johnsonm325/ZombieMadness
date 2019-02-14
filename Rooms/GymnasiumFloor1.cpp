@@ -31,7 +31,7 @@ void GymnasiumFloor1::printIntro(){
 	}
 }
 
-int GymnasiumFloor1::menu()
+int GymnasiumFloor1::menu(vector<string> commandVector)
 {
 	// Evaluates if player is dead and exits the function
 	if (coltGone())

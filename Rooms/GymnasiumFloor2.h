@@ -18,7 +18,7 @@ private:
 public:
 	GymnasiumFloor2();
 	void printIntro();
-	int menu();
+	int menu(vector<string>);
 	void cutRopes();
 	void firstTime();
 	bool coltGone();

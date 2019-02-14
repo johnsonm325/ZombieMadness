@@ -15,7 +15,7 @@ private:
 public:
 	WomensBathroom(PlayerInventory*);
 	void printIntro();
-	int menu();
+	int menu(vector<string>);
 	void inspectToilet();
 	void firstTime();
 	bool coltGone();

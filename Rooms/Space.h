@@ -36,7 +36,7 @@ public:
 	void setSouth(Space*);
 	Space* getSouth();
 	virtual void printIntro() = 0;		// For abstract class
-	virtual int menu() = 0;				// For abstract class
+	virtual int menu(vector<string>);	// For abstract class
 	virtual void firstTime() = 0;		// For abstract class
 	string getType();
 

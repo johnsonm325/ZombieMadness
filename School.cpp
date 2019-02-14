@@ -75,21 +75,29 @@ void School::beginGame()
 
 int School::playGame()
 {
-	cout << "You are in the " << currentRoom->getType() << endl ;
+	cout << "###################################################" << endl;
+	cout << "# You are in the " << currentRoom->getType() << endl;
+	cout << "#" << endl;
+	currentRoom->printIntro();
 	do 
 	{
-		currentRoom->printIntro();
-		cout << "\nPlease enter choice:" << endl;
+		cout << "#\n# Please enter choice: ";
 		getline(cin, choice);
-		processCommand(parser, choice);
+		cout << "#" << endl;
+		commandVect = processCommand(parser, choice);
+
+		if (commandVect.size() != 0) {
+			currentRoom->menu(commandVect);
+		}
 		
 	} while (choice != "q" && choice != "quit" && choice !="exit");
 
 	return 0;
 }
 
-void School::processCommand(CmdParser* parser, string cmd) {
-	if (cmd.length() == 0) { return; }	//Empty command
+vector<string> School::processCommand(CmdParser* parser, string cmd) {
+	vector<string> emptyVect;
+	if (cmd.length() == 0) { return emptyVect; }	//Empty command
 
 	parser->setCommand(cmd);
 	CmdWord* foundCmd = 0;
@@ -99,19 +107,18 @@ void School::processCommand(CmdParser* parser, string cmd) {
 
 	//Generate cmd array, moving words into separate elements
 	vector<string> cmdArray = parser->generateCmdArray(cmd);
-
 	//Search for command in cmdList
 	//Command with 2 words or more
 	if (cmdArray.size() > 1) {
 		//Search for valid 2-word command
 		string cmd2words = cmdArray[0] + " " + cmdArray[1];
 		foundCmd = parser->getCmdList()->findCommand(cmd2words);
-
 		//Didn't find valid 2-word command, search for 1-word command
 		if (foundCmd == 0) {
 			foundCmd = parser->getCmdList()->findCommand(cmdArray[0]);
 		}
 	}
+
 	// Command with 1 word only
 	else {
 		foundCmd = parser->getCmdList()->findCommand(cmdArray[0]);
@@ -199,9 +206,12 @@ void School::processCommand(CmdParser* parser, string cmd) {
 	else {
 		bool moved = moveRooms(cmdArray, cmd);
 		if(!moved){	//Didn't move rooms
-			cout << "Invalid command!" << endl;
+			//cout << "Invalid command!" << endl;
+			return cmdArray;
 		}
 	}
+
+	return emptyVect;
 }
 
 void School::connectRooms() {
@@ -322,7 +332,6 @@ Space *School::moveNorth()
 	else
 	{
 		currentRoom = currentRoom->getNorth();
-
 		return currentRoom;
 	}
 }
@@ -346,19 +355,30 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 	if (cmd == "north" || cmd == "go north" || cmd == "i") {
 		nextRoom = moveNorth();
 		player->movetoRoom(currentRoom);
-
+		cout << "###################################################" << endl;
+		cout << "# You are in the " << currentRoom->getType() << endl;
+		currentRoom->printIntro();
 	}
 	else if (cmd == "west" || cmd == "go west" || cmd == "j") {
 		nextRoom = moveWest();
 		player->movetoRoom(currentRoom);
+		cout << "###################################################" << endl;
+		cout << "# You are in the " << currentRoom->getType() << endl;
+		currentRoom->printIntro();
 	}
 	else if (cmd == "south" || cmd == "go south" || cmd == "k") {
 		nextRoom = moveSouth();
 		player->movetoRoom(currentRoom);
+		cout << "###################################################" << endl;
+		cout << "# You are in the " << currentRoom->getType() << endl;
+		currentRoom->printIntro();
 	}
 	else if (cmd == "east" || cmd == "go east" || cmd == "l") {	
 		nextRoom = moveEast();
 		player->movetoRoom(currentRoom);
+		cout << "###################################################" << endl;
+		cout << "# You are in the " << currentRoom->getType() << endl;
+		currentRoom->printIntro();
 	}
 	else{	// go <room> command
 		string roomName = parser->extractArgument(cmdArray, "go");
@@ -367,25 +387,38 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 			if(adjacentRoom == currentRoom->getNorth()){
 				nextRoom = moveNorth();
 				player->movetoRoom(currentRoom);
+				cout << "###################################################" << endl;
+				cout << "# You are in the " << currentRoom->getType() << endl;
+				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getWest()){
 				nextRoom = moveWest();
 				player->movetoRoom(currentRoom);
+				cout << "###################################################" << endl;
+				cout << "# You are in the " << currentRoom->getType() << endl;
+				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getSouth()){
 				nextRoom = moveSouth();
 				player->movetoRoom(currentRoom);
+				cout << "###################################################" << endl;
+				cout << "# You are in the " << currentRoom->getType() << endl;
+				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getEast()){
 				nextRoom = moveEast();
 				player->movetoRoom(currentRoom);
+				cout << "###################################################" << endl;
+				cout << "# You are in the " << currentRoom->getType() << endl;
+				currentRoom->printIntro();
 			}
 			else{
 				cout << "Invalid room name!" << endl;
 			}
 		}
 	}
-	cout << "You are in the " << currentRoom->getType() << endl ;
+	//cout << "###################################################" << endl;
+	//cout << "# You are in the " << currentRoom->getType() << endl;
 
 	if(nextRoom != NULL){
 		return true;
