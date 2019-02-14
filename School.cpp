@@ -32,6 +32,9 @@ School::School()
 
 	connectRooms();
 	createRoomsList();
+
+	stateManager->addRoomList(rooms);
+	stateManager->init();
 }
 
 School::~School()
@@ -188,11 +191,12 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 			}
 		}
 		if (foundCmd->getType() == "savegame") { //stub
-			cout << "\nSaving game...\n";
+			GameState* currentState = createState();
+			stateManager->promptToSaveGame(currentState);
 		}
 		if (foundCmd->getType() == "loadgame") { //stub 
-			cout << "\nLoading game...\n";
-			cout << "There are no saved games to load from!\n";
+			GameState* stateToLoad = stateManager->promptToLoadGame();
+			loadState(stateToLoad);
 		}
 		if (foundCmd->getType() == "quit") { //stub 
 			cout << "\nExiting game...\n";
@@ -253,8 +257,7 @@ void School::connectRooms() {
 }
 
 void School::addRoom(char direction, Space *nextRoom, Space *prevRoom)
-{
-	
+{	
 	if (direction == 'e')
 	{
 		prevRoom->setEast(nextRoom);
@@ -307,7 +310,6 @@ Space *School::moveEast()
 	}
 }
 
-
 Space *School::moveWest()
 {
 	if (currentRoom->getWest() == NULL)
@@ -321,7 +323,6 @@ Space *School::moveWest()
 		return currentRoom;
 	}
 }
-
 
 Space *School::moveNorth()
 {
@@ -351,31 +352,32 @@ Space *School::moveSouth()
 	}
 }
 bool School::moveRooms(vector<string> cmdArray, string cmd){
-	Space* nextRoom = NULL;
+	Space* nextRoom = currentRoom;
+
 	// go <direction> or <direction> command
 	if (cmd == "north" || cmd == "go north" || cmd == "i") {
-		nextRoom = moveNorth();
+		moveNorth();
 		player->movetoRoom(currentRoom);
 		cout << "###################################################" << endl;
 		cout << "# You are in the " << currentRoom->getType() << endl;
 		currentRoom->printIntro();
 	}
 	else if (cmd == "west" || cmd == "go west" || cmd == "j") {
-		nextRoom = moveWest();
+		moveWest();
 		player->movetoRoom(currentRoom);
 		cout << "###################################################" << endl;
 		cout << "# You are in the " << currentRoom->getType() << endl;
 		currentRoom->printIntro();
 	}
 	else if (cmd == "south" || cmd == "go south" || cmd == "k") {
-		nextRoom = moveSouth();
+		moveSouth();
 		player->movetoRoom(currentRoom);
 		cout << "###################################################" << endl;
 		cout << "# You are in the " << currentRoom->getType() << endl;
 		currentRoom->printIntro();
 	}
 	else if (cmd == "east" || cmd == "go east" || cmd == "l") {	
-		nextRoom = moveEast();
+		moveEast();
 		player->movetoRoom(currentRoom);
 		cout << "###################################################" << endl;
 		cout << "# You are in the " << currentRoom->getType() << endl;
@@ -386,28 +388,28 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 		Space* adjacentRoom = currentRoom->findAdjRoom(roomName);
 		if(adjacentRoom != NULL){
 			if(adjacentRoom == currentRoom->getNorth()){
-				nextRoom = moveNorth();
+				moveNorth();
 				player->movetoRoom(currentRoom);
 				cout << "###################################################" << endl;
 				cout << "# You are in the " << currentRoom->getType() << endl;
 				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getWest()){
-				nextRoom = moveWest();
+				moveWest();
 				player->movetoRoom(currentRoom);
 				cout << "###################################################" << endl;
 				cout << "# You are in the " << currentRoom->getType() << endl;
 				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getSouth()){
-				nextRoom = moveSouth();
+				moveSouth();
 				player->movetoRoom(currentRoom);
 				cout << "###################################################" << endl;
 				cout << "# You are in the " << currentRoom->getType() << endl;
 				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getEast()){
-				nextRoom = moveEast();
+				moveEast();
 				player->movetoRoom(currentRoom);
 				cout << "###################################################" << endl;
 				cout << "# You are in the " << currentRoom->getType() << endl;
@@ -418,10 +420,8 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 			}
 		}
 	}
-	//cout << "###################################################" << endl;
-	//cout << "# You are in the " << currentRoom->getType() << endl;
 
-	if(nextRoom != NULL){
+	if(nextRoom != currentRoom){
 		return true;
 	}
 	return false;
@@ -487,4 +487,22 @@ void School::setupPlayer(){
 
 	player->clearInventory();
 	player->movetoRoom(currentRoom);
+}
+
+GameState* School::createState(){
+	GameState* newState = new GameState();
+
+	newState->updateTime();
+	newState->setRooms(getRoomsList());
+	newState->setCurrentRoom(getCurrentRoom());
+	newState->setSteps(steps);
+	
+	return newState;
+}
+
+void School::loadState(GameState* stateToLoad){
+	if(stateToLoad == NULL) { return; }
+	currentRoom = stateToLoad->getCurrentRoom();
+	steps = stateToLoad->getSteps();
+		
 }

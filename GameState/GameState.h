@@ -6,19 +6,30 @@
 
 class GameState 
 {
-public:
+private:
 	Space *currentRoom;
+	int roomIdx = 0;
 	//string choice;
 	int steps; 
 	string timeStamp;
 	vector<Space*> rooms;
-
+public:
 	GameState();
 	~GameState();
 	string getTime();
-	void setTime();
+	void updateTime();
 	void setTime(string time);
-	void addRoomList(vector<Space*> rooms);
+	Space* getCurrentRoom();
+	void setCurrentRoom(Space* room);
+	void setCurrentRoom(int idx);
+
+	void setRoomIdx(int idx);
+	int getRoomIdx();
+	int findRoomByIdx(Space* room);
+	void setSteps(int steps);
+	int getSteps();
+	void setRooms(vector<Space*> rooms);
+	vector<Space*> getRooms();
 
 };
 

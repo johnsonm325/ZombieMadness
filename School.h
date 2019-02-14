@@ -37,6 +37,9 @@
 #include "Items/Paperclip.h"
 #include "Items/BiteCure.h"
 
+//Game state
+#include "GameState/StateManager.h"
+
 #include <string>	
 #include <vector>
 #include <iostream>
@@ -45,13 +48,8 @@ using namespace std;
 class School
 {
 private:
-	Space *east;	// Used to point to east nodes
-	Space *west;	// and west nodes
-	Space *north;   // and north nodes
-	Space *south;   // and south nodes
 	Space *currentRoom;
 	int steps = 0;
-	char input;
 	string choice;
 
 	//Rooms
@@ -67,6 +65,7 @@ private:
 
 	CmdParser* parser = new CmdParser();
 	Player* player = new Player();
+	StateManager* stateManager = new StateManager();
 
 public:
 	School();
@@ -95,5 +94,9 @@ public:
 
 	//Player methods
 	void setupPlayer();
+
+	//State methods
+	GameState* createState();
+	void loadState(GameState* stateToLoad);
 };
 #endif
