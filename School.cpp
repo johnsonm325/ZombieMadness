@@ -5,10 +5,10 @@ School::School()
 {
 	mb = new MensBathroom();
 	wb = new WomensBathroom(player->getInventory());
-	sfh1 = new SecondFloorHallway();
+	sfh1 = new SecondFloorHallway(false);
 	sfh2 = new SecondFloorHallway();
-	sfh3 = new SecondFloorHallway();
-	sfh4 = new SecondFloorHallway();
+	sfh3 = new SecondFloorHallway(false);
+	sfh4 = new SecondFloorHallway(false);
 	hist = new History();
 	lit = new Literature();
 	infr = new Infirmary();
@@ -16,9 +16,9 @@ School::School()
 	gym2 = new GymnasiumFloor2();
 	gym1 = new GymnasiumFloor1();
 	fb = new Football();
-	ffh1 = new FirstFloorHallway();
-	ffh2 = new FirstFloorHallway();
-	ffh3 = new FirstFloorHallway();
+	ffh1 = new FirstFloorHallway(false);
+	ffh2 = new FirstFloorHallway(false);
+	ffh3 = new FirstFloorHallway(false);
 	ffh4 = new FirstFloorHallway();
 	cafe = new Cafeteria();
 	chem = new Chemistry();
@@ -70,9 +70,7 @@ School::~School()
 
 void School::beginGame()
 {
-	addItemsToRooms();
 	setupPlayer();
-
 	playGame();
 }
 
@@ -192,10 +190,10 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 		}
 		if (foundCmd->getType() == "savegame") { //stub
 			GameState* currentState = createState();
-			stateManager->promptToSaveGame(currentState);
+			stateManager->startSavingGame(currentState);
 		}
 		if (foundCmd->getType() == "loadgame") { //stub 
-			GameState* stateToLoad = stateManager->promptToLoadGame();
+			GameState* stateToLoad = stateManager->startLoadingGame();
 			loadState(stateToLoad);
 		}
 		if (foundCmd->getType() == "quit") { //stub 
@@ -427,12 +425,6 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 	return false;
 }
 
-void School::addItemsToRooms(){
-	mb->getInventory()->addItem(new BaseballBat());
-	mb->getInventory()->addItem(new BaseballBat());
-	wb->getInventory()->addItem(new Paperclip());
-}
-
 void School::addSteps(int newSteps){
 	steps +=newSteps;
 }
@@ -504,5 +496,7 @@ void School::loadState(GameState* stateToLoad){
 	if(stateToLoad == NULL) { return; }
 	currentRoom = stateToLoad->getCurrentRoom();
 	steps = stateToLoad->getSteps();
-		
+	
+	cout << "###################################################" << endl;
+	cout << "# You are in the " << currentRoom->getType() << endl;
 }

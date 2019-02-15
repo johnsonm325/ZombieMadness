@@ -164,14 +164,14 @@ GameState* StateManager::processFileData(vector<string> lines) {
 }
 
 //Transfer data from GameState to actual game 
-GameState* StateManager::promptToLoadGame() {
+GameState* StateManager::startLoadingGame() {
 	string choice;
 	int stateNum;
 
 	printStates();
 
 	if (haveSaves()) {
-		cout << "Select game state to load: " << 1 << "-" << states.size() << endl;
+		cout << "Select game state to load: ( " << 1 << "-" << states.size() << " )" << endl;
 		getline(cin, choice);
 		stateNum = atoi(choice.c_str());
 		if ((stateNum > 0) && (stateNum <= (int) states.size()) ) {
@@ -184,7 +184,7 @@ GameState* StateManager::promptToLoadGame() {
 }
 
 //Transfer data from actual game to GameState vector 
-void StateManager::promptToSaveGame(GameState* state) {
+bool StateManager::startSavingGame(GameState* state) {
 	string choice;
 
 	printStates();
@@ -193,7 +193,9 @@ void StateManager::promptToSaveGame(GameState* state) {
 	if (choice == "y" || choice == "Y") {
 		saveState(state);
 		printStates();
+		return true;
 	}
+	return false;
 }
 
 //Writing game state to file

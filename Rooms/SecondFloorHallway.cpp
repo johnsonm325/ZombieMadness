@@ -5,6 +5,12 @@ SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
 {
 	
 }
+
+SecondFloorHallway::SecondFloorHallway(bool firstTry) : Space("Second Floor Hallway")
+{
+	this->firstTry = firstTry;
+}
+
 void SecondFloorHallway::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)

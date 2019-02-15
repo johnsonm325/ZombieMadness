@@ -12,6 +12,7 @@ private:
 
 public:
 	SecondFloorHallway();
+	SecondFloorHallway(bool);
 	void printIntro();
 	int menu(vector<string>);
 	void inspectToilet();
