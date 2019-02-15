@@ -36,12 +36,12 @@ public:
 	void readAllSaves();
 	GameState* readSaveFile(string filename);	
 	GameState* processFileData(vector<string> lines);
-	GameState* promptToLoadGame();
+	GameState* startLoadingGame();
 
 	//Writing game state to file
 	void saveState(GameState* state);
 	void writeSaveFile(GameState* state, string filename);
-	void promptToSaveGame(GameState* state);
+	bool startSavingGame(GameState* state);
 
 	//Managing states list
 	void addGameState(GameState* state);

@@ -80,7 +80,7 @@ public:
 	Space* moveNorth();
 	Space* moveSouth();
 	bool moveRooms(vector<string> cmdArray, string cmd);
-	void addItemsToRooms();
+	//void addItemsToRooms();
 	void addSteps(int);
 	
 	//Object/Item related
