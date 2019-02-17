@@ -2,7 +2,10 @@
 #define ITEM_H
 
 #include <string>
+#include <iostream>
 using std::string;
+using std::cout;
+using std::endl;
 
 class Item
 {
@@ -25,8 +28,17 @@ public:
 	int getDefense();
 	int getHealthBoost();
 	int getSize();
-	virtual void useItem();
 	void setDummyItem(string, string);
+
+	// virtual action methods
+	virtual void useItem();
+	virtual void dropItem();
+	virtual void throwItem();
+	virtual void pushItem();
+	virtual void readItem();
+	virtual void wearItem();
+	virtual void eatItem();
+	virtual void cutItem();
 };
 
 #endif

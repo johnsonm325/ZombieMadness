@@ -173,3 +173,13 @@ void Space::removeCreature(Creature* creature) {
 vector<Creature*> Space::getCreatures() {
 	return creatures;
 }
+
+void Space::openDoor()
+{
+	cout << "You cannot open this door." << endl;
+}
+
+void Space::closeDoor()
+{
+	 cout << "You cannot close this door." << endl;
+}

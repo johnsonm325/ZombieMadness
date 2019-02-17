@@ -54,7 +54,8 @@ public:
 	vector<Space*> getExits();			//Get available room exits as vector of Space pointers
 	vector<string> getExitDirections();
 	void printDirection(Space* direction);
-
+	virtual void openDoor();
+	virtual void closeDoor();
 };
 
 #endif
