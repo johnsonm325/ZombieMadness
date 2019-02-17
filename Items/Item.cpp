@@ -62,11 +62,6 @@ void Item::useItem()
 	//undefined
 }
 
-void Item::dropItem()
-{
-	cout << "You cannot drop this item." << endl;
-}
-
 void Item::throwItem()
 {
 	cout << "You cannot throw this item." << endl;

@@ -32,7 +32,6 @@ public:
 
 	// virtual action methods
 	virtual void useItem();
-	virtual void dropItem();
 	virtual void throwItem();
 	virtual void pushItem();
 	virtual void readItem();
