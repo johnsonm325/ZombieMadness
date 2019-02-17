@@ -13,3 +13,8 @@ BaseballBat::BaseballBat() : Item()
 void BaseballBat::useItem(){
 
 }
+
+void BaseballBat::dropItem()
+{
+	
+}
