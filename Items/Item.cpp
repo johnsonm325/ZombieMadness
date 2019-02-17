@@ -107,11 +107,6 @@ void Item::blockItem()
 	cout << "You cannot block with this item." << endl;
 }
 
-void Item::talkToCreature()
-{
-	cout << "You can't talk with this item... silly Colt." << endl;
-}
-
 void Item::openItem()
 {
 	cout << "You cannot open anything with this item." << endl;
