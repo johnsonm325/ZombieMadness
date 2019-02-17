@@ -91,3 +91,33 @@ void Item::cutItem()
 {
 	cout << "You cannot cut this item." << endl;
 }
+
+void Item::dropItem()
+{
+	cout << "You cannot drop this item here." << endl;
+}
+
+void Item::attackItem()
+{
+	cout << "You cannot attack with this item." << endl;
+}
+
+void Item::blockItem()
+{
+	cout << "You cannot block with this item." << endl;
+}
+
+void Item::talkToCreature()
+{
+	cout << "You can't talk with this item... silly Colt." << endl;
+}
+
+void Item::openItem()
+{
+	cout << "You cannot open anything with this item." << endl;
+}
+
+void Item::closeItem()
+{
+	cout <<  "You cannot close anything with this item." << endl;
+}

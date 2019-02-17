@@ -38,6 +38,12 @@ public:
 	virtual void wearItem();
 	virtual void eatItem();
 	virtual void cutItem();
+	virtual void dropItem();
+	virtual void attackItem();
+	virtual void blockItem();
+	virtual void talkToCreature();
+	virtual void openItem();
+	virtual void closeItem();
 };
 
 #endif
