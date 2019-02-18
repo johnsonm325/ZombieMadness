@@ -92,11 +92,6 @@ void Item::cutItem()
 	cout << "You cannot cut this item." << endl;
 }
 
-void Item::dropItem()
-{
-	cout << "You cannot drop this item here." << endl;
-}
-
 void Item::attackItem()
 {
 	cout << "You cannot attack with this item." << endl;
@@ -112,7 +107,8 @@ void Item::openItem()
 	cout << "You cannot open anything with this item." << endl;
 }
 
-void Item::closeItem()
+//Action setter
+void Item::setAction(string text, Action type)
 {
-	cout <<  "You cannot close anything with this item." << endl;
+	this->actions[type] = text;
 }

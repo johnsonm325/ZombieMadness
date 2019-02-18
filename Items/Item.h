@@ -1,8 +1,13 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+
+
 #include <string>
 #include <iostream>
+#include <vector>
+#include "Action.h"
+using std::vector;
 using std::string;
 using std::cout;
 using std::endl;
@@ -13,6 +18,7 @@ protected:
 	string type;		//Weapon, etc
 	string description;	//Object descriptoin
 	string name;		//Specific name of object, ex: "Baseball Bat", used in inventory listing
+	vector<string> actions;
 	int attack;
 	int defense;
 	int healthBoost;
@@ -38,11 +44,12 @@ public:
 	virtual void wearItem();
 	virtual void eatItem();
 	virtual void cutItem();
-	virtual void dropItem();
 	virtual void attackItem();
 	virtual void blockItem();
 	virtual void openItem();
-	virtual void closeItem();
+
+	//action setters
+	void setAction(string, Action);
 };
 
 #endif
