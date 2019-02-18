@@ -59,7 +59,7 @@ void Item::setDummyItem(string desc, string name)
 
 void Item::useItem()
 {
-	//undefined
+	cout << "You cannot use this item." << endl;
 }
 
 void Item::throwItem()
