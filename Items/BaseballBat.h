@@ -7,7 +7,6 @@ class BaseballBat : public Item
 public:
 	BaseballBat();
 	void useItem();
-	void dropItem();
 };
 
 #endif
