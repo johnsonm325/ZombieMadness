@@ -47,11 +47,6 @@ int Item::getSize()
 	return size;
 }
 
-void Item::useItem()
-{
-	//undefined
-}
-
 void Item::setDummyItem(string desc, string name)
 {
 	this->description = desc;
@@ -60,4 +55,60 @@ void Item::setDummyItem(string desc, string name)
 	this->attack= 0;
 	this->defense = 0;
 	this->healthBoost = 0;
+}
+
+void Item::useItem()
+{
+	cout << "You cannot use this item." << endl;
+}
+
+void Item::throwItem()
+{
+	cout << "You cannot throw this item." << endl;
+}
+
+void Item::pushItem()
+{
+	cout << "You cannot push this item." << endl;
+}
+
+void Item::readItem()
+{
+	cout << "You cannot read this item." << endl;
+}
+
+void Item::wearItem()
+{
+	cout << "You cannot wear this item." << endl;
+}
+
+void Item::eatItem()
+{
+	cout << "You cannot eat this item." << endl;
+}
+
+void Item::cutItem()
+{
+	cout << "You cannot cut this item." << endl;
+}
+
+void Item::attackItem()
+{
+	cout << "You cannot attack with this item." << endl;
+}
+
+void Item::blockItem()
+{
+	cout << "You cannot block with this item." << endl;
+}
+
+void Item::openItem()
+{
+	cout << "You cannot open anything with this item." << endl;
+}
+
+//Action setter
+void Item::setAction(string text, Action type)
+{
+	this->actions[type] = text;
 }

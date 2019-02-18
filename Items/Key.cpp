@@ -9,17 +9,6 @@ Key::Key() : Item()
 	this->size = 1;
 }
 
-bool Key::canUnlock()
-{
-	//return true or false if key can unlock
-	return true;
-}
-
-void Key::unlock()
-{
-	//TBD
-}
-
 void Key::useItem()
 {
 	// undefined

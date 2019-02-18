@@ -98,3 +98,13 @@ void Creature::takeDamage(int damage)
 void Creature::attackEnemy(string item){
 	
 }
+
+void Creature::blockAttack()
+{
+	//TBD
+}
+
+void Creature::talkToCreature()
+{
+	cout << "You cannot talk to this creature." << endl;
+}

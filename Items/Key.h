@@ -7,8 +7,6 @@ class Key : public Item
 {
 public:
 	Key();
-	bool canUnlock();
-	void unlock();
 	void useItem();
 };
 
