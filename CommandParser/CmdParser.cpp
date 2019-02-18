@@ -41,9 +41,9 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("dir", "a"));
 	cmdList->addItemToList(new CmdWord("dir", "s"));
 	cmdList->addItemToList(new CmdWord("dir", "d"));
-	cmdList->addItemToList(new CmdWord("backtrack", "backtrack", " - player can head back to previous room"));
-	cmdList->addItemToList(new CmdWord("backtrack", "bk"));
-	cmdList->addItemToList(new CmdWord("where", "where", " - displays room player is currently in"));
+	// cmdList->addItemToList(new CmdWord("backtrack", "backtrack", " - player can head back to previous room"));
+	// cmdList->addItemToList(new CmdWord("backtrack", "bk"));
+	//cmdList->addItemToList(new CmdWord("where", "where", " - displays room player is currently in"));
 
 	//Interacting with room
 	cmdList->addItemToList(new CmdWord("look", "look", " - display long form description of the room"));
@@ -54,24 +54,33 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("room inventory", "room inventory", " - display all room items"));
 	cmdList->addItemToList(new CmdWord("room inventory", "ri"));
 	//debug
-	cmdList->addItemToList(new CmdWord("look at", "look at", " - display description of an object or feature"));
+
+	//-----Item commands------
 	cmdList->addItemToList(new CmdWord("inventory", "inventory", " - shows player's current inventory"));
 	cmdList->addItemToList(new CmdWord("inventory", "show inventory"));
 	cmdList->addItemToList(new CmdWord("inventory", "inv"));
+	cmdList->addItemToList(new CmdWord("look at", "look at", " - display description of an object or feature"));
+	cmdList->addItemToList(new CmdWord("look at", "examine"));
 	cmdList->addItemToList(new CmdWord("take", "take", " - get an object, place it in inventory"));
 	cmdList->addItemToList(new CmdWord("take", "grab"));
 	cmdList->addItemToList(new CmdWord("take", "pickup"));
+
+	// Additional item commands
 	cmdList->addItemToList(new CmdWord("drop", "drop", " - drop an object from player's inventory"));
 	cmdList->addItemToList(new CmdWord("use", "use", " - use an item player has obtained, results in some event"));
-	cmdList->addItemToList(new CmdWord("interact", "interact", " - interact with an object in the room, not always meaningful"));
-
+	cmdList->addItemToList(new CmdWord("throw", "throw", " - throw an item in direction of zombie"));
+	cmdList->addItemToList(new CmdWord("push", "push", " - push an item in room"));
+	cmdList->addItemToList(new CmdWord("read", "read", " - read text on item in room (like note or book)"));
+	cmdList->addItemToList(new CmdWord("wear", "wear", " - wear an item for defense against attacks"));
+	cmdList->addItemToList(new CmdWord("eat", "eat", " - eat an item (ex: Energy Drink)"));
+	cmdList->addItemToList(new CmdWord("cut", "cut", " - cut item in room"));
+	
 	//Player actions
-	cmdList->addItemToList(new CmdWord("jump", "jump", " - jump to higher ground or over an obstacle"));
-	cmdList->addItemToList(new CmdWord("crouch", "crouch", " - jump to higher ground or over an obstacle"));
-	cmdList->addItemToList(new CmdWord("attack", "attack", " - attack zombie with a selected weapon"));
+	// cmdList->addItemToList(new CmdWord("jump", "jump", " - jump to higher ground or over an obstacle"));
+	cmdList->addItemToList(new CmdWord("attack", "attack", " - attack zombie with a weapon from inventory"));
 	cmdList->addItemToList(new CmdWord("attack", "hit"));
 	cmdList->addItemToList(new CmdWord("block", "block", " - in fight with zombie, player can block to reduce damage"));
-	cmdList->addItemToList(new CmdWord("open", "open", " - open door"));
+	cmdList->addItemToList(new CmdWord("open", "open", " - open door with key (usually)"));
 	   
 	//Saving/Loading Game
 	cmdList->addItemToList(new CmdWord("savegame", "savegame", " - save the current game state to a file"));
@@ -89,65 +98,67 @@ CmdList* CmdParser::getCmdList() {
 	return cmdList;
 }
 
-void CmdParser::printCmdArray(vector<string> cmdArray){
-	for(unsigned int i = 0; i < cmdArray.size(); i++){
-		cout << i << ": " << cmdArray[i] << endl;
+void CmdParser::printCmdVector(vector<string> cmdVector){
+	for(unsigned int i = 0; i < cmdVector.size(); i++){
+		cout << i << ": " << cmdVector[i] << endl;
 	}
 }
 
-string CmdParser::extractArgument(vector<string> cmdArray, string cmdType){
+string CmdParser::extractArgument(vector<string> cmdVector, string cmdType){
 	string item = "";
 
-	if(cmdType == "drop" || cmdType == "take"){	//drop|take <item name>
-		if(cmdArray.size() > 1){
-			item = buildArgString(cmdArray, 1);
+	//drop|take|action <item name>
+	if(cmdType == "drop" || cmdType == "take" || cmdType == "use" || cmdType == "throw" ||
+	   cmdType == "push" || cmdType == "read" || cmdType == "wear" || cmdType == "eat"){	
+		if(cmdVector.size() > 1){
+			item = buildArgString(cmdVector, 1);
 		}
 	}
 	else if(cmdType == "look at"){ //look at <item name>
-		if(cmdArray.size() > 2){
-			item = buildArgString(cmdArray, 2);
+		if(cmdVector.size() > 2){
+			item = buildArgString(cmdVector, 2);
 		}
 	}
 	else if(cmdType == "go"){	
-		if (cmdArray[0] != "go"){		//Just room name
-			item = buildArgString(cmdArray, 0);
+		if (cmdVector[0] != "go"){		//Just room name
+			item = buildArgString(cmdVector, 0);
 		}
-		else if(cmdArray.size() > 1){	//go <roomName>
-			item = buildArgString(cmdArray, 1);
+		else if(cmdVector.size() > 1){	//go <roomName>
+			item = buildArgString(cmdVector, 1);
 		}
 	}
 	return item;
 }
 
-string CmdParser::buildArgString(vector<string> cmdArray, int start){
+string CmdParser::buildArgString(vector<string> cmdVector, int start){
 	string item;
 	unsigned int i;
-	for(i = start; i < cmdArray.size(); i++){
-		item += cmdArray[i];
-		if(i < cmdArray.size() - 1){
+	for(i = start; i < cmdVector.size(); i++){
+		item += cmdVector[i];
+		if(i < cmdVector.size() - 1){
 			item +=" ";
 		}
 	}
 	return item;
 }
 
-// Split up string into array of words, delimited by spaces
-vector<string> CmdParser::generateCmdArray(string cmd) {
+// Split up string into vector of words, delimited by spaces
+vector<string> CmdParser::createCmdVector(string cmd) {
 	string delimiter = " ";	//character used to split up input array
-	vector<string> cmdArray;
+	vector<string> cmdVector;
 	size_t pos = 0;
 	string token;
 
 	while ((pos = cmd.find(delimiter)) != string::npos) {
 		token = cmd.substr(0, pos);
-		cmdArray.push_back(token);
+		cmdVector.push_back(token);
 		cmd = cmd.substr(pos + delimiter.length());
 	}
-	cmdArray.push_back(cmd);
+	cmdVector.push_back(cmd);
 #ifdef DEBUG_PARSER
-	printCmdArray(cmdArray);
+	printCmdVector(cmdVector);
 #endif
-	return cmdArray;
+	return cmdVector;
 }
 
 void CmdParser::addCmdToHistory(string cmd) {

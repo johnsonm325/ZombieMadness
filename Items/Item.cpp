@@ -2,7 +2,18 @@
 
 Item::Item()
 {
-	//will be defined in sub classes
+	actions = vector<string> (10);
+	setAction("You cannot use this item.", Use);
+	setAction("You cannot throw this item.", Throw);
+	setAction("You cannot push this item.", Push);
+	setAction("You cannot read this item.", Read);
+	setAction("You cannot wear this item.", Wear);
+	setAction("You cannot eat this item.", Eat);
+	setAction("You cannot cut with this item.", Cut);
+	setAction("You cannot attack with this item.", Attack);
+	setAction("You cannot block with this item.", Block);
+	setAction("You cannot open anything this item.", Open);
+
 }
 
 Item::~Item()
@@ -59,52 +70,52 @@ void Item::setDummyItem(string desc, string name)
 
 void Item::useItem()
 {
-	cout << "You cannot use this item." << endl;
+	cout << actions[Use] << endl;
 }
 
 void Item::throwItem()
 {
-	cout << "You cannot throw this item." << endl;
+	cout << actions[Throw] << endl;
 }
 
 void Item::pushItem()
 {
-	cout << "You cannot push this item." << endl;
+	cout << actions[Push] << endl;
 }
 
 void Item::readItem()
 {
-	cout << "You cannot read this item." << endl;
+	cout << actions[Read] << endl;
 }
 
 void Item::wearItem()
 {
-	cout << "You cannot wear this item." << endl;
+	cout << actions[Wear] << endl;
 }
 
 void Item::eatItem()
 {
-	cout << "You cannot eat this item." << endl;
+	cout << actions[Eat] << endl;
 }
 
 void Item::cutItem()
 {
-	cout << "You cannot cut this item." << endl;
+	cout << actions[Cut] << endl;
 }
 
 void Item::attackItem()
 {
-	cout << "You cannot attack with this item." << endl;
+	cout << actions[Attack] << endl;
 }
 
 void Item::blockItem()
 {
-	cout << "You cannot block with this item." << endl;
+	cout << actions[Block] << endl;
 }
 
 void Item::openItem()
 {
-	cout << "You cannot open anything with this item." << endl;
+	cout << actions[Open] << endl;
 }
 
 //Action setter

@@ -33,9 +33,7 @@
 #include "Creatures/Zombie.h"
 
 //Items
-#include "Items/BaseballBat.h"
-#include "Items/Paperclip.h"
-#include "Items/BiteCure.h"
+#include "Items/Item.h"
 
 //Game state
 #include "GameState/StateManager.h"
@@ -80,13 +78,13 @@ public:
 	Space* moveNorth();
 	Space* moveSouth();
 	bool moveRooms(vector<string> cmdArray, string cmd);
-	//void addItemsToRooms();
 	void addSteps(int);
 	
 	//Object/Item related
-
 	vector<string> processCommand(CmdParser* parser, string cmd);
+	void doItemAction(string cmdType, vector<string> cmdVector);
 
+	//Room list
 	void addRoomToList(Space* room);
 	void copyRoomsListToSpace();
 	void createRoomsList();
