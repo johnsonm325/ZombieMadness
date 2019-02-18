@@ -24,10 +24,10 @@ public:
 	void setCommand(string cmd);
 	string getCommand();
 	CmdList* getCmdList();
-	void printCmdArray(vector<string> cmdArray);
-	string extractArgument(vector<string> cmdArray, string cmdType);
-	string buildArgString(vector<string> cmdArray, int start);
-	vector<string> generateCmdArray(string cmd);
+	void printCmdVector(vector<string> cmdVector);
+	string extractArgument(vector<string> cmdVector, string cmdType);
+	string buildArgString(vector<string> cmdVector, int start);
+	vector<string> createCmdVector(string cmd);
 
 	void addCmdToHistory(string cmd);
 	void printCmdHistory();

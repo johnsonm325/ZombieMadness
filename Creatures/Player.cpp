@@ -35,17 +35,19 @@ void Player::useItem(Item* item) {
 
 	string type = item->getType();
 
-	if (type == "Supply")
+	if (type == "Supply"){
 		player->setHealth(item->getHealthBoost());
-
-	else if (type == "Weapon")
-		enemy->takeDamage(item->getAttack());
-
+	}	
+	else if (type == "Weapon"){
+		if(enemy != NULL){
+			enemy->takeDamage(item->getAttack());
+		}
+	}	
 	else
 		item->useItem();
 			
-	playerInventory->removeItem(item, true);
-	roomInventory->removeItem(item);
+	//playerInventory->removeItem(item, true);
+	//roomInventory->removeItem(item);
 }
 
 void Player::attackEnemy(string item) 
@@ -74,6 +76,7 @@ void Player::dropItem(Item* item){
 	roomInventory->addItem(item);
 }
 
+// Supports look at <itemName> command in game
 void Player::lookAtItems(string item){
 	Item* roomItem =  roomInventory->findItem(item);
 	Item* playerItem = playerInventory->findItem(item);
@@ -84,4 +87,21 @@ void Player::lookAtItems(string item){
 	else if(playerItem != NULL){
 		cout << playerItem->getDesc() << endl;
 	}
+}
+
+// Find an item in room or player's inventory. If found, return Item ptr,
+// otherwise, print error and return NULL
+Item* Player::selectItem(string item){
+	Item* roomItem =  roomInventory->findItem(item);
+	Item* playerItem = playerInventory->findItem(item);
+	
+	if(roomItem != NULL){
+		return roomItem;
+	}
+	else if(playerItem != NULL){
+		return playerItem;
+	}
+
+	cout << "Failed to select item!" << endl;
+	return NULL;
 }

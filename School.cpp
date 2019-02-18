@@ -106,23 +106,23 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 	//Convert input to lower case to make parsing easier
 	//transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
 
-	//Generate cmd array, moving words into separate elements
-	vector<string> cmdArray = parser->generateCmdArray(cmd);
+	//Generate cmd vector, moving words into separate elements
+	vector<string> cmdVector = parser->createCmdVector(cmd);
 	//Search for command in cmdList
 	//Command with 2 words or more
-	if (cmdArray.size() > 1) {
+	if (cmdVector.size() > 1) {
 		//Search for valid 2-word command
-		string cmd2words = cmdArray[0] + " " + cmdArray[1];
+		string cmd2words = cmdVector[0] + " " + cmdVector[1];
 		foundCmd = parser->getCmdList()->findCommand(cmd2words);
 		//Didn't find valid 2-word command, search for 1-word command
 		if (foundCmd == 0) {
-			foundCmd = parser->getCmdList()->findCommand(cmdArray[0]);
+			foundCmd = parser->getCmdList()->findCommand(cmdVector[0]);
 		}
 	}
 
 	// Command with 1 word only
 	else {
-		foundCmd = parser->getCmdList()->findCommand(cmdArray[0]);
+		foundCmd = parser->getCmdList()->findCommand(cmdVector[0]);
 	}
 
 	parser->addCmdToHistory(cmd);
@@ -132,12 +132,9 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 			//Print available commands
 			parser->getCmdList()->printListDetailed();
 		}
-		if (foundCmd->getType() == "inventory") { 
-			player->getInventory()->printInventory();
-		}
 		//Syntax: go <direction> 
 		if (foundCmd->getType() == "go") {		
-			moveRooms(cmdArray, cmd);
+			moveRooms(cmdVector, cmd);
 		}
 		if (foundCmd->getType() == "dir") {
 			if (cmd == "w") {
@@ -156,21 +153,23 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 				//to be implemented
 			}
 		}
-
 		if (foundCmd->getType() == "look") {		
-			if (cmdArray.size() == 1) {		//Look command
+			if (cmdVector.size() == 1) {		//Look command
 				currentRoom->printIntro();
 			}
 		}
 		if (foundCmd->getType() == "room inventory") {
 			currentRoom->getInventory()->printInventory();
 		}
+		if (foundCmd->getType() == "inventory") { 
+			player->getInventory()->printInventory();
+		}
 		if (foundCmd->getType() == "look at") {
-			string item = parser->extractArgument(cmdArray, foundCmd->getType());
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
 			player->lookAtItems(item);
 		}
 		if (foundCmd->getType() == "take") {
-			string item = parser->extractArgument(cmdArray, foundCmd->getType());
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
 
 			//Try to select item from room's inventory
 			Item* selectedItem = player->getRoomInventory()->selectItem(item);
@@ -180,13 +179,50 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 			}
 		}
 		if (foundCmd->getType() == "drop") {
-			string item = parser->extractArgument(cmdArray, foundCmd->getType());
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
 			//Try to select item from player's inventory
 			Item* selectedItem = player->getInventory()->selectItem(item);	
 			if(selectedItem != NULL){
 				//Found item, dropping it
 				player->dropItem(selectedItem);
 			}
+		}
+		if (foundCmd->getType() == "use") {
+			cout << "\nUsing item" << endl;
+			doItemAction(foundCmd->getType(), cmdVector);
+		}
+		if (foundCmd->getType() == "throw") {
+			cout << "\nThrowing item" << endl;
+			doItemAction(foundCmd->getType(), cmdVector);		
+		}
+		if (foundCmd->getType() == "push") {
+			cout << "\nPushing item" << endl;
+			doItemAction(foundCmd->getType(), cmdVector);
+		}
+		if (foundCmd->getType() == "read") {
+			cout << "\nReading item" << endl;
+			doItemAction(foundCmd->getType(), cmdVector);
+		}
+		if (foundCmd->getType() == "wear") {
+			cout << "\nWearing item" << endl;
+			doItemAction(foundCmd->getType(), cmdVector);
+		}
+		if (foundCmd->getType() == "eat") {
+			cout << "\nEating item" << endl;
+			doItemAction(foundCmd->getType(), cmdVector);
+		}
+		if (foundCmd->getType() == "cut") {
+			cout << "\nCutting something with a weapon?" << endl;
+			doItemAction(foundCmd->getType(), cmdVector);
+		}
+		if (foundCmd->getType() == "attack") {
+			cout << "\nAttacking creature" << endl;
+		}
+		if (foundCmd->getType() == "block") {
+			cout << "\nBlocking attack" << endl;
+		}
+		if (foundCmd->getType() == "open") {
+			cout << "\nOpening door" << endl;
 		}
 		if (foundCmd->getType() == "savegame") { //stub
 			GameState* currentState = createState();
@@ -206,14 +242,45 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 	// Else, go to room name without prefix go -> <room>.
 	// Ex: cmd = women's bathroom
 	else {
-		bool moved = moveRooms(cmdArray, cmd);
+		bool moved = moveRooms(cmdVector, cmd);
 		if(!moved){	//Didn't move rooms
 			//cout << "Invalid command!" << endl;
-			return cmdArray;
+			return cmdVector;
 		}
 	}
 
 	return emptyVect;
+}
+
+void School::doItemAction(string cmdType, vector<string> cmdVector){
+	string item = parser->extractArgument(cmdVector, cmdType);
+
+	//Try to select item from room and player's inventory
+	Item* selectedItem = player->selectItem(item);	
+	if(selectedItem != NULL){ 	//Found item, dropping it
+		if(cmdType == "use"){
+			player->useItem(selectedItem);
+		}
+		else if (cmdType == "throw") {
+			selectedItem->throwItem();
+		}
+		else if (cmdType == "push") {
+			selectedItem->pushItem();
+		}
+		else if (cmdType == "read") {
+			selectedItem->readItem();	
+		}
+		else if (cmdType == "wear") {
+			selectedItem->wearItem();
+		}
+		else if (cmdType == "eat") {
+			selectedItem->eatItem();
+			player->useItem(selectedItem);
+		}
+		else if (cmdType == "cut") {
+			selectedItem->cutItem();
+		}
+	}
 }
 
 void School::connectRooms() {

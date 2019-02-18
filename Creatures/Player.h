@@ -14,9 +14,9 @@ class Player
 private:
 	PlayerInventory *playerInventory;
 	Inventory *roomInventory; // room's inventory class is passed in here
-	Creature *enemy;  	// passed in enemy
-	Creature *player;	//Actual player's data
-	Space* currentRoom;
+	Creature *enemy = NULL; 	// passed in enemy
+	Creature *player = NULL;	//Actual player's data
+	Space* currentRoom = NULL;
 public:
 	Player();
 	~Player();
@@ -29,6 +29,8 @@ public:
 	void takeItem(Item*);
 	void dropItem(Item*);
 	void lookAtItems(string item);
+	Item* selectItem(string item);
+
 };
 
 #endif
