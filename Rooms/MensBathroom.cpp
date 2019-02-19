@@ -3,7 +3,12 @@
 
 MensBathroom::MensBathroom() : Space("Men's Bathroom")
 {
-	
+	toilet = new Item();
+	string description = "# The toilet is dirty. Looks like it hasn't been cleaned in weeks. As you stare at the toilet, you notice a hole behind the toilet.";
+	string name = "toilet";
+	toilet->setDummyItem(description, name);
+
+	roomInventory->addItem(toilet);
 }
 
 void MensBathroom::printIntro(){
@@ -36,16 +41,26 @@ int MensBathroom::menu(vector<string> commandVector)
 	{
 		return 0;
 	}
-	
-	printIntro();
-	
+
 	return 0;
 }
 
 
 void MensBathroom::inspectToilet()
 {
+	holeVisible = true;
 
+	hole = new Item();
+	string description = "# There is a small hole behind the toilet. It looks like you could probably fit through it.";
+	string name = "hole";
+	hole->setDummyItem(description, name);
+
+	roomInventory->addItem(hole);
+}
+
+bool MensBathroom::getHoleVisible()
+{
+	return holeVisible;
 }
 
 void MensBathroom::firstTime()

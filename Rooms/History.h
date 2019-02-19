@@ -14,6 +14,7 @@ private:
 	     goneColt = false;
 	Literature *lit;
 	Item *georgeWashingtonBust;
+	Item *billOfRights;
 
 public:
 	History();

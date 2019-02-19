@@ -3,7 +3,19 @@
 
 Literature::Literature() : Space("Literature")
 {
-	
+	chalkboard = new Item();
+	string description = "# The chalkboard looks like it has been freshly cleaned. A few things are written on the board.";
+	string name = "chalkboard";
+	chalkboard->setDummyItem(description, name);
+	string text = "# In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.";
+	chalkboard->setAction(text, Read);
+	roomInventory->addItem(chalkboard);
+
+	desk = new Item();
+	description = "# The teacher's desk is quite messy with papers strewn about. There seems to be a note written down on a small slip of paper.";
+	name = "desk";
+	desk->setDummyItem(description, name);
+	roomInventory->addItem(desk);
 }
 
 void Literature::printIntro(){
@@ -30,11 +42,23 @@ int Literature::menu(vector<string> commandVector)
 	{
 		return 40;
 	}
-	printIntro();	
 	
 	return 0;
 }
 
+
+void Literature::inspectDesk()
+{
+	noteVisible = true;
+
+	note = new Item();
+	string description = "# A small piece of paper sits in the middle of the desk and has a short note written on it.";
+	string name = "note";
+	note->setDummyItem(description, name);
+	string text = "Get the sword in the computer science room.";
+	note->setAction(text, Read);
+	roomInventory->addItem(note);
+}
 
 void Literature::zombiesDead()
 {

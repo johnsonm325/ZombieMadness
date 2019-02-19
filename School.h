@@ -81,7 +81,7 @@ public:
 	void addSteps(int);
 	
 	//Object/Item related
-	vector<string> processCommand(CmdParser* parser, string cmd);
+	void processCommand(CmdParser* parser, string cmd);
 	void doItemAction(string cmdType, vector<string> cmdVector);
 
 	//Room list

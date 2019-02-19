@@ -9,12 +9,17 @@ private:
 	string action;		//string action typed in by the user
 	bool firstTry = true,
 	     goneColt = false,
-	     deadZombies = false;
+	     deadZombies = false,
+	     noteVisible = false;
+	Item *chalkboard;
+	Item *desk;
+	Item *note;
 
 public:
 	Literature();
 	void printIntro();
 	int menu(vector<string>);
+	void inspectDesk();
 	void zombiesDead();
 	void firstTime();
 	bool coltGone();
