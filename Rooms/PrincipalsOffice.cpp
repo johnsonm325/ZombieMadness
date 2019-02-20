@@ -3,8 +3,22 @@
 
 PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
-	this->roomInventory->addItem(new FireExtinguisher());
-}
+	string description, name, text;
+
+	key = new Key();
+	fireExt = new FireExtinguisher();
+
+	//Setting dummy items
+    desk = new Item();
+	description = "# A wooden desk in Principal's office, with a couple unlocked drawers. Examine it closer and you may find new clues on your next plan of action!";
+	name = "desk";
+	text = "# You've opened the desk's drawer...Inside, you can see a shiny brass key.";
+	desk->setDummyItem(description, name);
+	desk->setAction(text, Open);
+	
+	roomInventory->addItem(fireExt);
+	roomInventory->addItem(key);
+	roomInventory->addItem(desk);
 
 void PrincipalsOffice::printIntro(){
 	// Prints the first time the room is visited
@@ -55,7 +69,6 @@ bool PrincipalsOffice::coltGone()
 {
 	return goneColt;
 }
-
 
 bool PrincipalsOffice::itemSearch(vector<string> inv, string a)
 {

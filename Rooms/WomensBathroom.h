@@ -10,7 +10,7 @@ private:
 	string action;		//string action typed in by the user
 	bool firstTry = true,
 	     goneColt = false,
-	     doorLocked = true;
+	     
 	PlayerInventory *bag;
 	Item *couch;
 	Item *lock;

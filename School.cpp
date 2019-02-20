@@ -133,34 +133,44 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		//Syntax: go <direction> 
 		if (foundCmd->getType() == "go") {
-			if((currentRoom->getType() == "Men's Bathroom") && (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == true)) {
-                                if(cmd == "go hole") {
-                                        moveRooms(cmdVector, "south");
-                                }
-                        }
-
-			if((currentRoom->getType() == "Men's Bathroom") &&
-			   (cmd == "go south") &&
-			   (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false)) {
-				cout << "# You can't go that direction." << endl;
-				return;
-			}
-			
+			if((currentRoom->getType() == "Men's Bathroom"){
+				if (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == true) {
+					if(cmd == "go hole") {
+						moveRooms(cmdVector, "south");
+						return;
+					}
+				}
+				else if(static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false){
+					if(cmd == "go south"){
+						cout << "# You can't go that direction." << endl;
+						return;
+					}
+				}
+            }	
 			if((currentRoom->getType() == "Second Floor Hallway") &&
 			   (static_cast<WomensBathroom*>(wb)->getDoorLocked() == true) &&
 			   (cmd == "go east")) {
 				Space *tempRoom;
 				tempRoom = currentRoom->getEast();
-				if (tempRoom->getType() == "Women's Bathroom") {
-					cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
-					return;
-				}
-                        }
+					if (tempRoom->getType() == "Women's Bathroom") {
+						cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+						return;
+					}
+                }
 			
 			if((currentRoom->getType() == "Women's Bathroom") && (cmd == "go west")) {
 				static_cast<WomensBathroom*>(currentRoom)->unlockDoor();
-                        }
+            }
 
+			if(currentRoom->getType() == "Gymnasium First Floor"){
+				if( cmd == "south" || cmd == "go south" || cmd == "k" ||
+					cmd == "go Football Field" || cmd == "Football Field" || cmd == "go football field" || cmd == "football field"){
+					if(fb->getDoorLocked() == true){
+						cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+						return;
+					}
+				}	
+			}	
 			moveRooms(cmdVector, cmd);
 		}
 		if (foundCmd->getType() == "dir") {
@@ -255,7 +265,23 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			cout << "\nBlocking attack" << endl;
 		}
 		if (foundCmd->getType() == "open") {
-			cout << "\nOpening door" << endl;
+			cout << "\nOpening..." << endl;
+
+			if(currentRoom->getType() == "Gymnasium First Floor"){
+				if(cmd == "open Football Field" || cmd == "open football Field"){
+					//Try to select item from player's inventory
+					Item* selectedItem = player->getInventory()->selectItem("key");	
+					if(selectedItem != NULL){
+						cout << "Opening/unlocking door to Football room" << endl;
+						static_cast<Football*>(fb)->unlockDoor();
+					}
+					else{
+						cout << "Didn't find key in player's inventory, cannot open door!" << endl;
+
+					}
+				}
+				return;
+			}
 		}
 		if (foundCmd->getType() == "savegame") { //stub
 			GameState* currentState = createState();

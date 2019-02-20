@@ -3,6 +3,7 @@
 
 #include "Space.h"
 #include "../Items/FireExtinguisher.h"
+#include "../Items/Key.h"
 
 class PrincipalsOffice : public Space
 {
@@ -11,6 +12,7 @@ private:
 	bool firstTry = true,
 	     goneColt = false,
 	     deadZombies = false;
+	Item *desk, *key, *PAsystem, *fireExt;
 
 public:
 	PrincipalsOffice();

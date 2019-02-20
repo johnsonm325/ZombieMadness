@@ -3,6 +3,7 @@
 
 WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 {
+	this->lockDoor();
 	this->bag = bag;
 
 	couch = new Item();
@@ -56,30 +57,15 @@ int WomensBathroom::menu(vector<string> commandVector)
 	return 0;
 }
 
-
-bool WomensBathroom::getDoorLocked()
-{
-	return doorLocked;
-}
-
-
-void WomensBathroom::unlockDoor()
-{
-	doorLocked = false;
-}
-
-
 void WomensBathroom::firstTime()
 {
 	firstTry = false;
 }
 
-
 bool WomensBathroom::coltGone()
 {
 	return goneColt;
 }
-
 
 bool WomensBathroom::itemSearch(vector<string> inv, string a)
 {
