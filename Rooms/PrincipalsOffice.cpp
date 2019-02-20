@@ -19,6 +19,7 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	roomInventory->addItem(fireExt);
 	roomInventory->addItem(key);
 	roomInventory->addItem(desk);
+}
 
 void PrincipalsOffice::printIntro(){
 	// Prints the first time the room is visited
@@ -58,12 +59,10 @@ void PrincipalsOffice::zombiesDead()
 	deadZombies = true;
 }
 
-
 void PrincipalsOffice::firstTime()
 {
 	firstTry = false;
 }
-
 
 bool PrincipalsOffice::coltGone()
 {
