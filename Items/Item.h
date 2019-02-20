@@ -37,7 +37,7 @@ public:
 	int getSize();
 	void setDummyItem(string, string);
 	void setFeature();
-	bool isRemovable();
+	bool isMovable();
 
 	// virtual action methods
 	virtual void useItem();
