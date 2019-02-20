@@ -184,7 +184,7 @@ void Space::unlockDoor()
 	doorLocked = false;
 }
 
-void Space::unlockDoor()
+void Space::lockDoor()
 {
 	doorLocked = true;
 }
