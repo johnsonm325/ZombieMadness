@@ -3,7 +3,7 @@
 
 Football::Football() : Space("Football Field")
 {
-	
+	lockDoor();
 }
 void Football::printIntro(){
 	// Prints the first time the room is visited

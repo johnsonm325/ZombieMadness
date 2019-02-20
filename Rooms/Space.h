@@ -15,6 +15,7 @@ using std::vector;
 class Space
 {
 protected:
+	bool doorLocked = false;
 	Space *north;		// Pointer to space for up
 	Space *east;		// Pointer to space for forward
 	Space *south;		// Pointer to space for down
@@ -54,8 +55,10 @@ public:
 	vector<Space*> getExits();			//Get available room exits as vector of Space pointers
 	vector<string> getExitDirections();
 	void printDirection(Space* direction);
-	virtual void openDoor();
-	virtual void closeDoor();
+
+	bool getDoorLocked();
+	void unlockDoor();
+	void lockDoor();
 };
 
 #endif

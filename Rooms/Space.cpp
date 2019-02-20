@@ -174,12 +174,17 @@ vector<Creature*> Space::getCreatures() {
 	return creatures;
 }
 
-void Space::openDoor()
+bool Space::getDoorLocked()
 {
-	cout << "You cannot open this door." << endl;
+	return doorLocked;
 }
 
-void Space::closeDoor()
+void Space::unlockDoor()
 {
-	 cout << "You cannot close this door." << endl;
+	doorLocked = false;
+}
+
+void Space::lockDoor()
+{
+	doorLocked = true;
 }
