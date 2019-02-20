@@ -4,6 +4,26 @@
 WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 {
 	this->bag = bag;
+
+	couch = new Item();
+	string description = "# A couch with pink upholstry sits in the corner of the bathroom, inviting you to sit. It's flower pattern cushions look so comfortable, that you take a moment to sit down and relax. The dangers seem to melt away while you rest here.";
+	string name = "couch";
+	couch->setDummyItem(description, name);
+	roomInventory->addItem(couch);
+
+	lock = new Item();
+	description = "# It looks like someone tampered with the locks and forced it so it couldn't be unlocked from the outside. I should be able to unlock it from the inside though.";
+	name = "lock";
+	lock->setDummyItem(description, name);
+	roomInventory->addItem(lock);
+
+	magazine = new Item();
+	description = "At the top of the stack of magazines you see one called 'Cosmopolitan'. You're pretty sure you've seen your older sister with this one. On the front it reads, '24 ways to make your ...' 'WOAH!'";
+	name = "magazine";
+	magazine->setDummyItem(description, name);
+	string text = "'Want to make your man beg for ... ' 'Ehh, maybe I don't want to read this.'";
+	magazine->setAction(text, Read);
+	roomInventory->addItem(magazine);
 }
 
 void WomensBathroom::printIntro(){
@@ -32,14 +52,20 @@ int WomensBathroom::menu(vector<string> commandVector)
 	{
 		return 0;
 	}
-	printIntro();
+
 	return 0;
 }
 
 
-void WomensBathroom::inspectToilet()
+bool WomensBathroom::getDoorLocked()
 {
+	return doorLocked;
+}
 
+
+void WomensBathroom::unlockDoor()
+{
+	doorLocked = false;
 }
 
 

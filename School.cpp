@@ -85,20 +85,19 @@ int School::playGame()
 		cout << "#\n# Please enter choice: ";
 		getline(cin, choice);
 		cout << "#" << endl;
-		commandVect = processCommand(parser, choice);
+		processCommand(parser, choice);
 
-		if (commandVect.size() != 0) {
-			currentRoom->menu(commandVect);
-		}
+		//if (commandVect.size() != 0) {
+		//	currentRoom->menu(commandVect);
+		//}
 		
 	} while (choice != "q" && choice != "quit" && choice !="exit");
 
 	return 0;
 }
 
-vector<string> School::processCommand(CmdParser* parser, string cmd) {
-	vector<string> emptyVect;
-	if (cmd.length() == 0) { return emptyVect; }	//Empty command
+void School::processCommand(CmdParser* parser, string cmd) {
+	if (cmd.length() == 0) { return; }	//Empty command
 
 	parser->setCommand(cmd);
 	CmdWord* foundCmd = 0;
@@ -133,7 +132,35 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 			parser->getCmdList()->printListDetailed();
 		}
 		//Syntax: go <direction> 
-		if (foundCmd->getType() == "go") {		
+		if (foundCmd->getType() == "go") {
+			if((currentRoom->getType() == "Men's Bathroom") && (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == true)) {
+                                if(cmd == "go hole") {
+                                        moveRooms(cmdVector, "south");
+                                }
+                        }
+
+			if((currentRoom->getType() == "Men's Bathroom") &&
+			   (cmd == "go south") &&
+			   (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false)) {
+				cout << "# You can't go that direction." << endl;
+				return;
+			}
+			
+			if((currentRoom->getType() == "Second Floor Hallway") &&
+			   (static_cast<WomensBathroom*>(wb)->getDoorLocked() == true) &&
+			   (cmd == "go east")) {
+				Space *tempRoom;
+				tempRoom = currentRoom->getEast();
+				if (tempRoom->getType() == "Women's Bathroom") {
+					cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+					return;
+				}
+                        }
+			
+			if((currentRoom->getType() == "Women's Bathroom") && (cmd == "go west")) {
+				static_cast<WomensBathroom*>(currentRoom)->unlockDoor();
+                        }
+
 			moveRooms(cmdVector, cmd);
 		}
 		if (foundCmd->getType() == "dir") {
@@ -167,6 +194,12 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 		if (foundCmd->getType() == "look at") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
 			player->lookAtItems(item);
+
+			if(currentRoom->getType() == "Men's Bathroom") {
+				if(item == "toilet") {
+					static_cast<MensBathroom*>(currentRoom)->inspectToilet();
+				}
+			}
 		}
 		if (foundCmd->getType() == "take") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
@@ -244,12 +277,9 @@ vector<string> School::processCommand(CmdParser* parser, string cmd) {
 	else {
 		bool moved = moveRooms(cmdVector, cmd);
 		if(!moved){	//Didn't move rooms
-			//cout << "Invalid command!" << endl;
-			return cmdVector;
+			cout << "Invalid command!" << endl;
 		}
 	}
-
-	return emptyVect;
 }
 
 void School::doItemAction(string cmdType, vector<string> cmdVector){
