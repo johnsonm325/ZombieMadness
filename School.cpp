@@ -133,7 +133,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		//Syntax: go <direction> 
 		if (foundCmd->getType() == "go") {
-			if((currentRoom->getType() == "Men's Bathroom"){
+			if(currentRoom->getType() == "Men's Bathroom"){
 				if (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == true) {
 					if(cmd == "go hole") {
 						moveRooms(cmdVector, "south");
