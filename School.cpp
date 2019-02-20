@@ -148,7 +148,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
             }	
 			if((currentRoom->getType() == "Second Floor Hallway") &&
-			   (static_cast<WomensBathroom*>(wb)->getDoorLocked() == true) &&
+			   (wb->getDoorLocked() == true) &&
 			   (cmd == "go east")) {
 				Space *tempRoom;
 				tempRoom = currentRoom->getEast();
@@ -159,7 +159,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
                 }
 			
 			if((currentRoom->getType() == "Women's Bathroom") && (cmd == "go west")) {
-				static_cast<WomensBathroom*>(currentRoom)->unlockDoor();
+				currentRoom->unlockDoor();
             }
 
 			if(currentRoom->getType() == "Gymnasium First Floor"){
