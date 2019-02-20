@@ -234,7 +234,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 
 		for (unsigned int i = 0; i < rooms.size(); i++) {
 			fprintf(saveFile, " \n");
-			writeRoomToFile(rooms[i], saveFile);
+			writeRoomToFile(saveFile, rooms[i]);
 		}
 		fclose(saveFile);
 	}
@@ -243,7 +243,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 	}
 }
 
-void StateManager::writeRoomToFile(Space* room, FILE* saveFile){
+void StateManager::writeRoomToFile(FILE* saveFile, Space* room){
 	int numItems = room->getInventory()->getItems().size();
 	vector<Item*> items = room->getInventory()->getItems();
 	bool doorLocked = room->getDoorLocked();
@@ -255,11 +255,11 @@ void StateManager::writeRoomToFile(Space* room, FILE* saveFile){
 	fprintf(saveFile, "Size: %d\n", numItems);
 
 	for (int j = 0; j < numItems; j++) {
-		writeItemToFile(items[j], saveFile, j+1);
+		writeItemToFile(saveFile, items[j], j+1);
 	}
 }
 
-void StateManager::writeItemToFile(Item* item, FILE* saveFile, int count){
+void StateManager::writeItemToFile(FILE* saveFile, Item* item, int count){
 	fprintf(saveFile, "Item %d\n", count);
 	fprintf(saveFile, "Name: %s\n", item->getName().c_str());
 	fprintf(saveFile, "Type: %s\n", item->getType().c_str());
