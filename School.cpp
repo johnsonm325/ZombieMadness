@@ -267,6 +267,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		if (foundCmd->getType() == "open") {
 			cout << "\nOpening..." << endl;
 
+			//Opening rooms
 			if(currentRoom->getType() == "Gymnasium First Floor"){
 				if(cmd == "open Football Field" || cmd == "open football Field"){
 					//Try to select item from player's inventory
@@ -282,6 +283,8 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 				return;
 			}
+			//Opening items
+			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "savegame") { //stub
 			GameState* currentState = createState();
@@ -335,6 +338,9 @@ void School::doItemAction(string cmdType, vector<string> cmdVector){
 		}
 		else if (cmdType == "cut") {
 			selectedItem->cutItem();
+		}
+		else if (cmdType == "open") {
+			selectedItem->openItem();
 		}
 	}
 }
