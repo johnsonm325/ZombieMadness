@@ -2,7 +2,7 @@
 #define GAME_STATE_H
 
 #include "../Rooms/Space.h"
-#include "..Creatures/Player.h"
+#include "../Creatures/Player.h"
 #include "../Creatures/Zombie.h"
 #include <ctime>
 
