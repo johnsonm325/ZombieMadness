@@ -278,7 +278,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					}
 					else{
 						cout << "Didn't find key in player's inventory, cannot open door!" << endl;
-
 					}
 				}
 				return;
