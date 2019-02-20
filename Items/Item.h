@@ -53,7 +53,6 @@ public:
 
 	//action setters
 	void setAction(string, Action);
-	vector<string> getActions();
 };
 
 #endif

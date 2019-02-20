@@ -129,8 +129,3 @@ void Item::setAction(string text, Action type)
 {
 	this->actions[type] = text;
 }
-//Action getter
-void Item::getActions()
-{
-	this->actions;
-}
