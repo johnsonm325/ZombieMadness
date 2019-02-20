@@ -266,14 +266,14 @@ void StateManager::writeItemToFile(Item* item, FILE* saveFile, int count){
 	fprintf(saveFile, "Description: %s\n", item->getDesc().c_str());
 	fprintf(saveFile, "Removable: %d\n", item->isMovable());
 
-	if(!item->isMovable()){
-		fprintf(saveFile, "Item actions\n");
-		vector<string> actions = item->getActions();
-		string actionType;
-		for(int j = 0; j < 10; j++){
-			fprintf(saveFile, "Action: %d ,text: %s\n", j, actions[j].c_str());
-		}	
-	}
+	// if(!item->isMovable()){
+	// 	fprintf(saveFile, "Item actions\n");
+	// 	vector<string> actions = item->getActions();
+	// 	string actionType;
+	// 	for(int j = 0; j < 10; j++){
+	// 		fprintf(saveFile, "Action: %d ,text: %s\n", j, actions[j].c_str());
+	// 	}	
+	// }
 }
 
 //Managing states list
