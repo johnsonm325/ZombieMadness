@@ -269,7 +269,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 
 			//Opening rooms
 			if(currentRoom->getType() == "Gymnasium First Floor"){
-				if(cmd == "open Football Field" || cmd == "open football Field"){
+				if(cmd == "open Football Field" || cmd == "open football field"){
 					//Try to select item from player's inventory
 					Item* selectedItem = player->getInventory()->selectItem("key");	
 					if(selectedItem != NULL){
