@@ -249,8 +249,8 @@ void StateManager::writeRoomToFile(FILE* saveFile, Space* room){
 	bool doorLocked = room->getDoorLocked();
 
 	fprintf(saveFile, "Room: %s\n", room->getType().c_str());
-	fprintf(saveFile, "Locked: %d\n");
-	fprintf(saveFile, "First time: %d\n", room->isFirstTry());
+	fprintf(saveFile, "Locked: %d\n", (int)doorLocked);
+	fprintf(saveFile, "First time: %d\n", (int)room->isFirstTry());
 	fprintf(saveFile, "Room inventory\n");
 	fprintf(saveFile, "Size: %d\n", numItems);
 
