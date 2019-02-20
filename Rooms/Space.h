@@ -61,10 +61,9 @@ public:
 	bool getDoorLocked();
 	void unlockDoor();
 	void lockDoor();
-	
+
 	void setFirstTry(bool);
 	bool isFirstTry();
-	
 };
 
 #endif

@@ -105,3 +105,7 @@ Item* Player::selectItem(string item){
 	cout << "Failed to select item!" << endl;
 	return NULL;
 }
+
+Creature* Player::getPlayer(){
+	return player;
+}

@@ -19,7 +19,7 @@ protected:
 	int attack;
 	int defense;
 	int health;
-	bool isDead;
+	bool isDead = false;
 
 public:
 	Creature();
@@ -32,6 +32,7 @@ public:
 	int getAttack();
 	int getDefense();
 	int getHealth();
+	bool isAlive();
 
 	//setters
 	void setName(string);
@@ -42,6 +43,7 @@ public:
 	void takeDamage(int);
 	void blockAttack();
 	virtual void talkToCreature();
+	void die();
 };
 
 #endif

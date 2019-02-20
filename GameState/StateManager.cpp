@@ -232,6 +232,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
 		vector<Space*> rooms = state->getRooms();
 
+		fprintf(saveFile, "Rooms\n");
 		for (unsigned int i = 0; i < rooms.size(); i++) {
 			fprintf(saveFile, " \n");
 			writeRoomToFile(saveFile, rooms[i]);
@@ -244,36 +245,57 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 }
 
 void StateManager::writeRoomToFile(FILE* saveFile, Space* room){
-	int numItems = room->getInventory()->getItems().size();
 	vector<Item*> items = room->getInventory()->getItems();
+	int j, numItems = items.size();
 	bool doorLocked = room->getDoorLocked();
+	vector<Creature*> creatures = room->getCreatures();
 
 	fprintf(saveFile, "Room: %s\n", room->getType().c_str());
 	fprintf(saveFile, "Locked: %d\n", (int)doorLocked);
 	fprintf(saveFile, "First time: %d\n", (int)room->isFirstTry());
+
 	fprintf(saveFile, "Room inventory\n");
 	fprintf(saveFile, "Size: %d\n", numItems);
-
-	for (int j = 0; j < numItems; j++) {
+	for (j = 0; j < numItems; j++) {
 		writeItemToFile(saveFile, items[j], j+1);
+	}
+
+	fprintf(saveFile, "Room creatures\n");
+	fprintf(saveFile, "Size: %d\n", creatures.size());
+	for (j = 0; j < creatures.size(); j++){
+		writeCreatureToFile(saveFile, creatures[j], j+1);
 	}
 }
 
 void StateManager::writeItemToFile(FILE* saveFile, Item* item, int count){
 	fprintf(saveFile, "Item %d\n", count);
-	fprintf(saveFile, "Name: %s\n", item->getName().c_str());
 	fprintf(saveFile, "Type: %s\n", item->getType().c_str());
-	fprintf(saveFile, "Description: %s\n", item->getDesc().c_str());
-	fprintf(saveFile, "Removable: %d\n", item->isMovable());
+	fprintf(saveFile, "Name: %s\n", item->getName().c_str());
+	// fprintf(saveFile, "Description: %s\n", item->getDesc().c_str());
+	fprintf(saveFile, "Removable: %d\n", (int)item->isMovable());
+}
 
-	// if(!item->isMovable()){
-	// 	fprintf(saveFile, "Item actions\n");
-	// 	vector<string> actions = item->getActions();
-	// 	string actionType;
-	// 	for(int j = 0; j < 10; j++){
-	// 		fprintf(saveFile, "Action: %d ,text: %s\n", j, actions[j].c_str());
-	// 	}	
-	// }
+void StateManager::writeCreatureToFile(FILE* saveFile, Creature* creature, int count){
+	fprintf(saveFile, "Creature %d\n", count);
+	fprintf(saveFile, "Type: %s\n", creature->getType().c_str());
+	fprintf(saveFile, "Name: %s\n", creature->getType().c_str());
+	fprintf(saveFile, "isDead: %d\n", (int)!creature->isAlive());
+	fprintf(saveFile, "Health: %d\n", creature->getHealth());
+}
+
+void StateManager::writePlayerToFile(FILE* saveFile, Player* player){
+	vector<Item*> items = player->getInventory()->getItems();
+	int j, numItems = items.size();
+	Creature* playerCr = player->getPlayer();
+
+	fprintf(saveFile, "Player\n");
+	fprintf(saveFile, "Player inventory\n");
+	fprintf(saveFile, "Size: %d\n", numItems);
+	for (j = 0; j < numItems; j++) {
+		writeItemToFile(saveFile, items[j], j+1);
+	}
+	fprintf(saveFile, "Player stats\n");
+	writeCreatureToFile(saveFile, playerCr, 1);
 }
 
 //Managing states list

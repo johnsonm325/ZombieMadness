@@ -44,6 +44,8 @@ public:
 	bool startSavingGame(GameState* state);
 	void writeRoomToFile(FILE* saveFile, Space* room);
 	void writeItemToFile(FILE* saveFile, Item* item, int count);
+	void writeCreatureToFile(FILE* saveFile, Creature* creature, int count);
+	void writePlayerToFile(FILE* saveFile, Player* player);
 
 	//Managing states list
 	void addGameState(GameState* state);
