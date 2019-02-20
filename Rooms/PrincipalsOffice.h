@@ -9,8 +9,7 @@ class PrincipalsOffice : public Space
 {
 private:
 	string action;		//string action typed in by the user
-	bool firstTry = true,
-	     goneColt = false,
+	bool goneColt = false,
 	     deadZombies = false;
 	Item *desk, *key, *PAsystem, *fireExt;
 

@@ -128,7 +128,6 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		//Adding header info to state object;
 		int rIdx;
 		sscanf(lines[3].c_str(), "%*s %*s %d ", &rIdx);
-		//cout << "int rIdx:" << rIdx;
 
 		newState->setRooms(this->rooms);
 		newState->setCurrentRoom(rIdx);
@@ -142,7 +141,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 				string roomName = lines[i].substr(foundRoom+6);
 				//cout << "Found room: " << roomName << endl;
 				i++;
-				foundInv = lines[i].find("Inventory");	//Found inventory
+				foundInv = lines[i].find("Room inventory");	//Found inventory
 				
 				if (foundInv != std::string::npos) {
 					//cout << "Found inventory" << endl;
@@ -231,24 +230,49 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 		fprintf(saveFile, "Current room: %s\n", state->getCurrentRoom()->getType().c_str());
 		fprintf(saveFile, "Room idx: %d\n", state->getRoomIdx());
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
+		vector<Space*> rooms = state->getRooms();
 
-		for (unsigned int i = 0; i < state->getRooms().size(); i++) {
+		for (unsigned int i = 0; i < rooms.size(); i++) {
 			fprintf(saveFile, " \n");
-			fprintf(saveFile, "Room: %s\n", state->getRooms()[i]->getType().c_str());
-
-			int numItems = state->getRooms()[i]->getInventory()->getItems().size();
-			vector<Item*> items = state->getRooms()[i]->getInventory()->getItems();
-			fprintf(saveFile, "Inventory:\n");
-			fprintf(saveFile, "Size: %d\n", numItems);
-			for (int j = 0; j < numItems; j++) {
-				fprintf(saveFile, "Item %d\n", j + 1);
-				fprintf(saveFile, "Name: %s\n", items[j]->getName().c_str());
-			}
+			writeRoomToFile(rooms[i], saveFile);
 		}
 		fclose(saveFile);
 	}
 	else {
 		printf("Error opening save file %s\n", filename.c_str());
+	}
+}
+
+void StateManager::writeRoomToFile(Space* room, FILE* saveFile){
+	int numItems = room->getInventory()->getItems().size();
+	vector<Item*> items = room->getInventory()->getItems();
+	bool doorLocked = room->getDoorLocked();
+
+	fprintf(saveFile, "Room: %s\n", room->getType().c_str());
+	fprintf(saveFile, "Locked: %d\n");
+	fprintf(saveFile, "First time: %d\n", room->isFirstTry());
+	fprintf(saveFile, "Room inventory\n");
+	fprintf(saveFile, "Size: %d\n", numItems);
+
+	for (int j = 0; j < numItems; j++) {
+		writeItemToFile(items[j], saveFile, j+1);
+	}
+}
+
+void StateManager::writeItemToFile(Item* item, FILE* saveFile, int count){
+	fprintf(saveFile, "Item %d\n", count);
+	fprintf(saveFile, "Name: %s\n", item->getName().c_str());
+	fprintf(saveFile, "Type: %s\n", item->getType().c_str());
+	fprintf(saveFile, "Description: %s\n", item->getDesc().c_str());
+	fprintf(saveFile, "Removable: %d\n", item->isMovable());
+
+	if(!item->isMovable()){
+		fprintf(saveFile, "Item actions\n");
+		vector<string> actions = item->getActions();
+		string actionType;
+		for(int j = 0; j < 10; j++){
+			fprintf(saveFile, "Action: %d ,text: %s\n", j, actions[j].c_str());
+		}	
 	}
 }
 

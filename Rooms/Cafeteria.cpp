@@ -6,7 +6,6 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	string description = "# There are chunks of food strewn around the room. Some of it is gloopy, and you don't want to touch that. But some, you can pick up.";
 	string name = "food";
 	food->setDummyItem(description, name);
-
 	roomInventory->addItem(food);
 }
 

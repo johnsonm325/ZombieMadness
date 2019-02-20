@@ -10,12 +10,14 @@ WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 	string description = "# A couch with pink upholstry sits in the corner of the bathroom, inviting you to sit. It's flower pattern cushions look so comfortable, that you take a moment to sit down and relax. The dangers seem to melt away while you rest here.";
 	string name = "couch";
 	couch->setDummyItem(description, name);
+	couch->setFeature();
 	roomInventory->addItem(couch);
 
 	lock = new Item();
 	description = "# It looks like someone tampered with the locks and forced it so it couldn't be unlocked from the outside. I should be able to unlock it from the inside though.";
 	name = "lock";
 	lock->setDummyItem(description, name);
+	lock->setFeature();
 	roomInventory->addItem(lock);
 
 	magazine = new Item();

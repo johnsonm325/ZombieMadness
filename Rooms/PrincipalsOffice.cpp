@@ -15,6 +15,7 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	text = "# You've opened the desk's drawer...Inside, you can see a shiny brass key.";
 	desk->setDummyItem(description, name);
 	desk->setAction(text, Open);
+	desk->setFeature();
 	
 	roomInventory->addItem(fireExt);
 	roomInventory->addItem(key);

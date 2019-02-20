@@ -188,3 +188,11 @@ void Space::lockDoor()
 {
 	doorLocked = true;
 }
+
+void Space::setFirstTry(bool try){
+	firstTry = try;
+}
+
+bool Space::isFirstTry(){
+	return firstTry;
+}

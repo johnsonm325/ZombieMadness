@@ -23,6 +23,7 @@ protected:
 	int defense;
 	int healthBoost;
 	int size;
+	bool isRemovable = true;
 
 public:
 	Item();
@@ -35,6 +36,8 @@ public:
 	int getHealthBoost();
 	int getSize();
 	void setDummyItem(string, string);
+	void setFeature();
+	bool isRemovable();
 
 	// virtual action methods
 	virtual void useItem();
@@ -50,6 +53,7 @@ public:
 
 	//action setters
 	void setAction(string, Action);
+	vector<string> getActions();
 };
 
 #endif

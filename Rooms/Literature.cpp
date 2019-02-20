@@ -9,12 +9,14 @@ Literature::Literature() : Space("Literature")
 	chalkboard->setDummyItem(description, name);
 	string text = "# In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means comfort.";
 	chalkboard->setAction(text, Read);
+	chalkboard->setFeature();
 	roomInventory->addItem(chalkboard);
 
 	desk = new Item();
 	description = "# The teacher's desk is quite messy with papers strewn about. There seems to be a note written down on a small slip of paper.";
 	name = "desk";
 	desk->setDummyItem(description, name);
+	desk->setFeature();
 	roomInventory->addItem(desk);
 }
 

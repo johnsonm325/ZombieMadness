@@ -67,6 +67,12 @@ void Item::setDummyItem(string desc, string name)
 	this->defense = 0;
 	this->healthBoost = 0;
 }
+void Item::setFeature(){
+	isRemovable = false;
+}
+bool Item::isMovable(){
+	return isRemovable;
+}
 
 void Item::useItem()
 {
@@ -122,4 +128,9 @@ void Item::openItem()
 void Item::setAction(string text, Action type)
 {
 	this->actions[type] = text;
+}
+//Action getter
+void Item::getActions()
+{
+	this->actions;
 }

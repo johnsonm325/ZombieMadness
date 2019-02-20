@@ -9,7 +9,6 @@ class GameState
 private:
 	Space *currentRoom;
 	int roomIdx = 0;
-	//string choice;
 	int steps; 
 	string timeStamp;
 	vector<Space*> rooms;
@@ -26,8 +25,10 @@ public:
 	void setRoomIdx(int idx);
 	int getRoomIdx();
 	int findRoomByIdx(Space* room);
+
 	void setSteps(int steps);
 	int getSteps();
+
 	void setRooms(vector<Space*> rooms);
 	vector<Space*> getRooms();
 

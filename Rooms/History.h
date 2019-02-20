@@ -10,8 +10,7 @@ class History : public Space
 {
 private:
 	string action;		//string action typed in by the user
-	bool firstTry = true,
-	     goneColt = false;
+	bool goneColt = false;
 	Literature *lit;
 	Item *georgeWashingtonBust;
 	Item *billOfRights;

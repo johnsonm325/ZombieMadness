@@ -15,7 +15,9 @@ using std::vector;
 class Space
 {
 protected:
-	bool doorLocked = false;
+	bool doorLocked = false,
+		 firstTry = true;
+
 	Space *north;		// Pointer to space for up
 	Space *east;		// Pointer to space for forward
 	Space *south;		// Pointer to space for down
@@ -59,6 +61,10 @@ public:
 	bool getDoorLocked();
 	void unlockDoor();
 	void lockDoor();
+	
+	void setFirstTry(bool);
+	bool isFirstTry();
+	
 };
 
 #endif

@@ -7,7 +7,7 @@ MensBathroom::MensBathroom() : Space("Men's Bathroom")
 	string description = "# The toilet is dirty. Looks like it hasn't been cleaned in weeks. As you stare at the toilet, you notice a hole behind the toilet.";
 	string name = "toilet";
 	toilet->setDummyItem(description, name);
-
+	toilet->setFeature();
 	roomInventory->addItem(toilet);
 }
 
@@ -54,7 +54,7 @@ void MensBathroom::inspectToilet()
 	string description = "# There is a small hole behind the toilet. It looks like you could probably fit through it.";
 	string name = "hole";
 	hole->setDummyItem(description, name);
-
+	hole->setFeature();
 	roomInventory->addItem(hole);
 }
 

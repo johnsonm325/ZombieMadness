@@ -10,8 +10,7 @@ class GymnasiumFloor2 : public Space
 {
 private:
 	string action;		//string action typed in by the user
-	bool firstTry = true,
-	     goneColt = false;
+	bool goneColt = false;
 	GymnasiumFloor1 *gym1;
 	Item *ropes;
 
