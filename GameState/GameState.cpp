@@ -28,9 +28,94 @@ void GameState::updateTime() {
 }
 
 void GameState::setRooms(vector<Space*> allrooms) {
-	for(int i = 0; i < (int)allrooms.size();i++){
-		this->rooms.push_back(allrooms[i]);
-	}
+	
+	Space *mb, *wb, *cafe, *libr, *sfh1, *sfh2, *sfh3, *sfh4;
+	Space *hist, *lit, *chem, *cs, *bio, *math,*infr, *lr,*gym2, *gym1, *fb;
+	Space *ffh1, *ffh2, *ffh3, *ffh4, *fl, *fo, *prin;
+
+	mb = new MensBathroom();
+	wb = new WomensBathroom();
+	sfh1 = new SecondFloorHallway();
+	sfh2 = new SecondFloorHallway();
+	sfh3 = new SecondFloorHallway(false);
+	sfh4 = new SecondFloorHallway(false);
+	hist = new History();
+	lit = new Literature();
+	infr = new Infirmary();
+	lr = new LockerRoom();
+	gym2 = new GymnasiumFloor2();
+	gym1 = new GymnasiumFloor1();
+	fb = new Football();
+	ffh1 = new FirstFloorHallway(false);
+	ffh2 = new FirstFloorHallway(false);
+	ffh3 = new FirstFloorHallway(false);
+	ffh4 = new FirstFloorHallway();
+	cafe = new Cafeteria();
+	chem = new Chemistry();
+	cs = new ComputerScience();
+	bio = new Biology();
+	math = new Math();
+	libr = new Library();
+	fl = new FrontLobby();
+	fo = new FrontOffice();
+	prin = new PrincipalsOffice();
+
+	rooms.push_back(mb);
+	rooms.push_back(wb);
+	rooms.push_back(cafe);
+	rooms.push_back(libr);
+	rooms.push_back(sfh1);
+	rooms.push_back(sfh2);
+	rooms.push_back(sfh3);
+	rooms.push_back(sfh4);
+	rooms.push_back(hist);
+	rooms.push_back(lit);
+	rooms.push_back(chem);
+	rooms.push_back(cs);
+	rooms.push_back(bio);
+	rooms.push_back(math);
+	rooms.push_back(infr);
+	rooms.push_back(lr);
+	rooms.push_back(gym1);
+	rooms.push_back(gym2);
+	rooms.push_back(fb);
+	rooms.push_back(ffh1);
+	rooms.push_back(ffh2);
+	rooms.push_back(ffh3);
+	rooms.push_back(ffh4);
+	rooms.push_back(fl);
+	rooms.push_back(fo);
+	rooms.push_back(prin);
+
+	//Now deep-copy memory from actual rooms to GameState's room vector
+	//syntax:   memcpy ( &person_copy, &person, sizeof(person) );
+
+	memcpy(rooms[0], allrooms[0], sizeof(MensBathroom);
+	memcpy(rooms[1], allrooms[1], sizeof(WomensBathroom);
+	memcpy(rooms[2], allrooms[2], sizeof(Cafeteria);
+	memcpy(rooms[3], allrooms[3], sizeof(Library);
+	memcpy(rooms[4], allrooms[4], sizeof(SecondFloorHallway);
+	memcpy(rooms[5], allrooms[5], sizeof(SecondFloorHallway);
+	memcpy(rooms[6], allrooms[6], sizeof(SecondFloorHallway);
+	memcpy(rooms[7], allrooms[7], sizeof(SecondFloorHallway);
+	memcpy(rooms[8], allrooms[8], sizeof(History);
+	memcpy(rooms[9], allrooms[9], sizeof(Literature);
+	memcpy(rooms[10], allrooms[10], sizeof(Chemistry);
+	memcpy(rooms[11], allrooms[11], sizeof(ComputerScience);
+	memcpy(rooms[12], allrooms[12], sizeof(Biology);
+	memcpy(rooms[13], allrooms[13], sizeof(Math);
+	memcpy(rooms[14], allrooms[14], sizeof(Infirmary);
+	memcpy(rooms[15], allrooms[15], sizeof(LockerRoom);
+	memcpy(rooms[16], allrooms[16], sizeof(GymnasiumFloor1);
+	memcpy(rooms[17], allrooms[17], sizeof(GymnasiumFloor2);
+	memcpy(rooms[18], allrooms[18], sizeof(Football);
+	memcpy(rooms[19], allrooms[19], sizeof(FirstFloorHallway);
+	memcpy(rooms[20], allrooms[20], sizeof(FirstFloorHallway);
+	memcpy(rooms[21], allrooms[21], sizeof(FirstFloorHallway);
+	memcpy(rooms[22], allrooms[22], sizeof(FirstFloorHallway);
+	memcpy(rooms[23], allrooms[23], sizeof(FrontLobby);
+	memcpy(rooms[24], allrooms[24], sizeof(FrontOffice);
+	memcpy(rooms[25], allrooms[25], sizeof(PrincipalsOffice);
 }
 
 vector<Space*> GameState::getRooms(){
