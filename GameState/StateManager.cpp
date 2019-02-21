@@ -164,7 +164,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 	return newState;
 }
 
-bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines, Space* room){
+bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 
 	line++; //Go to tag <Room>;
 	cout << *line << endl;
@@ -177,6 +177,7 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 	cout << *line << endl;
 
 	if(foundStart != std::string::npos){
+			cout << "Found room start: <Room>" << endl;
 			// cout << *line << endl;
 			foundStr = (*line).find("Type:");
 			if(foundStr != std::string::npos){
@@ -222,10 +223,9 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 				if (foundInv != std::string::npos) {
 					int numItems;
 					sscanf((*line).c_str(), "%*s %d ", &numItems);
+					cout << "Found " << numItems << " items" << endl;
 
-					if (numItems > 0) {
-						cout << "Found " << numItems << " items in room " << endl;
-					}
+				
 				}
 				else{
 					isValid = false;
@@ -239,7 +239,7 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 				line++;
 				foundEnd = (*line).find("</Room>");
 				if(foundEnd != std::string::npos){
-					cout << "Found </Room>" << endl;
+					cout << "Found room end: </Room>" << endl;
 				}
 			}while(foundEnd == std::string::npos);
 	}

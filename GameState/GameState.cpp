@@ -27,8 +27,10 @@ void GameState::updateTime() {
 	timeStamp = str;
 }
 
-void GameState::setRooms(vector<Space*> rooms) {
-	this->rooms = rooms;
+void GameState::setRooms(vector<Space*> allrooms) {
+	for(int i = 0; i < (int)allrooms.size();i++){
+		this->rooms.push_back(allrooms[i]);
+	}
 }
 
 vector<Space*> GameState::getRooms(){
