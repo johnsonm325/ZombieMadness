@@ -181,17 +181,17 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 			string roomName = (*line).substr(foundStr+6);
 			cout << "Found room: " << roomName << endl;
 			line++;
-			cout << *line << end;
+			cout << *line << endl;
 
 			//Read doorLocked, firstTime
 			int doorLocked, firstTry;
 
 			sscanf((*line).c_str(), "%*s %d", &doorLocked);
 			line++;
-			cout << *line << end;
+			cout << *line << endl;
 			sscanf((*line).c_str(), "%*s %d", &firstTry);
 			line++;
-			cout << *line << end;
+			cout << *line << endl;
 
 			if(doorLocked == 0 || doorLocked == 1){
 				cout << "Found doorLocked" << endl;
