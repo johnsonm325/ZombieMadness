@@ -141,6 +141,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		line = lines.begin();
 		line +=6;
 		cout << "line 6: " << *line << endl;
+		bool readSuccess = true;
 
 		while(line != lines.end()){
 			foundRooms = (*line).find("<Rooms>");
@@ -234,8 +235,10 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 				isValid = false;
 			}
 			line++;
-			cout << *line << endl;
 			foundRoomEnd = (*line).find("</Room>");
+			if(foundRoom != std::string::npos){
+				cout << "Found </Room>" << endl;
+			}
 		}while(foundRoomEnd == std::string::npos);
 	}
 	else{
