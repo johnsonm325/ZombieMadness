@@ -141,7 +141,6 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		line = lines.begin();
 		line +=6;
 		cout << "line 6: " << *line << endl;
-		bool readSuccess = true;
 
 		while(line != lines.end()){
 			foundRooms = (*line).find("<Rooms>");
@@ -171,10 +170,10 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 	cout << *line << endl;
 	bool isValid = true;
 	string invalidFile = "Error reading save file! Invalid format";
-	size_t foundRoomStart = (*line).find("<Room>");	//Found room section start
-	size_t foundRoomEnd, foundInv, foundStr;
+	size_t foundStart = (*line).find("<Room>");	//Found room section start
+	size_t foundEnd, foundInv, foundStr;
 
-	if(foundRoomStart != std::string::npos){
+	if(foundStart != std::string::npos){
 		do {
 			line++;
 			cout << *line << endl;
@@ -235,11 +234,11 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 				isValid = false;
 			}
 			line++;
-			foundRoomEnd = (*line).find("</Room>");
-			if(foundRoom != std::string::npos){
+			foundEnd = (*line).find("</Room>");
+			if(foundEnd != std::string::npos){
 				cout << "Found </Room>" << endl;
 			}
-		}while(foundRoomEnd == std::string::npos);
+		}while(foundEnd == std::string::npos);
 	}
 	else{
 		//cout << invalidFile << endl;
