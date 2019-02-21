@@ -359,13 +359,13 @@ void StateManager::writeItem(FILE* saveFile, Item* item, int count){
 }
 
 void StateManager::writeCreature(FILE* saveFile, Creature* creature, int count){
-	fprintf(savefile, "<Creature>\n");
+	fprintf(saveFile, "<Creature>\n");
 	fprintf(saveFile, "Creature %d\n", count);
 	fprintf(saveFile, "Type: %s\n", creature->getType().c_str());
 	fprintf(saveFile, "Name: %s\n", creature->getType().c_str());
 	fprintf(saveFile, "IsDead: %d\n", (int)!creature->isAlive());
 	fprintf(saveFile, "Health: %d\n", creature->getHealth());
-	fprintf(savefile, "</Creature>\n");
+	fprintf(saveFile, "</Creature>\n");
 }
 
 void StateManager::writePlayer(FILE* saveFile, Player* player){
@@ -374,7 +374,6 @@ void StateManager::writePlayer(FILE* saveFile, Player* player){
 	Creature* playerCr = player->getPlayer();
 
 	fprintf(saveFile, "<Player>\n");
-	fprintf(saveFile, "Player\n");
 	fprintf(saveFile, "Player inventory\n");
 	fprintf(saveFile, "Size: %d\n", numItems);
 	for (j = 0; j < numItems; j++) {
@@ -382,7 +381,7 @@ void StateManager::writePlayer(FILE* saveFile, Player* player){
 	}
 	fprintf(saveFile, "Player stats\n");
 	writeCreature(saveFile, playerCr, 1);
-	fprintf(saveFile "</Player>\n");
+	fprintf(saveFile, "</Player>\n");
 }
 
 //Managing states list
