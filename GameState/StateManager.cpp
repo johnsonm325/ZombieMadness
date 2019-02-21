@@ -162,7 +162,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 	return newState;
 }
 
-void StateManager::readRoom(vector<string>::iterator line, Space* room){
+void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 
 	string invalidFile = "Error reading save file! Invalid format";
 	size_t foundRoomStart = (*line).find("<Room>");	//Found room section start
@@ -232,7 +232,7 @@ void StateManager::readRoom(vector<string>::iterator line, Space* room){
 	}	
 }
 
-void StateManager::readItem(vector<string>::iterator line, Item* item){
+void StateManager::readItem(vector<string>::iterator& line, Item* item){
 	
 }
 
@@ -306,11 +306,12 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
 		vector<Space*> rooms = state->getRooms();
 
-		fprintf(saveFile, "\nRooms\n");
-		for (unsigned int i = 0; i < rooms.size(); i++) {
+		fprintf(saveFile, "\n<Rooms>\n");
+		for (int i = 0; i < (int)rooms.size(); i++) {
 			writeRoom(saveFile, rooms[i]);
 			fprintf(saveFile, " \n");
 		}
+		fprintf(saveFile, "</Rooms>\n");
 		writePlayer(saveFile, state->getPlayer());
 
 		fclose(saveFile);
