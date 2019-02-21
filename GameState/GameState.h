@@ -26,6 +26,8 @@
 #include "../Rooms/WomensBathroom.h"
 
 #include <ctime>
+#include <cstdint>
+#include <cstring>
 // #include <algorithm>
 
 class GameState 
