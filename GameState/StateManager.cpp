@@ -143,12 +143,11 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		cout << "line 6: " << *line << endl;
 
 		while(line != lines.end()){
-
 			foundRooms = (*line).find("<Rooms>");
 			//Found rooms section in file, start processing room data
 			if(foundRooms != std::string::npos){
 				for(i = 0; i < (int)newState->getRooms().size(); i++){
-					bool readSucess = readRoom(line, rooms[i]);
+					bool readSucess = readRoom(line, lines, rooms[i]);
 					if(readSucess == false){
 						cout << invalidFile << endl;
 						break;
@@ -165,10 +164,11 @@ GameState* StateManager::processFileData(vector<string> lines) {
 	return newState;
 }
 
-bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
+bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines, Space* room){
 
 	line++; //Go to tag <Room>;
 	cout << *line << endl;
+	bool isValid = true;
 	string invalidFile = "Error reading save file! Invalid format";
 	size_t foundRoomStart = (*line).find("<Room>");	//Found room section start
 	size_t foundRoomEnd, foundInv, foundStr;
@@ -178,14 +178,19 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 			line++;
 			cout << *line << endl;
 			foundStr = (*line).find("Type:");
-			string roomName = (*line).substr(foundStr+6);
-			cout << "Found room: " << roomName << endl;
+			if(foundStr != std::string::npos){
+				string roomName = (*line).substr(foundStr+6);
+				cout << "Found room: " << roomName << endl;
+			}
+			else{
+				isValid = false;
+			}
+			
 			line++;
 			cout << *line << endl;
 
 			//Read doorLocked, firstTime
 			int doorLocked, firstTry;
-
 			sscanf((*line).c_str(), "%*s %d", &doorLocked);
 			line++;
 			cout << *line << endl;
@@ -204,7 +209,7 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 				room->setFirstTry((bool)firstTry);
 			}
 			else{
-				return false;
+				isValid = false;
 			}
 			//Searching for inventory
 			foundInv = (*line).find("<Room_Inventory>");	
@@ -222,11 +227,11 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 					}
 				}
 				else{
-					return false;
+					isValid = false;
 				}
 			}
 			else{
-				return false;
+				isValid = false;
 			}
 			line++;
 			cout << *line << endl;
@@ -235,9 +240,9 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 	}
 	else{
 		//cout << invalidFile << endl;
-		return false;
+		isValid = false;
 	}
-	return true;	
+	return isValid;	
 }
 
 void StateManager::readItem(vector<string>::iterator& line, Item* item){

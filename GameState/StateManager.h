@@ -36,7 +36,7 @@ public:
 	void readAllSaves();
 	GameState* readSaveFile(string filename);	
 	GameState* processFileData(vector<string> lines);
-	bool readRoom(vector<string>::iterator& line, Space* room);
+	bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines, Space* room);
 	void readItem(vector<string>::iterator& line, Item* item);
 	GameState* startLoadingGame();
 
