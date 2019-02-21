@@ -146,8 +146,9 @@ GameState* StateManager::processFileData(vector<string> lines) {
 			foundRooms = (*line).find("<Rooms>");
 			//Found rooms section in file, start processing room data
 			if(foundRooms != std::string::npos){
-				for(i = 0; i < (int)newState->getRooms().size(); i++){
-					bool readSucess = readRoom(line, rooms[i]);
+				vector<Space*> stateRooms = newState->getRooms();
+				for(i = 0; i < (int)stateRooms.size(); i++){
+					bool readSucess = readRoom(line, stateRooms[i]);
 					if(readSucess == false){
 						cout << invalidFile << endl;
 						return NULL;
