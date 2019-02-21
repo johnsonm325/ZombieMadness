@@ -36,16 +36,19 @@ public:
 	void readAllSaves();
 	GameState* readSaveFile(string filename);	
 	GameState* processFileData(vector<string> lines);
+	void readRoom(vector<string> lines, vector<Space*> rooms);
+	void readItem(vector<string> lines, vector<Items*> items);
 	GameState* startLoadingGame();
 
 	//Writing game state to file
 	void saveState(GameState* state);
 	void writeSaveFile(GameState* state, string filename);
 	bool startSavingGame(GameState* state);
-	void writeRoomToFile(FILE* saveFile, Space* room);
-	void writeItemToFile(FILE* saveFile, Item* item, int count);
-	void writeCreatureToFile(FILE* saveFile, Creature* creature, int count);
-	void writePlayerToFile(FILE* saveFile, Player* player);
+	void writeRoom(FILE* saveFile, Space* room);
+	void writeItem(FILE* saveFile, Item* item, int count);
+	void writeCreature(FILE* saveFile, Creature* creature, int count);
+	void writePlayer(FILE* saveFile, Player* player);
+
 
 	//Managing states list
 	void addGameState(GameState* state);
