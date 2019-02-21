@@ -151,6 +151,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 					bool readSucess = readRoom(line, rooms[i]);
 					if(readSucess == false){
 						cout << invalidFile << endl;
+						break;
 					}
 				}
 			}
@@ -229,7 +230,7 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 		}while(foundRoomEnd == std::string::npos);
 	}
 	else{
-		cout << invalidFile << endl;
+		//cout << invalidFile << endl;
 		return false;
 	}
 	return true;	
