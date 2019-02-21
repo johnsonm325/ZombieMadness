@@ -1,7 +1,7 @@
 #include "GameState.h"
 
 GameState::GameState() {
-
+	initRooms();
 }
 GameState::~GameState() {
 
