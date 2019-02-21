@@ -105,11 +105,10 @@ GameState* StateManager::readSaveFile(string filename) {
 GameState* StateManager::processFileData(vector<string> lines) {
 	GameState* newState = new GameState();
 
-	std::size_t foundRoom, foundInv;
+	std::size_t foundRooms, foundInv;
 	std::size_t foundHeader[3];
 	string headerKeys[3];
 	vector<string>::iterator line; 
-
 
 	headerKeys[0] = "Time stamp:";
 	headerKeys[1] = "Current room:";
@@ -129,7 +128,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		string newTime = lines[1].substr(foundHeader[0] + headerKeys[0].length());
 
 		//Adding header info to state object;
-		int rIdx;
+		int rIdx, i;
 		sscanf(lines[3].c_str(), "%*s %*s %d ", &rIdx);
 
 		newState->setRooms(this->rooms);
@@ -137,44 +136,88 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		newState->setTime(newTime);
 
 		line = lines.begin();
-		line +=3;
+		line +=6;
 
-		cout << "line 4" << *line << endl;
-			
-		// for (unsigned int i = 0; i < lines.size(); i++) {
-		// 	foundRoom = lines[i].find("Room:");	//Found room
-			
-		// 	if (foundRoom != std::string::npos) {
-				
-		// 		string roomName = lines[i].substr(foundRoom+6);
-		// 		//cout << "Found room: " << roomName << endl;
-		// 		i++;
-		// 		foundInv = lines[i].find("Room inventory");	//Found inventory
-				
-		// 		if (foundInv != std::string::npos) {
-		// 			//cout << "Found inventory" << endl;
-		// 			i++;
-		// 			foundInv = lines[i].find("Size:");
-		// 			if (foundInv != std::string::npos) {
-		// 				int numItems;
-		// 				sscanf(lines[i].c_str(), "%*s %d ", &numItems);
-		// 				//if (numItems > 0) {
-		// 					//cout << "Found " << numItems << " items in room " << endl;
+		cout << "line 6" << *line << endl;
 
-		// 				//}
-		// 			}
-		// 		}
-		// 	}
-		// }
+		while(line != lines.end()){
+
+			foundRooms = (*line).find("Rooms");
+			//Found rooms section in file, start processing room data
+			if(foundRooms != std::string::npos){
+				for(i = 0; i < (int)newState->getRooms().size(); i++){
+					line++; //Go to first room name;
+					readRoom(line, rooms[i]);
+				}
+			}
+		}
 	}
 	return newState;
 }
 
-void readRoom(vector<string> lines, vector<Space*> rooms){
+void StateManager::readRoom(vector<string>::iterator line, Space* room){
 
+	string invalidFile = "Error reading save file! Invalid format";
+	foundRoom = (*line).find("Room:");	//Found room
+
+	while (foundRoom != std::string::npos) {
+
+		string roomName = (*line).substr(foundRoom+6);
+		cout << "Found room: " << roomName << endl;
+		line++;
+
+		//Read doorLocked, firstTime
+		int doorLocked, firstTry;
+
+		sscanf((*line).c_str(), "%*s %d", &doorLocked);
+		line++;
+		sscanf((*line).c_str(), "%*s %d", &firstTry);
+		line++;
+
+		if(doorLocked == 0 || doorLocked == 1){
+			cout << "Found doorLocked" << endl;
+			if(doorLocked = 1){
+				room->lockDoor();
+			}
+		}	
+		if(firstTry == 0 || firstTry == 1){
+			cout << "Found firstTry" << endl;
+			room->setFirstTry((bool)firstTry);
+		}
+		else{
+			cout << invalidFile << endl;
+			break;
+		}
+
+		//Searching for inventory
+		foundInv = (*line).find("Room inventory");	
+		if (foundInv != std::string::npos) {
+			cout << "Found inventory" << endl;
+			line++;
+			foundInv = (*lines).find("Size:");
+			if (foundInv != std::string::npos) {
+				int numItems;
+				sscanf((*line).c_str(), "%*s %d ", &numItems);
+
+				if (numItems > 0) {
+					cout << "Found " << numItems << " items in room " << endl;
+				}
+			}
+			else{
+				cout << invalidFile << endl;
+				break;
+			}
+		}
+		else{
+			cout << invalidFile << endl;
+			break;
+		}
+		foundRoom = (*line).find("Room:");	//Found room
+	}
+		
 }
 
-void readItem(vector<string> lines, vector<Item*> items){
+void StateManager::readItem(vector<string>::iterator line, Item* item){
 	
 }
 
@@ -289,10 +332,10 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 
 void StateManager::writeItem(FILE* saveFile, Item* item, int count){
 	fprintf(saveFile, "Item %d\n", count);
+	fprintf(saveFile, "Removable: %d\n", (int)item->isMovable());
 	fprintf(saveFile, "Type: %s\n", item->getType().c_str());
 	fprintf(saveFile, "Name: %s\n", item->getName().c_str());
-	// fprintf(saveFile, "Description: %s\n", item->getDesc().c_str());
-	fprintf(saveFile, "Removable: %d\n", (int)item->isMovable());
+	fprintf(saveFile, "Description: %s\n", item->getDesc().c_str());
 }
 
 void StateManager::writeCreature(FILE* saveFile, Creature* creature, int count){

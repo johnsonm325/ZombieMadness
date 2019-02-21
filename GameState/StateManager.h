@@ -36,8 +36,8 @@ public:
 	void readAllSaves();
 	GameState* readSaveFile(string filename);	
 	GameState* processFileData(vector<string> lines);
-	void readRoom(vector<string> lines, vector<Space*> rooms);
-	void readItem(vector<string> lines, vector<Item*> items);
+	void readRoom(vector<string>::iterator line, Space* room);
+	void readItem(vector<string>::iterator line, Item* item);
 	GameState* startLoadingGame();
 
 	//Writing game state to file

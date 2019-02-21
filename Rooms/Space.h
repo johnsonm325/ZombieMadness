@@ -64,7 +64,6 @@ public:
 	void unlockDoor();
 	void lockDoor();
 
-
 };
 
 #endif
