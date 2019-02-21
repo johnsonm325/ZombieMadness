@@ -166,11 +166,11 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 
 	string invalidFile = "Error reading save file! Invalid format";
 	size_t foundRoomStart = (*line).find("<Room>");	//Found room section start
-	size_t foundRoomEnd = (*line).find("</Room>");	//Found room section end
+	size_t foundRoomEnd = ;	//Found room section end
 	size_t foundInv, foundStr;
 
 	if(foundRoomStart != std::string::npos){
-		while (foundRoomEnd == std::string::npos) {
+		do {
 			line++;
 			foundStr = (*line).find("Room:");
 			string roomName = (*line).substr(foundStr+6);
@@ -199,12 +199,13 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 				cout << invalidFile << endl;
 				break;
 			}
-
+			cout << *line;
 			//Searching for inventory
 			foundInv = (*line).find("<Room_Inventory>");	
 			if (foundInv != std::string::npos) {
 				cout << "Found inventory" << endl;
 				line++;
+				cout << *line << endl;
 				foundInv = (*line).find("Size:");
 				if (foundInv != std::string::npos) {
 					int numItems;
@@ -223,9 +224,10 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 				cout << invalidFile << endl;
 				break;
 			}
-			foundRoomEnd = (*line).find("</Room>");
 			line++;
-		}
+			cout << *line << endl;
+			foundRoomEnd = (*line).find("</Room>");
+		}while(foundRoomEnd == std::string::npos);
 	}
 	else{
 		cout << invalidFile << endl;
