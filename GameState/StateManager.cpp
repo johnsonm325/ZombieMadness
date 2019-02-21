@@ -105,8 +105,8 @@ GameState* StateManager::readSaveFile(string filename) {
 GameState* StateManager::processFileData(vector<string> lines) {
 	GameState* newState = new GameState();
 
-	std::size_t foundRooms, foundInv;
-	std::size_t foundHeader[3];
+	size_t foundRooms, foundInv;
+	size_t foundHeader[3];
 	string headerKeys[3];
 	vector<string>::iterator line; 
 
@@ -137,7 +137,6 @@ GameState* StateManager::processFileData(vector<string> lines) {
 
 		line = lines.begin();
 		line +=6;
-
 		cout << "line 6" << *line << endl;
 
 		while(line != lines.end()){
@@ -158,7 +157,8 @@ GameState* StateManager::processFileData(vector<string> lines) {
 void StateManager::readRoom(vector<string>::iterator line, Space* room){
 
 	string invalidFile = "Error reading save file! Invalid format";
-	foundRoom = (*line).find("Room:");	//Found room
+	size_t foundRoom = (*line).find("Room:");	//Found room
+	size_t foundInv;
 
 	while (foundRoom != std::string::npos) {
 
@@ -176,7 +176,7 @@ void StateManager::readRoom(vector<string>::iterator line, Space* room){
 
 		if(doorLocked == 0 || doorLocked == 1){
 			cout << "Found doorLocked" << endl;
-			if(doorLocked = 1){
+			if(doorLocked == 1){
 				room->lockDoor();
 			}
 		}	
@@ -194,7 +194,7 @@ void StateManager::readRoom(vector<string>::iterator line, Space* room){
 		if (foundInv != std::string::npos) {
 			cout << "Found inventory" << endl;
 			line++;
-			foundInv = (*lines).find("Size:");
+			foundInv = (*line).find("Size:");
 			if (foundInv != std::string::npos) {
 				int numItems;
 				sscanf((*line).c_str(), "%*s %d ", &numItems);
