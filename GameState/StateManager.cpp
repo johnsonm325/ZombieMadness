@@ -171,7 +171,7 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 	if(foundRoomStart != std::string::npos){
 		do {
 			line++;
-			foundStr = (*line).find("Room:");
+			foundStr = (*line).find("Type:");
 			string roomName = (*line).substr(foundStr+6);
 			cout << "Found room: " << roomName << endl;
 			line++;
@@ -330,9 +330,10 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 		j = 0;
 	bool doorLocked = room->getDoorLocked();
 	fprintf(saveFile, "<Room>\n");
-	fprintf(saveFile, "Room: %s\n", room->getType().c_str());
+	
+	fprintf(saveFile, "Type: %s\n", room->getType().c_str());
 	fprintf(saveFile, "Locked: %d\n", (int)doorLocked);
-	fprintf(saveFile, "First time: %d\n", (int)room->isFirstTry());
+	fprintf(saveFile, "First_time: %d\n", (int)room->isFirstTry());
 
 	fprintf(saveFile, "<Room_Inventory>\n");
 	fprintf(saveFile, "Size: %d\n", numItems);
@@ -341,12 +342,13 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 	}
 	fprintf(saveFile, "</Room_Inventory>\n");
 
-	fprintf(saveFile, "<Room_Creatures>\n");
+	fprintf(saveFile, "<Creatures>\n");
 	fprintf(saveFile, "Size: %d\n", numCreatures);
 	for (j = 0; j < numCreatures; j++){
 		writeCreature(saveFile, creatures[j], j+1);
 	}
-	fprintf(saveFile, "</Room_Creatures>\n");
+	fprintf(saveFile, "</Creatures>\n");
+
 	fprintf(saveFile, "</Room>\n");
 }
 
@@ -376,13 +378,15 @@ void StateManager::writePlayer(FILE* saveFile, Player* player){
 	Creature* playerCr = player->getPlayer();
 
 	fprintf(saveFile, "<Player>\n");
-	fprintf(saveFile, "Player inventory\n");
+	fprintf(saveFile, "<Player_Inventory>\n");
 	fprintf(saveFile, "Size: %d\n", numItems);
 	for (j = 0; j < numItems; j++) {
 		writeItem(saveFile, items[j], j+1);
 	}
-	fprintf(saveFile, "Player stats\n");
+	fprintf(saveFile, "</Player_Inventory>\n");
+	fprintf(saveFile, "<Stats>\n");
 	writeCreature(saveFile, playerCr, 1);
+	fprintf(saveFile, "</Stats>\n");
 	fprintf(saveFile, "</Player>\n");
 }
 
