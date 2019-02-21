@@ -2,10 +2,8 @@
 #define GAME_STATE_H
 
 #include "../Creatures/Player.h"
-#include "../Creatures/Zombie.h"
 
 //Room includes
-#include "../Rooms/Space.h"
 #include "../Rooms/Biology.h"
 #include "../Rooms/Cafeteria.h"
 #include "../Rooms/Chemistry.h"
