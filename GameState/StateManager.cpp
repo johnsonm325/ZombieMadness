@@ -168,6 +168,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 
 	line++; //Go to tag <Room>;
+	cout << *line << endl;
 	string invalidFile = "Error reading save file! Invalid format";
 	size_t foundRoomStart = (*line).find("<Room>");	//Found room section start
 	size_t foundRoomEnd, foundInv, foundStr;
@@ -175,18 +176,22 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 	if(foundRoomStart != std::string::npos){
 		do {
 			line++;
+			cout << *line << endl;
 			foundStr = (*line).find("Type:");
 			string roomName = (*line).substr(foundStr+6);
 			cout << "Found room: " << roomName << endl;
 			line++;
+			cout << *line << end;
 
 			//Read doorLocked, firstTime
 			int doorLocked, firstTry;
 
 			sscanf((*line).c_str(), "%*s %d", &doorLocked);
 			line++;
+			cout << *line << end;
 			sscanf((*line).c_str(), "%*s %d", &firstTry);
 			line++;
+			cout << *line << end;
 
 			if(doorLocked == 0 || doorLocked == 1){
 				cout << "Found doorLocked" << endl;
@@ -201,7 +206,6 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 			else{
 				return false;
 			}
-			cout << *line;
 			//Searching for inventory
 			foundInv = (*line).find("<Room_Inventory>");	
 			if (foundInv != std::string::npos) {
