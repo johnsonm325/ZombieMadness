@@ -12,7 +12,6 @@ StateManager::~StateManager() {
 }
 
 void StateManager::init(){
-	initRoomList();
 	changeWorkingDir();
 	
 	clearStates();
@@ -452,10 +451,10 @@ bool StateManager::haveSaves() {
 	return states.size() > 0;
 }
 
-void StateManager::initRoomList(){
-	// GameState* newState = new GameState();
-	// this->roomList = newState->getRooms();
-}
+// void StateManager::initRoomList(){
+// 	// GameState* newState = new GameState();
+// 	// this->roomList = newState->getRooms();
+// }
 
 void StateManager::changeWorkingDir() {
 

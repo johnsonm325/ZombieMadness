@@ -57,7 +57,7 @@ public:
 	void printStates();
 	bool haveSaves();
 
-	void initRoomList();
+	//void initRoomList();
 	void changeWorkingDir();
 	void resetWorkingDir();
 };
