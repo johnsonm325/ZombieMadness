@@ -47,7 +47,7 @@ public:
 	void setTime(string time);
 
 	//Rooms
-	void setRooms(vector<Space*> rooms);
+	void initRooms();
 	vector<Space*> getRooms();
 	Space* getCurrentRoom();
 	void setCurrentRoom(Space* room);

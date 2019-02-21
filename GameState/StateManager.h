@@ -57,7 +57,7 @@ public:
 	void printStates();
 	bool haveSaves();
 
-	void addRoomList(vector<Space*> rooms);
+	void initRoomList();
 	void changeWorkingDir();
 	void resetWorkingDir();
 };

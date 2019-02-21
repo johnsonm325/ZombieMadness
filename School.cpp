@@ -33,7 +33,6 @@ School::School()
 	connectRooms();
 	createRoomsList();
 
-	stateManager->addRoomList(rooms);
 	stateManager->init();
 }
 

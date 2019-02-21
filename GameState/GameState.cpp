@@ -27,7 +27,7 @@ void GameState::updateTime() {
 	timeStamp = str;
 }
 
-void GameState::setRooms(vector<Space*> allrooms) {
+void GameState::initRooms() {
 	
 	Space *mb, *wb, *cafe, *libr, *sfh1, *sfh2, *sfh3, *sfh4;
 	Space *hist, *lit, *chem, *cs, *bio, *math,*infr, *lr,*gym2, *gym1, *fb;
