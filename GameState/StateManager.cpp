@@ -173,8 +173,8 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 	size_t foundStart = (*line).find("<Room>");	//Found room section start
 	size_t foundEnd, foundInv, foundStr;
 
+	line++;
 	if(foundStart != std::string::npos){
-			line++;
 			// cout << *line << endl;
 			foundStr = (*line).find("Type:");
 			if(foundStr != std::string::npos){
@@ -184,7 +184,6 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 			else{
 				isValid = false;
 			}
-			
 			line++;
 			// cout << *line << endl;
 
@@ -246,6 +245,7 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 		//cout << invalidFile << endl;
 		isValid = false;
 	}
+	line++;
 	return isValid;	
 }
 
