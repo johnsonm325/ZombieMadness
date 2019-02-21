@@ -33,6 +33,7 @@ void GameState::setRooms(vector<Space*> allrooms) {
 	Space *hist, *lit, *chem, *cs, *bio, *math,*infr, *lr,*gym2, *gym1, *fb;
 	Space *ffh1, *ffh2, *ffh3, *ffh4, *fl, *fo, *prin;
 	PlayerInventory* inv = new PlayerInventory();
+
 	mb = new MensBathroom();
 	wb = new WomensBathroom(inv);
 	sfh1 = new SecondFloorHallway();
@@ -86,36 +87,6 @@ void GameState::setRooms(vector<Space*> allrooms) {
 	rooms.push_back(fl);
 	rooms.push_back(fo);
 	rooms.push_back(prin);
-
-	//Now deep-copy memory from actual rooms to GameState's room vector
-	//syntax:   memcpy ( &person_copy, &person, sizeof(person) );
-
-	memcpy(rooms[0], allrooms[0], sizeof(MensBathroom));
-	memcpy(rooms[1], allrooms[1], sizeof(WomensBathroom));
-	memcpy(rooms[2], allrooms[2], sizeof(Cafeteria));
-	memcpy(rooms[3], allrooms[3], sizeof(Library));
-	memcpy(rooms[4], allrooms[4], sizeof(SecondFloorHallway));
-	memcpy(rooms[5], allrooms[5], sizeof(SecondFloorHallway));
-	memcpy(rooms[6], allrooms[6], sizeof(SecondFloorHallway));
-	memcpy(rooms[7], allrooms[7], sizeof(SecondFloorHallway));
-	memcpy(rooms[8], allrooms[8], sizeof(History));
-	memcpy(rooms[9], allrooms[9], sizeof(Literature));
-	memcpy(rooms[10], allrooms[10], sizeof(Chemistry));
-	memcpy(rooms[11], allrooms[11], sizeof(ComputerScience));
-	memcpy(rooms[12], allrooms[12], sizeof(Biology));
-	memcpy(rooms[13], allrooms[13], sizeof(Math));
-	memcpy(rooms[14], allrooms[14], sizeof(Infirmary));
-	memcpy(rooms[15], allrooms[15], sizeof(LockerRoom));
-	memcpy(rooms[16], allrooms[16], sizeof(GymnasiumFloor1));
-	memcpy(rooms[17], allrooms[17], sizeof(GymnasiumFloor2));
-	memcpy(rooms[18], allrooms[18], sizeof(Football));
-	memcpy(rooms[19], allrooms[19], sizeof(FirstFloorHallway));
-	memcpy(rooms[20], allrooms[20], sizeof(FirstFloorHallway));
-	memcpy(rooms[21], allrooms[21], sizeof(FirstFloorHallway));
-	memcpy(rooms[22], allrooms[22], sizeof(FirstFloorHallway));
-	memcpy(rooms[23], allrooms[23], sizeof(FrontLobby));
-	memcpy(rooms[24], allrooms[24], sizeof(FrontOffice));
-	memcpy(rooms[25], allrooms[25], sizeof(PrincipalsOffice));
 }
 
 vector<Space*> GameState::getRooms(){
