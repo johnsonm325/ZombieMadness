@@ -174,7 +174,7 @@ void readRoom(vector<string> lines, vector<Space*> rooms){
 
 }
 
-void readItem(vector<string> lines, vector<Items*> items){
+void readItem(vector<string> lines, vector<Item*> items){
 	
 }
 
@@ -253,7 +253,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 			writeRoom(saveFile, rooms[i]);
 			fprintf(saveFile, " \n");
 		}
-		writePlayerToFile(saveFile, state->getPlayer());
+		writePlayer(saveFile, state->getPlayer());
 
 		fclose(saveFile);
 	}
