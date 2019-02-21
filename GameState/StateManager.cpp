@@ -135,7 +135,6 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		int rIdx, i;
 		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
 
-		newState->setRooms(this->rooms);
 		newState->setCurrentRoom(rIdx);
 		newState->setTime(newTime);
 
