@@ -110,9 +110,9 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		   foundHeader[3];
 	vector<string>::iterator line; 
 
-	headerKeys[0] = "Time stamp:";
-	headerKeys[1] = "Current room:";
-	headerKeys[2] = "Room idx:";
+	headerKeys[0] = "Time_stamp:";
+	headerKeys[1] = "Current_room:";
+	headerKeys[2] = "Room_idx:";
 	foundHeader[0] = lines[1].find(headerKeys[0]);
 	foundHeader[1] = lines[2].find(headerKeys[1]);
 	foundHeader[2] = lines[3].find(headerKeys[2]);
@@ -132,7 +132,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 
 		//Adding header info to state object;
 		int rIdx, i;
-		sscanf(lines[3].c_str(), "%*s %*s %d ", &rIdx);
+		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
 
 		newState->setRooms(this->rooms);
 		newState->setCurrentRoom(rIdx);
@@ -144,12 +144,14 @@ GameState* StateManager::processFileData(vector<string> lines) {
 
 		while(line != lines.end()){
 
-			foundRooms = (*line).find("Rooms");
+			foundRooms = (*line).find("<Rooms>");
 			//Found rooms section in file, start processing room data
 			if(foundRooms != std::string::npos){
 				for(i = 0; i < (int)newState->getRooms().size(); i++){
-					line++; //Go to first room name;
-					readRoom(line, rooms[i]);
+					bool readSucess = readRoom(line, rooms[i]);
+					if(readSucess == false){
+						cout << invalidFile << endl;
+					}
 				}
 			}
 			else{
@@ -162,8 +164,9 @@ GameState* StateManager::processFileData(vector<string> lines) {
 	return newState;
 }
 
-void StateManager::readRoom(vector<string>::iterator& line, Space* room){
+bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 
+	line++; //Go to tag <Room>;
 	string invalidFile = "Error reading save file! Invalid format";
 	size_t foundRoomStart = (*line).find("<Room>");	//Found room section start
 	size_t foundRoomEnd, foundInv, foundStr;
@@ -195,8 +198,7 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 				room->setFirstTry((bool)firstTry);
 			}
 			else{
-				cout << invalidFile << endl;
-				break;
+				return false;
 			}
 			cout << *line;
 			//Searching for inventory
@@ -215,13 +217,11 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 					}
 				}
 				else{
-					cout << invalidFile << endl;
-					break;
+					return false;
 				}
 			}
 			else{
-				cout << invalidFile << endl;
-				break;
+				return false;
 			}
 			line++;
 			cout << *line << endl;
@@ -230,7 +230,9 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 	}
 	else{
 		cout << invalidFile << endl;
-	}	
+		return false;
+	}
+	return true;	
 }
 
 void StateManager::readItem(vector<string>::iterator& line, Item* item){
@@ -301,9 +303,9 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 	if (saveFile != 0) {
 		//fprintf(saveFile, "Number of save files: %d\n", (int) states.size());
 		fprintf(saveFile, "Filename: %s\n", filename.c_str());
-		fprintf(saveFile, "Time stamp: %s\n", state->getTime().c_str());
-		fprintf(saveFile, "Current room: %s\n", state->getCurrentRoom()->getType().c_str());
-		fprintf(saveFile, "Room idx: %d\n", state->getRoomIdx());
+		fprintf(saveFile, "Time_stamp: %s\n", state->getTime().c_str());
+		fprintf(saveFile, "Current_room: %s\n", state->getCurrentRoom()->getType().c_str());
+		fprintf(saveFile, "Room_idx: %d\n", state->getRoomIdx());
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
 		vector<Space*> rooms = state->getRooms();
 
@@ -330,7 +332,6 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 		j = 0;
 	bool doorLocked = room->getDoorLocked();
 	fprintf(saveFile, "<Room>\n");
-
 	fprintf(saveFile, "Type: %s\n", room->getType().c_str());
 	fprintf(saveFile, "Locked: %d\n", (int)doorLocked);
 	fprintf(saveFile, "First_time: %d\n", (int)room->isFirstTry());
@@ -348,7 +349,6 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 		writeCreature(saveFile, creatures[j], j+1);
 	}
 	fprintf(saveFile, "</Creatures>\n");
-
 	fprintf(saveFile, "</Room>\n");
 }
 
