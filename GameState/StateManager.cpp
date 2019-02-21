@@ -181,7 +181,7 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 
 			sscanf((*line).c_str(), "%*s %d", &doorLocked);
 			line++;
-			sscanf((*line).c_str(), "%*s %*s %d", &firstTry);
+			sscanf((*line).c_str(), "%*s %d", &firstTry);
 			line++;
 
 			if(doorLocked == 0 || doorLocked == 1){
@@ -330,7 +330,7 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 		j = 0;
 	bool doorLocked = room->getDoorLocked();
 	fprintf(saveFile, "<Room>\n");
-	
+
 	fprintf(saveFile, "Type: %s\n", room->getType().c_str());
 	fprintf(saveFile, "Locked: %d\n", (int)doorLocked);
 	fprintf(saveFile, "First_time: %d\n", (int)room->isFirstTry());
