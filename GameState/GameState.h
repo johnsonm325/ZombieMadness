@@ -14,16 +14,20 @@ private:
 	int steps; 
 	string timeStamp;
 	vector<Space*> rooms;
+	Player* player;
 public:
 	GameState();
 	~GameState();
 	string getTime();
 	void updateTime();
 	void setTime(string time);
+
+	//Rooms
+	void setRooms(vector<Space*> rooms);
+	vector<Space*> getRooms();
 	Space* getCurrentRoom();
 	void setCurrentRoom(Space* room);
 	void setCurrentRoom(int idx);
-
 	void setRoomIdx(int idx);
 	int getRoomIdx();
 	int findRoomByIdx(Space* room);
@@ -31,8 +35,9 @@ public:
 	void setSteps(int steps);
 	int getSteps();
 
-	void setRooms(vector<Space*> rooms);
-	vector<Space*> getRooms();
+	//Player
+	void addPlayer(Player* player);
+	Player* getPlayer();
 
 };
 

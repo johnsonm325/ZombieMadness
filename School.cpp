@@ -616,7 +616,7 @@ GameState* School::createState(){
 	newState->setRooms(getRoomsList());
 	newState->setCurrentRoom(getCurrentRoom());
 	newState->setSteps(steps);
-	
+	newState->addPlayer(player);
 	return newState;
 }
 

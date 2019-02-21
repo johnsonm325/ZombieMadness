@@ -67,6 +67,14 @@ void Space::firstTime()
 	firstTry = false;
 }
 
+void Space::setFirstTry(bool first){
+	firstTry = first;
+}
+
+bool Space::isFirstTry(){
+	return firstTry;
+}
+
 string Space::getType()
 {
 	return type;
@@ -192,12 +200,4 @@ void Space::unlockDoor()
 void Space::lockDoor()
 {
 	doorLocked = true;
-}
-
-void Space::setFirstTry(bool first){
-	firstTry = first;
-}
-
-bool Space::isFirstTry(){
-	return firstTry;
 }

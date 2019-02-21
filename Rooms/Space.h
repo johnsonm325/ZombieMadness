@@ -40,7 +40,9 @@ public:
 	Space* getSouth();
 	virtual void printIntro() = 0;		// For abstract class
 	virtual int menu(vector<string>);	
-	virtual void firstTime();			
+	virtual void firstTime();	
+	void setFirstTry(bool);
+	bool isFirstTry();		
 	string getType();
 
 	void addRoomsListToSpace(vector<Space*>);	
@@ -62,8 +64,7 @@ public:
 	void unlockDoor();
 	void lockDoor();
 
-	void setFirstTry(bool);
-	bool isFirstTry();
+
 };
 
 #endif

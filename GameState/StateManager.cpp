@@ -234,9 +234,11 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 
 		fprintf(saveFile, "\nRooms\n");
 		for (unsigned int i = 0; i < rooms.size(); i++) {
-			fprintf(saveFile, " \n");
 			writeRoomToFile(saveFile, rooms[i]);
+			fprintf(saveFile, " \n");
 		}
+		writePlayerToFile(saveFile, state->getPlayer());
+
 		fclose(saveFile);
 	}
 	else {
@@ -299,6 +301,7 @@ void StateManager::writePlayerToFile(FILE* saveFile, Player* player){
 	fprintf(saveFile, "Player stats\n");
 	writeCreatureToFile(saveFile, playerCr, 1);
 }
+
 
 //Managing states list
 void StateManager::addGameState(GameState* state) {

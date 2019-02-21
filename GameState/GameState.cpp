@@ -27,6 +27,14 @@ void GameState::updateTime() {
 	timeStamp = str;
 }
 
+void GameState::setRooms(vector<Space*> rooms) {
+	this->rooms = rooms;
+}
+
+vector<Space*> GameState::getRooms(){
+	return rooms;
+}
+
 Space* GameState::getCurrentRoom(){
 	return currentRoom;
 }
@@ -48,22 +56,6 @@ int GameState::getRoomIdx(){
 	return roomIdx;
 }
 
-void GameState::setSteps(int steps){
-	this->steps = steps;
-}
-
-int GameState::getSteps(){
-	return steps;
-}
-
-void GameState::setRooms(vector<Space*> rooms) {
-	this->rooms = rooms;
-}
-
-vector<Space*> GameState::getRooms(){
-	return rooms;
-}
-
 int GameState::findRoomByIdx(Space* room){
 	int rIdx;
 	for(unsigned int i = 0; i < getRooms().size(); i++){
@@ -75,3 +67,18 @@ int GameState::findRoomByIdx(Space* room){
 	return rIdx;
 }
 	
+void GameState::setSteps(int steps){
+	this->steps = steps;
+}
+
+int GameState::getSteps(){
+	return steps;
+}
+
+void GameState::addPlayer(Player* player){
+	this->player = player;
+}
+
+Player* GameState::getPlayer(){
+	return player;
+}
