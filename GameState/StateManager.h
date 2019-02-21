@@ -21,7 +21,7 @@ using namespace std;
 class StateManager
 {
 private:
-	vector<Space*> rooms;
+	//vector<Space*> roomList;
 	vector<GameState*> states;
 	vector<string> fileList;
 	unsigned int maxStates = 3;
