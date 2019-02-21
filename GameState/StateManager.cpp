@@ -166,8 +166,7 @@ void StateManager::readRoom(vector<string>::iterator& line, Space* room){
 
 	string invalidFile = "Error reading save file! Invalid format";
 	size_t foundRoomStart = (*line).find("<Room>");	//Found room section start
-	size_t foundRoomEnd = ;	//Found room section end
-	size_t foundInv, foundStr;
+	size_t foundRoomEnd, foundInv, foundStr;
 
 	if(foundRoomStart != std::string::npos){
 		do {
