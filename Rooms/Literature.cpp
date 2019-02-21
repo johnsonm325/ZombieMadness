@@ -22,7 +22,6 @@ void Literature::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		firstTime();
 		cout << "# To be or not to be, that is the question. 'More like, to get out of here or die!' Maybe that Shakespeare was" << endl;
 		cout << "# on to something. Perhaps I can find some useful items in here to help me get out of here." << endl;
 		cout << "#" << endl;
@@ -32,6 +31,22 @@ void Literature::printIntro(){
 	cout << "# sits in front of the chalkboard and desks in the middle of the floor face the chalkboard." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
+}
+
+void Literature::printExitDesc()
+{
+	if (firstTry == true)
+	{	
+		firstTime();
+		cout << "# 'I'm gonna be able to write the world's best book after surviving this.  I'll show" << endl;
+		cout << "# Van Gogh who is really the best author! ................" << endl;
+		cout << "# Wait..... was Van Gogh an author or artist? ..... Man I should have tried harder." << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# You remember being able to access the locker room from here as sometimes, the sports teams" << endl;
+	cout << "# would randomly come in being all obnoxious from there.  The 2nd floor hallway is right outside too" << endl;
 	cout << "#" << endl;
 }
 

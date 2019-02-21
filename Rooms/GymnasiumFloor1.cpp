@@ -10,7 +10,6 @@ void GymnasiumFloor1::printIntro(){
 	// Prints the first time the room is visited	
 	if (firstTry == true)
 	{
-		firstTime();
 		if(deadZombies == true) {
 			cout << "# Dead zombies litter the floor. Great thing you decided to cut those ropes or else you'd have a tough fight" << endl;
 			cout << "# on your hands. Basketball doesn't seem like such of an important event when you're having to fight your way" << endl;
@@ -29,6 +28,29 @@ void GymnasiumFloor1::printIntro(){
 		cout << "# What do you do now?" << endl;
 		cout << "#" << endl;
 	}
+}
+
+void GymnasiumFloor1::printExitDesc()
+{
+	if (firstTry == true)
+	{
+		if (deadZombies == true)
+		{
+			cout << "# 'Wow, thank goodness I was able to take out all these zombies at once," << endl;
+			cout << "# no way could I take them all on!'" << endl;
+		}
+
+		else
+		{
+			cout << "# There are seriously a ton of these zombies here, how can you ever fight them?" << endl;
+			cout << "# ..." << endl;
+			cout << "# Or maybe you don't?" << endl;
+		}
+	}
+
+	cout << "# The cafeteria is super close, you remember that from how many times you went to grab food" << endl;
+	cout << "# during gym class.  The football field is easily accessible from here." << endl;
+	cout << "#" << endl;
 }
 
 int GymnasiumFloor1::menu(vector<string> commandVector)

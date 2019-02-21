@@ -15,7 +15,6 @@ void GymnasiumFloor2::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		firstTime();
 		cout << "# You've never been up here! It looks like the rafters of the gym. 'This door is always locked so I'm surprised it's" << endl;
 		cout << "# open now.'" << endl;
 		cout << "#" << endl;
@@ -26,6 +25,22 @@ void GymnasiumFloor2::printIntro(){
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 	
+}
+
+void GymnasiumFloor2::printExitDesc()
+{
+	if (firstTry == true)
+	{
+		firstTime();
+		cout << "# As you look down on all the zombies below, you start to have" << endl;
+		cout << "# some serious doubts if you will survive or not." << endl;
+		cout << "# Not gonna help to mop about it though, onwards we go!" << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# With access to the first floor of the gym and the locker room, you feel" << endl;
+	cout << "# like there can be some good stuff waiting for you soon." << endl;
+	cout << "#" << endl;
 }
 
 int GymnasiumFloor2::menu(vector<string> commandVector)

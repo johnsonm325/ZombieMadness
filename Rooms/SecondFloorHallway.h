@@ -16,6 +16,7 @@ public:
 	SecondFloorHallway();
 	SecondFloorHallway(bool);
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void firstTime();
 	bool coltGone();

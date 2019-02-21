@@ -17,6 +17,7 @@ private:
 public:
 	FrontOffice();
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void usePA();
 	void firstTime();

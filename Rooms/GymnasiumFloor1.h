@@ -14,6 +14,7 @@ private:
 public:
 	GymnasiumFloor1();
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void ropesCut();
 	void zombiesDead();

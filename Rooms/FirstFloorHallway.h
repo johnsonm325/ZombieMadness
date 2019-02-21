@@ -14,6 +14,7 @@ public:
 	FirstFloorHallway();
 	FirstFloorHallway(bool);
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void inspectToilet();
 	void firstTime();

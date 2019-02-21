@@ -14,6 +14,7 @@ private:
 public:
 	Chemistry();
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void zombiesDead();
 	void firstTime();
