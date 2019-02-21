@@ -104,6 +104,7 @@ GameState* StateManager::readSaveFile(string filename) {
 
 GameState* StateManager::processFileData(vector<string> lines) {
 	GameState* newState = new GameState();
+	string invalidFile = "Error reading save file! Invalid format";
 
 	size_t foundRooms, foundInv;
 	size_t foundHeader[3];
@@ -119,8 +120,11 @@ GameState* StateManager::processFileData(vector<string> lines) {
 
 	//Didn't find file header
 	if ((foundHeader[0] == std::string::npos) || (foundHeader[1] == std::string::npos) ||
-		(foundHeader[2] == std::string::npos)) 
-		{	return NULL;		}
+		(foundHeader[2] == std::string::npos)){	
+
+		cout << invalidFile << endl;
+		return NULL;		
+	}
 
 	//Found it
 	else {
@@ -137,7 +141,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 
 		line = lines.begin();
 		line +=6;
-		cout << "line 6" << *line << endl;
+		cout << "line 6: " << *line << endl;
 
 		while(line != lines.end()){
 
@@ -149,6 +153,11 @@ GameState* StateManager::processFileData(vector<string> lines) {
 					readRoom(line, rooms[i]);
 				}
 			}
+			else{
+				cout << invalidFile << endl;
+				break;
+			}
+			line++;
 		}
 	}
 	return newState;
@@ -171,7 +180,7 @@ void StateManager::readRoom(vector<string>::iterator line, Space* room){
 
 		sscanf((*line).c_str(), "%*s %d", &doorLocked);
 		line++;
-		sscanf((*line).c_str(), "%*s %d", &firstTry);
+		sscanf((*line).c_str(), "%*s %*s %d", &firstTry);
 		line++;
 
 		if(doorLocked == 0 || doorLocked == 1){
