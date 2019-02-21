@@ -176,7 +176,7 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 	if(foundStart != std::string::npos){
 		do {
 			line++;
-			cout << *line << endl;
+			// cout << *line << endl;
 			foundStr = (*line).find("Type:");
 			if(foundStr != std::string::npos){
 				string roomName = (*line).substr(foundStr+6);
@@ -187,16 +187,17 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 			}
 			
 			line++;
-			cout << *line << endl;
+			// cout << *line << endl;
 
 			//Read doorLocked, firstTime
-			int doorLocked, firstTry;
+			int doorLocked =-1, 
+				firstTry = -1;
 			sscanf((*line).c_str(), "%*s %d", &doorLocked);
 			line++;
-			cout << *line << endl;
+			// cout << *line << endl;
 			sscanf((*line).c_str(), "%*s %d", &firstTry);
 			line++;
-			cout << *line << endl;
+			// cout << *line << endl;
 
 			if(doorLocked == 0 || doorLocked == 1){
 				cout << "Found doorLocked" << endl;
@@ -216,7 +217,7 @@ bool StateManager::readRoom(vector<string>::iterator& line, vector<string> lines
 			if (foundInv != std::string::npos) {
 				cout << "Found inventory" << endl;
 				line++;
-				cout << *line << endl;
+				//cout << *line << endl;
 				foundInv = (*line).find("Size:");
 				if (foundInv != std::string::npos) {
 					int numItems;
