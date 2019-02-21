@@ -15,7 +15,7 @@ FirstFloorHallway::FirstFloorHallway(bool firstTry) : Space("First Floor Hallway
 void FirstFloorHallway::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
-	{;
+	{
 		cout << "# This hallway doesn't look much better than the second floor. Blood is smeared everywhere and there are half-eaten" << endl;
 		cout << "# bodies, and some with just holes chewed into their stomachs, just lying along the hallway. You wrench at the sight" << endl;
 		cout << "# and throw up on the floor. These are people you went to school with and sat beside everyday. You finally steel your" << endl;
