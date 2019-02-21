@@ -1,6 +1,5 @@
 #include "History.h"
 
-
 History::History() : Space("History")
 {
 	georgeWashingtonBust = new Item();
@@ -57,7 +56,6 @@ int History::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void History::inspectBust()
 {
 	cout << georgeWashingtonBust->getDesc() << endl;;
@@ -66,17 +64,10 @@ void History::inspectBust()
 }
 
 
-void History::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool History::coltGone()
 {
 	return goneColt;
 }
-
 
 bool History::itemSearch(vector<string> inv, string a)
 {

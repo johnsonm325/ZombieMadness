@@ -1,6 +1,5 @@
 #include "Literature.h"
 
-
 Literature::Literature() : Space("Literature")
 {
 	chalkboard = new Item();
@@ -48,7 +47,6 @@ int Literature::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void Literature::inspectDesk()
 {
 	noteVisible = true;
@@ -67,18 +65,10 @@ void Literature::zombiesDead()
 	deadZombies = true;
 }
 
-
-void Literature::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool Literature::coltGone()
 {
 	return goneColt;
 }
-
 
 bool Literature::itemSearch(vector<string> inv, string a)
 {

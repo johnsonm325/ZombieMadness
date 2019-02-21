@@ -1,6 +1,5 @@
 #include "PrincipalsOffice.h"
 
-
 PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
 	string description, name, text;
@@ -58,11 +57,6 @@ int PrincipalsOffice::menu(vector<string> commandVector)
 void PrincipalsOffice::zombiesDead()
 {
 	deadZombies = true;
-}
-
-void PrincipalsOffice::firstTime()
-{
-	firstTry = false;
 }
 
 bool PrincipalsOffice::coltGone()

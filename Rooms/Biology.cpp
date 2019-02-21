@@ -32,24 +32,10 @@ int Biology::menu(vector<string> commandVector)
 	return 0;
 }
 
-
-void Biology::inspectToilet()
-{
-
-}
-
-
-void Biology::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool Biology::coltGone()
 {
 	return goneColt;
 }
-
 
 bool Biology::itemSearch(vector<string> inv, string a)
 {

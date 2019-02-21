@@ -1,6 +1,5 @@
 #include "GymnasiumFloor2.h"
 
-
 GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 {
 	ropes = new Item();
@@ -47,7 +46,6 @@ int GymnasiumFloor2::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void GymnasiumFloor2::cutRopes()
 {
 	cout << "# As you cut the ropes, the tension is released and all of the lights and scoreboards go crashing to the lower level of the gym." << endl << "#" << endl;
@@ -55,18 +53,10 @@ void GymnasiumFloor2::cutRopes()
 	gym1->ropesCut();
 }
 
-
-void GymnasiumFloor2::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool GymnasiumFloor2::coltGone()
 {
 	return goneColt;
 }
-
 
 bool GymnasiumFloor2::itemSearch(vector<string> inv, string a)
 {

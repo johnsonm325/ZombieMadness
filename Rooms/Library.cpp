@@ -1,6 +1,5 @@
 #include "Library.h"
 
-
 Library::Library() : Space("Library")
 {
 	ladder = new Item();
@@ -48,7 +47,6 @@ int Library::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void Library::useLadder()
 {
 	cout << "# You climb the to the top of the ladder. The tops of the shelves are dusty and there are a lot of books you've never heard of. Doesn't seem to be anything special going on here." << endl << "#" << endl;
@@ -56,18 +54,10 @@ void Library::useLadder()
 	fl->zombiesDead();
 }
 
-
-void Library::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool Library::coltGone()
 {
 	return goneColt;
 }
-
 
 bool Library::itemSearch(vector<string> inv, string a)
 {

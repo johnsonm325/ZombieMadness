@@ -232,7 +232,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
 		vector<Space*> rooms = state->getRooms();
 
-		fprintf(saveFile, "Rooms\n");
+		fprintf(saveFile, "\nRooms\n");
 		for (unsigned int i = 0; i < rooms.size(); i++) {
 			fprintf(saveFile, " \n");
 			writeRoomToFile(saveFile, rooms[i]);

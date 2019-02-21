@@ -34,24 +34,10 @@ int ComputerScience::menu(vector<string> commandVector)
 	return 0;
 }
 
-
-void ComputerScience::inspectToilet()
-{
-
-}
-
-
-void ComputerScience::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool ComputerScience::coltGone()
 {
 	return goneColt;
 }
-
 
 bool ComputerScience::itemSearch(vector<string> inv, string a)
 {

@@ -1,6 +1,5 @@
 #include "Football.h"
 
-
 Football::Football() : Space("Football Field")
 {
 	lockDoor();
@@ -36,24 +35,15 @@ int Football::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void Football::zombiesDead()
 {
 	deadZombies = true;
 }
 
-
-void Football::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool Football::coltGone()
 {
 	return goneColt;
 }
-
 
 bool Football::itemSearch(vector<string> inv, string a)
 {

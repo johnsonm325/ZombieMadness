@@ -45,7 +45,6 @@ int MensBathroom::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void MensBathroom::inspectToilet()
 {
 	holeVisible = true;
@@ -63,17 +62,10 @@ bool MensBathroom::getHoleVisible()
 	return holeVisible;
 }
 
-void MensBathroom::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool MensBathroom::coltGone()
 {
 	return goneColt;
 }
-
 
 bool MensBathroom::itemSearch(vector<string> inv, string a)
 {

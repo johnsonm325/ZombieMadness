@@ -18,7 +18,6 @@ public:
 	void printIntro();
 	int menu(vector<string>);
 	void throwFood();
-	void firstTime();
 	bool coltGone();
 	bool itemSearch(vector<string>, string); 	//function used to search character's inventory to see if they have items needed for a particular action
 };

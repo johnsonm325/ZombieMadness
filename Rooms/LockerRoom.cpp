@@ -1,6 +1,5 @@
 #include "LockerRoom.h"
 
-
 LockerRoom::LockerRoom() : Space("Locker Room")
 {
 	this->roomInventory->addItem(new BaseballBat());
@@ -36,24 +35,10 @@ int LockerRoom::menu(vector<string> commandVector)
 	return 0;
 }
 
-
-void LockerRoom::inspectToilet()
-{
-
-}
-
-
-void LockerRoom::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool LockerRoom::coltGone()
 {
 	return goneColt;
 }
-
 
 bool LockerRoom::itemSearch(vector<string> inv, string a)
 {

@@ -45,7 +45,6 @@ int Cafeteria::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void Cafeteria::throwFood()
 {
 	cout << "# You hurl the chunks of food across the room. They stick to the wall and satisfyingly slide down to the floor. 'I've always wanted to do that,' you say." << endl << "#" << endl;
@@ -53,18 +52,10 @@ void Cafeteria::throwFood()
 	chem->zombiesDead();
 }
 
-
-void Cafeteria::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool Cafeteria::coltGone()
 {
 	return goneColt;
 }
-
 
 bool Cafeteria::itemSearch(vector<string> inv, string a)
 {

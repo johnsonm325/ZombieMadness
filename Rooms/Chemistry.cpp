@@ -38,11 +38,6 @@ void Chemistry::zombiesDead()
 	deadZombies = true;
 }
 
-void Chemistry::firstTime()
-{
-	firstTry = false;
-}
-
 bool Chemistry::coltGone()
 {
 	return goneColt;

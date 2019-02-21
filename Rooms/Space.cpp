@@ -62,6 +62,11 @@ int Space::menu(vector<string> commandVector)
 	return 0;
 }
 
+void Space::firstTime()
+{
+	firstTry = false;
+}
+
 string Space::getType()
 {
 	return type;

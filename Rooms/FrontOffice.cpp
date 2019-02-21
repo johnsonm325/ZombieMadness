@@ -1,6 +1,5 @@
 #include "FrontOffice.h"
 
-
 FrontOffice::FrontOffice() : Space("Front Office")
 {
 	paSystem = new Item();
@@ -46,7 +45,6 @@ int FrontOffice::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void FrontOffice::usePA()
 {
 	cout << "# You push the button and speak loudly over the intercom, 'GOOD MORNING VIETNAM!!!' ... No response.'" << endl << "#" << endl;
@@ -54,18 +52,10 @@ void FrontOffice::usePA()
 	prin->zombiesDead();
 }
 
-
-void FrontOffice::firstTime()
-{
-	firstTry = false;
-}
-
-
 bool FrontOffice::coltGone()
 {
 	return goneColt;
 }
-
 
 bool FrontOffice::itemSearch(vector<string> inv, string a)
 {

@@ -59,11 +59,6 @@ int WomensBathroom::menu(vector<string> commandVector)
 	return 0;
 }
 
-void WomensBathroom::firstTime()
-{
-	firstTry = false;
-}
-
 bool WomensBathroom::coltGone()
 {
 	return goneColt;
