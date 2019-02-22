@@ -1,7 +1,7 @@
 #ifndef STATE_MANAGER_H
 #define STATE_MANAGER_H
 
-#define STATE_DEBUG 0
+// #define STATE_DEBUG 0
 
 #include "GameState.h"
 #include <fstream>
