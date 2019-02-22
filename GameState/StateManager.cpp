@@ -17,14 +17,11 @@ void StateManager::init(){
 	clearStates();
 	getSaveFileList();
 	if (foundSaveFiles()) {
+		cout << "Found existing saves:" << fileList.size() << endl;
 
-#ifdef STATE_DEBUG
-	cout << "Found existing saves:" << fileList.size() << endl;
-
-	for(unsigned int i = 0; i < fileList.size(); i++){
-		cout << "File: " << fileList[i] << endl;
-	}
-#endif
+		for(unsigned int i = 0; i < fileList.size(); i++){
+			cout << "File: " << fileList[i] << endl;
+		}
 		readAllSaves();
 	}
 	resetWorkingDir();
@@ -124,7 +121,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 	//Didn't find file header
 	if ((foundHeader[0] == std::string::npos) || (foundHeader[1] == std::string::npos) ||
 		(foundHeader[2] == std::string::npos)){	
-
+			
 		cout << invalidFile << endl;
 		return NULL;		
 	}
@@ -174,7 +171,8 @@ GameState* StateManager::processFileData(vector<string> lines) {
 bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 
 	line++; //Go to tag <Room>;
-	cout << *line << endl;
+
+	//cout << *line << endl;
 	bool isValid = true;
 	string invalidFile = "Error reading save file! Invalid format";
 	size_t foundStart = (*line).find("<Room>");	//Found room section start
@@ -263,7 +261,9 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 		isValid = false;
 	}
 	line++;
+#ifdef STATE_DEBUG
 	cout << *line << endl;
+#endif
 	return isValid;	
 }
 
