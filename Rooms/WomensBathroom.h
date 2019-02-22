@@ -20,5 +20,6 @@ public:
 	void printExitDesc();
 	int menu(vector<string>);
 	void increaseBagSize();
+	
 };
 #endif

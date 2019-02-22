@@ -19,5 +19,6 @@ public:
 	void printExitDesc();
 	int menu(vector<string>);
 	void useLadder();
+	
 };
 #endif

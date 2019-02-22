@@ -16,4 +16,5 @@ public:
 	void printExitDesc();
 	int menu(vector<string>);
 	
+};
 #endif
