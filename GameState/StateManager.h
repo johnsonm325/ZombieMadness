@@ -28,10 +28,14 @@ private:
 public:
 	StateManager();
 	~StateManager();
+
+	//Finding saves
 	void init();
-	//Loading game state from file
-	bool foundSaves();
+	bool foundSaveFiles();
+	bool haveSaves();
 	vector<string> getSaveFileList();
+
+	//Reading saves
 	void readAllSaves();
 	GameState* readSaveFile(string filename);	
 	GameState* processFileData(vector<string> lines);
@@ -48,13 +52,11 @@ public:
 	void writeCreature(FILE* saveFile, Creature* creature, int count);
 	void writePlayer(FILE* saveFile, Player* player);
 
-
 	//Managing states list
 	void addGameState(GameState* state);
 	void removeGameState(GameState* state);
 	void clearStates();
 	void printStates();
-	bool haveSaves();
 
 	void changeWorkingDir();
 	void resetWorkingDir();

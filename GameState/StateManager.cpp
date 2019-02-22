@@ -16,7 +16,7 @@ void StateManager::init(){
 	
 	clearStates();
 	getSaveFileList();
-	if (foundSaves()) {
+	if (foundSaveFiles()) {
 
 #ifdef STATE_DEBUG
 	cout << "Found existing saves:" << fileList.size() << endl;
@@ -30,8 +30,12 @@ void StateManager::init(){
 	resetWorkingDir();
 }
 
-bool StateManager::foundSaves() {
+bool StateManager::foundSaveFiles() {
 	return fileList.size() > 0;
+}
+
+bool StateManager::haveSaves() {
+	return states.size() > 0;
 }
 
 vector<string> StateManager::getSaveFileList() {
@@ -139,7 +143,6 @@ GameState* StateManager::processFileData(vector<string> lines) {
 
 		line = lines.begin();
 		line +=6;
-		cout << "line 6: " << *line << endl;
 
 		while(line != lines.end()){
 			foundRooms = (*line).find("<Rooms>");
@@ -149,13 +152,17 @@ GameState* StateManager::processFileData(vector<string> lines) {
 				for(i = 0; i < (int)rooms.size(); i++){
 					bool readSucess = readRoom(line, rooms[i]);
 					if(readSucess == false){
-						cout << invalidFile << endl;
+#ifdef STATE_DEBUG
+					cout << invalidFile << endl;
+#endif						
 						return NULL;
 					}
 				}
 			}
 			else{
+#ifdef STATE_DEBUG
 				cout << invalidFile << endl;
+#endif
 				return NULL;
 			}
 			line++;
@@ -177,36 +184,41 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 	//cout << *line << endl;
 
 	if(foundStart != std::string::npos){
+#ifdef STATE_DEBUG
 			cout << "Found room start: <Room>" << endl;
+#endif
 			foundStr = (*line).find("Type:");
 			if(foundStr != std::string::npos){
 				string roomName = (*line).substr(foundStr+6);
+#ifdef STATE_DEBUG
 				cout << "Found room: " << roomName << endl;
+#endif
 			}
 			else{
 				isValid = false;
 			}
 			line++;
-			// cout << *line << endl;
 
 			//Read doorLocked, firstTime
 			int doorLocked =-1, 
 				firstTry = -1;
 			sscanf((*line).c_str(), "%*s %d", &doorLocked);
 			line++;
-			// cout << *line << endl;
 			sscanf((*line).c_str(), "%*s %d", &firstTry);
 			line++;
-			// cout << *line << endl;
 
 			if(doorLocked == 0 || doorLocked == 1){
+#ifdef STATE_DEBUG
 				cout << "Found doorLocked" << endl;
+#endif
 				if(doorLocked == 1){
 					room->lockDoor();
 				}
 			}	
 			if(firstTry == 0 || firstTry == 1){
+#ifdef STATE_DEBUG
 				cout << "Found firstTry" << endl;
+#endif
 				room->setFirstTry((bool)firstTry);
 			}
 			else{
@@ -215,16 +227,18 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 			//Searching for inventory
 			foundInv = (*line).find("<Room_Inventory>");	
 			if (foundInv != std::string::npos) {
+#ifdef STATE_DEBUG
 				cout << "Found inventory" << endl;
+#endif
 				line++;
 				//cout << *line << endl;
 				foundInv = (*line).find("Size:");
 				if (foundInv != std::string::npos) {
 					int numItems;
 					sscanf((*line).c_str(), "%*s %d ", &numItems);
+#ifdef STATE_DEBUG
 					cout << "Found " << numItems << " items" << endl;
-
-				
+#endif
 				}
 				else{
 					isValid = false;
@@ -238,7 +252,9 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 				line++;
 				foundEnd = (*line).find("</Room>");
 				if(foundEnd != std::string::npos){
-					cout << "Found room end: </Room>" << endl;
+#ifdef STATE_DEBUG
+				cout << "Found room end: </Room>" << endl;
+#endif						
 				}
 			}while(foundEnd == std::string::npos);
 	}
@@ -444,10 +460,6 @@ void StateManager::clearStates(){
 		delete states[i];
 	}
 	states.clear();
-}
-
-bool StateManager::haveSaves() {
-	return states.size() > 0;
 }
 
 void StateManager::changeWorkingDir() {
