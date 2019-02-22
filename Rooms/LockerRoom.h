@@ -12,7 +12,7 @@ private:
 
 public:
 	LockerRoom();
-	~LockerRooms();
+	~LockerRoom();
 	void printIntro();
 	void printExitDesc();
 	int menu(vector<string>);
