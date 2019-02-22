@@ -11,7 +11,7 @@ private:
 	string action;		//string action typed in by the user
 	bool goneColt = false,
 	     deadZombies = false;
-	Item *desk, *key, *PAsystem, *fireExt;
+	Item *desk, *key, *fireExt;
 
 public:
 	PrincipalsOffice();

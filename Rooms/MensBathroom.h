@@ -9,8 +9,7 @@ private:
 	string action;		//string action typed in by the user
 	bool goneColt = false,
 	     holeVisible = false;
-	Item *toilet,
-	     *hole;
+	Item *toilet, *hole;
 
 public:
 	MensBathroom();
