@@ -35,6 +35,10 @@ void Chemistry::printExitDesc()
 
 	cout << "# The hallway that is accessible from the chemistry room is pretty long, rooms like" << endl;
 	cout << "# the math room, com sci room, and front lobby are all reachable from here!" << endl;
+
+	if (zombie != NULL)
+		cout << "# Oh no, a zombie is in here!" << endl;
+
 	cout << "#" << endl;
 }
 
