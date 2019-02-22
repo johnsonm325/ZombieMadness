@@ -4,6 +4,7 @@
 Football::Football() : Space("Football Field")
 {
 	lockDoor();
+	this->creatures.push_back(new Zombie(true));
 }
 void Football::printIntro()
 {

@@ -2,7 +2,7 @@
 #define SPACE_H
 
 #include "../Items/Inventory.h"
-#include "../Creatures/Creature.h"
+#include "../Creatures/Zombie.h"
 
 #include <iostream>
 #include <ctime>

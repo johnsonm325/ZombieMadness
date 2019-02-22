@@ -64,6 +64,11 @@ void Creature::setHealth(int newHealth)
 	this->health =  newHealth;
 }
 
+void Creature::creatureDead()
+{
+	this->isDead = true;
+}
+
 void Creature::takeDamage(int damage)
 {
 	this->health -= damage;

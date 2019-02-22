@@ -32,6 +32,7 @@ public:
 	int getAttack();
 	int getDefense();
 	int getHealth();
+	void creatureDead();
 
 	//setters
 	void setName(string);

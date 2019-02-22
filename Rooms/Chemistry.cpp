@@ -2,7 +2,7 @@
 
 Chemistry::Chemistry() : Space("Chemistry")
 {
-	
+	this->creatures.push_back(new Zombie(false));
 }
 
 void Chemistry::printIntro(){

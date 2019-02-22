@@ -1,15 +1,23 @@
 #include "Zombie.h"
 
-Zombie::Zombie(int level) : Creature("Zombie")
+Zombie::Zombie(bool boss) : Creature("Zombie")
 {
-	setLevel(level);
+	this->isBoss = boss;
+
+	if (!boss)
+	{
+		this->description = "Your average zombie, but never doubt their capabilities!";
+		this->name = "Regular Zombie";
+	}
 	
-	if (level == 1)
-		this->description = "A level 1 zombie, shouldn't be too bad... it's never good to let your guard down though...";
-	else if (level == 2)
-		this->description = "A level 2 zombie, you better be careful with this one.  These guys are faster, stronger, and have higher health.";
 	else
-		this->description = "Oh boy, a level 3 zombie.  Watch out, these zombies are real tough, takes a lot to take them down and their attack damage is very high. Be prepared!";
+	{
+		this->description = "THE KING ZOMBIE! You have to fight real smart to beat this guy!";
+		this->name = "King Zombie";
+		this->attack = 5;
+		this->defense = 5;
+		this->health = 100;
+	}
 	
 }
 
@@ -17,35 +25,6 @@ Zombie::~Zombie()
 {
 	
 }
-
-void Zombie::setLevel(int level) {
-	this->level = level;
-
-	switch (level) {
-		case 1:
-			this->attack = 3;
-			this->defense = 4;
-			this->health = 8;
-			this->name = "Medium Zombie";
-			break;
-		case 2:
-			this->attack = 6;
-			this->defense = 8;
-			this->health = 10;
-			this->name = "Medium Zombie";
-			break;
-		case 3:
-			this->attack = 12;
-			this->defense = 11;
-			this->health = 12;
-			this->name = "High Zombie";
-			break;
-	}
-}
-
-//void Zombie::useItem(Object* item) {
-//
-//}
 
 void Zombie::attackEnemy(Creature* enemy) {
 

@@ -3,7 +3,7 @@
 
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {
-	
+	this->creatures.push_back(new Zombie(false));
 }
 void FrontLobby::printIntro(){
 	// Prints the first time the room is visited

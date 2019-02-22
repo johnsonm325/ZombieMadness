@@ -19,6 +19,8 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	roomInventory->addItem(fireExt);
 	roomInventory->addItem(key);
 	roomInventory->addItem(desk);
+
+	this->creatures.push_back(new Zombie(false));
 }
 
 void PrincipalsOffice::printIntro(){

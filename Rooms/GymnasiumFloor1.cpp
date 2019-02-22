@@ -3,7 +3,7 @@
 
 GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
 {
-	
+	this->creatures.push_back(new Zombie(false));
 }
 
 void GymnasiumFloor1::printIntro(){

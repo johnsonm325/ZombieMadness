@@ -16,6 +16,7 @@ Literature::Literature() : Space("Literature")
 	name = "desk";
 	desk->setDummyItem(description, name);
 	roomInventory->addItem(desk);
+	this->creatures.push_back(new Zombie(false));
 }
 
 void Literature::printIntro(){
