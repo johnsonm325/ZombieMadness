@@ -22,7 +22,7 @@ protected:
 	Space *west;		// Pointer to space for back
 	string type;
 	Inventory* roomInventory = new Inventory("Space");
-	vector<Creature*> creatures;	//list of creatures in room
+	Zombie *zombie = NULL;
 	vector<Space*> roomsList;
 
 public:
@@ -49,9 +49,8 @@ public:
 
 	Inventory* getInventory();			//Return inventory vector
 
-	void addCreature(Creature* creature);	//Add creature to room
-	void removeCreature(Creature* creature);	//Remove creature to room
-	vector<Creature*> getCreatures();		//Get list of creatures from room, not including player
+	void removeCreature();	//Remove creature to room
+	Zombie* getZombie();		//Get list of creatures from room, not including player
 
 	vector<Space*> getExits();			//Get available room exits as vector of Space pointers
 	vector<string> getExitDirections();

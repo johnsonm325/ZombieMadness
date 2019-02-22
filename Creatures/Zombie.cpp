@@ -26,6 +26,10 @@ Zombie::~Zombie()
 	
 }
 
-void Zombie::attackEnemy(Creature* enemy) {
+void Zombie::attackEnemy(Creature* enemy) 
+{
+	if (this->name == "Regular Zombie")
+		return;
 
+	enemy->takeDamage(this->attack);
 }

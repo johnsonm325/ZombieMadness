@@ -2,7 +2,7 @@
 #define PLAYER_H
 
 #include "../Rooms/Space.h"
-#include "Creature.h"
+#include "Zombie.h"
 #include "../Items/PlayerInventory.h"
 #include "../Items/Inventory.h"
 
@@ -14,7 +14,7 @@ class Player
 private:
 	PlayerInventory *playerInventory;
 	Inventory *roomInventory; // room's inventory class is passed in here
-	Creature *enemy = NULL; 	// passed in enemy
+	Zombie *enemy = NULL; 	// passed in enemy
 	Creature *player = NULL;	//Actual player's data
 	Space* currentRoom = NULL;
 public:

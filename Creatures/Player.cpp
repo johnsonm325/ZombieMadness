@@ -18,6 +18,13 @@ Player::~Player()
 void Player::movetoRoom(Space* room){
 	currentRoom = room;
 	this->roomInventory = room->getInventory();
+
+	Zombie *curRoomZombie = room->getZombie();
+
+	if (!curRoomZombie)
+		return;
+
+	enemy = curRoomZombie;
 }
 
 PlayerInventory* Player::getInventory(){
@@ -38,8 +45,11 @@ void Player::useItem(Item* item) {
 	if (type == "Supply"){
 		player->setHealth(item->getHealthBoost());
 	}	
-	else if (type == "Weapon"){
-		if(enemy != NULL){
+	
+	else if (type == "Weapon")
+	{
+		if(enemy != NULL)
+		{
 			enemy->takeDamage(item->getAttack());
 		}
 	}	
@@ -60,7 +70,8 @@ void Player::attackEnemy(string item)
 		return;
 	}
 
-	enemy->takeDamage(weapon->getAttack());
+	
+
 	playerInventory->removeItem(weapon, true);
 }
 
