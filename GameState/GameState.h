@@ -58,7 +58,6 @@ public:
 	void copyRoomsListToSpace();
 	vector<Space*> getRooms();
 	Space* getCurrentRoom();
-	void setCurrentRoom(Space* room);
 	void setCurrentRoom(int idx);
 	void setRoomIdx(int idx);
 	int getRoomIdx();

@@ -608,11 +608,20 @@ void School::setupPlayer(){
 	player->movetoRoom(currentRoom);
 }
 
+int School::int getRoomIdx(Space* room){
+	for (int i = 0; i < (int)rooms.size(); i++) {
+		if(rooms[i] == room){
+			return i;
+		}
+	}
+	return -1;
+}
+
 GameState* School::createState(){
 	GameState* newState = new GameState();
 
 	newState->updateTime();
-	newState->setCurrentRoom(getCurrentRoom());
+	newState->setCurrentRoom(getRoomIdx(currentRoom));
 	newState->setSteps(steps);
 	newState->addPlayer(player);
 	return newState;

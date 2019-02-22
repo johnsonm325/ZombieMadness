@@ -159,7 +159,6 @@ void GameState::createRoomsList(){
 	rooms.push_back(prin);
 }
 
-
 void GameState::copyRoomsListToSpace() {
 	for (unsigned int i = 0; i < rooms.size(); i++) {
 		rooms[i]->addRoomsListToSpace(rooms);
@@ -174,11 +173,6 @@ Space* GameState::getCurrentRoom(){
 	return currentRoom;
 }
 
-void GameState::setCurrentRoom(Space* room){
-	currentRoom = room;
-	roomIdx = findRoomByIdx(room);
-}
-
 void GameState::setCurrentRoom(int idx){
 	currentRoom = rooms[idx];
 	roomIdx = idx;
@@ -191,15 +185,6 @@ int GameState::getRoomIdx(){
 	return roomIdx;
 }
 
-int GameState::findRoomByIdx(Space* room){
-	for(unsigned int i = 0; i < getRooms().size(); i++){
-		if(room == rooms[i]){
-			return i;
-		}
-	}
-	return -1;
-}
-	
 void GameState::setSteps(int steps){
 	this->steps = steps;
 }

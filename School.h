@@ -89,6 +89,7 @@ public:
 	void copyRoomsListToSpace();
 	void createRoomsList();
 	vector<Space*> getRoomsList();
+	int getRoomIdx(Space*);
 
 	//Player methods
 	void setupPlayer();
