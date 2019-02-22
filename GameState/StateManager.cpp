@@ -174,11 +174,10 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 	size_t foundEnd, foundInv, foundStr;
 
 	line++;
-	cout << *line << endl;
+	//cout << *line << endl;
 
 	if(foundStart != std::string::npos){
 			cout << "Found room start: <Room>" << endl;
-			// cout << *line << endl;
 			foundStr = (*line).find("Type:");
 			if(foundStr != std::string::npos){
 				string roomName = (*line).substr(foundStr+6);
@@ -375,7 +374,7 @@ void StateManager::writeItem(FILE* saveFile, Item* item, int count){
 	fprintf(saveFile, "Removable: %d\n", (int)item->isMovable());
 	fprintf(saveFile, "Type: %s\n", item->getType().c_str());
 	fprintf(saveFile, "Name: %s\n", item->getName().c_str());
-	fprintf(saveFile, "Description: %s\n", item->getDesc().c_str());
+	//fprintf(saveFile, "Description: %s\n", item->getDesc().c_str());
 	fprintf(saveFile, "</Item>\n");
 }
 
@@ -450,11 +449,6 @@ void StateManager::clearStates(){
 bool StateManager::haveSaves() {
 	return states.size() > 0;
 }
-
-// void StateManager::initRoomList(){
-// 	// GameState* newState = new GameState();
-// 	// this->roomList = newState->getRooms();
-// }
 
 void StateManager::changeWorkingDir() {
 

@@ -36,6 +36,11 @@ private:
 	Space *currentRoom;
 	int roomIdx = 0;
 	int steps; 
+
+	Space *mb, *wb, *cafe, *libr, *sfh1, *sfh2, *sfh3, *sfh4;
+	Space *hist, *lit, *chem, *cs, *bio, *math,*infr, *lr,*gym2, *gym1, *fb;
+	Space *ffh1, *ffh2, *ffh3, *ffh4, *fl, *fo, *prin;
+
 	string timeStamp;
 	vector<Space*> rooms;
 	Player* player;
@@ -47,7 +52,10 @@ public:
 	void setTime(string time);
 
 	//Rooms
-	void initRooms();
+	void connectRooms();
+	void addRoom(char direction, Space *nextRoom, Space *prevRoom);
+	void createRoomsList();
+	void copyRoomsListToSpace();
 	vector<Space*> getRooms();
 	Space* getCurrentRoom();
 	void setCurrentRoom(Space* room);

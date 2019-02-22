@@ -21,7 +21,6 @@ using namespace std;
 class StateManager
 {
 private:
-	//vector<Space*> roomList;
 	vector<GameState*> states;
 	vector<string> fileList;
 	unsigned int maxStates = 3;
@@ -57,7 +56,6 @@ public:
 	void printStates();
 	bool haveSaves();
 
-	//void initRoomList();
 	void changeWorkingDir();
 	void resetWorkingDir();
 };

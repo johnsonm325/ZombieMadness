@@ -1,39 +1,7 @@
 #include "GameState.h"
 
 GameState::GameState() {
-	initRooms();
-}
-GameState::~GameState() {
-
-}
-
-string GameState::getTime() {
-	return timeStamp;
-}
-void GameState::setTime(string time){
-	timeStamp = time;
-}
-
-void GameState::updateTime() {
-	time_t rawtime;
-	struct tm * timeinfo;
-	char buffer[80];
-
-	time(&rawtime);
-	timeinfo = localtime(&rawtime);
-
-	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
-	std::string str(buffer);
-	timeStamp = str;
-}
-
-void GameState::initRooms() {
-	
-	Space *mb, *wb, *cafe, *libr, *sfh1, *sfh2, *sfh3, *sfh4;
-	Space *hist, *lit, *chem, *cs, *bio, *math,*infr, *lr,*gym2, *gym1, *fb;
-	Space *ffh1, *ffh2, *ffh3, *ffh4, *fl, *fo, *prin;
 	PlayerInventory* inv = new PlayerInventory();
-
 	mb = new MensBathroom();
 	wb = new WomensBathroom(inv);
 	sfh1 = new SecondFloorHallway();
@@ -60,7 +28,109 @@ void GameState::initRooms() {
 	fl = new FrontLobby();
 	fo = new FrontOffice();
 	prin = new PrincipalsOffice();
+	
+	connectRooms();
+	createRoomsList();
+}
+GameState::~GameState() {
 
+}
+
+string GameState::getTime() {
+	return timeStamp;
+}
+void GameState::setTime(string time){
+	timeStamp = time;
+}
+
+void GameState::updateTime() {
+	time_t rawtime;
+	struct tm * timeinfo;
+	char buffer[80];
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+
+	strftime(buffer, sizeof(buffer), "%Y-%m-%d %H:%M:%S", timeinfo);
+	std::string str(buffer);
+	timeStamp = str;
+}
+
+void GameState::connectRooms() {
+	addRoom('s', wb, mb);
+	addRoom('w', sfh1, mb);
+	addRoom('w', sfh2, wb);
+	addRoom('s', sfh2, sfh1);
+	addRoom('w', hist, sfh3);
+	addRoom('e', lit, sfh3);
+	addRoom('s', sfh3, sfh2);
+	addRoom('s', lr, lit);
+	addRoom('w', infr, sfh4);
+	addRoom('e', lr, sfh4);
+	addRoom('s', sfh4, sfh3);
+	addRoom('s', chem, infr);
+	addRoom('s', gym2, lr);
+	addRoom('s', ffh4, sfh4);
+	addRoom('s', sfh4, ffh4);
+	addRoom('w', gym1, gym2);
+	addRoom('s', fb, gym1);
+	addRoom('w', ffh4, gym1);
+	addRoom('w', cafe, ffh4);
+	addRoom('n', ffh3, ffh4);
+	addRoom('e', cs, ffh3);
+	addRoom('w', chem, ffh3);
+	addRoom('n', bio, chem);
+	addRoom('n', ffh2, ffh3);
+	addRoom('w', bio, ffh2);
+	addRoom('e', math, ffh2);
+	addRoom('n', libr, bio);
+	addRoom('n', fl, math);
+	addRoom('n', ffh1, ffh2);
+	addRoom('w', libr, ffh1);
+	addRoom('e', fl, ffh1);
+	addRoom('e', fo, fl);
+	addRoom('e', prin, fo);
+	this->currentRoom = mb;
+}
+
+void GameState::addRoom(char direction, Space *nextRoom, Space *prevRoom)
+{	
+	if (direction == 'e')
+	{
+		prevRoom->setEast(nextRoom);
+		nextRoom->setWest(prevRoom);
+	}
+
+	else if (direction == 'w')
+	{
+		prevRoom->setWest(nextRoom);
+		nextRoom->setEast(prevRoom);
+	}
+
+	else if (direction == 'n')
+	{
+		prevRoom->setNorth(nextRoom);
+		nextRoom->setSouth(prevRoom);
+	}
+
+	else if (direction == 's')
+	{
+		// to set the non-standard joining of chemistry and infirmary rooms
+		if (prevRoom->getType() == "chem")
+		{
+			prevRoom->setSouth(nextRoom);
+			nextRoom->setSouth(prevRoom);
+		}
+		else
+		{
+			prevRoom->setSouth(nextRoom);
+			nextRoom->setNorth(prevRoom);
+		}
+	}
+}
+
+void GameState::createRoomsList(){
+	
 	rooms.push_back(mb);
 	rooms.push_back(wb);
 	rooms.push_back(cafe);
@@ -89,6 +159,13 @@ void GameState::initRooms() {
 	rooms.push_back(prin);
 }
 
+
+void GameState::copyRoomsListToSpace() {
+	for (unsigned int i = 0; i < rooms.size(); i++) {
+		rooms[i]->addRoomsListToSpace(rooms);
+	}
+}
+
 vector<Space*> GameState::getRooms(){
 	return rooms;
 }
@@ -115,14 +192,12 @@ int GameState::getRoomIdx(){
 }
 
 int GameState::findRoomByIdx(Space* room){
-	int rIdx;
 	for(unsigned int i = 0; i < getRooms().size(); i++){
 		if(room == rooms[i]){
-			rIdx = i;
-			break;
+			return i;
 		}
 	}
-	return rIdx;
+	return -1;
 }
 	
 void GameState::setSteps(int steps){

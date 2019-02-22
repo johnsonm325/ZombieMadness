@@ -66,12 +66,11 @@ void Item::setDummyItem(string desc, string name)
 	this->attack= 0;
 	this->defense = 0;
 	this->healthBoost = 0;
+	this->removable = false;
 }
-void Item::setFeature(){
-	isRemovable = false;
-}
+
 bool Item::isMovable(){
-	return isRemovable;
+	return removable;
 }
 
 void Item::useItem()
