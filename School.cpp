@@ -608,7 +608,7 @@ void School::setupPlayer(){
 	player->movetoRoom(currentRoom);
 }
 
-int School::int getRoomIdx(Space* room){
+int School::getRoomIdx(Space* room){
 	for (int i = 0; i < (int)rooms.size(); i++) {
 		if(rooms[i] == room){
 			return i;
