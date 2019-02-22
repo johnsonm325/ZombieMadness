@@ -14,7 +14,6 @@ void Cafeteria::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		firstTime();
 		cout << "# You look around a see a few stray zombies littered throughout the large room. There is a lot of" << endl;
 		cout << "# space in between them, so taking them out shouldn't be too hard. 'If I'm smart, I may be able to" << endl;
 		cout << "# avoid them altogether.'" << endl;
@@ -25,6 +24,22 @@ void Cafeteria::printIntro(){
 	cout << "# thrown about the room." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
+}
+
+void Cafeteria::printExitDesc()
+{
+	if (firstTry == true)
+	{
+		firstTime();
+		cout << "# You are sad to leave to Cafeteria actually.  It didn't smell half as bad as the other rooms" << endl;
+		cout << "# in this school and food!  'I don't want to leave the food room, it has food..." << endl;
+		cout << "# Fooooooooooooooooooddddddddddddd'" << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# You remember looking out the massive windows at the Football field during lunch" << endl;
+	cout << "# and remember when you used to grab a quick snack before Gym class in the next room" << endl;
+	cout << "#" << endl;
 }
 
 int Cafeteria::menu(vector<string> commandVector)

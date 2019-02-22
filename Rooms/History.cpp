@@ -24,7 +24,6 @@ void History::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		firstTime();
 		cout << "# Dusty books and pictures of presidents on the wall, must be in history class. 'I've fallen asleep one too many" << endl;
 		cout << "# times in here. If I have to hear about one more amendment ... Wait, there are more important matters.'" << endl;
 		cout << "#" << endl;
@@ -34,6 +33,22 @@ void History::printIntro(){
 	cout << "# on the west wall." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
+}
+
+void History::printExitDesc()
+{
+	if (firstTry == true)
+	{
+		firstTime();
+		cout << "# 'In reality, I probably should've paid a little more attention here.  Aren't we doomed" << endl;
+		cout << "# to repeat the past if we don't learn about it?' ...." << endl;
+		cout << "# Well, let's get out of here first before we start to reminisce on the past" << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# This room is connected to the 2nd floor hallway, another area that gives you" << endl;
+	cout << "# access to many other rooms, like the locker room, literature room, and infirmary." << endl;
 	cout << "#" << endl;
 }
 

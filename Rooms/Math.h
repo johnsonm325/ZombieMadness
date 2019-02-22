@@ -13,6 +13,7 @@ private:
 public:
 	Math();
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void inspectToilet();
 	void firstTime();

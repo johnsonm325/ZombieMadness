@@ -18,6 +18,7 @@ private:
 public:
 	Literature();
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void inspectDesk();
 	void zombiesDead();

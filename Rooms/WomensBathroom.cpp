@@ -31,7 +31,6 @@ void WomensBathroom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		firstTime();
 		cout << "# Well, you've never been in here before. The forbidden zone. 'The guys will love to hear this story.'" << endl;
 		cout << "# The air smells fresh in here; not like the urine stench you're accustomed to. 'They have A COUCH?!'" << endl;
 		cout << "# You see magazines, a hair dryer, and other various pampering items lined up across the sink counter." << endl;
@@ -43,6 +42,23 @@ void WomensBathroom::printIntro(){
 	cout << "# Sinks stand on the west wall and stalls line the east wall." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
+}
+
+void WomensBathroom::printExitDesc()
+{
+	if (firstTry == true)
+	{
+		firstTime();
+		cout << "# Lol, you're a weirdo Colt, heading into the Women's Bathroom... how do you think" << endl;
+		cout << "# your mother would perceive you right now? Well, anyways, it seems pretty clean in here" << endl;
+		cout << "# surprisingly (not surprising maybe?), and is that a couch in here? What?! Why don't the men" << endl;
+		cout << "# get one?!" << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# You can only really head back out into the hall from here..." << endl;
+	cout << "# These walls seem kind of brittle though..." << endl;
 	cout << "#" << endl;
 }
 

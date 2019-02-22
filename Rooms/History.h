@@ -19,6 +19,7 @@ private:
 public:
 	History();
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void inspectBust();
 	void firstTime();

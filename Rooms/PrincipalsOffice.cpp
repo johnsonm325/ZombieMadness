@@ -25,7 +25,6 @@ void PrincipalsOffice::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		firstTime();
 		cout << "# As soon as you open the door, you are attacked from the north. You are quick enough to fight off the first push" << endl;
 		cout << "# as you grab the zombie by the throat and shove it back. As it falls down, you realize it's already working to" << endl;
 		cout << "# get itself back up. You know you don't have much time." << endl;
@@ -41,6 +40,22 @@ void PrincipalsOffice::printIntro(){
 		cout << "# What do you do?" << endl;
 		cout << "#" << endl;
 	}
+}
+
+void PrincipalsOffice::printExitDesc()
+{
+	if (firstTry == true)
+	{
+		firstTime();
+		cout << "# How cool was that? You got to be in the principal's office all alone with" << endl;
+		cout << "# with NO ONE to tell you no!  So much fun!! ......" << endl;
+		cout << "# But not really cause you are surrounded by zombies so..." << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# There is only one way out of here so make sure to really check this room before you leave," << endl;
+	cout << "# you don't want to get yourself caught in later!" << endl;
+	cout << "#" << endl;
 }
 
 int PrincipalsOffice::menu(vector<string> commandVector)

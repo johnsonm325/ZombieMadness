@@ -15,7 +15,6 @@ void MensBathroom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		firstTime();
 		cout << "# You jump awake, realizing that you've been asleep on the toilet for quit a while. I guess staying up so late" << endl;
 		cout << "# studying has taken its toll on you. 'How long have I been asleep?' you ask yourself. 'Have I missed all of my" << endl;
 		cout << "# classes?' Something doesn't seem right to you. The emergency lights are on and you don't hear any noises" << endl;
@@ -31,6 +30,23 @@ void MensBathroom::printIntro(){
 	cout << "# Sinks stand against the west wall, and urinals and toilets line the east wall. Nothing much going on in here." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
+}
+
+void MensBathroom::printExitDesc()
+{
+	if (firstTry == true)
+	{
+		firstTime();
+		cout << "# 'Well, here goes nothing...'  Your journe of terror begins now!" << endl;
+		cout << "# You really are unsure of what the rest of the school looks like right now," << endl;
+		cout << "# only one way to find out..." << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# Never forget where you came from! This room managed to keep you alive" << endl;
+	cout << "# while you were asleep, maybe it's a magical bathroom?  Anyways," << endl;
+	cout << "# you can only really go out into the 2nd floor hallway..." << endl;
 	cout << "#" << endl;
 }
 

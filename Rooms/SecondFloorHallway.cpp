@@ -25,7 +25,6 @@ void SecondFloorHallway::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		firstTime();
 		cout << "# You walk into the second floor hallway and immediately notice that everything is dark, save the emergency lights." << endl;
 		cout << "# Something is not right here, you tell yourself. The air has an awful smell that you can't describe. And what's" << endl;
 		cout << "# worse, you can see blood smears on the walls and floor. 'Oh my god, what has happened here?!' You feel your" << endl;
@@ -39,6 +38,22 @@ void SecondFloorHallway::printIntro(){
 	cout << "# Bulletin boards line the walls and there is lots of debris strewn across the floor." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
+}
+
+void SecondFloorHallway::printExitDesc()
+{
+	if (firstTry == true)
+	{
+		firstTime();
+		cout << "# Oh man, the school is not holding up so well.  'I can't believe this is happening!!'" << endl;
+		cout << "# You realize that you can't just sit around, you need to explore to see how you can get the heck" << endl;
+		cout << "# out of here!" << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# This hallway gives you access to the history room, literature room, infirmary, and locker room." << endl;
+	cout << "# You can also head into the women's bathroom (no one is around to judge you, Colt)." << endl;
 	cout << "#" << endl;
 }
 

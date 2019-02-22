@@ -19,6 +19,7 @@ private:
 public:
 	WomensBathroom(PlayerInventory*);
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	bool getDoorLocked();
 	void unlockDoor();

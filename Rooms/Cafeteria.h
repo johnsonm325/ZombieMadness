@@ -17,6 +17,7 @@ private:
 public:
 	Cafeteria();
 	void printIntro();
+	void printExitDesc();
 	int menu(vector<string>);
 	void throwFood();
 	void firstTime();
