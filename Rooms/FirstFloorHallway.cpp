@@ -1,6 +1,5 @@
 #include "FirstFloorHallway.h"
 
-
 FirstFloorHallway::FirstFloorHallway() : Space("First Floor Hallway")
 {
 	
@@ -11,6 +10,9 @@ FirstFloorHallway::FirstFloorHallway(bool firstTry) : Space("First Floor Hallway
 	this->firstTry = firstTry;
 }
 
+FirstFloorHallway::~FirstFloorHallway(){
+
+}
 
 void FirstFloorHallway::printIntro(){
 	// Prints the first time the room is visited
@@ -55,25 +57,3 @@ int FirstFloorHallway::menu(vector<string> commandVector)
 }
 
 
-void FirstFloorHallway::inspectToilet()
-{
-
-}
-
-
-void FirstFloorHallway::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool FirstFloorHallway::coltGone()
-{
-	return goneColt;
-}
-
-
-bool FirstFloorHallway::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

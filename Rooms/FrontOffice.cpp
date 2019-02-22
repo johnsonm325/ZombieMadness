@@ -1,14 +1,17 @@
 #include "FrontOffice.h"
 
-
 FrontOffice::FrontOffice() : Space("Front Office")
 {
 	paSystem = new Item();
 	string description = "# This is the system that the principal uses to call students to the office. Maybe I can have a little fun with this.";
 	string name = "PA system";
 	paSystem->setDummyItem(description, name);
-
 	roomInventory->addItem(paSystem);
+}
+
+FrontOffice::~FrontOffice()
+{
+
 }
 
 void FrontOffice::printIntro(){
@@ -61,7 +64,6 @@ int FrontOffice::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void FrontOffice::usePA()
 {
 	cout << "# You push the button and speak loudly over the intercom, 'GOOD MORNING VIETNAM!!!' ... No response.'" << endl << "#" << endl;
@@ -70,19 +72,3 @@ void FrontOffice::usePA()
 }
 
 
-void FrontOffice::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool FrontOffice::coltGone()
-{
-	return goneColt;
-}
-
-
-bool FrontOffice::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

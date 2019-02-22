@@ -1,7 +1,11 @@
 #include "GymnasiumFloor1.h"
 
-
 GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
+{
+	
+}
+
+GymnasiumFloor1::~GymnasiumFloor1()
 {
 	
 }
@@ -74,19 +78,3 @@ void GymnasiumFloor1::zombiesDead()
 	deadZombies = true;
 }
 
-void GymnasiumFloor1::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool GymnasiumFloor1::coltGone()
-{
-	return goneColt;
-}
-
-
-bool GymnasiumFloor1::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

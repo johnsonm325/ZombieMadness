@@ -33,7 +33,6 @@ School::School()
 	connectRooms();
 	createRoomsList();
 
-	stateManager->addRoomList(rooms);
 	stateManager->init();
 }
 
@@ -278,7 +277,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					}
 					else{
 						cout << "Didn't find key in player's inventory, cannot open door!" << endl;
-
 					}
 				}
 				return;
@@ -614,10 +612,9 @@ GameState* School::createState(){
 	GameState* newState = new GameState();
 
 	newState->updateTime();
-	newState->setRooms(getRoomsList());
 	newState->setCurrentRoom(getCurrentRoom());
 	newState->setSteps(steps);
-	
+	newState->addPlayer(player);
 	return newState;
 }
 

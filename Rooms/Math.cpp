@@ -1,9 +1,12 @@
 #include "Math.h"
 
-
 Math::Math() : Space("Math")
 {
 	
+}
+
+Math::~Math(){
+
 }
 
 void Math::printIntro(){
@@ -53,26 +56,3 @@ int Math::menu(vector<string> commandVector)
 	return 0;
 }
 
-
-void Math::inspectToilet()
-{
-
-}
-
-
-void Math::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool Math::coltGone()
-{
-	return goneColt;
-}
-
-
-bool Math::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

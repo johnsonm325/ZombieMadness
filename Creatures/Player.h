@@ -30,6 +30,7 @@ public:
 	void dropItem(Item*);
 	void lookAtItems(string item);
 	Item* selectItem(string item);
+	Creature* getPlayer();
 
 };
 
