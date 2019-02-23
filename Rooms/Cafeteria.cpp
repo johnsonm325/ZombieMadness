@@ -7,6 +7,12 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	string name = "food";
 	food->setDummyItem(description, name);
 	roomInventory->addItem(food);
+
+	sloppyJoe = new Item();
+	description = "# A solitary sloppy joe sandwich sits on the table. It looks so tasty here in lunch lady land.";
+	name = "sloppy joe";
+	sloppyJoe->setDummyItem(description, name);
+	roomInventory->addItem(sloppyJoe);
 }
 
 Cafeteria::~Cafeteria(){
@@ -52,14 +58,6 @@ int Cafeteria::menu(vector<string> commandVector)
 	{
 		return 40;
 	}
-
-        if (commandVector[0].compare("throw") == 0 && commandVector[1].compare("food") == 0) {
-                throwFood();
-        }
-
-        else {
-                cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
-        }
 
 	return 0;
 }

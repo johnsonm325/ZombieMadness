@@ -72,7 +72,7 @@ void Literature::inspectDesk()
 	string description = "# A small piece of paper sits in the middle of the desk and has a short note written on it.";
 	string name = "note";
 	note->setDummyItem(description, name);
-	string text = "Get the sword in the computer science room.";
+	string text = "# Get the sword in the computer science room.";
 	note->setAction(text, Read);
 	roomInventory->addItem(note);
 }

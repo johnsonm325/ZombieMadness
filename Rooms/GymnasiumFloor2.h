@@ -12,6 +12,7 @@ private:
 	string action;		//string action typed in by the user
 	GymnasiumFloor1 *gym1;
 	Item *ropes;
+	Item *lights;
 
 public:
 	GymnasiumFloor2();

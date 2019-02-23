@@ -7,6 +7,15 @@ GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 	string name = "ropes";
 	ropes->setDummyItem(description, name);
 	roomInventory->addItem(ropes);
+
+	lights = new Item();
+	description = "# There are a lot of lights hanging in the ceiling, and there is a switch close by. 'Maybe that turns them on.'";
+	name = "lights";
+	lights->setDummyItem(description, name);
+	string text = "# You turn on the lights, which shine down below to show a room full of zombies.";
+	lights->setAction(text, Use);
+	roomInventory->addItem(lights);
+
 	roomInventory->addItem(new Gun());
 }
 
@@ -55,14 +64,6 @@ int GymnasiumFloor2::menu(vector<string> commandVector)
 		return 0;
 	}
 
-	if (commandVector[0].compare("cut") == 0 && commandVector[1].compare("ropes") == 0) {
-		cutRopes();
-	}
-
-	else {
-		cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
-	}
-	
 	return 0;
 }
 

@@ -11,6 +11,7 @@ private:
 	string action;		//string action typed in by the user
 	Chemistry *chem;
 	Item *food;
+	Item *sloppyJoe;
 
 public:
 	Cafeteria();

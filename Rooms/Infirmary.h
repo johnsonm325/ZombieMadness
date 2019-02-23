@@ -8,6 +8,8 @@ class Infirmary : public Space
 {
 private:
 	string action;		//string action typed in by the user
+	Item *bed;
+	Item *nursesHat;
 
 public:
 	Infirmary();
@@ -15,6 +17,5 @@ public:
 	void printIntro();
 	void printExitDesc();
 	int menu(vector<string>);
-	
 };
 #endif
