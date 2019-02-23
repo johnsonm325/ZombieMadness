@@ -9,6 +9,8 @@ class LockerRoom : public Space
 {
 private:
 	string action;		//string action typed in by the user
+	Item *jockstrap;
+	Item *locker;
 
 public:
 	LockerRoom();
@@ -16,6 +18,5 @@ public:
 	void printIntro();
 	void printExitDesc();
 	int menu(vector<string>);
-	
 };
 #endif

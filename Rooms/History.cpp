@@ -61,20 +61,11 @@ int History::menu(vector<string> commandVector)
 		return 40;
 	}
 
-	if ((commandVector[0].compare("look") == 0 || commandVector[0].compare("inspect") == 0) && commandVector[1].compare("bust") == 0) {
-		inspectBust();
-	}
-
-	else {
-		cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
-	}
-	
 	return 0;
 }
 
 void History::inspectBust()
 {
-	cout << georgeWashingtonBust->getDesc() << endl;;
 	lit = static_cast<Literature*>(findRoom("Literature"));
 	lit->zombiesDead();
 }

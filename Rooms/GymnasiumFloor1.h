@@ -8,6 +8,8 @@ class GymnasiumFloor1 : public Space
 private:
 	string action;		//string action typed in by the user
 	bool deadZombies = false;
+	Item *basketball;
+	Item *bleachers;
 
 public:
 	GymnasiumFloor1();

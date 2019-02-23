@@ -19,7 +19,7 @@ public:
 	void printIntro();
 	void printExitDesc();
 	int menu(vector<string>);
-	void increaseBagSize();
 	
+	void increaseBagSize();
 };
 #endif
