@@ -6,8 +6,17 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	string description = "# There are chunks of food strewn around the room. Some of it is gloopy, and you don't want to touch that. But some, you can pick up.";
 	string name = "food";
 	food->setDummyItem(description, name);
-
 	roomInventory->addItem(food);
+
+	sloppyJoe = new Item();
+	description = "# A solitary sloppy joe sandwich sits on the table. It looks so tasty here in lunch lady land.";
+	name = "sloppy joe";
+	sloppyJoe->setDummyItem(description, name);
+	roomInventory->addItem(sloppyJoe);
+}
+
+Cafeteria::~Cafeteria(){
+
 }
 
 void Cafeteria::printIntro(){
@@ -50,17 +59,8 @@ int Cafeteria::menu(vector<string> commandVector)
 		return 40;
 	}
 
-        if (commandVector[0].compare("throw") == 0 && commandVector[1].compare("food") == 0) {
-                throwFood();
-        }
-
-        else {
-                cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
-        }
-
 	return 0;
 }
-
 
 void Cafeteria::throwFood()
 {
@@ -70,19 +70,3 @@ void Cafeteria::throwFood()
 }
 
 
-void Cafeteria::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool Cafeteria::coltGone()
-{
-	return goneColt;
-}
-
-
-bool Cafeteria::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

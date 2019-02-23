@@ -1,6 +1,5 @@
 #include "GymnasiumFloor2.h"
 
-
 GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 {
 	ropes = new Item();
@@ -8,7 +7,21 @@ GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 	string name = "ropes";
 	ropes->setDummyItem(description, name);
 	roomInventory->addItem(ropes);
+
+	lights = new Item();
+	description = "# There are a lot of lights hanging in the ceiling, and there is a switch close by. 'Maybe that turns them on.'";
+	name = "lights";
+	lights->setDummyItem(description, name);
+	string text = "# You turn on the lights, which shine down below to show a room full of zombies.";
+	lights->setAction(text, Use);
+	roomInventory->addItem(lights);
+
 	roomInventory->addItem(new Gun());
+}
+
+GymnasiumFloor2::~GymnasiumFloor2()
+{
+
 }
 
 void GymnasiumFloor2::printIntro(){
@@ -51,17 +64,8 @@ int GymnasiumFloor2::menu(vector<string> commandVector)
 		return 0;
 	}
 
-	if (commandVector[0].compare("cut") == 0 && commandVector[1].compare("ropes") == 0) {
-		cutRopes();
-	}
-
-	else {
-		cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
-	}
-	
 	return 0;
 }
-
 
 void GymnasiumFloor2::cutRopes()
 {
@@ -71,19 +75,3 @@ void GymnasiumFloor2::cutRopes()
 }
 
 
-void GymnasiumFloor2::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool GymnasiumFloor2::coltGone()
-{
-	return goneColt;
-}
-
-
-bool GymnasiumFloor2::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

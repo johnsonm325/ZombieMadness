@@ -1,11 +1,29 @@
 #include "LockerRoom.h"
 
-
 LockerRoom::LockerRoom() : Space("Locker Room")
 {
 	this->roomInventory->addItem(new BaseballBat());
 	this->roomInventory->addItem(new SteelLid());
+
+	jockstrap = new Item();
+	string description = "# A worn out and stained jockstrap is hanging on the edge of the bench.";
+	string name = "jockstrap";
+	jockstrap->setDummyItem(description, name);
+	string text = "# You grab the sweaty jockstrap, moist in your hand, and slip it over your pants. The stench rises up to meet your nose. 'I can't wear this. I need to get this thing off.'";
+	jockstrap->setAction(text, Wear);
+	roomInventory->addItem(jockstrap);
+
+	locker = new Item();
+	description = "# A metal locker stands against the wall, doors closed, full of items from one of your fellow students.";
+	name = "locker";
+	locker->setDummyItem(description, name);
+	roomInventory->addItem(locker);
 }
+
+LockerRoom::~LockerRoom(){
+
+}
+
 void LockerRoom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
@@ -46,31 +64,6 @@ int LockerRoom::menu(vector<string> commandVector)
 	{
 		return 40;
 	}
-	printIntro();
 	
 	return 0;
-}
-
-
-void LockerRoom::inspectToilet()
-{
-
-}
-
-
-void LockerRoom::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool LockerRoom::coltGone()
-{
-	return goneColt;
-}
-
-
-bool LockerRoom::itemSearch(vector<string> inv, string a)
-{
-	return false;
 }

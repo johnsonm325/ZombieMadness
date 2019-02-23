@@ -1,6 +1,5 @@
 #include "WomensBathroom.h"
 
-
 WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 {
 	this->lockDoor();
@@ -19,12 +18,16 @@ WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 	roomInventory->addItem(lock);
 
 	magazine = new Item();
-	description = "At the top of the stack of magazines you see one called 'Cosmopolitan'. You're pretty sure you've seen your older sister with this one. On the front it reads, '24 ways to make your ...' 'WOAH!'";
+	description = "# At the top of the stack of magazines you see one called 'Cosmopolitan'. You're pretty sure you've seen your older sister with this one. On the front it reads, '24 ways to make your ...' 'WOAH!'";
 	name = "magazine";
 	magazine->setDummyItem(description, name);
-	string text = "'Want to make your man beg for ... ' 'Ehh, maybe I don't want to read this.'";
+	string text = "# Want to make your man beg for ... ' 'Ehh, maybe I don't want to read this.'";
 	magazine->setAction(text, Read);
 	roomInventory->addItem(magazine);
+}
+
+WomensBathroom::~WomensBathroom(){
+
 }
 
 void WomensBathroom::printIntro(){
@@ -71,21 +74,6 @@ int WomensBathroom::menu(vector<string> commandVector)
 	}
 
 	return 0;
-}
-
-void WomensBathroom::firstTime()
-{
-	firstTry = false;
-}
-
-bool WomensBathroom::coltGone()
-{
-	return goneColt;
-}
-
-bool WomensBathroom::itemSearch(vector<string> inv, string a)
-{
-	return false;
 }
 
 void WomensBathroom::increaseBagSize()

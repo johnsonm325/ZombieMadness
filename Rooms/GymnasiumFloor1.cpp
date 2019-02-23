@@ -1,9 +1,26 @@
 #include "GymnasiumFloor1.h"
 
-
 GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
 {
 	this->zombie = new Zombie(false);
+	basketball = new Item();
+	string description = "# A single basketball is seen in the middle of the gym floor. It looks like it's filled with air.";
+	string name = "basketball";
+	basketball->setDummyItem(description, name);
+	string text = "# You grab the basketball and shoot a few hoops. You don't make a single shoot. 'Good thing no one is here to see that.'";
+	basketball->setAction(text, Use);
+	roomInventory->addItem(basketball);
+
+	bleachers = new Item();
+	description = "# The bleachers are pulled out of the wall and there are some scattered bodies littered on them.";
+	name = "bleachers";
+	bleachers->setDummyItem(description, name);
+	roomInventory->addItem(bleachers);
+}
+
+GymnasiumFloor1::~GymnasiumFloor1()
+{
+	
 }
 
 void GymnasiumFloor1::printIntro(){
@@ -60,7 +77,6 @@ int GymnasiumFloor1::menu(vector<string> commandVector)
 	{
 		return 40;
 	}
-	printIntro();	
 	return 0;
 }
 
@@ -74,19 +90,3 @@ void GymnasiumFloor1::zombiesDead()
 	deadZombies = true;
 }
 
-void GymnasiumFloor1::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool GymnasiumFloor1::coltGone()
-{
-	return goneColt;
-}
-
-
-bool GymnasiumFloor1::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

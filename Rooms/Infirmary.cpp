@@ -1,9 +1,27 @@
 #include "Infirmary.h"
 
-
 Infirmary::Infirmary() : Space("Infirmary")
 {
 	this->roomInventory->addItem(new BiteCure());
+	this->lockDoor();
+
+	bed = new Item();
+	string description = "# A neatly made bed is lined against the north wall. It looks comfy and warm. 'If I could just take a quick nap... No, I need to keep moving.'";
+	string name = "bed";
+	bed->setDummyItem(description, name);
+	string text = "# You pull back the sheets and slip into the bed. Your eyes close for a minute, and you're suddenly asleep... Five minutes later you jump awake, quickly looking at your watch. 'Oh good, I only slept for a few minutes.'";
+	bed->setAction(text, Use);
+	roomInventory->addItem(bed);
+
+	nursesHat = new Item();
+	description = "# A triangle hat sits on top of the stand beside the bed. It looks like a hat that a nurse would wear.";
+	name = "nurses hat";
+	nursesHat->setDummyItem(description, name);
+	roomInventory->addItem(nursesHat);
+}
+
+Infirmary::~Infirmary(){
+
 }
 
 void Infirmary::printIntro(){
@@ -51,28 +69,4 @@ int Infirmary::menu(vector<string> commandVector)
 	printIntro();
 	
 	return 0;
-}
-
-
-void Infirmary::inspectToilet()
-{
-
-}
-
-
-void Infirmary::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool Infirmary::coltGone()
-{
-	return goneColt;
-}
-
-
-bool Infirmary::itemSearch(vector<string> inv, string a)
-{
-	return false;
 }

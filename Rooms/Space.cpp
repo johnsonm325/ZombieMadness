@@ -70,6 +70,24 @@ string Space::getType()
 	return type;
 }
 
+void Space::firstTime()
+{
+	firstTry = false;
+}
+
+void Space::setFirstTry(bool first){
+	firstTry = first;
+}
+
+bool Space::isFirstTry(){
+	return firstTry;
+}
+
+bool Space::coltGone()
+{
+	return goneColt;
+}
+
 void Space::addRoomsListToSpace(vector<Space*> roomsVector)
 {
 	for(unsigned int i = 0; i < roomsVector.size(); i++)

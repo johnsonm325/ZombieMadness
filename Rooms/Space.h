@@ -15,7 +15,10 @@ using std::vector;
 class Space
 {
 protected:
-	bool doorLocked = false;
+	bool doorLocked = false,
+		 firstTry = true,
+		 goneColt = false;
+
 	Space *north;		// Pointer to space for up
 	Space *east;		// Pointer to space for forward
 	Space *south;		// Pointer to space for down
@@ -36,11 +39,14 @@ public:
 	Space* getNorth();
 	void setSouth(Space*);
 	Space* getSouth();
-	virtual void printIntro() = 0;		// For abstract class
-	virtual void printExitDesc() = 0;
-	virtual int menu(vector<string>);	// For abstract class
-	virtual void firstTime() = 0;		// For abstract class
 	string getType();
+	virtual void printIntro() = 0;		// For abstract class
+	virtual void printExitDesc() = 0;	// For abstract class
+	virtual int menu(vector<string>);	
+	virtual void firstTime();		
+	void setFirstTry(bool);
+	bool isFirstTry();	
+	bool coltGone();
 
 	void addRoomsListToSpace(vector<Space*>);	
 	Space* findRoom(string);
@@ -59,6 +65,7 @@ public:
 	bool getDoorLocked();
 	void unlockDoor();
 	void lockDoor();
+
 };
 
 #endif

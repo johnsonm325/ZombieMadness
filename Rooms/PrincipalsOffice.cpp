@@ -1,6 +1,5 @@
 #include "PrincipalsOffice.h"
 
-
 PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
 	string description, name, text;
@@ -21,6 +20,10 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	roomInventory->addItem(desk);
 
 	this->zombie = new Zombie(false);
+}
+
+PrincipalsOffice::~PrincipalsOffice(){
+
 }
 
 void PrincipalsOffice::printIntro(){
@@ -76,17 +79,4 @@ void PrincipalsOffice::zombiesDead()
 	deadZombies = true;
 }
 
-void PrincipalsOffice::firstTime()
-{
-	firstTry = false;
-}
 
-bool PrincipalsOffice::coltGone()
-{
-	return goneColt;
-}
-
-bool PrincipalsOffice::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

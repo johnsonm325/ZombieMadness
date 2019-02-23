@@ -5,6 +5,10 @@ Chemistry::Chemistry() : Space("Chemistry")
 	this->zombie = new Zombie(false);
 }
 
+Chemistry::~Chemistry(){
+
+}
+
 void Chemistry::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
@@ -58,24 +62,3 @@ void Chemistry::zombiesDead()
 	deadZombies = true;
 }
 
-void Chemistry::firstTime()
-{
-	firstTry = false;
-}
-
-bool Chemistry::coltGone()
-{
-	return goneColt;
-}
-
-bool Chemistry::itemSearch(vector<string> inv, string a)
-{
-	for (unsigned int i = 0; i < inv.size(); i++)
-	{
-		if (a == inv[i])
-		{
-			return true;
-		}
-	}
-	return false;
-}

@@ -110,7 +110,7 @@ string CmdParser::extractArgument(vector<string> cmdVector, string cmdType){
 	//drop|take|action <item name>
 	if(cmdType == "drop" || cmdType == "take" || cmdType == "use" || cmdType == "throw" ||
 	   cmdType == "push" || cmdType == "read" || cmdType == "wear" || cmdType == "eat" ||
-	   cmdType == "open"){	
+	   cmdType == "open" || cmdType == "cut"){	
 		if(cmdVector.size() > 1){
 			item = buildArgString(cmdVector, 1);
 		}

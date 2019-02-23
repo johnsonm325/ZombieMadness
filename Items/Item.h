@@ -1,8 +1,6 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-
-
 #include <string>
 #include <iostream>
 #include <vector>
@@ -23,6 +21,7 @@ protected:
 	int defense;
 	int healthBoost;
 	int size;
+	bool removable = true;
 
 public:
 	Item();
@@ -35,6 +34,7 @@ public:
 	int getHealthBoost();
 	int getSize();
 	void setDummyItem(string, string);
+	bool isMovable();
 
 	// virtual action methods
 	virtual void useItem();

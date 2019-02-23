@@ -33,7 +33,6 @@ School::School()
 	connectRooms();
 	createRoomsList();
 
-	stateManager->addRoomList(rooms);
 	stateManager->init();
 }
 
@@ -146,7 +145,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						return;
 					}
 				}
-            }	
+            		}	
 			if((currentRoom->getType() == "Second Floor Hallway") &&
 			   (wb->getDoorLocked() == true) &&
 			   (cmd == "go east")) {
@@ -156,11 +155,11 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
 						return;
 					}
-                }
+                	}
 			
 			if((currentRoom->getType() == "Women's Bathroom") && (cmd == "go west")) {
 				currentRoom->unlockDoor();
-            }
+            		}
 
 			if(currentRoom->getType() == "Gymnasium First Floor"){
 				if( cmd == "south" || cmd == "go south" || cmd == "k" ||
@@ -210,6 +209,18 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					static_cast<MensBathroom*>(currentRoom)->inspectToilet();
 				}
 			}
+
+			if(currentRoom->getType() == "History") {
+				if(item == "George Washington bust") {
+					static_cast<History*>(currentRoom)->inspectBust();
+				}
+			}
+
+			if(currentRoom->getType() == "Literature") {
+				if(item == "desk") {
+					static_cast<Literature*>(currentRoom)->inspectDesk();
+				}
+			}
 		}
 		if (foundCmd->getType() == "take") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
@@ -235,6 +246,15 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "throw") {
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
+			
+			if (currentRoom->getType() == "Cafeteria") {
+				if(item == "food") {
+					static_cast<Cafeteria*>(currentRoom)->throwFood();
+					return;
+				}
+			}
+
 			cout << "\nThrowing item" << endl;
 			doItemAction(foundCmd->getType(), cmdVector);		
 		}
@@ -255,8 +275,19 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "cut") {
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
+			
 			cout << "\nCutting something with a weapon?" << endl;
-			doItemAction(foundCmd->getType(), cmdVector);
+			if (currentRoom->getType() == "Gymnasium Second Floor") {
+				cout << item << endl;
+				if(item == "ropes") {
+					static_cast<GymnasiumFloor2*>(currentRoom)->cutRopes();
+				}
+			}
+
+			else {
+				doItemAction(foundCmd->getType(), cmdVector);
+			}
 		}
 		if (foundCmd->getType() == "attack") {
 			cout << "\nAttacking creature" << endl;
@@ -278,7 +309,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					}
 					else{
 						cout << "Didn't find key in player's inventory, cannot open door!" << endl;
-
 					}
 				}
 				return;
@@ -610,14 +640,22 @@ void School::setupPlayer(){
 	player->movetoRoom(currentRoom);
 }
 
+int School::getRoomIdx(Space* room){
+	for (int i = 0; i < (int)rooms.size(); i++) {
+		if(rooms[i] == room){
+			return i;
+		}
+	}
+	return -1;
+}
+
 GameState* School::createState(){
 	GameState* newState = new GameState();
 
 	newState->updateTime();
-	newState->setRooms(getRoomsList());
-	newState->setCurrentRoom(getCurrentRoom());
+	newState->setCurrentRoom(getRoomIdx(currentRoom));
 	newState->setSteps(steps);
-	
+	newState->addPlayer(player);
 	return newState;
 }
 

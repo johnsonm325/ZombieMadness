@@ -54,6 +54,10 @@ int Creature::getHealth()
 	return health;
 }
 
+bool Creature::isAlive(){
+	return isDead == false;
+}
+
 void Creature::setName(string name)
 {
 	this->name = name;
@@ -112,4 +116,8 @@ void Creature::blockAttack()
 void Creature::talkToCreature()
 {
 	cout << "You cannot talk to this creature." << endl;
+}
+
+void Creature::die(){
+	isDead = true;
 }
