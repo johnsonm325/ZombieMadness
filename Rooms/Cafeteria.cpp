@@ -6,8 +6,11 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	string description = "# There are chunks of food strewn around the room. Some of it is gloopy, and you don't want to touch that. But some, you can pick up.";
 	string name = "food";
 	food->setDummyItem(description, name);
-
 	roomInventory->addItem(food);
+}
+
+Cafeteria::~Cafeteria(){
+
 }
 
 void Cafeteria::printIntro(){
@@ -61,7 +64,6 @@ int Cafeteria::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void Cafeteria::throwFood()
 {
 	cout << "# You hurl the chunks of food across the room. They stick to the wall and satisfyingly slide down to the floor. 'I've always wanted to do that,' you say." << endl << "#" << endl;
@@ -70,19 +72,3 @@ void Cafeteria::throwFood()
 }
 
 
-void Cafeteria::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool Cafeteria::coltGone()
-{
-	return goneColt;
-}
-
-
-bool Cafeteria::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

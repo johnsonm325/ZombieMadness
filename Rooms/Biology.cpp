@@ -5,6 +5,10 @@ Biology::Biology() : Space("Biology")
 	this->roomInventory->addItem(new Rocks());
 }
 
+Biology::~Biology(){
+
+}
+
 void Biology::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
@@ -47,26 +51,3 @@ int Biology::menu(vector<string> commandVector)
 	return 0;
 }
 
-
-void Biology::inspectToilet()
-{
-
-}
-
-
-void Biology::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool Biology::coltGone()
-{
-	return goneColt;
-}
-
-
-bool Biology::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

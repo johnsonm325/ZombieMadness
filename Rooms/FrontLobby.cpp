@@ -1,10 +1,15 @@
 #include "FrontLobby.h"
 
-
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {
 	
 }
+
+FrontLobby::~FrontLobby()
+{
+	
+}
+
 void FrontLobby::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
@@ -52,26 +57,9 @@ int FrontLobby::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void FrontLobby::zombiesDead()
 {
 	deadZombies = true;
 }
 
 
-void FrontLobby::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool FrontLobby::coltGone()
-{
-	return goneColt;
-}
-
-
-bool FrontLobby::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

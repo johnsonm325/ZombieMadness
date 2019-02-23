@@ -1,9 +1,12 @@
 #include "Infirmary.h"
 
-
 Infirmary::Infirmary() : Space("Infirmary")
 {
 	this->roomInventory->addItem(new BiteCure());
+}
+
+Infirmary::~Infirmary(){
+
 }
 
 void Infirmary::printIntro(){
@@ -54,25 +57,3 @@ int Infirmary::menu(vector<string> commandVector)
 }
 
 
-void Infirmary::inspectToilet()
-{
-
-}
-
-
-void Infirmary::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool Infirmary::coltGone()
-{
-	return goneColt;
-}
-
-
-bool Infirmary::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

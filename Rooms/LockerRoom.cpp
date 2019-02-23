@@ -1,11 +1,15 @@
 #include "LockerRoom.h"
 
-
 LockerRoom::LockerRoom() : Space("Locker Room")
 {
 	this->roomInventory->addItem(new BaseballBat());
 	this->roomInventory->addItem(new SteelLid());
 }
+
+LockerRoom::~LockerRoom(){
+
+}
+
 void LockerRoom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
@@ -52,25 +56,3 @@ int LockerRoom::menu(vector<string> commandVector)
 }
 
 
-void LockerRoom::inspectToilet()
-{
-
-}
-
-
-void LockerRoom::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool LockerRoom::coltGone()
-{
-	return goneColt;
-}
-
-
-bool LockerRoom::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

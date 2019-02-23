@@ -5,6 +5,10 @@ ComputerScience::ComputerScience() : Space("Computer Science")
 	this->roomInventory->addItem(new Sword());
 }
 
+ComputerScience::~ComputerScience(){
+
+}
+
 void ComputerScience::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
@@ -50,25 +54,3 @@ int ComputerScience::menu(vector<string> commandVector)
 }
 
 
-void ComputerScience::inspectToilet()
-{
-
-}
-
-
-void ComputerScience::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool ComputerScience::coltGone()
-{
-	return goneColt;
-}
-
-
-bool ComputerScience::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

@@ -1,6 +1,5 @@
 #include "SecondFloorHallway.h"
 
-
 SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
 {
 	deadBody = new Item();
@@ -19,6 +18,10 @@ SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
 SecondFloorHallway::SecondFloorHallway(bool firstTry) : Space("Second Floor Hallway")
 {
 	this->firstTry = firstTry;
+}
+
+SecondFloorHallway::~SecondFloorHallway(){
+
 }
 
 void SecondFloorHallway::printIntro(){
@@ -69,19 +72,3 @@ int SecondFloorHallway::menu(vector<string> commandVector)
 }
 
 
-void SecondFloorHallway::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool SecondFloorHallway::coltGone()
-{
-	return goneColt;
-}
-
-
-bool SecondFloorHallway::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}

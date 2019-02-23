@@ -1,6 +1,5 @@
 #include "WomensBathroom.h"
 
-
 WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 {
 	this->lockDoor();
@@ -25,6 +24,10 @@ WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 	string text = "'Want to make your man beg for ... ' 'Ehh, maybe I don't want to read this.'";
 	magazine->setAction(text, Read);
 	roomInventory->addItem(magazine);
+}
+
+WomensBathroom::~WomensBathroom(){
+
 }
 
 void WomensBathroom::printIntro(){
@@ -71,21 +74,6 @@ int WomensBathroom::menu(vector<string> commandVector)
 	}
 
 	return 0;
-}
-
-void WomensBathroom::firstTime()
-{
-	firstTry = false;
-}
-
-bool WomensBathroom::coltGone()
-{
-	return goneColt;
-}
-
-bool WomensBathroom::itemSearch(vector<string> inv, string a)
-{
-	return false;
 }
 
 void WomensBathroom::increaseBagSize()

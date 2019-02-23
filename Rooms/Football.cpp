@@ -1,10 +1,15 @@
 #include "Football.h"
 
-
 Football::Football() : Space("Football Field")
 {
 	lockDoor();
 }
+
+Football::~Football()
+{
+	
+}
+
 void Football::printIntro()
 {
 	cout << "# 'Looks like this is the way out.' You look across the dark field, fog creeping across the ground and" << endl;
@@ -40,26 +45,8 @@ int Football::menu(vector<string> commandVector)
 	return 0;
 }
 
-
 void Football::zombiesDead()
 {
 	deadZombies = true;
 }
 
-
-void Football::firstTime()
-{
-	firstTry = false;
-}
-
-
-bool Football::coltGone()
-{
-	return goneColt;
-}
-
-
-bool Football::itemSearch(vector<string> inv, string a)
-{
-	return false;
-}
