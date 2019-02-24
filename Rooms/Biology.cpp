@@ -3,6 +3,20 @@
 Biology::Biology() : Space("Biology")
 {
 	this->roomInventory->addItem(new Rocks());
+
+	dissectedAnimal = new Item();
+	string description = "# A pig is laying on its back on the table, with it's stomach split open.\n# You can see all of it's organs. The organs have blank labels, as if this was set up for\n# some kind of test.";
+	string name = "dissected animal";
+	dissectedAnimal->setDummyItem(description, name);
+	roomInventory->addItem(dissectedAnimal);
+
+	plants = new Item();
+	description = "# There is a large collection of herbs and plants scattered across the room. You\n# remember that some of these will give you and added boost of health when you eat them,\n# and some can harm you, but can you remember which ones?";
+	name = "plants";
+	plants->setDummyItem(description, name);
+	string text = "# You carefully pick the plant you think is the right one, close your eyes,\n# and take a bite.";
+	plants->setAction(text, Eat);
+	roomInventory->addItem(plants);
 }
 
 Biology::~Biology(){
@@ -22,6 +36,16 @@ void Biology::printIntro(){
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
+}
+
+bool Biology::getPlantsEaten()
+{
+	return plantsEaten;
+}
+
+void Biology::setPlantsEaten()
+{
+	plantsEaten = true;
 }
 
 void Biology::printExitDesc()

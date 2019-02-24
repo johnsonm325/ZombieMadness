@@ -3,13 +3,13 @@
 SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
 {
 	deadBody = new Item();
-	string description = "As you touch the skin of the body, you draw your hand back quickly. The skin feels soft and cold. Your finger indentations are left on the skin and you notice that you actually broke the skin with your light touch. You slowly roll the body over to see a large gaping wound and the smell of rotten meat fill your nose. You gag from the sight and smell and drop the body, quickly stepping away.";
+	string description = "# As you touch the skin of the body, you draw your hand back quickly. The skin feels soft and cold. Your finger indentations are left on the skin and you notice that you actually broke the skin with your light touch. You slowly roll the body over to see a large gaping wound and the smell of rotten meat fill your nose. You gag from the sight and smell and drop the body, quickly stepping away.";
 	string name = "dead body";
 	deadBody->setDummyItem(description, name);
 	roomInventory->addItem(deadBody);
 
 	bulletinBoard = new Item();
-	description = "Lots of papers have been pinned to the board showing different school events this month. Nothing special here.";
+	description = "# Lots of papers have been pinned to the board showing different school events this month. Nothing special here.";
 	name = "bulletin board";
 	bulletinBoard->setDummyItem(description, name);
 	roomInventory->addItem(bulletinBoard);

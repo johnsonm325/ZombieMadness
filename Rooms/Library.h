@@ -11,6 +11,7 @@ private:
 	string action;		//string action typed in by the user
 	FrontLobby *fl;
 	Item *ladder;
+	Item *book;
 
 public:
 	Library();
@@ -19,6 +20,5 @@ public:
 	void printExitDesc();
 	int menu(vector<string>);
 	void useLadder();
-	
 };
 #endif

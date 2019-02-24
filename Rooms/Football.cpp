@@ -4,6 +4,22 @@ Football::Football() : Space("Football Field")
 {
 	lockDoor();
 	this->zombie = new Zombie(true);
+
+	football = new Item();
+	string description = "# A football is resting in the middle of the field. Looks like a brand new ball.";
+	string name = "football";
+	football->setDummyItem(description, name);
+	string text = "# You pick up the football and hurl it downfield. It looks to have gone about 50 yards.\n# Not a bad throw, you think.";
+	football->setAction(text, Throw);
+	roomInventory->addItem(football);
+
+	pompom = new Item();
+	description = "# One of the cheerleader's pom-poms was left on the field. I wonder which cheerleader...";
+	name = "pom-pom";
+	pompom->setDummyItem(description, name);
+	text = "# You pick up the pom-pom and rehearse one of the cheers that you see the cheerleaders\n# do every game. You look around to make sure no one saw and put\n# the pom-pom back on the ground.";
+	pompom->setAction(text, Use);
+	roomInventory->addItem(pompom);
 }
 
 Football::~Football()

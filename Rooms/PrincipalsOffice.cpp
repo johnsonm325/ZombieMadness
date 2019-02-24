@@ -3,12 +3,13 @@
 PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
 	string description, name, text;
+	this->zombie = new Zombie(false);
 
 	key = new Key();
 	fireExt = new FireExtinguisher();
 
 	//Setting dummy items
-    desk = new Item();
+	desk = new Item();
 	description = "# A wooden desk in Principal's office, with a couple unlocked drawers. Examine it closer and you may find new clues on your next plan of action!";
 	name = "desk";
 	text = "# You've opened the desk's drawer...Inside, you can see a shiny brass key.";
@@ -19,7 +20,13 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	roomInventory->addItem(key);
 	roomInventory->addItem(desk);
 
-	this->zombie = new Zombie(false);
+	chair = new Item();
+	description = "# Behind the desk sits the principal's tall, black leather chair. It looks comfy.";
+	name = "chair";
+	chair->setDummyItem(description, name);
+	text = "# You walk over to the chair and take a seat. You throw your feet up\n# on the desk and interlock your fingers behind your head.\n# 'Who's the boss now?'";
+	chair->setAction(text, Use);
+	roomInventory->addItem(chair);
 }
 
 PrincipalsOffice::~PrincipalsOffice(){
@@ -78,5 +85,3 @@ void PrincipalsOffice::zombiesDead()
 {
 	deadZombies = true;
 }
-
-

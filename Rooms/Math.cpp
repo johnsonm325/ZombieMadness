@@ -2,7 +2,21 @@
 
 Math::Math() : Space("Math")
 {
-	
+	calculator = new Item();
+	string description = "# A calculator it sitting on top of one of the student's desks. It seems operational.";
+	string name = "calculator";
+	calculator->setDummyItem(description, name);
+	string text = "# You pick up the calculator and start typing in 01134.\n# You turn the calculator upside down and it reads hEll0.";
+	calculator->setAction(text, Use);
+	roomInventory->addItem(calculator);
+
+	apple = new Item();
+	description = "# A small, red delicious apple sits on the teacher's desk. It looks delicious.";
+	name = "apple";
+	apple->setDummyItem(description, name);
+	text = "# You bite into the juicy apple and the juice runs down your chin. It's absolutely delicious!";
+	apple->setAction(text, Eat);
+	roomInventory->addItem(apple);
 }
 
 Math::~Math(){
@@ -51,8 +65,16 @@ int Math::menu(vector<string> commandVector)
 	{
 		return 40;
 	}
-	printIntro();	
 	
 	return 0;
 }
 
+void Math::eatApple()
+{
+	appleEaten = true;
+}
+
+bool Math::getAppleEaten()
+{
+	return appleEaten;
+}

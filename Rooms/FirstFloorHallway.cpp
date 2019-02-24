@@ -2,7 +2,21 @@
 
 FirstFloorHallway::FirstFloorHallway() : Space("First Floor Hallway")
 {
-	
+	vomit = new Item();
+	string description = "# You can see you fresh pile of vomit on the floor. The smell comes up to\n# meet your nose and you almost gag.";
+	string name = "vomit";
+	vomit->setDummyItem(description, name);
+	string text = "# You eat the vomit.\n# You are disgusting! What's wrong with you?!";
+	vomit->setAction(text, Eat);
+	roomInventory->addItem(vomit);
+
+	vendingMachine = new Item();
+	description = "# There is a vending machine against the west wall. It is full of snacks.\n# It appears to be broken; like you can just push buttons for free snacks!";
+	name = "vending machine";
+	vendingMachine->setDummyItem(description, name);
+	text = "# You push a button and a snack drops";
+	vendingMachine->setAction(text, Use);
+	roomInventory->addItem(vendingMachine);
 }
 
 FirstFloorHallway::FirstFloorHallway(bool firstTry) : Space("First Floor Hallway")
@@ -56,4 +70,26 @@ int FirstFloorHallway::menu(vector<string> commandVector)
 	return 0;
 }
 
+bool FirstFloorHallway::getVendingMachineUsed()
+{
+	return vendingMachineUsed;
+}
 
+void FirstFloorHallway::useVendingMachine()
+{
+	vendingMachineUsed = true;
+	snack = new Item();
+	string description = "# You lift the door and a Snickers bar sits at the bottom of the machine.";
+	string name = "snack";
+	snack->setDummyItem(description, name);
+	string text = "# You grab the snack, open the wrapper and eat the candy bar. Delicious.";
+	snack->setAction(text, Eat);
+	roomInventory->addItem(snack);
+}
+
+void FirstFloorHallway::eatSnack()
+{
+	roomInventory->removeItem(snack);
+	delete snack;
+	vendingMachineUsed = false;
+}

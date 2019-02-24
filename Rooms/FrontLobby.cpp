@@ -3,6 +3,20 @@
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {
 	this->zombie = new Zombie(false);
+	
+	bench = new Item();
+	string description = "# A bench sits in the middle of the room. There's a dead body slumped over it.";
+	string name = "bench";
+	bench->setDummyItem(description, name);
+	string text = "You sit on the bench, next to the dead body. 'Woah, this is weird.\n# So, how's it going?' you ask; but get no response.";
+	bench->setAction(text, Use);
+	roomInventory->addItem(bench);
+
+	displayCase = new Item();
+	description = "# The display case has a bunch of trophies showing state championships\n# that the school has won over the years. You helped the\n# football team get one of the trophies last year. You can see\n# the team photo and spot yourself standing off to the end of the\n# line of teammates. You beam with pride. 'Ok, time to\n# get back to the issue at hand.";
+	name = "display case";
+	displayCase->setDummyItem(description, name);
+	roomInventory->addItem(displayCase);
 }
 
 FrontLobby::~FrontLobby()
