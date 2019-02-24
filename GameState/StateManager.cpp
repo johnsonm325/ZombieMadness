@@ -17,7 +17,7 @@ void StateManager::init(){
 	clearStates();
 	getSaveFileList();
 	if (foundSaveFiles()) {
-		cout << "Found [" << fileList.size() << "] save files." << endl;
+		cout << "Found [ " << fileList.size() << " ] save files." << endl;
 
 		for(unsigned int i = 0; i < fileList.size(); i++){
 			cout << "File: " << fileList[i] << endl;
