@@ -13,11 +13,14 @@ Player::Player()
 Player::~Player()
 {
 	delete this->playerInventory;
+	this->playerInventory = NULL;
 }
 
 void Player::movetoRoom(Space* room){
 	currentRoom = room;
 	this->roomInventory = room->getInventory();
+
+	enemy = room->getZombie();
 }
 
 PlayerInventory* Player::getInventory(){
@@ -38,8 +41,11 @@ void Player::useItem(Item* item) {
 	if (type == "Supply"){
 		player->setHealth(item->getHealthBoost());
 	}	
-	else if (type == "Weapon"){
-		if(enemy != NULL){
+	
+	else if (type == "Weapon")
+	{
+		if(enemy != NULL)
+		{
 			enemy->takeDamage(item->getAttack());
 		}
 	}	
@@ -50,17 +56,47 @@ void Player::useItem(Item* item) {
 	//roomInventory->removeItem(item);
 }
 
-void Player::attackEnemy(string item) 
+void Player::attackEnemy() 
 {
-	Item *weapon = this->playerInventory->findItem(item);
+	string input;
+	Item *weapon;
+
+	if (!enemy || !enemy->isAlive())
+	{
+		cout << "# Calm your horses, there are no zombies in sight, no need to attack." << endl;
+		return;
+	}
+	
+	if (playerInventory->isEmpty())
+	{
+		cout <<  "# Ah, nothing to attack with!" << endl;
+		return;
+	}
+	
+	cout << "# Please choose one of the following to attack with" << endl;
+	cout << endl;
+
+	playerInventory->printAvailableWeapons();
+
+	cout << "# Enter choice: ";
+
+	getline(cin, input);
+	cout << endl;
+
+	transform(input.begin(), input.end(), input.begin(), ::tolower);
+
+	weapon = playerInventory->findItem(input);
 
 	if (!weapon)
 	{
-		cout << "That weapon could not be found in your inventory, please try a different weapon." << endl;
+		cout << "# That is not an available weapon in your inventory." << endl;
 		return;
 	}
 
+	weapon->attackItem();
+
 	enemy->takeDamage(weapon->getAttack());
+
 	playerInventory->removeItem(weapon, true);
 }
 

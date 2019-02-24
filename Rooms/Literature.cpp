@@ -15,6 +15,8 @@ Literature::Literature() : Space("Literature")
 	name = "desk";
 	desk->setDummyItem(description, name);
 	roomInventory->addItem(desk);
+
+	this->zombie = new Zombie(false);
 }
 
 Literature::~Literature(){
@@ -32,6 +34,10 @@ void Literature::printIntro(){
 
 	cout << "# Bookshelves line the north and south walls and a chalkboard is mounted on the east wall. The teachers desk" << endl;
 	cout << "# sits in front of the chalkboard and desks in the middle of the floor face the chalkboard." << endl;
+
+	if (zombie != NULL)
+		cout << "# Oh no, a zombie is in here!" << endl;
+
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

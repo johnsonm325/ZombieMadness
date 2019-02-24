@@ -18,6 +18,8 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	roomInventory->addItem(fireExt);
 	roomInventory->addItem(key);
 	roomInventory->addItem(desk);
+
+	this->zombie = new Zombie(false);
 }
 
 PrincipalsOffice::~PrincipalsOffice(){

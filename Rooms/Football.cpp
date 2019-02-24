@@ -3,6 +3,7 @@
 Football::Football() : Space("Football Field")
 {
 	lockDoor();
+	this->zombie = new Zombie(true);
 }
 
 Football::~Football()

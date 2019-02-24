@@ -10,6 +10,7 @@ BaseballBat::BaseballBat() : Item()
 	this->size = 2;
 }
 
-void BaseballBat::useItem(){
-
+void BaseballBat::attackItem()
+{
+	cout << "# Attacking creature with the baseball bat, smash their brains in!" << endl;
 }

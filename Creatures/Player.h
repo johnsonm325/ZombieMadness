@@ -2,19 +2,22 @@
 #define PLAYER_H
 
 #include "../Rooms/Space.h"
-#include "Creature.h"
+#include "Zombie.h"
 #include "../Items/PlayerInventory.h"
 #include "../Items/Inventory.h"
 
 #include <string>
 using std::string;
+using std::cin;
+using std::getline;
+using std::transform;
 
 class Player
 {
 private:
 	PlayerInventory *playerInventory;
 	Inventory *roomInventory; // room's inventory class is passed in here
-	Creature *enemy = NULL; 	// passed in enemy
+	Zombie *enemy = NULL; 	// passed in enemy
 	Creature *player = NULL;	//Actual player's data
 	Space* currentRoom = NULL;
 public:
@@ -25,7 +28,7 @@ public:
 	Inventory* getRoomInventory();
 	void clearInventory();
 	void useItem(Item* item);
-	void attackEnemy(string);
+	void attackEnemy();
 	void takeItem(Item*);
 	void dropItem(Item*);
 	void lookAtItems(string item);

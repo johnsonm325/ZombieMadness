@@ -2,7 +2,7 @@
 
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {
-	
+	this->zombie = new Zombie(false);
 }
 
 FrontLobby::~FrontLobby()
@@ -23,6 +23,10 @@ void FrontLobby::printIntro(){
 
 	cout << "# Benches line the walls and other benches have been turned over throughout the room. Trophy cases can also be seen on the" << endl;
 	cout << "# east and west walls and there are lots of student's items to be searched." << endl;
+
+	if (zombie != NULL)
+		cout << "# Oh no, a zombie is in here!" << endl;
+
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

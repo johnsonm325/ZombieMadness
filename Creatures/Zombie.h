@@ -9,12 +9,10 @@ using std::string;
 class Zombie: public Creature
 {
 private:
-	int level;
+	bool isBoss;
 public:
-	Zombie(int level);
+	Zombie(bool);
 	~Zombie();
-	void setLevel(int level);
-	//void useItem(Object* item);
 	void attackEnemy(Creature* enemy);
 
 };

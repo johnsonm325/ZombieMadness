@@ -15,6 +15,9 @@ Space::~Space()
 	east = NULL;
 	south = NULL;
 	west = NULL;
+
+	delete roomInventory;
+	roomInventory = NULL;
 }
 
 void Space::setEast(Space *e)
@@ -178,18 +181,15 @@ void Space::printDirection(Space* direction) {
 }
 
 //Add creature to room
-void Space::addCreature(Creature* creature) {
-	creatures.push_back(creature);
+void Space::removeCreature() 
+{
+	delete zombie;
+	zombie = NULL;
 }
 
-//Add creature to room
-void Space::removeCreature(Creature* creature) {
-	creatures.erase(remove(creatures.begin(), creatures.end(), creature), creatures.end());
-}
-
-//Get list of creatures from room, including player
-vector<Creature*> Space::getCreatures() {
-	return creatures;
+Zombie* Space::getZombie()
+{
+	return zombie;
 }
 
 bool Space::getDoorLocked()

@@ -6,7 +6,7 @@ class BaseballBat : public Item
 {
 public:
 	BaseballBat();
-	void useItem();
+	void attackItem();
 };
 
 #endif
