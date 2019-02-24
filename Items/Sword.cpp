@@ -10,7 +10,7 @@ Sword::Sword() : Item()
 	this->size = 3;
 }
 
-void Sword::useItem()
+void Sword::attackItem()
 {
-	//to be determined
+	cout << "Slice n' dice baby, attacking with Sword!" << endl;
 }

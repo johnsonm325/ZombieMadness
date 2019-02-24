@@ -6,7 +6,7 @@ class Sword : public Item
 {
 public:
 	Sword();
-	void useItem();
+	void attackItem();
 };
 
 #endif

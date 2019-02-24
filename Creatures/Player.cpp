@@ -13,6 +13,7 @@ Player::Player()
 Player::~Player()
 {
 	delete this->playerInventory;
+	this->playerInventory = NULL;
 }
 
 void Player::movetoRoom(Space* room){
@@ -60,18 +61,30 @@ void Player::useItem(Item* item) {
 	//roomInventory->removeItem(item);
 }
 
-void Player::attackEnemy(string item) 
+void Player::attackEnemy() 
 {
-	Item *weapon = this->playerInventory->findItem(item);
+	string input;
+	Item *weapon;
+	
+	cout << "# Please choose one of the following to attack with" << endl;
+
+	playerInventory->printAvailableWeapons();
+
+	cin >> input;
+
+	transform(input.begin(), input.end(), input.begin(), ::tolower);
+
+	weapon = playerInventory->findItem(input);
 
 	if (!weapon)
 	{
-		cout << "That weapon could not be found in your inventory, please try a different weapon." << endl;
+		cout << "That is not an available weapon in your inventory." << endl;
 		return;
 	}
 
-	
+	weapon->attackItem();
 
+	enemy->takeDamage(weapon->getAttack());
 	playerInventory->removeItem(weapon, true);
 }
 

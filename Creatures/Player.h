@@ -8,6 +8,8 @@
 
 #include <string>
 using std::string;
+using std::cin;
+using std::transform;
 
 class Player
 {
@@ -25,7 +27,7 @@ public:
 	Inventory* getRoomInventory();
 	void clearInventory();
 	void useItem(Item* item);
-	void attackEnemy(string);
+	void attackEnemy();
 	void takeItem(Item*);
 	void dropItem(Item*);
 	void lookAtItems(string item);

@@ -372,6 +372,10 @@ void School::doItemAction(string cmdType, vector<string> cmdVector){
 		else if (cmdType == "open") {
 			selectedItem->openItem();
 		}
+
+		else if (cmdType == "attack") {
+			player->attackEnemy();
+		}
 	}
 }
 
