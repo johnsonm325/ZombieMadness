@@ -133,8 +133,10 @@ GameState* StateManager::processFileData(vector<string> lines) {
 
 		//Adding header info to state object;
 		int rIdx, i;
-		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
+		int numValidRooms = 0;
+		vector<Space*> rooms = newState->getRoomsList();
 
+		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
 		newState->setCurrentRoom(rIdx);
 		newState->setTime(newTime);
 
@@ -145,7 +147,6 @@ GameState* StateManager::processFileData(vector<string> lines) {
 			foundRooms = (*line).find("<Rooms>");
 			//Found rooms section in file, start processing room data
 			if(foundRooms != std::string::npos){
-				vector<Space*> rooms = newState->getRoomsList();
 				for(i = 0; i < (int)rooms.size(); i++){
 					bool readSucess = readRoom(line, rooms[i]);
 					if(readSucess == false){
@@ -154,16 +155,20 @@ GameState* StateManager::processFileData(vector<string> lines) {
 #endif						
 						return NULL;
 					}
+					else{
+						numValidRooms++;
+					}
 				}
 			}
 			else{	//If all rooms weren't read, read state is not valid, so return NULL	
-				if(i < ((int)rooms.size() - 1)){				
+				if(numValidRooms < ((int)rooms.size() - 1)){				
 #ifdef STATE_DEBUG
 					cout << invalidFile << endl;
 #endif
 					return NULL;
 				}
-				break;
+				//All states read were valid, so break loop and return new state
+					break;
 			}
 			line++;
 		}
