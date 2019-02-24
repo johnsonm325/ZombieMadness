@@ -21,7 +21,7 @@ Library::Library() : Space("Library")
 
 Library::~Library()
 {
-	delete ladder;
+	
 }
 
 void Library::printIntro(){

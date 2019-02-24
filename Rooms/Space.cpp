@@ -75,17 +75,24 @@ void Space::firstTime()
 	firstTry = false;
 }
 
-void Space::setFirstTry(bool first){
+void Space::setFirstTry(bool first)
+{
 	firstTry = first;
 }
 
-bool Space::isFirstTry(){
+bool Space::isFirstTry()
+{
 	return firstTry;
 }
 
 bool Space::coltGone()
 {
 	return goneColt;
+}
+
+void Space::setColtGone(bool gone)
+{
+	goneColt = gone;
 }
 
 void Space::addRoomsListToSpace(vector<Space*> roomsVector)

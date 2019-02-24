@@ -1,7 +1,9 @@
 #include "GameState.h"
 
 GameState::GameState() {
+	player = new Player();
 	PlayerInventory* inv = new PlayerInventory();
+	
 	mb = new MensBathroom();
 	wb = new WomensBathroom(inv);
 	sfh1 = new SecondFloorHallway();
@@ -116,7 +118,7 @@ void GameState::addRoom(char direction, Space *nextRoom, Space *prevRoom)
 	else if (direction == 's')
 	{
 		// to set the non-standard joining of chemistry and infirmary rooms
-		if (prevRoom->getType() == "chem")
+		if (nextRoom->getType() == "Chemistry")
 		{
 			prevRoom->setSouth(nextRoom);
 			nextRoom->setSouth(prevRoom);
@@ -157,6 +159,8 @@ void GameState::createRoomsList(){
 	rooms.push_back(fl);
 	rooms.push_back(fo);
 	rooms.push_back(prin);
+
+	copyRoomsListToSpace();
 }
 
 void GameState::copyRoomsListToSpace() {
@@ -165,7 +169,7 @@ void GameState::copyRoomsListToSpace() {
 	}
 }
 
-vector<Space*> GameState::getRooms(){
+vector<Space*> GameState::getRoomsList(){
 	return rooms;
 }
 
@@ -193,10 +197,117 @@ int GameState::getSteps(){
 	return steps;
 }
 
-void GameState::addPlayer(Player* player){
-	this->player = player;
-}
-
 Player* GameState::getPlayer(){
 	return player;
+}
+
+//Copy player data from current game to game state object
+void GameState::copyPlayer(Player* player){
+	this->player = new Player();
+}
+
+void GameState::copyRooms(vector<Space*> dest, vector<Space*> source){
+	//Rigorous argument checks
+	if(dest.size() == 0 || source.size() == 0) { return; }
+	if(dest.size() != source.size() ) {return; }
+
+	int i;
+	for(i = 0; i < (int)dest.size(); i++){
+
+		//Copying boolean State class variables first	
+		// bool doorLocked = false, firstTry = true,  goneColt = false;
+		bool locked = source[i]->getDoorLocked();
+		if(locked){
+			dest[i]->lockDoor();
+		}
+		else{
+			dest[i]->unlockDoor();
+		}
+		dest[i]->setFirstTry(source[i]->isFirstTry());
+		dest[i]->setColtGone(source[i]->coltGone());
+
+		//Copying room inventory from source to dest
+		copyInventory(dest[i]->getInventory(), source[i]->getInventory());	
+	}
+}
+
+//Copy inventory from source to dest inventory
+void GameState::copyInventory(Inventory* dest, Inventory* source){
+	//Copying removable room items
+	vector<Item*> sourceItems = source->getItems();
+	vector<Item*> destItems = dest->getItems();
+	vector<Item*> movableItems;
+	int i;
+
+	//Create vector all movable objects(copies) in the room
+	for(i = 0; i < (int) sourceItems.size(); i++){
+		if(sourceItems[i]->isMovable()){
+			Item* newItem = createItem(sourceItems[i]->getName());
+			movableItems.push_back(newItem);
+		}
+	}
+
+	//Remove all movable objects in dest inventory for a clear slate
+	for(i = 0; i < (int) destItems.size(); i++){
+		if(destItems[i]->isMovable()){
+			dest->removeItem(destItems[i]);
+		}
+	}
+	//Add all movable objects in source inventory to dest inventory
+	for(i = 0; i < (int)movableItems.size(); i++){
+		dest->addItem(movableItems[i]);
+	}
+}
+
+//Create new removable item to add to room in game state
+Item* GameState::createItem(string name){
+	Item* newItem = NULL;
+
+	if (name == "Baseball Bat"){
+		newItem = new BaseballBat();
+	}
+	else if(name == "Bite Cure"){
+		newItem = new BiteCure();
+	}
+	else if (name == "Energy Drink LV1"){
+		newItem = new EnergyDrink(1);
+	}
+	else if (name == "Energy Drink LV2"){
+		newItem = new EnergyDrink(2);
+	}
+	else if (name == "Fire Extinguisher"){
+		newItem = new FireExtinguisher();
+	}
+	else if (name == "First Aid"){
+		newItem = new FirstAid();
+	}
+	else if (name == "Gun"){
+		newItem = new Gun();
+	}
+	else if (name == "Jersey"){
+		newItem = new Jersey();
+	}
+	else if (name == "Key"){
+		newItem = new Key();
+	}
+	else if (name == "Knife"){
+		newItem = new Knife();
+	}
+	else if (name == "Map"){
+		newItem = new Map();
+	}
+	else if (name == "Paperclip"){
+		newItem = new Paperclip();
+	}
+	else if (name == "Rocks"){
+		newItem = new Rocks();
+	}
+	else if (name == "Steel Lid"){
+		newItem = new SteelLid();
+	}
+	else if (name == "Sword"){
+		newItem = new Sword();
+	}
+
+	return newItem;
 }

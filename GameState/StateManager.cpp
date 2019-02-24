@@ -17,7 +17,7 @@ void StateManager::init(){
 	clearStates();
 	getSaveFileList();
 	if (foundSaveFiles()) {
-		cout << "Found existing saves:" << fileList.size() << endl;
+		cout << "Found [ " << fileList.size() << " ] save files." << endl;
 
 		for(unsigned int i = 0; i < fileList.size(); i++){
 			cout << "File: " << fileList[i] << endl;
@@ -133,8 +133,10 @@ GameState* StateManager::processFileData(vector<string> lines) {
 
 		//Adding header info to state object;
 		int rIdx, i;
-		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
+		int numValidRooms = 0;
+		vector<Space*> rooms = newState->getRoomsList();
 
+		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
 		newState->setCurrentRoom(rIdx);
 		newState->setTime(newTime);
 
@@ -145,22 +147,28 @@ GameState* StateManager::processFileData(vector<string> lines) {
 			foundRooms = (*line).find("<Rooms>");
 			//Found rooms section in file, start processing room data
 			if(foundRooms != std::string::npos){
-				vector<Space*> rooms = newState->getRooms();
 				for(i = 0; i < (int)rooms.size(); i++){
 					bool readSucess = readRoom(line, rooms[i]);
 					if(readSucess == false){
 #ifdef STATE_DEBUG
-					cout << invalidFile << endl;
+						cout << invalidFile << endl;
 #endif						
 						return NULL;
 					}
+					else{
+						numValidRooms++;
+					}
 				}
 			}
-			else{
+			else{	//If all rooms weren't read, read state is not valid, so return NULL	
+				if(numValidRooms < ((int)rooms.size() - 1)){				
 #ifdef STATE_DEBUG
-				cout << invalidFile << endl;
+					cout << invalidFile << endl;
 #endif
-				return NULL;
+					return NULL;
+				}
+				//All states read were valid, so break loop and return new state
+					break;
 			}
 			line++;
 		}
@@ -339,7 +347,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 		fprintf(saveFile, "Current_room: %s\n", state->getCurrentRoom()->getType().c_str());
 		fprintf(saveFile, "Room_idx: %d\n", state->getRoomIdx());
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
-		vector<Space*> rooms = state->getRooms();
+		vector<Space*> rooms = state->getRoomsList();
 
 		fprintf(saveFile, "\n<Rooms>\n");
 		for (int i = 0; i < (int)rooms.size(); i++) {
@@ -358,10 +366,9 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 
 void StateManager::writeRoom(FILE* saveFile, Space* room){
 	vector<Item*> items = room->getInventory()->getItems();
-	// vector<Creature*> creatures = room->getCreatures();
-	int numItems = items.size(),
-		// numCreatures = creatures.size(),
-		j = 0;
+	Creature* zombie = room->getZombie();
+	int numItems = items.size();
+	int	j, numZombies = 0;
 	bool doorLocked = room->getDoorLocked();
 	fprintf(saveFile, "<Room>\n");
 	fprintf(saveFile, "Type: %s\n", room->getType().c_str());
@@ -376,10 +383,14 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 	fprintf(saveFile, "</Room_Inventory>\n");
 
 	fprintf(saveFile, "<Creatures>\n");
-	// fprintf(saveFile, "Size: %d\n", numCreatures);
-	// for (j = 0; j < numCreatures; j++){
-	// 	writeCreature(saveFile, creatures[j], j+1);
-	// }
+	if(zombie != NULL){
+		numZombies = 1;
+		fprintf(saveFile, "Size: %d\n", numZombies);
+		writeCreature(saveFile, zombie, 1);
+	}
+	else{
+		fprintf(saveFile, "Size: %d\n", numZombies);
+	}
 	fprintf(saveFile, "</Creatures>\n");
 	fprintf(saveFile, "</Room>\n");
 }

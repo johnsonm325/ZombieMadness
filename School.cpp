@@ -773,8 +773,9 @@ GameState* School::createState(){
 
 	newState->updateTime();
 	newState->setCurrentRoom(getRoomIdx(currentRoom));
+	newState->copyRooms(newState->getRoomsList(), this->getRoomsList());
 	newState->setSteps(steps);
-	newState->addPlayer(player);
+	newState->copyPlayer(player);
 	return newState;
 }
 
