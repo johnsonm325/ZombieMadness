@@ -17,7 +17,7 @@ void StateManager::init(){
 	clearStates();
 	getSaveFileList();
 	if (foundSaveFiles()) {
-		cout << "Found existing saves:" << fileList.size() << endl;
+		cout << "Found [" << fileList.size() << "] save files." endl;
 
 		for(unsigned int i = 0; i < fileList.size(); i++){
 			cout << "File: " << fileList[i] << endl;
@@ -150,7 +150,8 @@ GameState* StateManager::processFileData(vector<string> lines) {
 					bool readSucess = readRoom(line, rooms[i]);
 					if(readSucess == false){
 #ifdef STATE_DEBUG
-					cout << invalidFile << endl;
+						cout << "room: " << i << endl;
+						cout << invalidFile << endl;
 #endif						
 						return NULL;
 					}
