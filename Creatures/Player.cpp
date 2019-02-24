@@ -23,7 +23,10 @@ void Player::movetoRoom(Space* room){
 	Zombie *curRoomZombie = room->getZombie();
 
 	if (!curRoomZombie)
+	{
+		enemy = NULL;
 		return;
+	}
 
 	enemy = curRoomZombie;
 }
