@@ -208,7 +208,6 @@ void GameState::copyPlayer(Player* player){
 
 void GameState::copyRooms(vector<Space*> dest, vector<Space*> source){
 	//Rigorous argument checks
-	if(dest == NULL or source == NULL) { return; }
 	if(dest.size() == 0 || source.size() == 0) { return; }
 	if(dest.size() != source.size() ) {return; }
 
@@ -264,49 +263,49 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 Item* GameState::createItem(string name){
 	Item* newItem = NULL;
 
-	if(name == "Baseball Bat"){
+	if (name == "Baseball Bat"){
 		newItem = new BaseballBat();
 	}
 	else if(name == "Bite Cure"){
 		newItem = new BiteCure();
 	}
-	else if{name == "Energy Drink LV1"){
+	else if (name == "Energy Drink LV1"){
 		newItem = new EnergyDrink(1);
 	}
-	else if{name == "Energy Drink LV2"){
+	else if (name == "Energy Drink LV2"){
 		newItem = new EnergyDrink(2);
 	}
-	else if{name == "Fire Extinguisher"){
+	else if (name == "Fire Extinguisher"){
 		newItem = new FireExtinguisher();
 	}
-	else if{name == "First Aid"){
+	else if (name == "First Aid"){
 		newItem = new FirstAid();
 	}
-	else if{name == "Gun"){
+	else if (name == "Gun"){
 		newItem = new Gun();
 	}
-	else if{name == "Jersey"){
+	else if (name == "Jersey"){
 		newItem = new Jersey();
 	}
-	else if{name == "Key"){
+	else if (name == "Key"){
 		newItem = new Key();
 	}
-	else if{name == "Knife"){
+	else if (name == "Knife"){
 		newItem = new Knife();
 	}
-	else if{name == "Map"){
+	else if (name == "Map"){
 		newItem = new Map();
 	}
-	else if{name == "Paperclip"){
+	else if (name == "Paperclip"){
 		newItem = new Paperclip();
 	}
-	else if{name == "Rocks"){
+	else if (name == "Rocks"){
 		newItem = new Rocks();
 	}
-	else if{name == "Steel Lid"){
+	else if (name == "Steel Lid"){
 		newItem = new SteelLid();
 	}
-	else if{name == "Sword"){
+	else if (name == "Sword"){
 		newItem = new Sword();
 	}
 
