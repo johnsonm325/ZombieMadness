@@ -35,7 +35,7 @@ GameState::GameState() {
 	createRoomsList();
 }
 GameState::~GameState() {
-	delete player;
+
 }
 
 string GameState::getTime() {
