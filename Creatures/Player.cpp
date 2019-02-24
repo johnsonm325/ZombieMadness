@@ -67,15 +67,21 @@ void Player::attackEnemy()
 		return;
 	}
 	
+	if (playerInventory->isEmpty())
+	{
+		cout <<  "# Ah, nothing to attack with!" << endl;
+		return;
+	}
+	
 	cout << "# Please choose one of the following to attack with" << endl;
 	cout << endl;
 
 	playerInventory->printAvailableWeapons();
 
 	cout << "# Enter choice: ";
-	cout << endl;
 
 	getline(cin, input);
+	cout << endl;
 
 	transform(input.begin(), input.end(), input.begin(), ::tolower);
 
