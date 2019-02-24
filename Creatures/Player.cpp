@@ -61,7 +61,7 @@ void Player::attackEnemy()
 	string input;
 	Item *weapon;
 
-	if (!enemy)
+	if (!enemy || !enemy->isAlive())
 	{
 		cout << "# Calm your horses, there are no zombies in sight, no need to attack." << endl;
 		return;
@@ -89,6 +89,7 @@ void Player::attackEnemy()
 	weapon->attackItem();
 
 	enemy->takeDamage(weapon->getAttack());
+
 	playerInventory->removeItem(weapon, true);
 }
 

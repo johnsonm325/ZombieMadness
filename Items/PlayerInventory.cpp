@@ -68,7 +68,12 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
         usedSlots--;
 
         if (wasUsed)
+        {
+            delete item;
+            item = NULL;
             return;
+        }
+        
         else
             cout << item->getName() << " was succesfully removed from your inventory." << endl;
         
