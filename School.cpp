@@ -290,7 +290,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			}
 		}
 		if (foundCmd->getType() == "attack") {
-			cout << "\nAttacking creature" << endl;
+			player->attackEnemy();
 		}
 		if (foundCmd->getType() == "block") {
 			cout << "\nBlocking attack" << endl;
@@ -371,10 +371,6 @@ void School::doItemAction(string cmdType, vector<string> cmdVector){
 		}
 		else if (cmdType == "open") {
 			selectedItem->openItem();
-		}
-
-		else if (cmdType == "attack") {
-			player->attackEnemy();
 		}
 	}
 }
