@@ -145,7 +145,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 			foundRooms = (*line).find("<Rooms>");
 			//Found rooms section in file, start processing room data
 			if(foundRooms != std::string::npos){
-				vector<Space*> rooms = newState->getRooms();
+				vector<Space*> rooms = newState->getRoomsList();
 				for(i = 0; i < (int)rooms.size(); i++){
 					bool readSucess = readRoom(line, rooms[i]);
 					if(readSucess == false){
@@ -339,7 +339,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 		fprintf(saveFile, "Current_room: %s\n", state->getCurrentRoom()->getType().c_str());
 		fprintf(saveFile, "Room_idx: %d\n", state->getRoomIdx());
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
-		vector<Space*> rooms = state->getRooms();
+		vector<Space*> rooms = state->getRoomsList();
 
 		fprintf(saveFile, "\n<Rooms>\n");
 		for (int i = 0; i < (int)rooms.size(); i++) {
