@@ -73,7 +73,7 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
             item = NULL;
             return;
         }
-        
+
         else
             cout << item->getName() << " was succesfully removed from your inventory." << endl;
         
@@ -85,13 +85,11 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
 }
 
 void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
-{
-    string newLine = "#\n";
-    
+{   
     if (isEmpty)
     {
         cout << "None!" << endl;
-        cout << newLine;
+        cout << endl;
     }
 
     else if (!type.empty())
@@ -102,7 +100,7 @@ void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
                 cout << items[i]->getName() << endl;
         }
 
-        cout << newLine;
+        cout << endl;
     }
 
     else
@@ -110,7 +108,7 @@ void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
         for (unsigned int i = 0; i < items.size(); i++)
             cout << (i + 1) << ": " << items[i]->getName() << endl;
 
-        cout << newLine;
+        cout << endl;
     }
 
 }
@@ -122,7 +120,7 @@ void PlayerInventory::printInventory() {
 
 void PlayerInventory::printAvailableWeapons()
 {
-    cout << "   Available Weapons" << endl;
+    cout << "=== Available Weapons ===" << endl;
     printInventoryHelper(items, "Weapon", isEmpty());
 }
 
@@ -138,21 +136,21 @@ int PlayerInventory::getUsedSlots()
 
 void PlayerInventory::printAvailableSupplies()
 {
-    cout << "   Available Supplies" << endl;
+    cout << "===vAvailable Supplies ===" << endl;
 
     printInventoryHelper(items, "Supply", isEmpty());
 }
 
 void PlayerInventory::printAvailableRoomObjects()
 {
-    cout << "   Available Room Objects" << endl;
+    cout << "=== Available Room Objects ===" << endl;
 
     printInventoryHelper(items, "Room Object", isEmpty());
 }
 
 void PlayerInventory::printAvailableMiscItems()
 {
-    cout << "Available Misc Items" << endl;
+    cout << "=== Available Misc Items ===" << endl;
 
     printInventoryHelper(items, "Misc", isEmpty());
 }

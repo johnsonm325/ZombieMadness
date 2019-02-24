@@ -68,13 +68,13 @@ void Player::attackEnemy()
 	}
 	
 	cout << "# Please choose one of the following to attack with" << endl;
+	cout << endl;
 
 	playerInventory->printAvailableWeapons();
 
 	cout << "# Enter choice: ";
 
 	getline(cin, input);
-	cout << "#\n";
 
 	transform(input.begin(), input.end(), input.begin(), ::tolower);
 
