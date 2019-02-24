@@ -81,9 +81,12 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
 
 void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
 {
+    string newLine = "#\n";
+    
     if (isEmpty)
     {
         cout << "None!" << endl;
+        cout << newLine;
     }
 
     else if (!type.empty())
@@ -93,12 +96,16 @@ void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
             if (items[i]->getType() == type)
                 cout << items[i]->getName() << endl;
         }
+
+        cout << newLine;
     }
 
     else
     {
         for (unsigned int i = 0; i < items.size(); i++)
             cout << (i + 1) << ": " << items[i]->getName() << endl;
+
+        cout << newLine;
     }
 
 }

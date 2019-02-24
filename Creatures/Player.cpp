@@ -21,13 +21,6 @@ void Player::movetoRoom(Space* room){
 	this->roomInventory = room->getInventory();
 
 	Zombie *curRoomZombie = room->getZombie();
-
-	if (!curRoomZombie)
-	{
-		enemy = NULL;
-		return;
-	}
-
 	enemy = curRoomZombie;
 }
 
