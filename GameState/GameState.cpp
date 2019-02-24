@@ -238,6 +238,7 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 	vector<Item*> sourceItems = source->getItems();
 	vector<Item*> destItems = dest->getItems();
 	vector<Item*> movableItems;
+	int i;
 
 	//Create vector all movable objects(copies) in the room
 	for(i = 0; i < (int) sourceItems.size(); i++){
