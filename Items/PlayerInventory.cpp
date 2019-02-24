@@ -21,10 +21,7 @@ bool PlayerInventory::isFull()
 }
 bool PlayerInventory::isEmpty()
 {
-    if (openSlots == size)
-        return true;
-
-    return false;
+    return items.size() == 0;
 }
 
 bool PlayerInventory::canAdd(Item *item)
