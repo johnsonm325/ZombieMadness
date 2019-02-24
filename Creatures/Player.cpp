@@ -73,6 +73,7 @@ void Player::attackEnemy()
 	playerInventory->printAvailableWeapons();
 
 	cout << "# Enter choice: ";
+	cout << endl;
 
 	getline(cin, input);
 
