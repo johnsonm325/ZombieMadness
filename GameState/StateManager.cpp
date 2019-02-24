@@ -150,18 +150,20 @@ GameState* StateManager::processFileData(vector<string> lines) {
 					bool readSucess = readRoom(line, rooms[i]);
 					if(readSucess == false){
 #ifdef STATE_DEBUG
-						cout << "room: " << i << endl;
 						cout << invalidFile << endl;
 #endif						
 						return NULL;
 					}
 				}
 			}
-			else{
+			else{	//If all rooms weren't read, read state is not valid, so return NULL	
+				if(i < ((int)rooms.size() - 1)){				
 #ifdef STATE_DEBUG
-				cout << invalidFile << endl;
+					cout << invalidFile << endl;
 #endif
-				return NULL;
+					return NULL;
+				}
+				break;
 			}
 			line++;
 		}
