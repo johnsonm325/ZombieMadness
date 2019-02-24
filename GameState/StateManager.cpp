@@ -358,10 +358,9 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 
 void StateManager::writeRoom(FILE* saveFile, Space* room){
 	vector<Item*> items = room->getInventory()->getItems();
-	// vector<Creature*> creatures = room->getCreatures();
-	int numItems = items.size(),
-		// numCreatures = creatures.size(),
-		j = 0;
+	Creature* zombie = room->getZombie();
+	int numItems = items.size();
+	int	j, numZombies = 0;
 	bool doorLocked = room->getDoorLocked();
 	fprintf(saveFile, "<Room>\n");
 	fprintf(saveFile, "Type: %s\n", room->getType().c_str());
@@ -376,10 +375,14 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 	fprintf(saveFile, "</Room_Inventory>\n");
 
 	fprintf(saveFile, "<Creatures>\n");
-	// fprintf(saveFile, "Size: %d\n", numCreatures);
-	// for (j = 0; j < numCreatures; j++){
-	// 	writeCreature(saveFile, creatures[j], j+1);
-	// }
+	if(zombie != NULL){
+		numZombies = 1;
+		fprintf(saveFile, "Size: %d\n", numZombies);
+		writeCreature(saveFile, zombie, 1);
+	}
+	else{
+		fprintf(saveFile, "Size: %d\n", numZombies);
+	}
 	fprintf(saveFile, "</Creatures>\n");
 	fprintf(saveFile, "</Room>\n");
 }

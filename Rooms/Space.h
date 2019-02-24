@@ -47,6 +47,7 @@ public:
 	void setFirstTry(bool);
 	bool isFirstTry();	
 	bool coltGone();
+	void setColtGone(bool gone);
 
 	void addRoomsListToSpace(vector<Space*>);	
 	Space* findRoom(string);

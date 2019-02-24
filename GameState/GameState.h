@@ -25,6 +25,22 @@
 #include "../Rooms/SecondFloorHallway.h"
 #include "../Rooms/WomensBathroom.h"
 
+//Item includes
+#include "../Items/BiteCure.h"
+#include "../Items/BaseballBat.h"
+#include "../Items/EnergyDrink.h"
+#include "../Items/FireExtinguisher.h"
+#include "../Items/First Aid.h"
+#include "../Items/Gun.h"
+#include "../Items/Jersey.h"
+#include "../Items/Key.h"
+#include "../Items/Knife.h"
+#include "../Items/Map.h"
+#include "../Items/Paperclip.h"
+#include "../Items/Rocks.h"
+#include "../Items/SteelLid.h"
+#include "../Items/Sword.h"
+
 #include <ctime>
 #include <cstdint>
 #include <cstring>
@@ -44,6 +60,7 @@ private:
 	string timeStamp;
 	vector<Space*> rooms;
 	Player* player;
+
 public:
 	GameState();
 	~GameState();
@@ -56,7 +73,7 @@ public:
 	void addRoom(char direction, Space *nextRoom, Space *prevRoom);
 	void createRoomsList();
 	void copyRoomsListToSpace();
-	vector<Space*> getRooms();
+	vector<Space*> getRoomsList();
 	Space* getCurrentRoom();
 	void setCurrentRoom(int idx);
 	void setRoomIdx(int idx);
@@ -67,9 +84,13 @@ public:
 	int getSteps();
 
 	//Player
-	void addPlayer(Player* player);
 	Player* getPlayer();
-
+	
+	//Moving data between different objects
+	void copyPlayer(Player* player);
+	void copyRooms(vector<Space*> dest, vector<Space*> source);
+	void copyInventory(Inventory* dest, Inventory* source);
+	Item* createItem(string name);
 };
 
 #endif
