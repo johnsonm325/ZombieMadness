@@ -20,8 +20,7 @@ void Player::movetoRoom(Space* room){
 	currentRoom = room;
 	this->roomInventory = room->getInventory();
 
-	Zombie *curRoomZombie = room->getZombie();
-	enemy = curRoomZombie;
+	enemy = room->getZombie();
 }
 
 PlayerInventory* Player::getInventory(){
@@ -72,8 +71,10 @@ void Player::attackEnemy()
 
 	playerInventory->printAvailableWeapons();
 
+	cout << "# Enter choice: ";
+
 	getline(cin, input);
-	cout << endl;
+	cout << "#\n";
 
 	transform(input.begin(), input.end(), input.begin(), ::tolower);
 
