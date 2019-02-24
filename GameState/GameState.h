@@ -30,7 +30,7 @@
 #include "../Items/BaseballBat.h"
 #include "../Items/EnergyDrink.h"
 #include "../Items/FireExtinguisher.h"
-#include "../Items/First Aid.h"
+#include "../Items/FirstAid.h"
 #include "../Items/Gun.h"
 #include "../Items/Jersey.h"
 #include "../Items/Key.h"
