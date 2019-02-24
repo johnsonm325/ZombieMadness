@@ -3,9 +3,22 @@
 Chemistry::Chemistry() : Space("Chemistry")
 {
 	this->zombie = new Zombie(false);
+	
+	beakers = new Item();
+	string description = "# A collection of beakers are on the table. Some are knocked over and broken, but they all appear clean";
+	string name = "beakers";
+	beakers->setDummyItem(description, name);
+	roomInventory->addItem(beakers);
+
+	cabinet = new Item();
+	description = "# A tall cabinet is pushed up against the south wall. It is filled with chemicals and mixing agents.";
+	name = "cabinet";
+	cabinet->setDummyItem(description, name);
+	roomInventory->addItem(cabinet);
 }
 
-Chemistry::~Chemistry(){
+Chemistry::~Chemistry()
+{
 
 }
 
@@ -53,8 +66,31 @@ int Chemistry::menu(vector<string> commandVector)
 	{
 		return 40;
 	}
-	printIntro();
+
 	return 0;
+}
+
+void Chemistry::inspectCabinet()
+{
+	string text = "# You walk to the side of the cabinet, setting your shoulder against the wood, and begin pushing.\n# The cabinet slowly slides across the floor with a loud screeching sound. You take a step back and notice a ladder\n# mounted to the wall that leads up into another room.";
+	cabinet->setAction(text, Push);
+}
+
+void Chemistry::moveCabinet()
+{
+	holeVisible = true;
+	ladder = new Item();
+	string description = "# A metal ladder is mounted against the wall. It seems sturdy enough to climb.";
+	string name = "ladder";
+	ladder->setDummyItem(description, name);
+	roomInventory->addItem(ladder);
+	string text = "# You ascend the ladder, step by step, inching closer to the hole in the ceiling.";
+	ladder->setAction(text, Use);
+}
+
+bool Chemistry::getHoleVisible()
+{
+	return holeVisible;
 }
 
 void Chemistry::zombiesDead()

@@ -6,7 +6,17 @@ FrontOffice::FrontOffice() : Space("Front Office")
 	string description = "# This is the system that the principal uses to call students to the office. Maybe I can have a little fun with this.";
 	string name = "PA system";
 	paSystem->setDummyItem(description, name);
+	string text = "# You push the button and speak loudly over the intercom, 'GOOD MORNING VIETNAM!!!'\n# ... No response.'";
+	paSystem->setAction(text, Use);
 	roomInventory->addItem(paSystem);
+
+	detentionList = new Item();
+	description = "# On top of one of the desks you spot a list titled 'Detention List'.";
+	text = "# You pick it up and read the names on the list:\n# Colt Robinson\n# Michael Johnson\n# Jeremy Einhorn\n# Artem Slivka\n# Ray Rayberson";
+	name = "detention list";
+	detentionList->setDummyItem(description, name);
+	detentionList->setAction(text, Read);
+	roomInventory->addItem(detentionList);
 }
 
 FrontOffice::~FrontOffice()
@@ -53,22 +63,10 @@ int FrontOffice::menu(vector<string> commandVector)
 		return 40;
 	}
 
-        if ((commandVector[0].compare("use") == 0 || commandVector[0].compare("talk") == 0) && (commandVector[1].compare("PA") == 0 || commandVector[1].compare("pa") == 0)) {
-                usePA();
-        }
-
-        else {
-                cout << "# You can't " << commandVector[0] << " the " << commandVector[1] << "." << endl << "#" << endl;
-        }
-
 	return 0;
 }
 
 void FrontOffice::usePA()
 {
-	cout << "# You push the button and speak loudly over the intercom, 'GOOD MORNING VIETNAM!!!' ... No response.'" << endl << "#" << endl;
-	prin = static_cast<PrincipalsOffice*>(findRoom("Principal's Office"));
-	prin->zombiesDead();
+	static_cast<PrincipalsOffice*>(findRoom("Principal's Office"))->zombiesDead();
 }
-
-

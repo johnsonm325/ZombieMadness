@@ -145,17 +145,27 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						return;
 					}
 				}
-            		}	
-			if((currentRoom->getType() == "Second Floor Hallway") &&
-			   (wb->getDoorLocked() == true) &&
-			   (cmd == "go east")) {
-				Space *tempRoom;
-				tempRoom = currentRoom->getEast();
-					if (tempRoom->getType() == "Women's Bathroom") {
-						cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
-						return;
-					}
-                	}
+            		}
+	
+			if(currentRoom->getType() == "Second Floor Hallway"){
+				if ((wb->getDoorLocked() == true) && (cmd == "go east")) {
+					Space *tempRoom;
+					tempRoom = currentRoom->getEast();
+						if (tempRoom->getType() == "Women's Bathroom") {
+							cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+							return;
+						}
+				}
+			
+				if ((infr->getDoorLocked() == true) && (cmd == "go west")) {
+					Space *tempRoom;
+					tempRoom = currentRoom->getWest();
+						if (tempRoom->getType() == "Infirmary") {
+							cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+							return;
+						}
+				}
+			}
 			
 			if((currentRoom->getType() == "Women's Bathroom") && (cmd == "go west")) {
 				currentRoom->unlockDoor();
@@ -169,7 +179,27 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						return;
 					}
 				}	
-			}	
+			}
+
+			if(currentRoom->getType() == "Chemistry"){
+				if (static_cast<Chemistry*>(currentRoom)->getHoleVisible() == true) {
+					if(cmd == "go hole" || cmd == "go south") {
+						moveRooms(cmdVector, "south");
+						return;
+					}
+				}
+				else if(static_cast<Chemistry*>(currentRoom)->getHoleVisible() == false){
+					if(cmd == "go south" || cmd == "go hole"){
+						cout << "# You can't go that direction." << endl;
+						return;
+					}
+				}
+            		}	
+			
+			if((currentRoom->getType() == "Infirmary") && (cmd == "go east")) {
+				currentRoom->unlockDoor();
+            		}
+
 			moveRooms(cmdVector, cmd);
 		}
 		if (foundCmd->getType() == "dir") {
@@ -221,6 +251,12 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					static_cast<Literature*>(currentRoom)->inspectDesk();
 				}
 			}
+
+			if(currentRoom->getType() == "Chemistry") {
+				if(item == "cabinet") {
+					static_cast<Chemistry*>(currentRoom)->inspectCabinet();
+				}
+			}
 		}
 		if (foundCmd->getType() == "take") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
@@ -242,7 +278,34 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			}
 		}
 		if (foundCmd->getType() == "use") {
-			cout << "\nUsing item" << endl;
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
+			cout << "#\n# Using item" << endl;
+			
+			if(currentRoom->getType() == "Chemistry") {
+				if(item == "ladder") {
+					moveRooms(cmdVector, "south");
+					return;
+				}
+			}
+			
+			if(currentRoom->getType() == "Library") {
+				if(item == "ladder") {
+					static_cast<Library*>(currentRoom)->useLadder();
+				}
+			}
+			
+			if(currentRoom->getType() == "Front Office") {
+				if(item == "PA system") {
+					static_cast<FrontOffice*>(currentRoom)->usePA();
+				}
+			}
+			
+			if(currentRoom->getType() == "First Floor Hallway") {
+				if(item == "vending machine" && static_cast<FirstFloorHallway*>(currentRoom)->getVendingMachineUsed() == false) {
+					static_cast<FirstFloorHallway*>(currentRoom)->useVendingMachine();
+				}
+			}
+
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "throw") {
@@ -255,23 +318,80 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 			}
 
-			cout << "\nThrowing item" << endl;
+			cout << "#\n# Throwing item" << endl;
 			doItemAction(foundCmd->getType(), cmdVector);		
 		}
 		if (foundCmd->getType() == "push") {
-			cout << "\nPushing item" << endl;
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
+			cout << "#\n# Pushing item" << endl;
+			
+			if(currentRoom->getType() == "Chemistry") {
+				if(item == "cabinet") {
+					static_cast<Chemistry*>(currentRoom)->moveCabinet();
+				}
+			}
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "read") {
-			cout << "\nReading item" << endl;
+			cout << "#\n# Reading item" << endl;
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "wear") {
-			cout << "\nWearing item" << endl;
+			cout << "#\n# Wearing item" << endl;
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "eat") {
-			cout << "\nEating item" << endl;
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
+			cout << "#\n# Eating item" << endl;
+			
+			if (currentRoom->getType() == "Biology") {
+				if(item == "plants" && static_cast<Biology*>(currentRoom)->getPlantsEaten() == false) {
+					srand(time(NULL));
+					int randNum = (rand() % 2) + 1;
+
+					if(randNum == 1) {
+						(player->getPlayer())->setHealth((player->getPlayer())->getHealth() - 30);
+						doItemAction(foundCmd->getType(), cmdVector);
+						cout << "#\n# You took the wrong ones and your health was damaged by 30 points.\n";
+						static_cast<Biology*>(currentRoom)->setPlantsEaten();
+						return;
+					}
+					else {
+						(player->getPlayer())->setHealth((player->getPlayer())->getHealth() + 20);
+						doItemAction(foundCmd->getType(), cmdVector);
+						cout << "#\n# You took the right one and your health was increased by 20 points.\n";
+						static_cast<Biology*>(currentRoom)->setPlantsEaten();
+						return;
+					}
+				}
+				else {
+					cout << "# You have already eaten the plants." << endl;
+					return;
+				}
+			}
+			
+			if (currentRoom->getType() == "Math") {
+				if(item == "apple" && static_cast<Math*>(currentRoom)->getAppleEaten() == false) {
+					static_cast<Math*>(currentRoom)->eatApple();
+				}
+				else {
+					cout << "# You've already eaten the apple." << endl;
+					return;
+				}
+			}
+			
+			if (currentRoom->getType() == "First Floor Hallway") {
+				if(item == "snack" && currentRoom->getInventory()->findItem("snack") != NULL) {
+					doItemAction(foundCmd->getType(), cmdVector);
+					static_cast<FirstFloorHallway*>(currentRoom)->eatSnack();
+					return;
+				}
+				else if(item == "snack" && currentRoom->getInventory()->findItem("snack") == NULL){
+					cout << "# There are no snacks in the machine" << endl;
+					return;
+				}
+			}
+			
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "cut") {
@@ -279,24 +399,21 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			cout << "\nCutting something with a weapon?" << endl;
 			if (currentRoom->getType() == "Gymnasium Second Floor") {
-				cout << item << endl;
 				if(item == "ropes") {
 					static_cast<GymnasiumFloor2*>(currentRoom)->cutRopes();
+					return;
 				}
 			}
-
-			else {
-				doItemAction(foundCmd->getType(), cmdVector);
-			}
+			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "attack") {
 			player->attackEnemy();
 		}
 		if (foundCmd->getType() == "block") {
-			cout << "\nBlocking attack" << endl;
+			cout << "#\n# Blocking attack" << endl;
 		}
 		if (foundCmd->getType() == "open") {
-			cout << "\nOpening..." << endl;
+			cout << "#\n# Opening..." << endl;
 
 			//Opening rooms
 			if(currentRoom->getType() == "Gymnasium First Floor"){
@@ -364,7 +481,9 @@ void School::doItemAction(string cmdType, vector<string> cmdVector){
 		}
 		else if (cmdType == "eat") {
 			selectedItem->eatItem();
-			player->useItem(selectedItem);
+			if(selectedItem->isMovable() == true) {
+				player->useItem(selectedItem);
+			}
 		}
 		else if (cmdType == "cut") {
 			selectedItem->cutItem();
@@ -436,7 +555,7 @@ void School::addRoom(char direction, Space *nextRoom, Space *prevRoom)
 	else if (direction == 's')
 	{
 		// to set the non-standard joining of chemistry and infirmary rooms
-		if (prevRoom->getType() == "chem")
+		if (nextRoom->getType() == "Chemistry")
 		{
 			prevRoom->setSouth(nextRoom);
 			nextRoom->setSouth(prevRoom);

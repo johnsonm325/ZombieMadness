@@ -7,6 +7,9 @@ class Math : public Space
 {
 private:
 	string action;		//string action typed in by the user
+	bool appleEaten = false;
+	Item *calculator;
+	Item *apple;
 
 public:
 	Math();
@@ -14,6 +17,7 @@ public:
 	void printIntro();
 	void printExitDesc();
 	int menu(vector<string>);
-	
+	void eatApple();
+	bool getAppleEaten();
 };
 #endif
