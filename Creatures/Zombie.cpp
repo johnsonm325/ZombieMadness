@@ -8,6 +8,7 @@ Zombie::Zombie(bool boss) : Creature("Zombie")
 	{
 		this->description = "Your average zombie, but never doubt their capabilities!";
 		this->name = "Regular Zombie";
+		this->health = 0;
 	}
 	
 	else

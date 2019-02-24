@@ -65,12 +65,19 @@ void Player::attackEnemy()
 {
 	string input;
 	Item *weapon;
+
+	if (!enemy)
+	{
+		cout << "# Calm your horses, there are no zombies in sight, no need to attack." << endl;
+		return;
+	}
 	
 	cout << "# Please choose one of the following to attack with" << endl;
 
 	playerInventory->printAvailableWeapons();
 
-	cin >> input;
+	getline(cin, input);
+	cout << endl;
 
 	transform(input.begin(), input.end(), input.begin(), ::tolower);
 
@@ -78,7 +85,7 @@ void Player::attackEnemy()
 
 	if (!weapon)
 	{
-		cout << "That is not an available weapon in your inventory." << endl;
+		cout << "# That is not an available weapon in your inventory." << endl;
 		return;
 	}
 

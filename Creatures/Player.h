@@ -9,6 +9,7 @@
 #include <string>
 using std::string;
 using std::cin;
+using std::getline;
 using std::transform;
 
 class Player

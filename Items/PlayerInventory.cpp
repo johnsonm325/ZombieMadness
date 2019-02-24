@@ -110,7 +110,7 @@ void PlayerInventory::printInventory() {
 
 void PlayerInventory::printAvailableWeapons()
 {
-    cout << "Available Weapons" << endl;
+    cout << "   Available Weapons" << endl;
     printInventoryHelper(items, "Weapon", isEmpty());
 }
 
@@ -126,14 +126,14 @@ int PlayerInventory::getUsedSlots()
 
 void PlayerInventory::printAvailableSupplies()
 {
-    cout << "Available Supplies" << endl;
+    cout << "   Available Supplies" << endl;
 
     printInventoryHelper(items, "Supply", isEmpty());
 }
 
 void PlayerInventory::printAvailableRoomObjects()
 {
-    cout << "Available Room Objects" << endl;
+    cout << "   Available Room Objects" << endl;
 
     printInventoryHelper(items, "Room Object", isEmpty());
 }
