@@ -101,6 +101,9 @@ void Player::attackEnemy()
 
 	enemy->takeDamage(weapon->getAttack());
 
+	if (!enemy->isAlive())
+		currentRoom->setLeaveAbility(true);
+
 	playerInventory->removeItem(weapon, true);
 }
 

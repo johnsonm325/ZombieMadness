@@ -17,6 +17,7 @@ Literature::Literature() : Space("Literature")
 	roomInventory->addItem(desk);
 
 	this->zombie = new Zombie(false);
+	this->canLeave = false;
 }
 
 Literature::~Literature(){

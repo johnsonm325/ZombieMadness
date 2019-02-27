@@ -187,6 +187,16 @@ void Space::printDirection(Space* direction) {
 	}
 }
 
+bool Space::getLeaveAbility()
+{
+	return canLeave;
+}
+
+void Space::setLeaveAbility(bool leave)
+{
+	this->canLeave = leave;
+}
+
 //Add creature to room
 void Space::removeCreature() 
 {
