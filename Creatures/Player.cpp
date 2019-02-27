@@ -1,4 +1,5 @@
 #include "Player.h"
+#define KRED  "\x1B[31m"
 using std::cout;
 using std::endl;
 
@@ -113,9 +114,8 @@ void Player::defend()
 
 	if (playerInventory->isEmpty() || !playerInventory->hasDefense())
 	{
-		system("COLOR 4");
-		cout << "# You do not have any defense items to use." << endl;
-		system("COLOR 7");
+		
+		printf(KRED "# You do not have any defense items to use.\n");
 		return;
 	}
 
