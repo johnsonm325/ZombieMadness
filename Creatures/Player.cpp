@@ -1,5 +1,6 @@
 #include "Player.h"
 #define KRED  "\x1B[31m"
+#define RESET "\x1B[0m"
 using std::cout;
 using std::endl;
 
@@ -115,7 +116,7 @@ void Player::defend()
 	if (playerInventory->isEmpty() || !playerInventory->hasDefense())
 	{
 		
-		printf(KRED "# You do not have any defense items to use.\n");
+		printf(KRED "# You do not have any defense items to use.\n" RESET);
 		return;
 	}
 
