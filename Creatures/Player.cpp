@@ -21,6 +21,16 @@ void Player::movetoRoom(Space* room){
 	this->roomInventory = room->getInventory();
 
 	enemy = room->getZombie();
+
+	// if there is a live zombie in the room and the player has an empty bag or no weapon to kill it with
+	// the player is dead and the game is over
+	if (enemy && enemy->isAlive() && (playerInventory->isEmpty() || !playerInventory->hasWeapon()))
+	{
+		cout << "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
+		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" << endl;
+		player->die();
+		return;
+	}
 }
 
 PlayerInventory* Player::getInventory(){
@@ -67,12 +77,6 @@ void Player::attackEnemy()
 		return;
 	}
 	
-	if (playerInventory->isEmpty())
-	{
-		cout <<  "# Ah, nothing to attack with!" << endl;
-		return;
-	}
-	
 	cout << "# Please choose one of the following to attack with" << endl;
 	cout << endl;
 
@@ -98,6 +102,40 @@ void Player::attackEnemy()
 	enemy->takeDamage(weapon->getAttack());
 
 	playerInventory->removeItem(weapon, true);
+}
+
+void Player::defend()
+{
+	string input;
+	Item *defenseItem;
+
+	if (playerInventory->isEmpty() || !playerInventory->hasDefense())
+	{
+		cout << "# You do not have any defense items to use." << endl;
+		return;
+	}
+
+	cout << "# Please choose one of the following to defend with" << endl;
+	cout << endl;
+
+	getline(cin, input);
+	cout << endl;
+
+	transform(input.begin(), input.end(), input.begin(), ::tolower);
+
+	defenseItem = playerInventory->findItem(input);
+
+	if (!defenseItem)
+	{
+		cout << "# That defense item is not in your inventory." << endl;
+		return;
+	}
+
+	defenseItem->blockItem();
+
+	player->setDefense(defenseItem->getDefense());
+
+	playerInventory->removeItem(defenseItem, true);
 }
 
 void Player::takeItem(Item* item){

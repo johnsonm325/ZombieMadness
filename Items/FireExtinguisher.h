@@ -6,7 +6,7 @@ class FireExtinguisher : public Item
 {
 public:
 	FireExtinguisher();
-	void useItem();
+	void attackItem();
 };
 
 #endif

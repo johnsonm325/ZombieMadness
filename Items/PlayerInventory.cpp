@@ -81,6 +81,27 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
     
 }
 
+bool typeChecker(vector<Item*> items, string type)
+{
+    for (unsigned int i = 0; i < items.size(); i++)
+    {
+        if (items[i]->getType() == type)
+            return true;
+    }
+
+    return false;
+}
+
+bool PlayerInventory::hasWeapon()
+{
+    return typeChecker(items, "Weapon");
+}
+
+bool PlayerInventory::hasDefense()
+{
+    return typeChecker(items, "Defense");
+}
+
 void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
 {   
     if (isEmpty)
@@ -150,4 +171,11 @@ void PlayerInventory::printAvailableMiscItems()
     cout << "=== Available Misc Items ===" << endl;
 
     printInventoryHelper(items, "Misc", isEmpty());
+}
+
+void PlayerInventory::printAvailableDefenseItems()
+{
+    cout << "=== Available Defense Items ===" << endl;
+
+    printInventoryHelper(items, "Defense", isEmpty());
 }

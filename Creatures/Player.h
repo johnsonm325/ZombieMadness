@@ -29,6 +29,7 @@ public:
 	void clearInventory();
 	void useItem(Item* item);
 	void attackEnemy();
+	void defend();
 	void takeItem(Item*);
 	void dropItem(Item*);
 	void lookAtItems(string item);

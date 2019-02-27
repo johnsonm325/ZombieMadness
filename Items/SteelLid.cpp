@@ -3,14 +3,14 @@
 SteelLid::SteelLid() : Item()
 {
 	this->description = "Throwing it back to the olden days.  Use this steel trashcan lid as a blocking mechanism.";
-	this->type = "Weapon";
+	this->type = "Defense";
 	this->name = "Steel Lid";
 	this->attack = 0;
 	this->defense = 4;
 	this->size = 2;
 }
 
-void SteelLid::useItem()
+void SteelLid::blockItem()
 {
-	//to be determined
+	cout << "# Ah, a nice sturdy, smelly steel lid to block with! You know have some defense points to reduce damage taken." << endl;
 }

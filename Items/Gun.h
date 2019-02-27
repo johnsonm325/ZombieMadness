@@ -7,6 +7,6 @@ class Gun : public Item
 {
 public:
 	Gun();
-	void useItem();
+	void attackItem();
 };
 #endif

@@ -6,7 +6,7 @@ class Jersey : public Item
 {
 public:
 	Jersey();
-	void useItem();
+	void wearItem();
 };
 
 #endif

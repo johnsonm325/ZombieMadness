@@ -10,7 +10,7 @@ FireExtinguisher::FireExtinguisher() : Item()
 	this->size = 2;
 }
 
-void FireExtinguisher::useItem()
+void FireExtinguisher::attackItem()
 {
-	//to be determined
+	cout << "# Time to bash some skulls and put some fires out, attacking with the fire extinguisher!" << endl;
 }

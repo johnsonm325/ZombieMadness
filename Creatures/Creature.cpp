@@ -99,6 +99,11 @@ void Creature::takeDamage(int damage)
 	
 }
 
+void Creature::setDefense(int d)
+{
+	this->defense = d;
+}
+
 void Creature::attackEnemy(string item){
 	
 }
