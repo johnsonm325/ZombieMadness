@@ -118,6 +118,10 @@ void Player::defend()
 	cout << "# Please choose one of the following to defend with" << endl;
 	cout << endl;
 
+	playerInventory->printAvailableDefenseItems();
+
+	cout << "# Enter choice: ";
+
 	getline(cin, input);
 	cout << endl;
 
