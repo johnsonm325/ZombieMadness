@@ -117,8 +117,10 @@ void Player::defend()
 		return;
 	}
 
+	system("COLOR 4");
 	cout << "# Please choose one of the following to defend with" << endl;
 	cout << endl;
+	system("COLOR 7");
 
 	playerInventory->printAvailableDefenseItems();
 

@@ -7,6 +7,7 @@
 #include "../Items/Inventory.h"
 
 #include <string>
+#include <stdlib.h>
 using std::string;
 using std::cin;
 using std::getline;
