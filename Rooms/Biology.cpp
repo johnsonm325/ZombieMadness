@@ -27,12 +27,13 @@ void Biology::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# The room has a lot of plants and cases with dissected animals. 'This was never my favorite subject, but I did enjoy" << endl;
-		cout << "# cutting open frogs to see what was inside of them." << endl;
+		cout << "# 'This was never my favorite subject, but I did enjoy cutting open frogs to see" << endl;
+		cout << "# what was inside of them." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# The room has a mixture of desks and tables. There are a good deal of items and tools for gardening." << endl;
+	cout << "# The room has a mixture of desks and tables and there are a good deal of dissected" << endl;
+	cout << "# animals in cases and plants scattered in the room." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
@@ -54,13 +55,13 @@ void Biology::printExitDesc()
 	{
 		firstTime();
 		cout << "# 'Peace out frogs!  I can't wait to get away from that smell, horrid..." << endl;
-		cout << "# Yet, this entire place could not smell any worse thanks to my lovely dead classmates" << endl;
-		cout << "# and teachers!'" << endl;
+		cout << "# Yet, this entire place could not smell any worse thanks to my lovely dead" << endl;
+		cout << "# classmates and teachers!'" << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# 'I remember the library being really close to the Biology room, the Math room and Chemistry room" << endl;
-	cout << "# were close by here too.'" << endl;
+	cout << "# 'I remember the library being really close to the Biology room, the Math room and" << endl;
+	cout << "# Chemistry room were close by here too.'" << endl;
 	cout << "#" << endl;
 }
 
@@ -71,7 +72,7 @@ int Biology::menu(vector<string> commandVector)
 	{
 		return 40;
 	}
-	printIntro();
+
 	return 0;
 }
 

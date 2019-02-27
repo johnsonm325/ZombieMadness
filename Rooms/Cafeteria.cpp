@@ -7,7 +7,7 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	string name = "food";
 	food->setDummyItem(description, name);
 	string text =  "You hurl the chunks of food across the room. They stick to the wall and satisfyingly\n# slide down to the floor. 'I've always wanted to do that,' you say.";
-	food->setAction(text, Eat);
+	food->setAction(text, Throw);
 	roomInventory->addItem(food);
 
 	sloppyJoe = new Item();
@@ -17,12 +17,12 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	roomInventory->addItem(sloppyJoe);
 
 	vendingMachine = new Item();
-    description = "# There is a vending machine against the west wall. It is full of snacks.\n# It appears to be broken; like you can just push buttons for free snacks!";
-    name = "vending machine";
-    vendingMachine->setDummyItem(description, name);
-    text = "# You push a button and a snack drops";
-    vendingMachine->setAction(text, Use);
-    roomInventory->addItem(vendingMachine);
+        description = "# There is a vending machine against the west wall. It is full of snacks.\n# It appears to be broken; like you can just push buttons for free snacks!";
+        name = "vending machine";
+        vendingMachine->setDummyItem(description, name);
+        text = "# You push a button and a snack drops";
+        vendingMachine->setAction(text, Use);
+        roomInventory->addItem(vendingMachine);
 }
 
 Cafeteria::~Cafeteria(){
