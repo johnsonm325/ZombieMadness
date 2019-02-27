@@ -10,13 +10,13 @@ FirstFloorHallway::FirstFloorHallway() : Space("First Floor Hallway")
 	vomit->setAction(text, Eat);
 	roomInventory->addItem(vomit);
 
-	vendingMachine = new Item();
-	description = "# There is a vending machine against the west wall. It is full of snacks.\n# It appears to be broken; like you can just push buttons for free snacks!";
-	name = "vending machine";
-	vendingMachine->setDummyItem(description, name);
-	text = "# You push a button and a snack drops";
-	vendingMachine->setAction(text, Use);
-	roomInventory->addItem(vendingMachine);
+	bulletinBoard = new Item();
+	description = "# The bulletin board has a bunch of pamphlets and flyers about events taking\n# place at school this month.";
+	name = "bulletin board";
+	bulletinBoard->setDummyItem(description, name);
+	text = "# 'Football tryouts next Thursday! We'll provide the equipment. Come out and show\n# us what you're made of.";
+	bulletinBoard->setAction(text, Read);
+	roomInventory->addItem(bulletinBoard);
 }
 
 FirstFloorHallway::FirstFloorHallway(bool firstTry) : Space("First Floor Hallway")
@@ -32,14 +32,16 @@ void FirstFloorHallway::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# This hallway doesn't look much better than the second floor. Blood is smeared everywhere and there are half-eaten" << endl;
-		cout << "# bodies, and some with just holes chewed into their stomachs, just lying along the hallway. You wrench at the sight" << endl;
-		cout << "# and throw up on the floor. These are people you went to school with and sat beside everyday. You finally steel your" << endl;
+		cout << "# This hallway doesn't look much better than the second floor. Blood is" << endl;
+		cout << "# smeared everywhere and there are half-eaten bodies, and some with just" << endl;
+		cout << "# holes chewed into their stomachs, just lying along the hallway. You" << endl;
+		cout << "# wrench at the sight and throw up on the floor. These are people you" << endl;
+		cout << "# went to school with and sat beside everyday. You finally steel your" << endl;
 		cout << "# will and determine to move on." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# There are bulletin boards lining the walls and school supplies scattered about the hallway." << endl;
+	cout << "# There are bulletin boards on the wall and your vomit is now on the floor." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
@@ -68,28 +70,4 @@ int FirstFloorHallway::menu(vector<string> commandVector)
 	}
 	printIntro();
 	return 0;
-}
-
-bool FirstFloorHallway::getVendingMachineUsed()
-{
-	return vendingMachineUsed;
-}
-
-void FirstFloorHallway::useVendingMachine()
-{
-	vendingMachineUsed = true;
-	snack = new Item();
-	string description = "# You lift the door and a Snickers bar sits at the bottom of the machine.";
-	string name = "snack";
-	snack->setDummyItem(description, name);
-	string text = "# You grab the snack, open the wrapper and eat the candy bar. Delicious.";
-	snack->setAction(text, Eat);
-	roomInventory->addItem(snack);
-}
-
-void FirstFloorHallway::eatSnack()
-{
-	roomInventory->removeItem(snack);
-	delete snack;
-	vendingMachineUsed = false;
 }
