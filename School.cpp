@@ -410,7 +410,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			player->attackEnemy();
 		}
 		if (foundCmd->getType() == "block") {
-			cout << "#\n# Blocking attack" << endl;
+			player->defend();
 		}
 		if (foundCmd->getType() == "open") {
 			cout << "#\n# Opening..." << endl;
