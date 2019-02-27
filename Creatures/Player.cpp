@@ -28,7 +28,7 @@ void Player::movetoRoom(Space* room){
 	{
 		cout << "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
 		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" << endl;
-		exit(0);
+		return; // we need to somehow jump to a game menu from here to start the game again
 	}
 }
 
