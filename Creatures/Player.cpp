@@ -113,14 +113,14 @@ void Player::defend()
 
 	if (playerInventory->isEmpty() || !playerInventory->hasDefense())
 	{
+		system("COLOR 4");
 		cout << "# You do not have any defense items to use." << endl;
+		system("COLOR 7");
 		return;
 	}
 
-	system("COLOR 4");
 	cout << "# Please choose one of the following to defend with" << endl;
 	cout << endl;
-	system("COLOR 7");
 
 	playerInventory->printAvailableDefenseItems();
 
