@@ -24,14 +24,7 @@ void Player::movetoRoom(Space* room){
 
 	// if there is a live zombie in the room and the player has an empty bag or no weapon to kill it with
 	// the player is dead and the game is over
-	if (enemy != NULL)
-	{
-		cout << "Checking for enemy and if they are alive: " << enemy->isAlive() << endl;
-		cout << "Checking inventory if empty: " << playerInventory->isEmpty() << endl;
-		cout << "Checking inventory if there is a weapon" << playerInventory->hasWeapon() << endl;
-	}
-
-	if (enemy && enemy->isAlive() && (playerInventory->isEmpty() || !playerInventory->hasWeapon()))
+	if (enemy != NULL && enemy->isAlive() && (playerInventory->isEmpty() || !playerInventory->hasWeapon()))
 	{
 		cout << "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
 		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" << endl;
