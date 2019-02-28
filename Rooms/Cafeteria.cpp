@@ -26,9 +26,9 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 }
 
 Cafeteria::~Cafeteria(){
-	delete food;
-	delete sloppyJoe;
-	delete vendingMachine;
+	//delete food;
+	//delete sloppyJoe;
+	//delete vendingMachine;
 }
 
 void Cafeteria::printIntro(){
