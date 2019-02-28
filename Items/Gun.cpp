@@ -10,7 +10,7 @@ Gun::Gun() : Item()
 	this->size = 4;
 }
 
-void Gun::useItem()
+void Gun::attackItem()
 {
-	//to be determined
+	cout << "# That's some serious fiyah powah, attacking with the gun!" << endl;
 }

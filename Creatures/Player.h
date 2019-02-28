@@ -7,6 +7,7 @@
 #include "../Items/Inventory.h"
 
 #include <string>
+#include <stdlib.h>
 using std::string;
 using std::cin;
 using std::getline;
@@ -29,6 +30,7 @@ public:
 	void clearInventory();
 	void useItem(Item* item);
 	void attackEnemy();
+	void defend();
 	void takeItem(Item*);
 	void dropItem(Item*);
 	void lookAtItems(string item);

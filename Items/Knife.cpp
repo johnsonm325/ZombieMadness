@@ -10,7 +10,7 @@ Knife::Knife() : Item()
 	this->size = 1;
 }
 
-void Knife::useItem()
+void Knife::attackItem()
 {
-	//to be determined
+	cout << "# Shank em' and run, attacking with the knife!" << endl;
 }

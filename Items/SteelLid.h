@@ -6,7 +6,7 @@ class SteelLid : public Item
 {
 public:
 	SteelLid();
-	void useItem();
+	void blockItem();
 };
 
 #endif

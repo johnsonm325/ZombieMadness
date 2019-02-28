@@ -14,7 +14,7 @@ public:
 	Zombie(bool);
 	~Zombie();
 	void attackEnemy(Creature* enemy);
-
+	bool getBossStatus();
 };
 
 #endif

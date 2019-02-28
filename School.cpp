@@ -132,6 +132,11 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		//Syntax: go <direction> 
 		if (foundCmd->getType() == "go") {
+			if (!currentRoom->getLeaveAbility()) {
+				cout << "# You cannot leave until the zombie is destroyed!" << endl;
+				return;
+			}
+
 			if(currentRoom->getType() == "Men's Bathroom"){
 				if (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == true) {
 					if(cmd == "go hole") {
@@ -409,7 +414,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			player->attackEnemy();
 		}
 		if (foundCmd->getType() == "block") {
-			cout << "#\n# Blocking attack" << endl;
+			player->defend();
 		}
 		if (foundCmd->getType() == "open") {
 			cout << "#\n# Opening..." << endl;

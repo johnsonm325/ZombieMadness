@@ -34,3 +34,8 @@ void Zombie::attackEnemy(Creature* enemy)
 
 	enemy->takeDamage(this->attack);
 }
+
+bool Zombie::getBossStatus()
+{
+	return isBoss;
+}

@@ -3,6 +3,7 @@
 Chemistry::Chemistry() : Space("Chemistry")
 {
 	this->zombie = new Zombie(false);
+	this->canLeave = false;
 	
 	beakers = new Item();
 	string description = "# A collection of beakers are on the table. Some are knocked\n# over and broken, but they all appear clean";

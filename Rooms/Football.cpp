@@ -4,6 +4,7 @@ Football::Football() : Space("Football Field")
 {
 	lockDoor();
 	this->zombie = new Zombie(true);
+	this->canLeave = false;
 
 	football = new Item();
 	string description = "# A football is resting in the middle of the field. Looks like a brand new ball.";

@@ -17,7 +17,8 @@ class Space
 protected:
 	bool doorLocked = false,
 		 firstTry = true,
-		 goneColt = false;
+		 goneColt = false,
+		 canLeave = true;
 
 	Space *north;		// Pointer to space for up
 	Space *east;		// Pointer to space for forward
@@ -55,6 +56,9 @@ public:
 	string strToLowerCase(string input);
 
 	Inventory* getInventory();			//Return inventory vector
+
+	bool getLeaveAbility();
+	void setLeaveAbility(bool);
 
 	void removeCreature();	//Remove creature to room
 	Zombie* getZombie();		//Get list of creatures from room, not including player

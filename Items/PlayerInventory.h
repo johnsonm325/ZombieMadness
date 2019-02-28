@@ -20,11 +20,14 @@ public:
     bool isEmpty();
     bool isFull();
     void increaseSize(); // called when backpack is obtained
+    bool hasWeapon();
+    bool hasDefense();
 	void printInventory();
     void printAvailableWeapons();
     void printAvailableSupplies();
     void printAvailableRoomObjects();
     void printAvailableMiscItems();
+    void printAvailableDefenseItems();
     bool canAdd(Item*);
 };
 

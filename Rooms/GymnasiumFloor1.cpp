@@ -3,6 +3,8 @@
 GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
 {
 	this->zombie = new Zombie(false);
+	this->canLeave = false;
+	
 	basketball = new Item();
 	string description = "# A single basketball is seen in the middle of the gym floor. It\n# looks like it's filled with air.";
 	string name = "basketball";
