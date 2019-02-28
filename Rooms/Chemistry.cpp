@@ -6,13 +6,13 @@ Chemistry::Chemistry() : Space("Chemistry")
 	this->canLeave = false;
 	
 	beakers = new Item();
-	string description = "# A collection of beakers are on the table. Some are knocked over and broken, but they all appear clean";
+	string description = "# A collection of beakers are on the table. Some are knocked\n# over and broken, but they all appear clean";
 	string name = "beakers";
 	beakers->setDummyItem(description, name);
 	roomInventory->addItem(beakers);
 
 	cabinet = new Item();
-	description = "# A tall cabinet is pushed up against the south wall. It is filled with chemicals and mixing agents.";
+	description = "# A tall cabinet is pushed up against the south wall. It is filled\n# with chemicals and mixing agents.";
 	name = "cabinet";
 	cabinet->setDummyItem(description, name);
 	roomInventory->addItem(cabinet);
@@ -27,13 +27,15 @@ void Chemistry::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# 'Just when I thought chemistry was a useless subject.' You realize that all of your learning may" << endl;
-		cout << "# finally pay off. You can access some of that 'useless' knowledge to create some useful items now." << endl;
+		cout << "# 'Just when I thought I was done walking into this chemistry classroom.'" << endl;
+		cout << "# You remember the hours spent memorizing the periodic table and" << endl;
+		cout << "# identifying formulas and you let out a shudder." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Beakers, flasks and bunsen burners sit atop tables pushed against the west and east walls and in the" << endl;
-	cout << "# center of the room. Various ingredients can be found inside of cabinets set against the south wall." << endl;
+	cout << "# Beakers sit atop tables pushed against the west and east walls and in the" << endl;
+	cout << "# center of the room. Various items can be found inside of cabinets set" << endl;
+	cout << "# against the south wall." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
@@ -44,20 +46,16 @@ void Chemistry::printExitDesc()
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'Wow, the fact that I managed NOT to blow myself up in there is amazing' you think to yourself." << endl;
-		cout << "# You also remember the chemistry room is where you asked out Sophie to prom..." << endl;
-		cout << "# Where she said no.........." << endl;
+		cout << "# 'Wow, the fact that I managed NOT to blow myself up in there is amazing'" << endl;
+		cout << "# you think to yourself. You also remember the chemistry room is where you" << endl;
+		cout << "# asked out Sophie to prom... Where she said no..." << endl;
 		cout << "# 'I HATE CHEMISTRY!' you declare." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# The hallway that is accessible from the chemistry room is pretty long, rooms like" << endl;
-	cout << "# the math room, com sci room, and front lobby are all reachable from here!" << endl;
-
-	if (zombie != NULL)
-		cout << "# Oh no, a zombie is in here!" << endl;
-
-	cout << "#" << endl;
+	cout << "# The hallway that is accessible from the chemistry room is pretty long," << endl;
+	cout << "# rooms like the math room, com sci room, and front lobby are all" << endl;
+	cout << "# reachable from here!" << endl;
 }
 
 int Chemistry::menu(vector<string> commandVector)
@@ -73,7 +71,7 @@ int Chemistry::menu(vector<string> commandVector)
 
 void Chemistry::inspectCabinet()
 {
-	string text = "# You walk to the side of the cabinet, setting your shoulder against the wood, and begin pushing.\n# The cabinet slowly slides across the floor with a loud screeching sound. You take a step back and notice a ladder\n# mounted to the wall that leads up into another room.";
+	string text = "# You walk to the side of the cabinet, setting your shoulder against the wood,\n# and begin pushing. The cabinet slowly slides across the floor with a loud\n# screeching sound. You take a step back and notice a ladder mounted\n# to the wall that leads up into another room.";
 	cabinet->setAction(text, Push);
 }
 
@@ -98,4 +96,3 @@ void Chemistry::zombiesDead()
 {
 	deadZombies = true;
 }
-

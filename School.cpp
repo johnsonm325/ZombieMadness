@@ -305,9 +305,9 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 			}
 			
-			if(currentRoom->getType() == "First Floor Hallway") {
-				if(item == "vending machine" && static_cast<FirstFloorHallway*>(currentRoom)->getVendingMachineUsed() == false) {
-					static_cast<FirstFloorHallway*>(currentRoom)->useVendingMachine();
+			if(currentRoom->getType() == "Cafeteria") {
+				if(item == "vending machine" && static_cast<Cafeteria*>(currentRoom)->getVendingMachineUsed() == false) {
+					static_cast<Cafeteria*>(currentRoom)->useVendingMachine();
 				}
 			}
 
@@ -385,10 +385,10 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 			}
 			
-			if (currentRoom->getType() == "First Floor Hallway") {
+			if (currentRoom->getType() == "Cafeteria") {
 				if(item == "snack" && currentRoom->getInventory()->findItem("snack") != NULL) {
 					doItemAction(foundCmd->getType(), cmdVector);
-					static_cast<FirstFloorHallway*>(currentRoom)->eatSnack();
+					static_cast<Cafeteria*>(currentRoom)->eatSnack();
 					return;
 				}
 				else if(item == "snack" && currentRoom->getInventory()->findItem("snack") == NULL){
@@ -406,7 +406,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			if (currentRoom->getType() == "Gymnasium Second Floor") {
 				if(item == "ropes") {
 					static_cast<GymnasiumFloor2*>(currentRoom)->cutRopes();
-					return;
 				}
 			}
 			doItemAction(foundCmd->getType(), cmdVector);
@@ -586,6 +585,7 @@ Space *School::moveEast()
 	}
 	else
 	{
+		currentRoom->printExitDesc();
 		currentRoom = currentRoom->getEast();
 		return currentRoom;
 	}
@@ -600,6 +600,7 @@ Space *School::moveWest()
 	}
 	else
 	{
+		currentRoom->printExitDesc();
 		currentRoom = currentRoom->getWest();
 		return currentRoom;
 	}
@@ -614,6 +615,7 @@ Space *School::moveNorth()
 	}
 	else
 	{
+		currentRoom->printExitDesc();
 		currentRoom = currentRoom->getNorth();
 		return currentRoom;
 	}
@@ -628,6 +630,7 @@ Space *School::moveSouth()
 	}
 	else
 	{
+		currentRoom->printExitDesc();
 		currentRoom = currentRoom->getSouth();
 		return currentRoom;
 	}
