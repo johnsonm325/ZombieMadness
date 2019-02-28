@@ -230,6 +230,7 @@ void GameState::copyRooms(vector<Space*> &dest, const vector<Space*> &source){
 		dest[i]->setFirstTry(source[i]->isFirstTry());
 		dest[i]->setColtGone(source[i]->coltGone());
 		dest[i]->setZombiesDead(source[i]->getZombiesDead());
+		dest[i]->setLeaveAbility(source[i]->getLeaveAbility());
 
 		//Copying derived room class booleans next
 		if(source[i]->getType() == "Biology"){
@@ -411,6 +412,7 @@ void GameState::compareRooms(const vector<Space*> &dest, const vector<Space*> &s
 		printComparison("Room:", source[i]->getType(), "doorLocked", dest[i]->getDoorLocked(), source[i]->getDoorLocked());
 		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->isFirstTry(), source[i]->isFirstTry());
 		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->coltGone(), source[i]->coltGone());
+		printComparison("Room:", source[i]->getType(), "canLeave", dest[i]->getLeaveAbility(), source[i]->getLeaveAbility());
 
 		//Copying derived room class booleans next
 		if(source[i]->getType() == "Biology"){

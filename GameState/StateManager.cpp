@@ -246,64 +246,52 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	//Read base Space class booleans
 	readValue = readInt(line, "Locked_door");
 	if(readValue != -1){
-		if(readValue == 1){
-			room->lockDoor();
-		}
+		if(readValue == 1){		room->lockDoor();	}
 	}
 	else{ return false;	}
 
 	readValue = readInt(line, "First_try");
-	if(readValue != -1){
-		room->setFirstTry((bool)readValue);
-	}
+	if(readValue != -1){	room->setFirstTry((bool)readValue);	}
 	else{ return false;	}
 
 	readValue = readInt(line, "Colt_gone");
-	if(readValue != -1){
-		room->setColtGone((bool)readValue);	
-	}
+	if(readValue != -1){	room->setColtGone((bool)readValue);	}
 	else{ return false;	}
 
 	readValue = readInt(line, "Zombies_dead");
-	if(readValue != -1){
-		room->setZombiesDead((bool)readValue);
-	}
+	if(readValue != -1){	room->setZombiesDead((bool)readValue);	}
+	else{ return false;	}
+
+	readValue = readInt(line, "Can_leave");
+	if(readValue != -1){	room->setLeaveAbility((bool)readValue);	}
 	else{ return false;	}
 
 	//Read derived Space class booleans
 	if(roomName.find("Biology") != std::string::npos){
 		readValue = readInt(line, "Plants_eaten");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<Biology*>(room)->setPlantsEaten();
-			}
+			if(readValue == 1){	static_cast<Biology*>(room)->setPlantsEaten();	}
 		}
 		else{ return false;	}
 	}
 	if(roomName.find("Chemistry") != std::string::npos){
 		readValue = readInt(line, "Hole_visible");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<Chemistry*>(room)->moveCabinet();
-			}
+			if(readValue == 1){	static_cast<Chemistry*>(room)->moveCabinet();	}
 		}
 		else{ return false;	}
 	}
 	if(roomName.find("Cafeteria") != std::string::npos){
 		readValue = readInt(line, "VendMachine_used");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<Cafeteria*>(room)->useVendingMachine();
-			}
+			if(readValue == 1){	static_cast<Cafeteria*>(room)->useVendingMachine();	}
 		}
 		else{ return false;	}
 	}
 	if(roomName.find("Literature") != std::string::npos){
 		readValue = readInt(line, "Note_visible");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<Literature*>(room)->inspectDesk();
-			}
+			if(readValue == 1){	static_cast<Literature*>(room)->inspectDesk();		}
 			room->setZombiesDead((bool)readValue);
 		}
 		else{ return false;	}
@@ -311,18 +299,14 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(roomName.find("Math") != std::string::npos){
 		readValue = readInt(line, "Apple_eaten");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<Math*>(room)->eatApple();
-			}
+			if(readValue == 1){	static_cast<Math*>(room)->eatApple();	}
 		}
 		else{ return false;	}
 	}
 	if(roomName.find("Men's Bathroom") != std::string::npos){
 		readValue = readInt(line, "Hole_visible");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<MensBathroom*>(room)->inspectToilet();
-			}
+			if(readValue == 1){	static_cast<MensBathroom*>(room)->inspectToilet();	}
 		}
 		else{ return false;	}
 	}
@@ -633,6 +617,7 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 	fprintf(saveFile, "First_try: %d\n", (int)room->isFirstTry());
 	fprintf(saveFile, "Colt_gone: %d\n", (int)room->coltGone());
 	fprintf(saveFile, "Zombies_dead: %d\n", (int)room->getZombiesDead());
+	fprintf(saveFile, "Can_leave: %d\n", (int)room->getLeaveAbility());
 
 	//Writing derived room class booleans
 	if(room->getType() == "Biology"){
