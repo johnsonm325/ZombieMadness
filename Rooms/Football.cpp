@@ -4,7 +4,8 @@ Football::Football() : Space("Football Field")
 {
 	lockDoor();
 	this->zombie = new Zombie(true);
-
+	this->deadZombies = false;
+	
 	football = new Item();
 	string description = "# A football is resting in the middle of the field. Looks like a brand new ball.";
 	string name = "football";
@@ -61,9 +62,3 @@ int Football::menu(vector<string> commandVector)
 	printIntro();	
 	return 0;
 }
-
-void Football::zombiesDead()
-{
-	deadZombies = true;
-}
-

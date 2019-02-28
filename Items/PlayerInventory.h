@@ -15,10 +15,15 @@ public:
     ~PlayerInventory();
     void addItem(Item*);
     void removeItem(Item*, bool);
+
+    //Getters
     int getUsedSlots();
     int getOpenSlots();
+    int getSize();
     bool isEmpty();
     bool isFull();
+
+    //Setters
     void increaseSize(); // called when backpack is obtained
 	void printInventory();
     void printAvailableWeapons();
@@ -26,6 +31,7 @@ public:
     void printAvailableRoomObjects();
     void printAvailableMiscItems();
     bool canAdd(Item*);
+
 };
 
 #endif

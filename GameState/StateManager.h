@@ -36,20 +36,25 @@ public:
 	vector<string> getSaveFileList();
 
 	//Reading saves
+	GameState* startLoadingGame();
 	void readAllSaves();
 	GameState* readSaveFile(string filename);	
 	GameState* processFileData(vector<string> lines);
+	string readStrValue(vector<string>::iterator& line, string key);
+	int readInt(vector<string>::iterator& line, string key);
+	bool readRoomBools(vector<string>::iterator& line, Space* room, string roomName);
 	bool readRoom(vector<string>::iterator& line, Space* room);
-	void readItem(vector<string>::iterator& line, Item* item);
-	GameState* startLoadingGame();
+	Item* readItem(vector<string>::iterator& line);
+	bool readInventory(vector<string>::iterator& line, Inventory* inv);
+	bool readCreature(vector<string>::iterator& line, Creature* creature);
 
 	//Writing game state to file
+	bool startSavingGame(GameState* state);
 	void saveState(GameState* state);
 	void writeSaveFile(GameState* state, string filename);
-	bool startSavingGame(GameState* state);
 	void writeRoom(FILE* saveFile, Space* room);
 	void writeItem(FILE* saveFile, Item* item, int count);
-	void writeCreature(FILE* saveFile, Creature* creature, int count);
+	void writeCreature(FILE* saveFile, Creature* creature);
 	void writePlayer(FILE* saveFile, Player* player);
 
 	//Managing states list

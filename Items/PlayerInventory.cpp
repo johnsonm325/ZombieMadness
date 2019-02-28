@@ -151,3 +151,7 @@ void PlayerInventory::printAvailableMiscItems()
 
     printInventoryHelper(items, "Misc", isEmpty());
 }
+
+int PlayerInventory::getSize(){
+    return size;
+}

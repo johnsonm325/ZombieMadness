@@ -169,7 +169,7 @@ void GameState::copyRoomsListToSpace() {
 	}
 }
 
-vector<Space*> GameState::getRoomsList(){
+vector<Space*>& GameState::getRoomsList(){
 	return rooms;
 }
 
@@ -202,11 +202,15 @@ Player* GameState::getPlayer(){
 }
 
 //Copy player data from current game to game state object
-void GameState::copyPlayer(Player* player){
-	this->player = new Player();
+void GameState::copyPlayer(Player* dest, Player* source){
+
+	//Copying player's objects
+	copyInventory(dest->getInventory(), source->getInventory());
+	copyCreature(dest->getPlayer(), source->getPlayer());
 }
 
-void GameState::copyRooms(vector<Space*> dest, vector<Space*> source){
+//Copy room data from source to dest (by value, not pointer)
+void GameState::copyRooms(vector<Space*> &dest, const vector<Space*> &source){
 	//Rigorous argument checks
 	if(dest.size() == 0 || source.size() == 0) { return; }
 	if(dest.size() != source.size() ) {return; }
@@ -214,10 +218,10 @@ void GameState::copyRooms(vector<Space*> dest, vector<Space*> source){
 	int i;
 	for(i = 0; i < (int)dest.size(); i++){
 
-		//Copying boolean State class variables first	
-		// bool doorLocked = false, firstTry = true,  goneColt = false;
+		//Copying boolean Space class variables first	
+		// bool doorLocked = false, firstTry = true,  goneColt = false, deadZombies = true;
 		bool locked = source[i]->getDoorLocked();
-		if(locked){
+		if(locked == true){
 			dest[i]->lockDoor();
 		}
 		else{
@@ -225,9 +229,51 @@ void GameState::copyRooms(vector<Space*> dest, vector<Space*> source){
 		}
 		dest[i]->setFirstTry(source[i]->isFirstTry());
 		dest[i]->setColtGone(source[i]->coltGone());
+		dest[i]->setZombiesDead(source[i]->getZombiesDead());
+
+		//Copying derived room class booleans next
+		if(source[i]->getType() == "Biology"){
+			Biology* bioRoom = static_cast<Biology*>(dest[i]); 
+			if(static_cast<Biology*>(source[i])->getPlantsEaten() == true){
+				bioRoom->setPlantsEaten();
+			}
+		}
+		if(source[i]->getType() == "Chemistry"){
+			Chemistry* chemRoom = static_cast<Chemistry*>(dest[i]); 
+			if(static_cast<Chemistry*>(source[i])->getHoleVisible() == true){
+				chemRoom->moveCabinet();
+			}
+		}
+		if(source[i]->getType() == "Cafeteria"){
+			Cafeteria* cafRoom = static_cast<Cafeteria*>(dest[i]); 
+			if(static_cast<Cafeteria*>(source[i])->getVendingMachineUsed() == true){
+				cafRoom->useVendingMachine();
+			}
+		}
+		if(source[i]->getType() == "Literature"){
+			Literature* litRoom = static_cast<Literature*>(dest[i]); 
+			if(static_cast<Literature*>(source[i])->getNoteVisible() == true){
+				litRoom->inspectDesk();
+			}
+		}
+		if(source[i]->getType() == "Math"){
+			Math* mathRoom = static_cast<Math*>(dest[i]); 
+			if(static_cast<Math*>(source[i])->getAppleEaten() == true){
+				mathRoom->eatApple();
+			}
+		}
+		if(source[i]->getType() == "Men's Bathroom"){
+			MensBathroom* mbRoom = static_cast<MensBathroom*>(dest[i]); 
+			if(static_cast<MensBathroom*>(source[i])->getHoleVisible() == true){
+				mbRoom->inspectToilet();
+			}
+		}
 
 		//Copying room inventory from source to dest
 		copyInventory(dest[i]->getInventory(), source[i]->getInventory());	
+
+		//Copying zombies
+		copyCreature(dest[i]->getZombie(), source[i]->getZombie());	
 	}
 }
 
@@ -237,25 +283,41 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 	vector<Item*> sourceItems = source->getItems();
 	vector<Item*> destItems = dest->getItems();
 	vector<Item*> movableItems;
+	PlayerInventory *dest0, *source0;
 	int i;
 
-	//Create vector all movable objects(copies) in the room
+	//Create vector of all movable objects(copies) in the room
 	for(i = 0; i < (int) sourceItems.size(); i++){
 		if(sourceItems[i]->isMovable()){
-			Item* newItem = createItem(sourceItems[i]->getName());
+			Item* newItem = GameState::createItem(sourceItems[i]->getName());
 			movableItems.push_back(newItem);
 		}
 	}
 
-	//Remove all movable objects in dest inventory for a clear slate
-	for(i = 0; i < (int) destItems.size(); i++){
-		if(destItems[i]->isMovable()){
-			dest->removeItem(destItems[i]);
+	if(source->getInventoryType() != "Player")
+	{
+		//Remove all movable objects in dest0 inventory for a clear slate
+		for(i = 0; i < (int) destItems.size(); i++){
+			if(destItems[i]->isMovable()){
+				dest->removeItem(destItems[i]);
+			}
+		}
+		//Add all movable objects in source inventory to dest inventory
+		for(i = 0; i < (int)movableItems.size(); i++){
+			dest->addItem(movableItems[i]);
 		}
 	}
-	//Add all movable objects in source inventory to dest inventory
-	for(i = 0; i < (int)movableItems.size(); i++){
-		dest->addItem(movableItems[i]);
+	else{
+		dest0 = static_cast<PlayerInventory*>(dest);
+		source0 = static_cast<PlayerInventory*>(source);
+		//Update size, if needed
+		if(source0->getSize() > 6){
+			dest0->increaseSize();
+		}
+		//Add all movable objects in source inventory to dest inventory
+		for(i = 0; i < (int)movableItems.size(); i++){
+			dest0->addItem(movableItems[i]);
+		}
 	}
 }
 
@@ -263,51 +325,151 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 Item* GameState::createItem(string name){
 	Item* newItem = NULL;
 
-	if (name == "Baseball Bat"){
+	if ( name.find("Baseball Bat") !=std::string::npos ){
 		newItem = new BaseballBat();
 	}
-	else if(name == "Bite Cure"){
+	else if( name.find("Bite Cure") !=std::string::npos ){
 		newItem = new BiteCure();
 	}
-	else if (name == "Energy Drink LV1"){
+	else if ( name.find("Energy Drink LV1") !=std::string::npos ){
 		newItem = new EnergyDrink(1);
 	}
-	else if (name == "Energy Drink LV2"){
+	else if ( name.find("Energy Drink LV2") !=std::string::npos ){
 		newItem = new EnergyDrink(2);
 	}
-	else if (name == "Fire Extinguisher"){
+	else if ( name.find("Fire Extinguisher") !=std::string::npos ){
 		newItem = new FireExtinguisher();
 	}
-	else if (name == "First Aid"){
+	else if ( name.find("First Aid") !=std::string::npos ){
 		newItem = new FirstAid();
 	}
-	else if (name == "Gun"){
+	else if ( name.find("Gun") !=std::string::npos ){
 		newItem = new Gun();
 	}
-	else if (name == "Jersey"){
+	else if ( name.find("Jersey") !=std::string::npos ){
 		newItem = new Jersey();
 	}
-	else if (name == "Key"){
+	else if ( name.find("Key") !=std::string::npos ){
 		newItem = new Key();
 	}
-	else if (name == "Knife"){
+	else if ( name.find("Knife") !=std::string::npos ){
 		newItem = new Knife();
 	}
-	else if (name == "Map"){
+	else if ( name.find("Map") !=std::string::npos ){
 		newItem = new Map();
 	}
-	else if (name == "Paperclip"){
+	else if ( name.find("Paperclip") !=std::string::npos ){
 		newItem = new Paperclip();
 	}
-	else if (name == "Rocks"){
+	else if ( name.find("Rocks") !=std::string::npos ){
 		newItem = new Rocks();
 	}
-	else if (name == "Steel Lid"){
+	else if ( name.find("Steel Lid") !=std::string::npos ){
 		newItem = new SteelLid();
 	}
-	else if (name == "Sword"){
+	else if ( name.find("Sword") !=std::string::npos ){
 		newItem = new Sword();
 	}
-
 	return newItem;
+}
+
+void GameState::copyCreature(Creature* destCr, Creature* sourceCr){
+	if( sourceCr != NULL && sourceCr != NULL ){
+		if(sourceCr->isAlive() == false){
+			destCr->die();
+		}
+		destCr->setHealth(sourceCr->getHealth());
+	}
+}
+
+template <class T>
+void GameState::printComparison(string field1, string field2, string variable, T input1, T input2){
+	if(input1 != input2){
+		cout << field1 << " " << field2 << "\tvar = " << variable << "\tsource: " << input2;
+		cout << "\tdest: " << input1 << endl;
+	}
+}
+
+void GameState::compareRooms(const vector<Space*> &dest, const vector<Space*> &source){
+//Rigorous argument checks
+	if(dest.size() == 0 || source.size() == 0) {
+		cout << "one of the rooms vectors is empty!" << endl;
+		return;
+	}
+	if(dest.size() != source.size() ) 
+	{
+		cout << "room vectors not of equal size!" << endl;
+		return; 
+	}
+	cout << "Comparing rooms...\n";
+	// cout << "dest[0]:" << dest[0] << "rooms[0]:" << rooms[0] << endl;
+
+	int i;
+	for(i = 0; i < (int)dest.size(); i++){
+		cout << "Room: " << source[i]->getType() << endl;
+
+		printComparison("Room:", source[i]->getType(), "doorLocked", dest[i]->getDoorLocked(), source[i]->getDoorLocked());
+		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->isFirstTry(), source[i]->isFirstTry());
+		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->coltGone(), source[i]->coltGone());
+
+		//Copying derived room class booleans next
+		if(source[i]->getType() == "Biology"){
+			printComparison("Room:", source[i]->getType(), "plantsEaten", static_cast<Biology*>(dest[i])->getPlantsEaten(), static_cast<Biology*>(source[i])->getPlantsEaten());
+		}
+		if(source[i]->getType() == "Chemistry"){
+			printComparison("Room:", source[i]->getType(), "holeVisible", static_cast<Chemistry*>(dest[i])->getHoleVisible(), static_cast<Chemistry*>(source[i])->getHoleVisible());
+		}
+		if(source[i]->getType() == "Cafeteria"){
+			printComparison("Room:", source[i]->getType(), "vendingMachineUsed", static_cast<Cafeteria*>(dest[i])->getVendingMachineUsed(),
+			 static_cast<Cafeteria*>(source[i])->getVendingMachineUsed());
+		}
+		if(source[i]->getType() == "Literature"){
+			printComparison("Room:", source[i]->getType(), "noteVisible", static_cast<Literature*>(dest[i])->getNoteVisible(), static_cast<Literature*>(source[i])->getNoteVisible());
+		}
+		if(source[i]->getType() == "Math"){
+			printComparison("Room:", source[i]->getType(), "appleEaten", static_cast<Math*>(dest[i])->getAppleEaten(), static_cast<Math*>(source[i])->getAppleEaten());
+		}
+		if(source[i]->getType() == "Men's Bathroom"){
+			printComparison("Room:", source[i]->getType(), "holeVisible", static_cast<MensBathroom*>(dest[i])->getHoleVisible(), static_cast<MensBathroom*>(source[i])->getHoleVisible());
+		}
+
+		compareInventory(dest[i]->getInventory(), source[i]->getInventory());
+		compareCreature(dest[i]->getZombie(), source[i]->getZombie());
+	}
+}
+void GameState::compareInventory(Inventory* dest, Inventory* source){
+	//Copying removable room items
+	vector<Item*> sourceItems = source->getItems();
+	vector<Item*> destItems = dest->getItems();
+	int i;
+
+	cout << "Comparing inventories...\n";
+	printComparison("Inventory:", source->getInventoryType(), "num of items", destItems.size(), sourceItems.size());
+
+	if(source->getInventoryType() == "Player"){
+		PlayerInventory* dest0 = static_cast<PlayerInventory*>(dest);
+		PlayerInventory* source0 = static_cast<PlayerInventory*>(source);
+		//Update size, if needed
+		printComparison("Inventory:", source->getInventoryType(), "size", dest0->getSize(), source0->getSize());
+	}
+	for(i = 0; i < (int)sourceItems.size(); i++){
+		if(dest->findItem(sourceItems[i]->getName()) == NULL){
+			printComparison("Item:", "", "name", destItems[i]->getName(), sourceItems[i]->getName());
+		}
+	}
+}
+
+void GameState::compareCreature(Creature* destCr, Creature* sourceCr){
+	// printComparison("Creature:", "ptr", "ptr", destCr, sourceCr);
+	if( sourceCr != NULL && destCr != NULL ){
+		cout << "Comparing creatures...\n";
+		printComparison("Creature:", "", "isAlive", destCr->isAlive(), sourceCr->isAlive());
+		printComparison("Creature:", "", "health", destCr->getHealth(), sourceCr->getHealth());
+	}
+}
+
+void GameState::comparePlayer(Player* dest, Player* source){
+	cout << "Comparing players...\n";
+	compareInventory(dest->getInventory(), source->getInventory());
+	compareCreature(dest->getPlayer(), source->getPlayer());
 }

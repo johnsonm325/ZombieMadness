@@ -27,8 +27,9 @@ Item* Inventory::findItem(string name)
 {
     for (unsigned int index = 0; index < this->items.size(); index++)
     {
-        string nameLC = strToLowerCase(this->items[index]->getName());
-        if ((this->items[index]->getName() == name) || (nameLC == name)){
+        string nameLowerCase = strToLowerCase(this->items[index]->getName());
+        string inputLowerCase = strToLowerCase(name);
+        if (nameLowerCase == inputLowerCase){
             return this->items[index];
         }
     }

@@ -4,6 +4,7 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
 	string description, name, text;
 	this->zombie = new Zombie(false);
+	this->deadZombies = false;
 
 	key = new Key();
 	fireExt = new FireExtinguisher();
@@ -81,7 +82,3 @@ int PrincipalsOffice::menu(vector<string> commandVector)
 	return 0;
 }
 
-void PrincipalsOffice::zombiesDead()
-{
-	deadZombies = true;
-}

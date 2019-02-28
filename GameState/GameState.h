@@ -73,7 +73,7 @@ public:
 	void addRoom(char direction, Space *nextRoom, Space *prevRoom);
 	void createRoomsList();
 	void copyRoomsListToSpace();
-	vector<Space*> getRoomsList();
+	vector<Space*>& getRoomsList();
 	Space* getCurrentRoom();
 	void setCurrentRoom(int idx);
 	void setRoomIdx(int idx);
@@ -87,10 +87,21 @@ public:
 	Player* getPlayer();
 	
 	//Moving data between different objects
-	void copyPlayer(Player* player);
-	void copyRooms(vector<Space*> dest, vector<Space*> source);
+	void copyPlayer(Player* dest, Player* source);
+	void copyRooms(vector<Space*> &dest, const vector<Space*> &source);
 	void copyInventory(Inventory* dest, Inventory* source);
-	Item* createItem(string name);
+	static Item* createItem(string name);
+	void copyCreature(Creature* destCr, Creature* sourceCr);
+
+	//Comparing data between different objects
+	template <class T>
+	void printComparison(string field1, string field2, string variable, T input1, T input2);
+	
+	void compareRooms(const vector<Space*> &dest, const vector<Space*> &source);
+	void compareInventory(Inventory* dest, Inventory* source);
+	void compareCreature(Creature* destCr, Creature* sourceCr);
+	void comparePlayer(Player* dest, Player* source);
+	
 };
 
 #endif

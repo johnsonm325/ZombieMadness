@@ -3,7 +3,8 @@
 Chemistry::Chemistry() : Space("Chemistry")
 {
 	this->zombie = new Zombie(false);
-	
+	this->deadZombies = false;
+
 	beakers = new Item();
 	string description = "# A collection of beakers are on the table. Some are knocked\n# over and broken, but they all appear clean";
 	string name = "beakers";
@@ -15,6 +16,7 @@ Chemistry::Chemistry() : Space("Chemistry")
 	name = "cabinet";
 	cabinet->setDummyItem(description, name);
 	roomInventory->addItem(cabinet);
+
 }
 
 Chemistry::~Chemistry()
@@ -77,21 +79,21 @@ void Chemistry::inspectCabinet()
 void Chemistry::moveCabinet()
 {
 	holeVisible = true;
+	if(ladder != NULL){
+		delete ladder;
+		ladder = NULL;
+	}
+	
 	ladder = new Item();
-	string description = "# A metal ladder is mounted against the wall. It seems sturdy enough to climb.";
-	string name = "ladder";
+	description = "# A metal ladder is mounted against the wall. It seems sturdy enough to climb.";
+	name = "ladder";
 	ladder->setDummyItem(description, name);
-	roomInventory->addItem(ladder);
 	string text = "# You ascend the ladder, step by step, inching closer to the hole in the ceiling.";
 	ladder->setAction(text, Use);
+	roomInventory->addItem(ladder);
 }
 
 bool Chemistry::getHoleVisible()
 {
 	return holeVisible;
-}
-
-void Chemistry::zombiesDead()
-{
-	deadZombies = true;
 }

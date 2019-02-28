@@ -2,11 +2,12 @@
 
 Literature::Literature() : Space("Literature")
 {
+	string description, name, text;
 	chalkboard = new Item();
-	string description = "# The chalkboard looks like it has been freshly cleaned. A few\n# things are written on the board.";
-	string name = "chalkboard";
+	description = "# The chalkboard looks like it has been freshly cleaned. A few\n# things are written on the board.";
+	name = "chalkboard";
 	chalkboard->setDummyItem(description, name);
-	string text = "# In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet\n# hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy\n# hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means\n# comfort.";
+	text = "# In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet\n# hole, filled with the ends of worms and an oozy smell, nor yet a dry, bare, sandy\n# hole with nothing in it to sit down on or to eat: it was a hobbit-hole, and that means\n# comfort.";
 	chalkboard->setAction(text, Read);
 	roomInventory->addItem(chalkboard);
 
@@ -17,6 +18,7 @@ Literature::Literature() : Space("Literature")
 	roomInventory->addItem(desk);
 
 	this->zombie = new Zombie(false);
+	this->deadZombies = false;
 }
 
 Literature::~Literature(){
@@ -89,8 +91,7 @@ void Literature::inspectDesk()
 	roomInventory->addItem(note);
 }
 
-void Literature::zombiesDead()
+bool Literature::getNoteVisible()
 {
-	deadZombies = true;
+	return noteVisible;
 }
-
