@@ -69,6 +69,10 @@ int MensBathroom::menu(vector<string> commandVector)
 void MensBathroom::inspectToilet()
 {
 	holeVisible = true;
+	if(hole != NULL){
+		delete hole;
+		hole = NULL;
+	}
 
 	hole = new Item();
 	string description = "# There is a small hole behind the toilet. It looks like you could\n# probably fit through it.";

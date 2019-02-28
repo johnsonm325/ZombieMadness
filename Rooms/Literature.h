@@ -7,8 +7,7 @@ class Literature : public Space
 {
 private:
 	string action;		//string action typed in by the user
-	bool deadZombies = false,
-	     noteVisible = false;
+	bool noteVisible = false;
 	Item *chalkboard;
 	Item *desk;
 	Item *note;
@@ -20,7 +19,7 @@ public:
 	void printExitDesc();
 	int menu(vector<string>);
 	void inspectDesk();
-	void zombiesDead();
+	bool getNoteVisible();
 
 };
 #endif

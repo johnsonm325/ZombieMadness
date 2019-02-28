@@ -178,7 +178,8 @@ vector<string> Space::getExitDirections() {
 	return exitList;
 }
 
-void Space::printDirection(Space* direction) {
+void Space::printDirection(Space* direction)
+{
 	if (direction == NULL) {
 		cout << "Nothing is in that direction" << endl;
 	}
@@ -186,6 +187,26 @@ void Space::printDirection(Space* direction) {
 		cout << direction->getType() << endl;
 	}
 }
+
+void Space::printDirections(){
+	vector<Space*> exits = getExits();
+	for(int i = 0; i < (int)exits.size(); i++){
+		if(exits[i] == getEast()){
+			cout << "East: ";
+		}
+		if(exits[i] == getWest()){
+			cout << "West: "; 
+		}
+		if(exits[i] == getSouth()){
+			cout << "South: "; 
+		}
+		if(exits[i] == getNorth()){
+			cout << "North: "; 
+		}
+		printDirection(exits[i]);
+	}
+}
+
 
 bool Space::getLeaveAbility()
 {
@@ -198,7 +219,7 @@ void Space::setLeaveAbility(bool leave)
 }
 
 //Add creature to room
-void Space::removeCreature() 
+void Space::removeZombie() 
 {
 	delete zombie;
 	zombie = NULL;
@@ -223,3 +244,19 @@ void Space::lockDoor()
 {
 	doorLocked = true;
 }
+
+void Space::zombiesDead()
+{
+	deadZombies = true;
+}
+
+bool Space::getZombiesDead()
+{
+	return deadZombies;
+}
+
+void Space::setZombiesDead(bool dead)
+{
+	deadZombies = dead;
+}
+

@@ -22,6 +22,22 @@ FirstFloorHallway::FirstFloorHallway() : Space("First Floor Hallway")
 FirstFloorHallway::FirstFloorHallway(bool firstTry) : Space("First Floor Hallway")
 {
 	this->firstTry = firstTry;
+
+	vomit = new Item();
+	string description = "# You can see you fresh pile of vomit on the floor. The smell comes up to\n# meet your nose and you almost gag.";
+	string name = "vomit";
+	vomit->setDummyItem(description, name);
+	string text = "# You eat the vomit.\n# You are disgusting! What's wrong with you?!";
+	vomit->setAction(text, Eat);
+	roomInventory->addItem(vomit);
+
+	bulletinBoard = new Item();
+	description = "# The bulletin board has a bunch of pamphlets and flyers about events taking\n# place at school this month.";
+	name = "bulletin board";
+	bulletinBoard->setDummyItem(description, name);
+	text = "# 'Football tryouts next Thursday! We'll provide the equipment. Come out and show\n# us what you're made of.";
+	bulletinBoard->setAction(text, Read);
+	roomInventory->addItem(bulletinBoard);
 }
 
 FirstFloorHallway::~FirstFloorHallway(){

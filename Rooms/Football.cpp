@@ -4,6 +4,7 @@ Football::Football() : Space("Football Field")
 {
 	lockDoor();
 	this->zombie = new Zombie(true);
+	this->deadZombies = false;
 	this->canLeave = false;
 
 	football = new Item();
@@ -62,9 +63,3 @@ int Football::menu(vector<string> commandVector)
 	printIntro();	
 	return 0;
 }
-
-void Football::zombiesDead()
-{
-	deadZombies = true;
-}
-

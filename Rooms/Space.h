@@ -18,6 +18,7 @@ protected:
 	bool doorLocked = false,
 		 firstTry = true,
 		 goneColt = false,
+		 deadZombies = true,
 		 canLeave = true;
 
 	Space *north;		// Pointer to space for up
@@ -40,6 +41,7 @@ public:
 	Space* getNorth();
 	void setSouth(Space*);
 	Space* getSouth();
+
 	string getType();
 	virtual void printIntro() = 0;		// For abstract class
 	virtual void printExitDesc() = 0;	// For abstract class
@@ -56,21 +58,24 @@ public:
 	string strToLowerCase(string input);
 
 	Inventory* getInventory();			//Return inventory vector
-
-	bool getLeaveAbility();
-	void setLeaveAbility(bool);
-
-	void removeCreature();	//Remove creature to room
+	void removeZombie();	//Remove creature to room
 	Zombie* getZombie();		//Get list of creatures from room, not including player
 
 	vector<Space*> getExits();			//Get available room exits as vector of Space pointers
 	vector<string> getExitDirections();
 	void printDirection(Space* direction);
+	void printDirections();
+	
+	bool getLeaveAbility();
+	void setLeaveAbility(bool);
 
 	bool getDoorLocked();
 	void unlockDoor();
 	void lockDoor();
 
+	void zombiesDead();
+	bool getZombiesDead();
+	void setZombiesDead(bool);
 };
 
 #endif

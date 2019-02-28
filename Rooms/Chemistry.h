@@ -7,11 +7,10 @@ class Chemistry : public Space
 {
 private:
 	string action;		//string action typed in by the user
-	bool deadZombies = false,
-	     holeVisible = false;
+	bool holeVisible = false;
 	Item *beakers;
 	Item *cabinet;
-	Item *ladder;
+	Item *ladder = NULL;
 
 public:
 	Chemistry();
@@ -22,7 +21,6 @@ public:
 	void inspectCabinet();
 	void moveCabinet();
 	bool getHoleVisible();
-	void zombiesDead();
 
 };
 #endif
