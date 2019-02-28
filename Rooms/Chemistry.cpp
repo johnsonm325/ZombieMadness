@@ -85,8 +85,8 @@ void Chemistry::moveCabinet()
 	}
 	
 	ladder = new Item();
-	description = "# A metal ladder is mounted against the wall. It seems sturdy enough to climb.";
-	name = "ladder";
+	string description = "# A metal ladder is mounted against the wall. It seems sturdy enough to climb.";
+	string name = "ladder";
 	ladder->setDummyItem(description, name);
 	string text = "# You ascend the ladder, step by step, inching closer to the hole in the ceiling.";
 	ladder->setAction(text, Use);
