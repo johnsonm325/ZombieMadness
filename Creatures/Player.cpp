@@ -158,10 +158,17 @@ void Player::defend()
 
 void Player::takeItem(Item* item){
 
-	playerInventory->addItem(item);
+	if (item->isMovable())
+	{
+		playerInventory->addItem(item);
 
-	if (playerInventory->findItem(item->getName()))
-		roomInventory->removeItem(item);
+		if (playerInventory->findItem(item->getName()))
+			roomInventory->removeItem(item);
+	}
+
+	else
+		cout << "# You cannot add this item to your inventory." << endl;
+	
 }
 
 void Player::dropItem(Item* item){
