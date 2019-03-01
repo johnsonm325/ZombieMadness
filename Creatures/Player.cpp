@@ -168,7 +168,7 @@ void Player::dropItem(Item* item){
 	
 	playerInventory->removeItem(item, false);
 	
-	if (playerInventory->findItem(item->getName()))
+	if (!playerInventory->findItem(item->getName()))
 		roomInventory->addItem(item);
 }
 
