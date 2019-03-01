@@ -9,7 +9,6 @@ class FrontOffice : public Space
 {
 private:
 	string action;		//string action typed in by the user
-	bool goneColt = false;
 	Item *paSystem;
 	Item *detentionList;
 

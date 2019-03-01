@@ -17,18 +17,18 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	roomInventory->addItem(sloppyJoe);
 
 	vendingMachine = new Item();
-        description = "# There is a vending machine against the west wall. It is full of snacks.\n# It appears to be broken; like you can just push buttons for free snacks!";
-        name = "vending machine";
-        vendingMachine->setDummyItem(description, name);
-        text = "# You push a button and a snack drops";
-        vendingMachine->setAction(text, Use);
-        roomInventory->addItem(vendingMachine);
+    description = "# There is a vending machine against the west wall. It is full of snacks.\n# It appears to be broken; like you can just push buttons for free snacks!";
+    name = "vending machine";
+    vendingMachine->setDummyItem(description, name);
+    text = "# You push a button and a snack drops";
+    vendingMachine->setAction(text, Use);
+    roomInventory->addItem(vendingMachine);
 }
 
 Cafeteria::~Cafeteria(){
-	delete food;
-	delete sloppyJoe;
-	delete vendingMachine;
+	//delete food;
+	//delete sloppyJoe;
+	//delete vendingMachine;
 }
 
 void Cafeteria::printIntro(){

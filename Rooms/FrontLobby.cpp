@@ -3,6 +3,7 @@
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {
 	this->zombie = new Zombie(false);
+	this->deadZombies = false;
 	this->canLeave = false;
 	
 	bench = new Item();
@@ -75,10 +76,3 @@ int FrontLobby::menu(vector<string> commandVector)
 	printIntro();
 	return 0;
 }
-
-void FrontLobby::zombiesDead()
-{
-	deadZombies = true;
-}
-
-
