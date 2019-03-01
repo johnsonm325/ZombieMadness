@@ -179,3 +179,7 @@ void PlayerInventory::printAvailableDefenseItems()
 
     printInventoryHelper(items, "Defense", isEmpty());
 }
+
+int PlayerInventory::getSize(){
+    return size;
+}

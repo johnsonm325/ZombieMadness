@@ -17,6 +17,7 @@ public:
     void removeItem(Item*, bool);
     int getUsedSlots();
     int getOpenSlots();
+    int getSize();
     bool isEmpty();
     bool isFull();
     void increaseSize(); // called when backpack is obtained

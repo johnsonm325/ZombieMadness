@@ -22,20 +22,16 @@ void CmdParser::initCmdList() {
 
 	//Moving player through rooms
 	cmdList->addItemToList(new CmdWord("go", "go", " - go <direction>, moves players through the indicated direction to the next room"));
-	cmdList->addItemToList(new CmdWord("go", "walk"));	
-	cmdList->addItemToList(new CmdWord("go", "run"));
+	// cmdList->addItemToList(new CmdWord("go", "walk"));	
+	// cmdList->addItemToList(new CmdWord("go", "run"));
 	cmdList->addItemToList(new CmdWord("go", "go north"));
 	cmdList->addItemToList(new CmdWord("go", "north"));
-	cmdList->addItemToList(new CmdWord("go", "i"));
 	cmdList->addItemToList(new CmdWord("go", "go south"));
 	cmdList->addItemToList(new CmdWord("go", "south"));
-	cmdList->addItemToList(new CmdWord("go", "k"));
 	cmdList->addItemToList(new CmdWord("go", "go east"));
 	cmdList->addItemToList(new CmdWord("go", "east"));
-	cmdList->addItemToList(new CmdWord("go", "l"));
 	cmdList->addItemToList(new CmdWord("go", "go west"));
 	cmdList->addItemToList(new CmdWord("go", "west"));
-	cmdList->addItemToList(new CmdWord("go", "j"));
 	cmdList->addItemToList(new CmdWord("dir", "dir", " - displays all available exits in current room"));
 	cmdList->addItemToList(new CmdWord("dir", "w"));
 	cmdList->addItemToList(new CmdWord("dir", "a"));
