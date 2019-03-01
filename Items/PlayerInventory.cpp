@@ -4,6 +4,8 @@ PlayerInventory::PlayerInventory() : Inventory("Player")
 {
     this->type = "Player";
     this->size = 6; // TBD how many opening slots player should have
+    this->openSlots = 6;
+    this->usedSlots = 0;
 }
 
 PlayerInventory::~PlayerInventory(){
@@ -12,17 +14,17 @@ PlayerInventory::~PlayerInventory(){
 
 bool PlayerInventory::isFull()
 {
-    return (int) items.size() == size;
+    return usedSlots == size;
 }
 
 bool PlayerInventory::isEmpty()
 {
-    return items.size() == 0;
+    return openSlots == size;
 }
 
 bool PlayerInventory::canAdd(Item *item)
 {
-    return (int) items.size() + item->getSize() <= size;
+    return item->getSize() + usedSlots <= size;
 }
 
 void PlayerInventory::increaseSize()
@@ -32,12 +34,11 @@ void PlayerInventory::increaseSize()
 
 void PlayerInventory::addItem(Item* item)
 {
-    cout << "Current inventory size: " << items.size() << endl;
-    cout << "Item size: " << item->getSize() << endl;
-    
     if (!isFull() && canAdd(item))
     {
         items.push_back(item);
+        openSlots -= item->getSize();
+        usedSlots += item->getSize();
         cout << item->getName() << " was successfully added to your inventory." << endl;
     }
 
@@ -53,6 +54,8 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
     if (!isEmpty())
     {
         items.erase(remove(items.begin(), items.end(), item), items.end());
+        openSlots += item->getSize();
+        usedSlots -= item->getSize();
 
         if (wasUsed)
         {
@@ -130,6 +133,16 @@ void PlayerInventory::printAvailableWeapons()
 {
     cout << "=== Available Weapons ===" << endl;
     printInventoryHelper(items, "Weapon", isEmpty());
+}
+
+int PlayerInventory::getOpenSlots()
+{
+    return openSlots;
+}
+
+int PlayerInventory::getUsedSlots()
+{
+    return usedSlots;
 }
 
 void PlayerInventory::printAvailableSupplies()

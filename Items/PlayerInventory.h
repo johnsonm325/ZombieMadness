@@ -6,6 +6,8 @@
 class PlayerInventory : public Inventory
 {
 private:
+    int openSlots;
+    int usedSlots;
     int size;
 
 public:
@@ -13,6 +15,8 @@ public:
     ~PlayerInventory();
     void addItem(Item*);
     void removeItem(Item*, bool);
+    int getUsedSlots();
+    int getOpenSlots();
     int getSize();
     bool isEmpty();
     bool isFull();
