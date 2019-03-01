@@ -14,7 +14,7 @@ PlayerInventory::~PlayerInventory(){
 
 bool PlayerInventory::isFull()
 {
-    return items.size() == size;
+    return (int) items.size() == size;
 }
 
 bool PlayerInventory::isEmpty()
@@ -24,7 +24,7 @@ bool PlayerInventory::isEmpty()
 
 bool PlayerInventory::canAdd(Item *item)
 {
-    return items.size() + item->getSize() <= size;
+    return (int) items.size() + item->getSize() <= size;
 }
 
 void PlayerInventory::increaseSize()
