@@ -159,13 +159,17 @@ void Player::defend()
 void Player::takeItem(Item* item){
 
 	playerInventory->addItem(item);
-	roomInventory->removeItem(item);
+
+	if (playerInventory->findItem(item->getName()))
+		roomInventory->removeItem(item);
 }
 
 void Player::dropItem(Item* item){
 	
 	playerInventory->removeItem(item, false);
-	roomInventory->addItem(item);
+	
+	if (playerInventory->findItem(item->getName()))
+		roomInventory->addItem(item);
 }
 
 // Supports look at <itemName> command in game
