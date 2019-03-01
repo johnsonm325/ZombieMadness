@@ -49,7 +49,7 @@ void Chemistry::printExitDesc()
 		cout << "# 'Wow, the fact that I managed NOT to blow myself up in there is amazing'" << endl;
 		cout << "# you think to yourself. You also remember the chemistry room is where you" << endl;
 		cout << "# asked out Sophie to prom... Where she said no..." << endl;
-		cout << "# 'I HATE CHEMISTRY!' you declare." << endl;
+		cout << "# 'I HATE CHEMISTRY!'" << endl;
 		cout << "#" << endl;
 	}
 
