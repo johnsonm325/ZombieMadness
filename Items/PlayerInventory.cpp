@@ -14,11 +14,9 @@ PlayerInventory::~PlayerInventory(){
 
 bool PlayerInventory::isFull()
 {
-    if (usedSlots == size)
-        return true;
-
-    return false;
+    return items.size() == size;
 }
+
 bool PlayerInventory::isEmpty()
 {
     return items.size() == 0;
@@ -26,12 +24,7 @@ bool PlayerInventory::isEmpty()
 
 bool PlayerInventory::canAdd(Item *item)
 {
-    int totalSize = usedSlots + item->getSize();
-
-    if (totalSize > openSlots)
-        return false;
-
-    return true;
+    return items.size() + item->getSize() <= size;
 }
 
 void PlayerInventory::increaseSize()
