@@ -36,6 +36,10 @@ void Chemistry::printIntro(){
 	cout << "# center of the room. Various items can be found inside of cabinets set" << endl;
 	cout << "# against the south wall." << endl;
 	cout << "#" << endl;
+	if (zombie != NULL) {
+		cout << "# Oh no, a zombie is in here!" << endl;
+		cout << "#" << endl;
+	}
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }

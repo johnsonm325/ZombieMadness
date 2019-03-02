@@ -3,7 +3,7 @@
 FrontOffice::FrontOffice() : Space("Front Office")
 {
 	paSystem = new Item();
-	string description = "# This is the system that the principal uses to call students to the office. Maybe I can have a little fun with this.";
+	string description = "# This is the system that the principal uses to call students to the office.\n# Maybe I can have a little fun with this.";
 	string name = "PA system";
 	paSystem->setDummyItem(description, name);
 	string text = "# You push the button and speak loudly over the intercom, 'GOOD MORNING VIETNAM!!!'\n# ... No response.'";
@@ -28,12 +28,13 @@ void FrontOffice::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# As you step in, you hear a sound closeby, you're not sure if it's in the room you are in, or if it's in another." << endl;
-		cout << "# The stench is strong here though, and it gives you a very uneasy feeling in your stomach." << endl;
+		cout << "# As you step in, you hear a sound closeby, you're not sure if it's in the room" << endl;
+		cout << "# you are in, or if it's in another. The stench is strong here though, and it" << endl;
+		cout << "# gives you a very uneasy feeling in your stomach." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Two desks sit at the north wall, each with a computer." << endl;
+	cout << "# There is a PA system on the desk and a piece of paper that says, 'Detention List'" << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
@@ -45,13 +46,14 @@ void FrontOffice::printExitDesc()
 	{
 		firstTime();
 		cout << "# As you leave, you remember how many times you were called down here." << endl;
-		cout << "# 'If only Ray kept his mouth shut about the thumbtack I placed on Ms. Brembal's chair," << endl;
-		cout << "# I would have gotten away with that cleanly for sure and would have never had to come down here..." << endl;
-		cout << "# Ok well maybe not that one time at least...'" << endl;
+		cout << "# 'If only Ray kept his mouth shut about the thumbtack I placed on Ms. Brembal's" << endl;
+		cout << "# chair, I would have gotten away with that cleanly for sure and would have" << endl;
+		cout << "# never had to come down here... Ok well maybe not that one time at least...'" << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# You have a clear shot to the principal's office from here, could be some goodies in there!" << endl;
+	cout << "# You have a clear shot to the principal's office from here, could be some goodies" << endl;
+	cout << "# in there!" << endl;
 	cout << "#" << endl;
 }
 
