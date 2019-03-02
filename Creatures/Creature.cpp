@@ -111,7 +111,7 @@ void Creature::setDefense(int d)
 {
 	this->defense += d;
 
-	if (this->defense > 10)	// 10 as the only 1 defense items add up to 10 defense
+	if (this->defense > 10)	// 10 as the only 2 defense items add up to 10 defense
 		this->defense = 10;
 }
 
