@@ -30,7 +30,7 @@ void GymnasiumFloor1::printIntro(){
 	// Prints the first time the room is visited	
 	if (firstTry == true)
 	{
-		if(zombie && zombie->isAlive()) {
+		if(!zombie->isAlive()) {
 			cout << "# Dead zombies litter the floor. Great thing you decided to cut those ropes or" << endl;
 			cout << "# else you'd have a tough fight on your hands. Basketball doesn't seem like such" << endl;
 			cout << "# of an important event when you're having to fight your way out of this place" << endl;

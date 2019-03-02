@@ -108,7 +108,7 @@ void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
     if (isEmpty)
     {
         cout << KYEL "None!" RESET << endl;
-        cout << endl;
+        cout << "#" << endl;
     }
 
     else if (!type.empty())
@@ -127,7 +127,7 @@ void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
         for (unsigned int i = 0; i < items.size(); i++)
             cout << KYEL << (i + 1) << ": " << items[i]->getName() << endl;
 
-        cout << RESET << endl;
+        cout << "#" RESET << endl;
     }
 
 }
@@ -155,7 +155,7 @@ int PlayerInventory::getUsedSlots()
 
 void PlayerInventory::printAvailableSupplies()
 {
-    cout << KYEL "===vAvailable Supplies ===" RESET << endl;
+    cout << KYEL "=== Available Supplies ===" RESET << endl;
 
     printInventoryHelper(items, "Supply", isEmpty());
 }

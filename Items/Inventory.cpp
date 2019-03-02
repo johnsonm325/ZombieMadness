@@ -88,7 +88,7 @@ void Inventory::printInventory() {
         cout << KYEL << (i + 1) << ": " << items[i]->getName() << endl;
     }
 
-    cout << RESET << endl;
+    cout << "#" RESET << endl;
 }
 
 void Inventory::clearInventory(){
