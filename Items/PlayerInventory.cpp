@@ -1,4 +1,12 @@
 #include "PlayerInventory.h"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+#define RESET "\x1B[0m"
 
 PlayerInventory::PlayerInventory() : Inventory("Player")
 {
@@ -39,11 +47,11 @@ void PlayerInventory::addItem(Item* item)
         items.push_back(item);
         openSlots -= item->getSize();
         usedSlots += item->getSize();
-        cout << item->getName() << " was successfully added to your inventory." << endl;
+        cout << KGRN << item->getName() << " was successfully added to your inventory." RESET << endl;
     }
 
     else
-        cout << "Your inventory is either full or the item size exceeds available capacity."<< endl;
+        cout << KRED "Your inventory is either full or the item size exceeds available capacity." RESET << endl;
     
 }
 
@@ -65,12 +73,12 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
         }
 
         else
-            cout << item->getName() << " was succesfully removed from your inventory." << endl;
+            cout << KGRN << item->getName() << " was succesfully removed from your inventory." RESET << endl;
         
     }
 
     else
-        cout << "Your inventory has nothing in it!" << endl;
+        cout << KRED "Your inventory has nothing in it!" RESET << endl;
     
 }
 
@@ -99,7 +107,7 @@ void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
 {   
     if (isEmpty)
     {
-        cout << "None!" << endl;
+        cout << KYEL "None!" RESET << endl;
         cout << endl;
     }
 
@@ -108,30 +116,30 @@ void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
         for (unsigned int i = 0; i < items.size(); i++)
         {
             if (items[i]->getType() == type)
-                cout << items[i]->getName() << endl;
+                cout << KYEL << items[i]->getName() << endl;
         }
 
-        cout << endl;
+        cout << RESET << endl;
     }
 
     else
     {
         for (unsigned int i = 0; i < items.size(); i++)
-            cout << (i + 1) << ": " << items[i]->getName() << endl;
+            cout << KYEL << (i + 1) << ": " << items[i]->getName() << endl;
 
-        cout << endl;
+        cout << RESET << endl;
     }
 
 }
 
 void PlayerInventory::printInventory() {
-	cout << "=== Player's Inventory ===" << endl;
+	cout << KYEL "=== Player's Inventory ===" RESET << endl;
 	printInventoryHelper(items, "", isEmpty());
 }
 
 void PlayerInventory::printAvailableWeapons()
 {
-    cout << "=== Available Weapons ===" << endl;
+    cout << KYEL "=== Available Weapons ===" RESET << endl;
     printInventoryHelper(items, "Weapon", isEmpty());
 }
 
@@ -147,28 +155,28 @@ int PlayerInventory::getUsedSlots()
 
 void PlayerInventory::printAvailableSupplies()
 {
-    cout << "===vAvailable Supplies ===" << endl;
+    cout << KYEL "===vAvailable Supplies ===" RESET << endl;
 
     printInventoryHelper(items, "Supply", isEmpty());
 }
 
 void PlayerInventory::printAvailableRoomObjects()
 {
-    cout << "=== Available Room Objects ===" << endl;
+    cout << KYEL "=== Available Room Objects ===" RESET << endl;
 
     printInventoryHelper(items, "Room Object", isEmpty());
 }
 
 void PlayerInventory::printAvailableMiscItems()
 {
-    cout << "=== Available Misc Items ===" << endl;
+    cout << KYEL "=== Available Misc Items ===" RESET << endl;
 
     printInventoryHelper(items, "Misc", isEmpty());
 }
 
 void PlayerInventory::printAvailableDefenseItems()
 {
-    cout << "=== Available Defense Items ===" << endl;
+    cout << KYEL "=== Available Defense Items ===" RESET << endl;
 
     printInventoryHelper(items, "Defense", isEmpty());
 }

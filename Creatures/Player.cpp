@@ -60,12 +60,12 @@ void Player::useItem(Item* item) {
 	if (type == "Supply")
 	{
 		if (player->getHealth() >= 100)
-			printf(KGRN "# No need to use this health item, your health is full!\n" RESET);
+			cout << KGRN "# No need to use this health item, your health is full!" RESET << endl;
 
 		else
 		{
 			player->gainHealth(item->getHealthBoost());
-			printf (KGRN "# Health now at %d\n" RESET, player->getHealth());
+			cout << KGRN "# Your health now at " << player->getHealth() << RESET << endl;
 		}
 	}
 
@@ -82,11 +82,11 @@ void Player::attackEnemy()
 
 	if (!enemy || !enemy->isAlive())
 	{
-		cout << "# Calm your horses, there are no zombies in sight, no need to attack." << endl;
+		cout << KGRN "# Calm your horses, there are no zombies in sight, no need to attack." RESET << endl;
 		return;
 	}
 	
-	cout << "# Please choose one of the following to attack with" << endl;
+	cout << KYEL "# Please choose one of the following to attack with" RESET << endl;
 	cout << endl;
 
 	playerInventory->printAvailableWeapons();
@@ -102,7 +102,7 @@ void Player::attackEnemy()
 
 	if (!weapon)
 	{
-		cout << "# That is not an available weapon in your inventory." << endl;
+		cout << KRED "# That is not an available weapon in your inventory." RESET << endl;
 		return;
 	}
 
@@ -121,11 +121,11 @@ void Player::defend()
 	if (playerInventory->isEmpty() || !playerInventory->hasDefense())
 	{
 		
-		printf(KRED "# You do not have any defense items to use.\n" RESET);
+		cout << KRED "# You do not have any defense items to use." RESET << endl;
 		return;
 	}
 
-	cout << "# Please choose one of the following to defend with" << endl;
+	cout << KYEL "# Please choose one of the following to defend with" RESET << endl;
 	cout << endl;
 
 	playerInventory->printAvailableDefenseItems();
@@ -141,7 +141,7 @@ void Player::defend()
 
 	if (!defenseItem)
 	{
-		cout << "# That defense item is not in your inventory." << endl;
+		cout << KRED "# That defense item is not in your inventory." RESET << endl;
 		return;
 	}
 
@@ -168,7 +168,7 @@ void Player::takeItem(Item* item){
 	}
 
 	else
-		cout << "# You cannot add this item to your inventory." << endl;
+		cout << KRED "# You cannot add this item to your inventory." RESET << endl;
 	
 }
 
@@ -206,7 +206,7 @@ Item* Player::selectItem(string item){
 		return playerItem;
 	}
 
-	cout << "Failed to select item!" << endl;
+	cout << KRED "# Failed to select item!" RESET << endl;
 	return NULL;
 }
 

@@ -1,4 +1,12 @@
 #include "Inventory.h"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+#define RESET "\x1B[0m"
 
 Inventory::Inventory(string t)
 {
@@ -41,7 +49,7 @@ Item* Inventory::selectItem(string item){
 
 	Item* selectedItem = findItem(item);
 	if(selectedItem == NULL){
-		cout << "Item not found in inventory!" << endl;
+		cout << KRED "Item not found in inventory!" RESET << endl;
 		return 0;
 	}
 	else{
@@ -70,15 +78,17 @@ void Inventory::removeItem(Item* item)
 }
 
 void Inventory::printInventory() {
-	cout << "=== Room Inventory ===" << endl;
+	cout << KYEL "=== Room Inventory ===" RESET << endl;
 	if (isEmpty()) {
-		cout << "EMPTY" << endl;
+		cout << KYEL "None!" RESET << endl;
         return;
 	}
 
     for (unsigned int i = 0; i < items.size(); i++) {
-        cout << (i + 1) << ": " << items[i]->getName() << endl;
+        cout << KYEL << (i + 1) << ": " << items[i]->getName() << endl;
     }
+
+    cout << RESET << endl;
 }
 
 void Inventory::clearInventory(){
