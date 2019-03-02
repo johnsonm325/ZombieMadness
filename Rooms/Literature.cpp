@@ -18,8 +18,6 @@ Literature::Literature() : Space("Literature")
 	roomInventory->addItem(desk);
 
 	this->zombie = new Zombie(false);
-	this->deadZombies = false;
-	this->canLeave = false;
 }
 
 Literature::~Literature(){
@@ -30,7 +28,7 @@ void Literature::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		if (deadZombies == false) {
+		if (zombie && zombie->isAlive()) {
 			cout << "# You look across the room and see two zombie that simultaneously look up" << endl;
 			cout << "# to notice you. They begin to make a direct move towards you, paying no" << endl;
 			cout << "# regard for the desks between you and them." << endl; 

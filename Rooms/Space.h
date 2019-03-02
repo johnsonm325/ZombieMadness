@@ -17,9 +17,7 @@ class Space
 protected:
 	bool doorLocked = false,
 		 firstTry = true,
-		 goneColt = false,
-		 deadZombies = true,
-		 canLeave = true;
+		 goneColt = false;
 
 	Space *north;		// Pointer to space for up
 	Space *east;		// Pointer to space for forward
@@ -65,17 +63,10 @@ public:
 	vector<string> getExitDirections();
 	void printDirection(Space* direction);
 	void printDirections();
-	
-	bool getLeaveAbility();
-	void setLeaveAbility(bool);
 
 	bool getDoorLocked();
 	void unlockDoor();
 	void lockDoor();
-
-	void zombiesDead();
-	bool getZombiesDead();
-	void setZombiesDead(bool);
 };
 
 #endif

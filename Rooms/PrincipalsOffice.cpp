@@ -4,8 +4,6 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
 	string description, name, text;
 	this->zombie = new Zombie(false);
-	this->deadZombies = false;
-	this->canLeave = false;
 
 	key = new Key();
 	fireExt = new FireExtinguisher();
@@ -47,7 +45,7 @@ void PrincipalsOffice::printIntro(){
 		cout << "#" << endl;
 	}
 
-	if (deadZombies == true)
+	if (zombie && zombie->isAlive())
 	{
 		cout << "# There is a single desk in the room." << endl;
 		cout << "#" << endl;
