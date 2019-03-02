@@ -143,7 +143,12 @@ void Player::defend()
 		return;
 	}
 
-	defenseItem->blockItem();
+	if (defenseItem->getName() == "Jersey")
+		defenseItem->wearItem();
+
+	else
+		defenseItem->blockItem();
+	
 
 	player->setDefense(defenseItem->getDefense());
 

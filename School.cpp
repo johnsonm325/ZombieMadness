@@ -454,7 +454,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 	else {
 		bool moved = moveRooms(cmdVector, cmd);
 		if(!moved){	//Didn't move rooms
-			cout << "Invalid command!" << endl;
+			cout << "# Invalid command!" << endl;
 		}
 	}
 }
