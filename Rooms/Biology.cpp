@@ -33,7 +33,7 @@ void Biology::printIntro(){
 	}
 
 	cout << "# The room has a mixture of desks and tables and there are a good deal of dissected" << endl;
-	cout << "# animals in cases and plants scattered in the room." << endl;
+	cout << "# animals in cases, plants and rocks scattered in the room." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

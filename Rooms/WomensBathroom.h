@@ -12,6 +12,7 @@ private:
 	Item *couch;
 	Item *lock;
 	Item *magazine;
+	Item *bookbag;
 
 public:
 	WomensBathroom(PlayerInventory*);

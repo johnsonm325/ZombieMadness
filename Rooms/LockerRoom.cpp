@@ -36,7 +36,8 @@ void LockerRoom::printIntro(){
 	}
 
 	cout << "# Lockers fill the room, lined against all walls and a few rows in the middle of the room. There's a" << endl;
-	cout << "# sweaty jockstrap on the bench." << endl;
+	cout << "# sweaty jockstrap on the bench. A baseball bat is propped against the east wall" << endl;
+	cout << "# and a steel lid from a trash can is turned upside down on the floor." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

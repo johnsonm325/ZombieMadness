@@ -243,7 +243,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			}
 
 			if(currentRoom->getType() == "History") {
-				if(item == "George Washington bust") {
+				if(item == "george washington bust") {
 					static_cast<History*>(currentRoom)->inspectBust();
 				}
 			}
@@ -305,6 +305,14 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			if(currentRoom->getType() == "Cafeteria") {
 				if(item == "vending machine" && static_cast<Cafeteria*>(currentRoom)->getVendingMachineUsed() == false) {
 					static_cast<Cafeteria*>(currentRoom)->useVendingMachine();
+				}
+			}
+			
+			if(currentRoom->getType() == "Women's Bathroom"){
+				if(item == "bookbag") {
+					doItemAction(foundCmd->getType(), cmdVector);
+					static_cast<WomensBathroom*>(currentRoom)->increaseBagSize();
+					return;
 				}
 			}
 
@@ -402,7 +410,9 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			cout << "\nCutting something with a weapon?" << endl;
 			if (currentRoom->getType() == "Gymnasium Second Floor") {
 				if(item == "ropes") {
+					doItemAction(foundCmd->getType(), cmdVector);
 					static_cast<GymnasiumFloor2*>(currentRoom)->cutRopes();
+					return;
 				}
 			}
 			doItemAction(foundCmd->getType(), cmdVector);

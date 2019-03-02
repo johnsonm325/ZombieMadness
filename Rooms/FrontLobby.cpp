@@ -28,24 +28,27 @@ void FrontLobby::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# As you enter this large foyer, you can see the struggle that students and teachers" << endl;
-		cout << "# had to get out. Many bodies are still there and it's just a matter of time before" << endl;
-		cout << "# they all turn into zombies. As you look at the front door for your exit, you" << endl;
-		cout << "# immediately see a large group of zombies standing at the entrance, trying to push" << endl;
-		cout << "# their way in. Someone has chained and barred the doors so that nothing could get in." << endl;
-		cout << "# 'Well, I'm defintely not getting out that way.'" << endl;
-		cout << "#" << endl;
+		if (zombie->isAlive() == true) {
+			cout << "# A solitary zombie is standing in the middle of the room. She appears to just be" << endl;
+			cout << "# standing there, looking at nothing. 'I guess they don't really have anything to" << endl;
+			cout << "# but eat' you say." << endl;
+			cout << "#" << endl;
+			cout << "# The zombie hears your voice and begins to make her way towards you... to feast." << endl;
+		}
+		else {
+			cout << "# As you enter this large foyer, you can see the struggle that students and teachers" << endl;
+			cout << "# had to get out. Many bodies are still there and it's just a matter of time before" << endl;
+			cout << "# they all turn into zombies. As you look at the front door for your exit, you" << endl;
+			cout << "# immediately see a large group of zombies standing at the entrance, trying to push" << endl;
+			cout << "# their way in. Someone has chained and barred the doors so that nothing could get in." << endl;
+			cout << "# 'Well, I'm defintely not getting out that way.'" << endl;
+			cout << "#" << endl;
+		}
 	}
 
 	cout << "# Benches line the walls and other benches have been turned over throughout the room." << endl;
 	cout << "# Trophy display cases can also be seen on the east and west walls." << endl;
 	cout << "#" << endl;
-
-	if (zombie != NULL) {
-		cout << "# Oh no, a zombie is in here!" << endl;
-		cout << "#" << endl;
-	}
-
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }

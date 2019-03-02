@@ -37,7 +37,7 @@ void Infirmary::printIntro(){
 
 	cout << "# Lots of medical supplies are neatly tucked into containers and a bed sits along" << endl;
 	cout << "# the north wall. On a side table, a nurses hat rests. 'I might be able to find" << endl;
-	cout << "# something useful for myself in here.'" << endl;
+	cout << "# something useful for myself in here. These salves might serve as a good bite cure.'" << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
