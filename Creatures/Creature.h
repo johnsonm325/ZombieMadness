@@ -37,6 +37,7 @@ public:
 	//setters
 	void setName(string);
 	void setHealth(int);
+	void gainHealth(int);
 	// virtual void useItem(Object* item) = 0;
 	void attackEnemy(string item);	//Version that Player uses
 	//virtual void attackEnemy(Creature*); = 0;	//original

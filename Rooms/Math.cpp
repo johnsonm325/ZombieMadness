@@ -17,6 +17,8 @@ Math::Math() : Space("Math")
 	text = "# You bite into the juicy apple and the juice runs down your chin. It's absolutely delicious!";
 	apple->setAction(text, Eat);
 	roomInventory->addItem(apple);
+
+	roomInventory->addItem(new FirstAid());
 }
 
 Math::~Math(){

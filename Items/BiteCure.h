@@ -7,7 +7,6 @@ class BiteCure : public Item
 {
 public:
 	BiteCure();
-	void useItem();
 };
 
 #endif

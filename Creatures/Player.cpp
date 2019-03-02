@@ -34,8 +34,10 @@ void Player::movetoRoom(Space* room){
 	// the player is dead and the game is over
 	if (enemy && enemy->isAlive() && !playerInventory->hasWeapon())
 	{
-		cout << "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
-		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" << endl;
+		
+
+		cout << KRED "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
+		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" RESET << endl;
 		return; // we need to somehow jump to a game menu from here to start the game again
 	}
 }
@@ -55,22 +57,22 @@ void Player::useItem(Item* item) {
 
 	string type = item->getType();
 
-	if (type == "Supply"){
-		player->setHealth(item->getHealthBoost());
-	}	
-	
-	else if (type == "Weapon")
+	if (type == "Supply")
 	{
-		if(enemy != NULL)
+		if (player->getHealth() >= 100)
+			printf(KGRN "# No need to use this health item, your health is full!\n" RESET);
+
+		else
 		{
-			enemy->takeDamage(item->getAttack());
+			player->gainHealth(item->getHealthBoost());
+			printf (KGRN "# Health now at %d\n" RESET, player->getHealth());
 		}
-	}	
+	}
+
 	else
 		item->useItem();
-			
-	//playerInventory->removeItem(item, true);
-	//roomInventory->removeItem(item);
+		
+
 }
 
 void Player::attackEnemy() 

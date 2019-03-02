@@ -2,6 +2,7 @@
 #define MATH_H
 
 #include "Space.h"
+#include "../Items/FirstAid.h"
 
 class Math : public Space
 {
