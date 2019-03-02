@@ -130,7 +130,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		//Syntax: go <direction> 
 		if (foundCmd->getType() == "go") {
-			if (!currentRoom->getLeaveAbility()) {
+			if (currentRoom->getZombie() && currentRoom->getZombie()->isAlive()) {
 				cout << "# You cannot leave until the zombie is destroyed!" << endl;
 				return;
 			}
@@ -454,7 +454,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 	else {
 		bool moved = moveRooms(cmdVector, cmd);
 		if(!moved){	//Didn't move rooms
-			cout << "Invalid command!" << endl;
+			cout << "# Invalid command!" << endl;
 		}
 	}
 }

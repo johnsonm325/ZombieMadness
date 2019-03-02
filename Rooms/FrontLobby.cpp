@@ -3,8 +3,6 @@
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {
 	this->zombie = new Zombie(false);
-	this->deadZombies = false;
-	this->canLeave = false;
 	
 	bench = new Item();
 	string description = "# A bench sits in the middle of the room. There's a dead body slumped over it.";

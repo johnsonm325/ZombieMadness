@@ -4,8 +4,6 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
 	string description, name, text;
 	this->zombie = new Zombie(false);
-	this->deadZombies = false;
-	this->canLeave = false;
 
 	key = new Key();
 	fireExt = new FireExtinguisher();

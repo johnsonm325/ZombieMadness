@@ -7,7 +7,6 @@ class FirstAid : public Item
 {
 public:
 	FirstAid();
-	void useItem();
 };
 
 #endif

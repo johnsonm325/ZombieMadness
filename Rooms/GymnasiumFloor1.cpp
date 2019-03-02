@@ -3,8 +3,6 @@
 GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
 {
 	this->zombie = new Zombie(false);
-	this->deadZombies = false;
-	this->canLeave = false;
 	
 	basketball = new Item();
 	string description = "# A single basketball is seen in the middle of the gym floor. It\n# looks like it's filled with air.";
@@ -32,7 +30,7 @@ void GymnasiumFloor1::printIntro(){
 	// Prints the first time the room is visited	
 	if (firstTry == true)
 	{
-		if(deadZombies == true) {
+		if(!zombie->isAlive()) {
 			cout << "# Dead zombies litter the floor. Great thing you decided to cut those ropes or" << endl;
 			cout << "# else you'd have a tough fight on your hands. Basketball doesn't seem like such" << endl;
 			cout << "# of an important event when you're having to fight your way out of this place" << endl;
@@ -83,5 +81,5 @@ int GymnasiumFloor1::menu(vector<string> commandVector)
 
 void GymnasiumFloor1::ropesCut()
 {
-	zombiesDead();
+	zombie->die();
 }

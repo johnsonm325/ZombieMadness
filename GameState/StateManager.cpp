@@ -258,13 +258,13 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(readValue != -1){	room->setColtGone((bool)readValue);	}
 	else{ return false;	}
 
-	readValue = readInt(line, "Zombies_dead");
-	if(readValue != -1){	room->setZombiesDead((bool)readValue);	}
-	else{ return false;	}
+	// readValue = readInt(line, "Zombies_dead");
+	// if(readValue != -1){	room->setZombiesDead((bool)readValue);	}
+	// else{ return false;	}
 
-	readValue = readInt(line, "Can_leave");
-	if(readValue != -1){	room->setLeaveAbility((bool)readValue);	}
-	else{ return false;	}
+	// readValue = readInt(line, "Can_leave");
+	// if(readValue != -1){	room->setLeaveAbility((bool)readValue);	}
+	// else{ return false;	}
 
 	//Read derived Space class booleans
 	if(roomName.find("Biology") != std::string::npos){
@@ -292,7 +292,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 		readValue = readInt(line, "Note_visible");
 		if(readValue != -1){
 			if(readValue == 1){	static_cast<Literature*>(room)->inspectDesk();		}
-			room->setZombiesDead((bool)readValue);
+			// room->setZombiesDead((bool)readValue);
 		}
 		else{ return false;	}
 	}
@@ -616,8 +616,8 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 	fprintf(saveFile, "Locked_door: %d\n", (int)room->getDoorLocked());
 	fprintf(saveFile, "First_try: %d\n", (int)room->isFirstTry());
 	fprintf(saveFile, "Colt_gone: %d\n", (int)room->coltGone());
-	fprintf(saveFile, "Zombies_dead: %d\n", (int)room->getZombiesDead());
-	fprintf(saveFile, "Can_leave: %d\n", (int)room->getLeaveAbility());
+	// fprintf(saveFile, "Zombies_dead: %d\n", (int)room->getZombiesDead());
+	// fprintf(saveFile, "Can_leave: %d\n", (int)room->getLeaveAbility());
 
 	//Writing derived room class booleans
 	if(room->getType() == "Biology"){

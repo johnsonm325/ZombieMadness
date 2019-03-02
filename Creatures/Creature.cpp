@@ -65,7 +65,15 @@ void Creature::setName(string name)
 
 void Creature::setHealth(int newHealth)
 {
-	this->health =  newHealth;
+	this->health = newHealth;
+}
+
+void Creature::gainHealth(int boost)
+{
+	this->health += boost;
+
+	if (this->health > 100)
+		this->health = 100;
 }
 
 void Creature::takeDamage(int damage)
@@ -101,7 +109,10 @@ void Creature::takeDamage(int damage)
 
 void Creature::setDefense(int d)
 {
-	this->defense = d;
+	this->defense += d;
+
+	if (this->defense > 10)	// 10 as the only 2 defense items add up to 10 defense
+		this->defense = 10;
 }
 
 void Creature::attackEnemy(string item){

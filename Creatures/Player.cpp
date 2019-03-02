@@ -32,10 +32,12 @@ void Player::movetoRoom(Space* room){
 
 	// if there is a live zombie in the room and the player has an empty bag or no weapon to kill it with
 	// the player is dead and the game is over
-	if (enemy && enemy->isAlive() && (playerInventory->isEmpty() || !playerInventory->hasWeapon()))
+	if (enemy && enemy->isAlive() && !playerInventory->hasWeapon())
 	{
-		cout << "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
-		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" << endl;
+		
+
+		cout << KRED "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
+		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" RESET << endl;
 		return; // we need to somehow jump to a game menu from here to start the game again
 	}
 }
@@ -55,22 +57,22 @@ void Player::useItem(Item* item) {
 
 	string type = item->getType();
 
-	if (type == "Supply"){
-		player->setHealth(item->getHealthBoost());
-	}	
-	
-	else if (type == "Weapon")
+	if (type == "Supply")
 	{
-		if(enemy != NULL)
+		if (player->getHealth() >= 100)
+			cout << KGRN "# No need to use this health item, your health is full!" RESET << endl;
+
+		else
 		{
-			enemy->takeDamage(item->getAttack());
+			player->gainHealth(item->getHealthBoost());
+			cout << KGRN "# Your health now at " << player->getHealth() << RESET << endl;
 		}
-	}	
+	}
+
 	else
 		item->useItem();
-			
-	//playerInventory->removeItem(item, true);
-	//roomInventory->removeItem(item);
+		
+
 }
 
 void Player::attackEnemy() 
@@ -80,11 +82,11 @@ void Player::attackEnemy()
 
 	if (!enemy || !enemy->isAlive())
 	{
-		cout << "# Calm your horses, there are no zombies in sight, no need to attack." << endl;
+		cout << KGRN "# Calm your horses, there are no zombies in sight, no need to attack." RESET << endl;
 		return;
 	}
 	
-	cout << "# Please choose one of the following to attack with" << endl;
+	cout << KYEL "# Please choose one of the following to attack with" RESET << endl;
 	cout << endl;
 
 	playerInventory->printAvailableWeapons();
@@ -100,16 +102,13 @@ void Player::attackEnemy()
 
 	if (!weapon)
 	{
-		cout << "# That is not an available weapon in your inventory." << endl;
+		cout << KRED "# That is not an available weapon in your inventory." RESET << endl;
 		return;
 	}
 
 	weapon->attackItem();
 
 	enemy->takeDamage(weapon->getAttack());
-
-	if (!enemy->isAlive())
-		currentRoom->setLeaveAbility(true);
 
 	playerInventory->removeItem(weapon, true);
 }
@@ -122,11 +121,11 @@ void Player::defend()
 	if (playerInventory->isEmpty() || !playerInventory->hasDefense())
 	{
 		
-		printf(KRED "# You do not have any defense items to use.\n" RESET);
+		cout << KRED "# You do not have any defense items to use." RESET << endl;
 		return;
 	}
 
-	cout << "# Please choose one of the following to defend with" << endl;
+	cout << KYEL "# Please choose one of the following to defend with" RESET << endl;
 	cout << endl;
 
 	playerInventory->printAvailableDefenseItems();
@@ -142,11 +141,16 @@ void Player::defend()
 
 	if (!defenseItem)
 	{
-		cout << "# That defense item is not in your inventory." << endl;
+		cout << KRED "# That defense item is not in your inventory." RESET << endl;
 		return;
 	}
 
-	defenseItem->blockItem();
+	if (defenseItem->getName() == "Jersey")
+		defenseItem->wearItem();
+
+	else
+		defenseItem->blockItem();
+	
 
 	player->setDefense(defenseItem->getDefense());
 
@@ -155,14 +159,25 @@ void Player::defend()
 
 void Player::takeItem(Item* item){
 
-	playerInventory->addItem(item);
-	roomInventory->removeItem(item);
+	if (item->isMovable())
+	{
+		playerInventory->addItem(item);
+
+		if (playerInventory->findItem(item->getName()))
+			roomInventory->removeItem(item);
+	}
+
+	else
+		cout << KRED "# You cannot add this item to your inventory." RESET << endl;
+	
 }
 
 void Player::dropItem(Item* item){
 	
 	playerInventory->removeItem(item, false);
-	roomInventory->addItem(item);
+	
+	if (!playerInventory->findItem(item->getName()))
+		roomInventory->addItem(item);
 }
 
 // Supports look at <itemName> command in game
@@ -191,7 +206,7 @@ Item* Player::selectItem(string item){
 		return playerItem;
 	}
 
-	cout << "Failed to select item!" << endl;
+	cout << KRED "# Failed to select item!" RESET << endl;
 	return NULL;
 }
 

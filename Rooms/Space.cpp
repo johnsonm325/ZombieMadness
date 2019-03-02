@@ -207,17 +207,6 @@ void Space::printDirections(){
 	}
 }
 
-
-bool Space::getLeaveAbility()
-{
-	return canLeave;
-}
-
-void Space::setLeaveAbility(bool leave)
-{
-	this->canLeave = leave;
-}
-
 //Add creature to room
 void Space::removeZombie() 
 {
@@ -243,20 +232,5 @@ void Space::unlockDoor()
 void Space::lockDoor()
 {
 	doorLocked = true;
-}
-
-void Space::zombiesDead()
-{
-	deadZombies = true;
-}
-
-bool Space::getZombiesDead()
-{
-	return deadZombies;
-}
-
-void Space::setZombiesDead(bool dead)
-{
-	deadZombies = dead;
 }
 

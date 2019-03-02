@@ -8,7 +8,3 @@ FirstAid::FirstAid() : Item()
 	this->type = "Supply";
 	this->size = 1;
 }
-
-void FirstAid::useItem()
-{
-}
