@@ -78,7 +78,7 @@ int Cafeteria::menu(vector<string> commandVector)
 void Cafeteria::throwFood()
 {
 	chem = static_cast<Chemistry*>(findRoom("Chemistry"));
-	chem->zombiesDead();
+	chem->getZombie()->die();
 }
 
 bool Cafeteria::getVendingMachineUsed()

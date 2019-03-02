@@ -70,5 +70,5 @@ int Library::menu(vector<string> commandVector)
 
 void Library::useLadder()
 {
-	static_cast<FrontLobby*>(findRoom("Front Lobby"))->zombiesDead();
+	static_cast<FrontLobby*>(findRoom("Front Lobby"))->getZombie()->die();
 }

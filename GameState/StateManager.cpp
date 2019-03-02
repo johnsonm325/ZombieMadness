@@ -292,7 +292,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 		readValue = readInt(line, "Note_visible");
 		if(readValue != -1){
 			if(readValue == 1){	static_cast<Literature*>(room)->inspectDesk();		}
-			room->setZombiesDead((bool)readValue);
+			// room->setZombiesDead((bool)readValue);
 		}
 		else{ return false;	}
 	}

@@ -68,5 +68,5 @@ int FrontOffice::menu(vector<string> commandVector)
 
 void FrontOffice::usePA()
 {
-	static_cast<PrincipalsOffice*>(findRoom("Principal's Office"))->zombiesDead();
+	static_cast<PrincipalsOffice*>(findRoom("Principal's Office"))->getZombie()->die();
 }

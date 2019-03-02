@@ -70,6 +70,6 @@ int History::menu(vector<string> commandVector)
 void History::inspectBust()
 {
 	lit = static_cast<Literature*>(findRoom("Literature"));
-	lit->zombiesDead();
+	lit->getZombie()->die();
 }
 

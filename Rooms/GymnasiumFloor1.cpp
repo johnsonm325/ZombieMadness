@@ -81,5 +81,5 @@ int GymnasiumFloor1::menu(vector<string> commandVector)
 
 void GymnasiumFloor1::ropesCut()
 {
-	zombiesDead();
+	zombie->die();
 }
