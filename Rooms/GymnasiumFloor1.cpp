@@ -43,13 +43,13 @@ void GymnasiumFloor1::printIntro(){
 			cout << "# begin to shuffle their way in your direction." << endl;
 			cout << "#" << endl;
 		}
-
-		cout << "# Basketball goals are mounted against the west and east walls, and bleachers" << endl;
-		cout << "# are pulled out along the south wall. There is a basketball on the floor." << endl;
-		cout << "#" << endl;
-		cout << "# What do you do now?" << endl;
-		cout << "#" << endl;
 	}
+
+	cout << "# Basketball goals are mounted against the west and east walls, and bleachers" << endl;
+	cout << "# are pulled out along the south wall. There is a basketball on the floor." << endl;
+	cout << "#" << endl;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void GymnasiumFloor1::printExitDesc()
@@ -77,9 +77,4 @@ int GymnasiumFloor1::menu(vector<string> commandVector)
 		return 40;
 	}
 	return 0;
-}
-
-void GymnasiumFloor1::ropesCut()
-{
-	zombie->die();
 }

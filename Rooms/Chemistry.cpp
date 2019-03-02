@@ -26,20 +26,27 @@ void Chemistry::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# 'Just when I thought I was done walking into this chemistry classroom.'" << endl;
-		cout << "# You remember the hours spent memorizing the periodic table and" << endl;
-		cout << "# identifying formulas and you let out a shudder." << endl;
-		cout << "#" << endl;
+		if (zombie->isAlive() == true) {
+			cout << "# You step into the room and a zombie saunters around from behind the" << endl;
+			cout << "# door, surprising you. You jump back and step away quickly, putting" << endl;
+			cout << "# some distance between you and the zombie." << endl;
+			cout << "#" << endl;
+			cout << "# The zombie's lips have been torn away and you can see all of his" << endl;
+			cout << "# teeth and gums. He looks hungry." << endl;
+			cout << "#" << endl;
+		}
+		else {
+			cout << "# 'Just when I thought I was done walking into this chemistry classroom.'" << endl;
+			cout << "# You remember the hours spent memorizing the periodic table and" << endl;
+			cout << "# identifying formulas and you let out a shudder." << endl;
+			cout << "#" << endl;
+		}
 	}
 
 	cout << "# Beakers sit atop tables pushed against the west and east walls and in the" << endl;
 	cout << "# center of the room. Various items can be found inside of cabinets set" << endl;
 	cout << "# against the south wall." << endl;
 	cout << "#" << endl;
-	if (zombie != NULL) {
-		cout << "# Oh no, a zombie is in here!" << endl;
-		cout << "#" << endl;
-	}
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }

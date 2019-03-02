@@ -6,7 +6,7 @@ GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 	string description = "# Ropes appear to be strung across the rafters, holding up many\n# of the spotlights and scoreboards.";
 	string name = "ropes";
 	ropes->setDummyItem(description, name);
-	string text = "As you cut the ropes, the tension is released and all of the lights and\n# scoreboards go crashing to the lower level of the gym.";
+	string text = "# As you cut the ropes, the tension is released and all of the lights and\n# scoreboards go crashing to the lower level of the gym.";
 	ropes->setAction(text, Cut);	
 	roomInventory->addItem(ropes);
 
@@ -36,7 +36,7 @@ void GymnasiumFloor2::printIntro(){
 	}
 	
 	cout << "# Rafters circle the room. There are lots of lights and ropes secured under" << endl;
-	cout << "# the rafters." << endl;
+	cout << "# the rafters. You also see a gun tucked away in the corner on the walkway." << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
@@ -75,8 +75,12 @@ int GymnasiumFloor2::menu(vector<string> commandVector)
 
 void GymnasiumFloor2::cutRopes()
 {
+	roomInventory->removeItem(ropes);
+	delete ropes;
+	roomInventory->removeItem(lights);
+	delete lights;
 	gym1 = static_cast<GymnasiumFloor1*>(findRoom("Gymnasium First Floor"));
-	gym1->ropesCut();
+	gym1->getZombie()->die();
 }
 
 

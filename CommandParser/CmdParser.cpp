@@ -21,10 +21,7 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("help", "help", " - show list of all available commands"));
 
 	//Moving player through rooms
-	cmdList->addItemToList(new CmdWord("go", "go", " - go <direction>, moves players through the indicated direction to the next room"));
-	// cmdList->addItemToList(new CmdWord("go", "walk"));	
-	// cmdList->addItemToList(new CmdWord("go", "run"));
-	cmdList->addItemToList(new CmdWord("go", "go north"));
+	cmdList->addItemToList(new CmdWord("go", "go north - go <direction>, moves players through the indicated direction to the next room"));
 	cmdList->addItemToList(new CmdWord("go", "north"));
 	cmdList->addItemToList(new CmdWord("go", "go south"));
 	cmdList->addItemToList(new CmdWord("go", "south"));

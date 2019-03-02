@@ -21,6 +21,5 @@ public:
 	void inspectCabinet();
 	void moveCabinet();
 	bool getHoleVisible();
-
 };
 #endif

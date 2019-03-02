@@ -28,15 +28,17 @@ void Literature::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		if (zombie && zombie->isAlive()) {
+		if (zombie->isAlive()) {
 			cout << "# You look across the room and see two zombie that simultaneously look up" << endl;
 			cout << "# to notice you. They begin to make a direct move towards you, paying no" << endl;
 			cout << "# regard for the desks between you and them." << endl; 
 		}
-		cout << "# To be or not to be, that is the question. 'More like, to get out of" << endl;
-		cout << "# here or die!' Maybe that Shakespeare was on to something. Perhaps" << endl;
-		cout << "# I can find some useful items in here to help me get out of here." << endl;
-		cout << "#" << endl;
+		else {
+			cout << "# To be or not to be, that is the question. 'More like, to get out of" << endl;
+			cout << "# here or die!' Maybe that Shakespeare was on to something. Perhaps" << endl;
+			cout << "# I can find some useful items in here to help me get out of here." << endl;
+			cout << "#" << endl;
+		}
 	}
 
 	cout << "# Bookshelves line the north and south walls and a chalkboard is mounted" << endl;

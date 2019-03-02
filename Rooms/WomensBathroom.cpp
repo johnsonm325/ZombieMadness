@@ -24,6 +24,14 @@ WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 	string text = "# Want to make your man beg for ... ' 'Ehh, maybe I don't want to read this.'";
 	magazine->setAction(text, Read);
 	roomInventory->addItem(magazine);
+
+	bookbag = new Item();
+	description = "# It's a bookbag. Should help me to carry a few more items.";
+	name = "bookbag";
+	text = "# You put on the bookbag and your carrying capacity is increased by 6.";
+	bookbag->setDummyItem(description, name);
+	bookbag->setAction(text, Use);
+	roomInventory->addItem(bookbag);
 }
 
 WomensBathroom::~WomensBathroom(){
@@ -82,5 +90,7 @@ int WomensBathroom::menu(vector<string> commandVector)
 
 void WomensBathroom::increaseBagSize()
 {
+	roomInventory->removeItem(bookbag);
+	delete bookbag;
 	bag->increaseSize();
 }

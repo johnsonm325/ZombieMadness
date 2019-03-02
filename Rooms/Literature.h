@@ -20,6 +20,5 @@ public:
 	int menu(vector<string>);
 	void inspectDesk();
 	bool getNoteVisible();
-
 };
 #endif
