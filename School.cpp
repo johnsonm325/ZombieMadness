@@ -948,7 +948,8 @@ void School::loadState(GameState* loadState, bool printIntro = true){
 
 	//Loading finished
 	player->movetoRoom(currentRoom);
-	if(printIntro){
+	if(printIntro)
+	{
 		cout << "###################################################" << endl;
 		cout << "# You are in the " << currentRoom->getType() << endl;
 		currentRoom->printIntro();
