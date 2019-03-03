@@ -29,6 +29,7 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("go", "east"));
 	cmdList->addItemToList(new CmdWord("go", "go west"));
 	cmdList->addItemToList(new CmdWord("go", "west"));
+	cmdList->addItemToList(new CmdWord("go", "go hole"));
 	cmdList->addItemToList(new CmdWord("dir", "dir", " - displays all available exits in current room"));
 	cmdList->addItemToList(new CmdWord("dir", "w"));
 	cmdList->addItemToList(new CmdWord("dir", "a"));
