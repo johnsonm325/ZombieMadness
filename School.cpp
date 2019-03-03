@@ -145,6 +145,7 @@ int getInt()
 void School::beginGame()
 {
 	int menuChoice;
+	GameState* stateToLoad = NULL;
 
 	cout << KCYN "		----------- ZOMBIE MADDNESS --------------" << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
@@ -178,9 +179,11 @@ void School::beginGame()
 				break;
 
 			case 2:
-				GameState* stateToLoad = stateManager->startLoadingGame();
+				stateToLoad = stateManager->startLoadingGame();
 				loadState(stateToLoad, false);
-				playGame();
+				if(stateToLoad != NULL){	//If selected a valid save, play saved game
+					playGame();
+				}
 				break;
 
 			case 3:
