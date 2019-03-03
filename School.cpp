@@ -172,7 +172,7 @@ void School::beginGame()
 		switch (menuChoice)
 		{
 			case 1:
-				loadState(stateManager->getNewGameState());
+				loadState(stateManager->getNewGameState(), false);
 				//setupPlayer();
 				playGame();
 				break;
@@ -930,7 +930,7 @@ GameState* School::createState(){
 	return newState;
 }
 
-void School::loadState(GameState* loadState){
+void School::loadState(GameState* loadState, bool printIntro = true){
 	if(loadState == NULL) { return; }
 
 	//Set current room by index
@@ -948,7 +948,9 @@ void School::loadState(GameState* loadState){
 
 	//Loading finished
 	player->movetoRoom(currentRoom);
-	cout << "###################################################" << endl;
-	cout << "# You are in the " << currentRoom->getType() << endl;
-	currentRoom->printIntro();
+	if(printIntro){
+		cout << "###################################################" << endl;
+		cout << "# You are in the " << currentRoom->getType() << endl;
+		currentRoom->printIntro();
+	}
 }

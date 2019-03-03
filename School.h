@@ -96,6 +96,6 @@ public:
 
 	//State methods
 	GameState* createState();
-	void loadState(GameState* stateToLoad);
+	void loadState(GameState* loadState, bool printIntro);
 };
 #endif
