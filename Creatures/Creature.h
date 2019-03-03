@@ -14,7 +14,6 @@ class Creature
 protected:
 	string type;		//Zombie, player, type of creature
 	string description;	//Creature description
-	//Space* location;	//Which room creature is in
 	string name;		//Specific name of creature, if necessary
 	int attack;
 	int defense;
@@ -38,9 +37,7 @@ public:
 	void setName(string);
 	void setHealth(int);
 	void gainHealth(int);
-	// virtual void useItem(Object* item) = 0;
 	void attackEnemy(string item);	//Version that Player uses
-	//virtual void attackEnemy(Creature*); = 0;	//original
 	void setDefense(int);
 	void takeDamage(int);
 	void blockAttack();

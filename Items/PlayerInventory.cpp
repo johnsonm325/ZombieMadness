@@ -47,12 +47,18 @@ void PlayerInventory::addItem(Item* item)
         items.push_back(item);
         openSlots -= item->getSize();
         usedSlots += item->getSize();
-        cout << KGRN << item->getName() << " was successfully added to your inventory." RESET << endl;
+        if(!silent){
+            cout << KGRN << item->getName() << " was successfully added to your inventory." RESET << endl;
+        }
     }
 
     else
-        cout << KRED "Your inventory is either full or the item size exceeds available capacity." RESET << endl;
-    
+    {
+        if(!silent){
+            cout << KRED "Your inventory is either full or the item size exceeds available capacity." RESET << endl;
+
+        }
+    }
 }
 
 // game will pass wasUsed as true if player used the item from their inventory
@@ -135,6 +141,7 @@ void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
 void PlayerInventory::printInventory() {
 	cout << KYEL "=== Player's Inventory ===" RESET << endl;
 	printInventoryHelper(items, "", isEmpty());
+    printInventoryUsage();
 }
 
 void PlayerInventory::printAvailableWeapons()
@@ -183,4 +190,14 @@ void PlayerInventory::printAvailableDefenseItems()
 
 int PlayerInventory::getSize(){
     return size;
+}
+
+void PlayerInventory::printInventoryUsage(){
+    cout << " Inventory usage: " << getUsedSlots() << "/" << getSize()  << " slots" << endl;
+}
+
+// If silent, doesn't print add item messages to console. This hides save/loading process 
+// from user
+void PlayerInventory::setLogLevel(bool silent){
+    this->silent = silent; 
 }

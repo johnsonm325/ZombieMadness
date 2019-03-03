@@ -14,7 +14,6 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/types.h>
-// #include <sys/stat.h>
 
 using namespace std;
 
@@ -33,7 +32,7 @@ public:
 	void init();
 	bool foundSaveFiles();
 	bool haveSaves();
-	vector<string> getSaveFileList();
+	void getSaveFileList();
 
 	//Reading saves
 	GameState* startLoadingGame();
@@ -42,11 +41,13 @@ public:
 	GameState* processFileData(vector<string> lines);
 	string readStrValue(vector<string>::iterator& line, string key);
 	int readInt(vector<string>::iterator& line, string key);
+	void readEndSection(vector<string>::iterator& line, string token);
 	bool readRoomBools(vector<string>::iterator& line, Space* room, string roomName);
 	bool readRoom(vector<string>::iterator& line, Space* room);
 	Item* readItem(vector<string>::iterator& line);
 	bool readInventory(vector<string>::iterator& line, Inventory* inv);
 	bool readCreature(vector<string>::iterator& line, Creature* creature);
+	bool readPlayer(vector<string>::iterator& line, Player* player);
 
 	//Writing game state to file
 	bool startSavingGame(GameState* state);
@@ -56,6 +57,10 @@ public:
 	void writeItem(FILE* saveFile, Item* item, int count);
 	void writeCreature(FILE* saveFile, Creature* creature);
 	void writePlayer(FILE* saveFile, Player* player);
+
+	//Removing saves and save files
+	void removeSaveFiles();
+	void removeSaves();
 
 	//Managing states list
 	void addGameState(GameState* state);

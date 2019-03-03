@@ -80,7 +80,7 @@ void Space::setFirstTry(bool first)
 	firstTry = first;
 }
 
-bool Space::isFirstTry()
+bool Space::getFirstTry()
 {
 	return firstTry;
 }
@@ -119,8 +119,10 @@ Space* Space::findRoom(string roomName)
 Space* Space::findAdjRoom(string roomName){
 	vector<Space*> adjacentRooms = getExits();
 	for(unsigned int i = 0; i < adjacentRooms.size(); i++){
-		string roomNameLower = strToLowerCase(adjacentRooms[i]->getType());
-		if((roomName == adjacentRooms[i]->getType()) || (roomName == roomNameLower) ){
+		string actualRoom = strToLowerCase(adjacentRooms[i]->getType());
+		string inputRoom = strToLowerCase(roomName);
+
+		if( inputRoom == actualRoom ){
 			return adjacentRooms[i];
 		} 
 	}

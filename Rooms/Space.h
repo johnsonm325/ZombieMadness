@@ -46,7 +46,7 @@ public:
 	virtual int menu(vector<string>);	
 	virtual void firstTime();		
 	void setFirstTry(bool);
-	bool isFirstTry();	
+	bool getFirstTry();	
 	bool coltGone();
 	void setColtGone(bool gone);
 

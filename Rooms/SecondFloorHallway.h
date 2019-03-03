@@ -12,11 +12,11 @@ private:
 
 public:
 	SecondFloorHallway();
-	SecondFloorHallway(bool);
 	~SecondFloorHallway();
 	void printIntro();
 	void printExitDesc();
 	int menu(vector<string>);
+	void disableFirstTries();
 
 };
 #endif

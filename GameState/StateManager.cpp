@@ -18,10 +18,13 @@ void StateManager::init(){
 	getSaveFileList();
 	if (foundSaveFiles()) {
 		cout << "Found " << fileList.size() << " save files." << endl;
-		for(unsigned int i = 0; i < fileList.size(); i++){
-			cout << "Files: " << fileList[i] <<  " ";
+		//Found files, print their names
+		if(fileList.size() > 0){
+			cout << "Files: ";
+			for(unsigned int i = 0; i < fileList.size(); i++){
+				cout << fileList[i] <<  " ";
+			}
 		}
-
 		cout << endl;
 		readAllSaves();
 	}
@@ -36,8 +39,8 @@ bool StateManager::haveSaves() {
 	return states.size() > 0;
 }
 
-vector<string> StateManager::getSaveFileList() {
-	//fileList.push_back("./save.001");
+void StateManager::getSaveFileList() {
+	fileList.clear();
 
 	char targetDirPrefix[] = "save.00"; /* Prefix we're looking for */
 	DIR* dirToCheck; /* Holds the directory we're starting in */
@@ -66,8 +69,6 @@ vector<string> StateManager::getSaveFileList() {
 			std::reverse(fileList.begin(), fileList.end());
 		}
 	}
-
-	return fileList;
 }
 
 //Transfer data from GameState to actual game 
@@ -78,13 +79,16 @@ GameState* StateManager::startLoadingGame() {
 	printStates();
 
 	if (haveSaves()) {
-		cout << "Select game state to load: ( " << 1 << "-" << states.size() << " )" << endl;
+		cout << "Select game save to load: ( " << 1 << "-" << states.size() << " )" << endl;
 		getline(cin, choice);
 		stateNum = atoi(choice.c_str());
 		if ((stateNum > 0) && (stateNum <= (int) states.size()) ) {
-			cout << "Loading state " << stateNum << "..." << endl;
+			cout << "Loading save " << stateNum << "..." << endl;
 			stateNum--; //align with state vector's initial zero offset;
 			return states[stateNum];
+		}
+		else{
+			cout << "Selected invalid save!" << endl;
 		}
 	}
 	return NULL;
@@ -158,6 +162,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		//Adding header info to state object;
 		int rIdx, i;
 		int numValidRooms = 0;
+		bool readSuccess;
 		vector<Space*> rooms = newState->getRoomsList();
 
 		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
@@ -172,8 +177,8 @@ GameState* StateManager::processFileData(vector<string> lines) {
 			//Found rooms section in file, start processing room data
 			if(foundRooms != std::string::npos){
 				for(i = 0; i < (int)rooms.size(); i++){
-					bool readSucess = readRoom(line, rooms[i]);
-					if(readSucess == false){
+					readSuccess = readRoom(line, rooms[i]);
+					if(readSuccess == false){
 #ifdef STATE_DEBUG
 						cout << invalidFile << endl;
 #endif						
@@ -193,8 +198,20 @@ GameState* StateManager::processFileData(vector<string> lines) {
 					delete newState;
 					return NULL;
 				}
-				//All states read were valid, so break loop and return new state
-					break;
+				//All states read were valid, so now read player's data
+				else{
+					readSuccess = readPlayer(line, newState->getPlayer());
+					if(readSuccess){
+						break;
+					}					
+					else{
+#ifdef STATE_DEBUG
+						cout << invalidFile << endl;
+#endif						
+						delete newState;
+						return NULL;
+					}
+				}
 			}
 			line++;
 		}
@@ -240,75 +257,114 @@ int StateManager::readInt(vector<string>::iterator& line, string key){
 	return intValue;
 }
 
+void StateManager::readEndSection(vector<string>::iterator& line, string token){
+	size_t foundEnd;
+	//int linesRead = 0;
+	do{
+		foundEnd = (*line).find(token);
+		if(foundEnd == std::string::npos){
+			line++;
+			//linesRead++;
+		}
+	}while(foundEnd == std::string::npos);
+}
+
 bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, string roomName){
 	int readValue = -1;
 
 	//Read base Space class booleans
 	readValue = readInt(line, "Locked_door");
 	if(readValue != -1){
-		if(readValue == 1){		room->lockDoor();	}
+		if(readValue == 1){
+			room->lockDoor();	
+		}
 	}
-	else{ return false;	}
+	else{ 
+		return false;
+	}
 
 	readValue = readInt(line, "First_try");
-	if(readValue != -1){	room->setFirstTry((bool)readValue);	}
-	else{ return false;	}
+	if(readValue != -1){	
+		room->setFirstTry((bool)readValue);	
+	}
+	else{ 
+		return false;	
+	}
 
 	readValue = readInt(line, "Colt_gone");
-	if(readValue != -1){	room->setColtGone((bool)readValue);	}
-	else{ return false;	}
-
-	// readValue = readInt(line, "Zombies_dead");
-	// if(readValue != -1){	room->setZombiesDead((bool)readValue);	}
-	// else{ return false;	}
-
-	// readValue = readInt(line, "Can_leave");
-	// if(readValue != -1){	room->setLeaveAbility((bool)readValue);	}
-	// else{ return false;	}
+	if(readValue != -1){
+		room->setColtGone((bool)readValue);	
+	}
+	else{ 
+		return false;	
+	}
 
 	//Read derived Space class booleans
 	if(roomName.find("Biology") != std::string::npos){
 		readValue = readInt(line, "Plants_eaten");
 		if(readValue != -1){
-			if(readValue == 1){	static_cast<Biology*>(room)->setPlantsEaten();	}
+			if(readValue == 1){
+				static_cast<Biology*>(room)->setPlantsEaten();	
+			}
 		}
-		else{ return false;	}
+		else{ 
+			return false;	
+		}
 	}
 	if(roomName.find("Chemistry") != std::string::npos){
 		readValue = readInt(line, "Hole_visible");
 		if(readValue != -1){
-			if(readValue == 1){	static_cast<Chemistry*>(room)->moveCabinet();	}
+			if(readValue == 1){	
+				static_cast<Chemistry*>(room)->moveCabinet();	
+			}
 		}
-		else{ return false;	}
+		else{ 
+			return false;	
+		}
 	}
 	if(roomName.find("Cafeteria") != std::string::npos){
 		readValue = readInt(line, "VendMachine_used");
 		if(readValue != -1){
-			if(readValue == 1){	static_cast<Cafeteria*>(room)->useVendingMachine();	}
+			if(readValue == 1){
+				static_cast<Cafeteria*>(room)->useVendingMachine();	
+			}
 		}
-		else{ return false;	}
+		else{ 
+			return false;	
+		}
 	}
 	if(roomName.find("Literature") != std::string::npos){
 		readValue = readInt(line, "Note_visible");
 		if(readValue != -1){
-			if(readValue == 1){	static_cast<Literature*>(room)->inspectDesk();		}
-			// room->setZombiesDead((bool)readValue);
+			if(readValue == 1){	
+				static_cast<Literature*>(room)->inspectDesk();		
+			}
 		}
-		else{ return false;	}
+		else{ 
+			return false;	
+		}
 	}
 	if(roomName.find("Math") != std::string::npos){
 		readValue = readInt(line, "Apple_eaten");
 		if(readValue != -1){
-			if(readValue == 1){	static_cast<Math*>(room)->eatApple();	}
+			if(readValue == 1){
+				static_cast<Math*>(room)->eatApple();	
+			}
 		}
-		else{ return false;	}
+		else{ 
+			return false;	
+		}
 	}
 	if(roomName.find("Men's Bathroom") != std::string::npos){
 		readValue = readInt(line, "Hole_visible");
 		if(readValue != -1){
-			if(readValue == 1){	static_cast<MensBathroom*>(room)->inspectToilet();	}
+			if(readValue == 1){	
+				static_cast<MensBathroom*>(room)->inspectToilet();	
+			}
 		}
-		else{ return false;	}
+		else{
+			return false;	
+		}
 	}
 	return true;
 }
@@ -322,11 +378,10 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 	string invalidFile = "Error reading save file! Invalid format";
 	string roomName;
 	size_t foundStart = (*line).find("<Room>");
-	size_t foundEnd;
 
 	if(foundStart != std::string::npos){
 #ifdef STATE_DEBUG
-			cout << "Found room: " << room->getType() << endl;
+			cout << "======= Found room: " << room->getType() << " =====" << endl;
 #endif
 			line++;
 			roomName = readStrValue(line, "Type:");
@@ -345,15 +400,7 @@ bool StateManager::readRoom(vector<string>::iterator& line, Space* room){
 			//Read creatures
 			isValid = readCreature(line, room->getZombie());
 
-			do{
-				foundEnd = (*line).find("</Room>");
-// #ifdef STATE_DEBUG
-// 				cout << "line: " << *line << endl;
-// #endif
-				if(foundEnd == std::string::npos){
-					line++;
-				}
-			}while(foundEnd == std::string::npos);
+			readEndSection(line, "</Room>");
 #ifdef STATE_DEBUG		
 				cout << "Found room end: </Room>" << endl;
 #endif		
@@ -380,7 +427,6 @@ Item* StateManager::readItem(vector<string>::iterator& line){
 
 	Item* newItem = NULL;
 	string itemType;
-	size_t foundEnd;
 	line++;	
 
 	if((*line).find("<Item>") != std::string::npos){
@@ -393,15 +439,7 @@ Item* StateManager::readItem(vector<string>::iterator& line){
 		}
 	}
 	//Now read until seeing </Item> tag
-	do{
-		foundEnd = (*line).find("</Item>");
-		if(foundEnd == std::string::npos){
-			line++;
-		}
-// #ifdef STATE_DEBUG
-// 			cout << *line << endl;
-// #endif
-	}while(foundEnd == std::string::npos);
+	readEndSection(line, "</Item>");
 
 	return newItem;
 }
@@ -410,10 +448,8 @@ Item* StateManager::readItem(vector<string>::iterator& line){
 bool StateManager::readInventory(vector<string>::iterator& line, Inventory* inv){
 	int size, numItems, i;
 	bool isValid = true;
-	size_t foundInv, foundSize, foundNumItems, foundEnd;
+	size_t foundInv, foundSize, foundNumItems;
 	vector<Item*> currentItems = inv->getItems();
-
-	// cout << "Begin readInventory()" << endl;
 
 	foundInv = (*line).find("<Inventory>");	
 	if (foundInv != std::string::npos) {
@@ -459,18 +495,15 @@ bool StateManager::readInventory(vector<string>::iterator& line, Inventory* inv)
 				}
 			}
 		}	
-		else{ isValid = false; }
-		//Now read until seeing </Item> tag
-	}
-	else{ isValid = false;	}
-
-	do{
-		foundEnd = (*line).find("</Inventory>");
-		if(foundEnd == std::string::npos){
-			line++;
+		else{ 
+			isValid = false; 
 		}
-	}while(foundEnd == std::string::npos);
-	// cout << "End readInventory()" << endl;
+	}
+	else{ 
+		isValid = false;	
+	}
+	//Now read until seeing </Item> tag
+	readEndSection(line, "</Inventory>");
 
 	return isValid;
 }
@@ -488,8 +521,8 @@ Health: 0
 </Creatures>
 
 	*/
-	size_t foundStart, foundEnd;
-	bool readCreature = true;
+	size_t foundStart;
+	bool isValid = true;
 	int numCreatures, isAlive, health;
 	string creatureType;
 
@@ -514,26 +547,75 @@ Health: 0
 							creature->die();			//Make creature die
 						}
 					}
-					else{ readCreature = false;}
+					else{ 
+						isValid = false;
+					}
 					health = readInt(line, "Health");
 					if(health != -1){
 						creature->setHealth(health);	//Set creature's health
 					}
-					else{ readCreature = false;}
+					else{ 
+						isValid = false;
+					}
 				}
 			}
 		}
-		else{ readCreature = false;	}
-	}
-	else{ readCreature = false; }
-	do{
-		foundEnd = (*line).find("</Creatures>");
-		if(foundEnd == std::string::npos){
-			line++;
+		else{ 
+			isValid = false;	
 		}
-	}while(foundEnd == std::string::npos);
+	}
+	else{ 
+		isValid = false; 
+	}
+	readEndSection(line, "</Creatures>");
 
-	return readCreature;
+	return isValid;
+}
+
+bool StateManager::readPlayer(vector<string>::iterator& line, Player* player){
+	/*
+	<Player>
+	<Inventory>
+	Size: 6
+	Num_items: 0
+	</Inventory>
+	<Creatures>
+	Num_creatures: 1
+	<Creature>
+	Type: Player
+	Name: Player
+	IsAlive: 1
+	Health: 100
+	</Creature>
+	</Creatures>
+	</Player>
+
+	*/
+	size_t foundStart;
+	bool isValid = true;
+
+	line++; 	//go to Player line
+	foundStart = (*line).find("<Player>");
+	player->getInventory()->setLogLevel(true);	//Silence item additions to player's inventory
+
+	if(foundStart != std::string::npos){
+#ifdef STATE_DEBUG
+		cout << "Found <Player>" << endl;
+#endif
+		line++;
+		isValid = readInventory(line, player->getInventory());
+		isValid = readCreature(line, player->getPlayer());
+	}
+	else{
+		isValid = false;
+	}
+	readEndSection(line, "</Player>");
+#ifdef STATE_DEBUG
+		cout << "Found </Player>" << endl;
+#endif
+
+	player->getInventory()->setLogLevel(false);
+	return isValid;
 }
 
 //Transfer data from actual game to GameState vector 
@@ -554,8 +636,10 @@ bool StateManager::startSavingGame(GameState* state) {
 //Writing game state to file
 void StateManager::saveState(GameState* state) {
 	char fileCnt[8];
-	changeWorkingDir(); //set working directory  to ./GameState
 
+	removeSaveFiles();	
+
+	changeWorkingDir(); //set working directory  to ./GameState
 	addGameState(state);
 	
 	//Update all save files
@@ -566,12 +650,11 @@ void StateManager::saveState(GameState* state) {
 		cout << "Writing save file: " << fileName << endl;
 		writeSaveFile(states[i], fileName);
 	}
-	
 	resetWorkingDir();	//reset directory back to root 
 }
 
 void StateManager::writeSaveFile(GameState* state, string filename) {
-	FILE* saveFile;
+	FILE* saveFile = NULL;
 
 	/* Opening file */
 	saveFile = fopen(filename.c_str(), "w");
@@ -614,10 +697,8 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 
 	//Writing Space class booleans
 	fprintf(saveFile, "Locked_door: %d\n", (int)room->getDoorLocked());
-	fprintf(saveFile, "First_try: %d\n", (int)room->isFirstTry());
+	fprintf(saveFile, "First_try: %d\n", (int)room->getFirstTry());
 	fprintf(saveFile, "Colt_gone: %d\n", (int)room->coltGone());
-	// fprintf(saveFile, "Zombies_dead: %d\n", (int)room->getZombiesDead());
-	// fprintf(saveFile, "Can_leave: %d\n", (int)room->getLeaveAbility());
 
 	//Writing derived room class booleans
 	if(room->getType() == "Biology"){
@@ -710,6 +791,32 @@ void StateManager::addGameState(GameState* state) {
 	}
 }
 
+void StateManager::removeSaveFiles(){
+	changeWorkingDir(); // Navigate to ./GameState/ folder
+	getSaveFileList();	// Get latest file list
+
+	//Now delete all of them
+	for(int i = 0; i < (int)fileList.size(); i++){
+		int result = remove(fileList[i].c_str());
+		if(result != 0){
+			string error = "Deleting " + fileList[i] +" error:";
+			perror(error.c_str());
+		}
+	}
+	resetWorkingDir();
+}
+
+void StateManager::removeSaves(){
+	if(states.size() > 0){
+		cout << "Clearing all game saves..." << endl;
+		clearStates();
+		removeSaveFiles();			//Now remove any existing save files for a clean slate
+	}
+	else{
+		cout << "No game saves to clear!" << endl;
+	}
+}
+
 void StateManager::removeGameState(GameState* state) {
 	if (state == NULL) { return;	}
 	for (unsigned int i = 0; i < states.size(); i++) {
@@ -720,7 +827,7 @@ void StateManager::removeGameState(GameState* state) {
 }
 
 void StateManager::printStates() {
-	cout << "=== SAVED GAME STATES ===" << endl;
+	cout << " === GAME SAVES ===" << endl;
 	if (haveSaves()) {
 		cout << "#      Room        Date" << endl;
 		for (unsigned int i = 0; i < states.size(); i++) {
@@ -728,7 +835,7 @@ void StateManager::printStates() {
 		}
 	}
 	else {
-		cout << "Empty list" << endl;
+		cout << " Empty!" << endl;
 	}
 }
 
@@ -740,7 +847,6 @@ void StateManager::clearStates(){
 }
 
 void StateManager::changeWorkingDir() {
-
 chdir("./GameState/");
 }
 
