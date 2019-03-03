@@ -132,7 +132,7 @@ int getInt()
 
 		//if the string is found NOT to be an unsigned integer
 		if (!(isInt(input)))
-			cout << "Error.  Please enter an integer." << endl;
+			cout << KRED "Error.  Please enter an integer." RESET << endl;
 
 	} while (!(isInt(input)));
 
@@ -148,11 +148,11 @@ void School::beginGame()
 
 	cout << KCYN "----------- ZOMBIE MADDNESS --------------" << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
-	cout << endl << endl << "Interesting." << endl;
+	cout << endl << endl << "Interesting." RESET << endl;
 
 	while (menuChoice != 3)
 	{
-		cout << "Please enter the number corresponding to your option" << endl;
+		cout << KCYN "Please enter the number corresponding to your option" << endl;
 		cout << endl;
 		cout << "1: New Game" << endl;
 		cout << "2: Load Game" << endl;
