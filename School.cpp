@@ -95,8 +95,8 @@ void School::beginGame()
 
 		while (choice < 1 || choice > 3)
 		{
-			cout << KRED "Invalid option. Please choose the correct number corresponding to your choice: " RESET <<;
-			cin >> choice;
+			cout << KRED "Invalid option. Please choose the correct number corresponding to your choice: " RESET << endl;
+			cout << KCYN "Choice: " RESET;
 		}
 
 		switch (choice)
