@@ -1,4 +1,12 @@
 #include "School.h"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+#define RESET "\x1B[0m"
 
 
 School::School()
@@ -65,10 +73,120 @@ School::~School()
 	
 }
 
+bool isInt(string input)
+{
+	bool status;
+
+	if (input == "")
+		return false;
+
+	//if the first element is a negative sign, the rest of the string
+	//can be checked
+	if (input[0] == '-')
+	{
+		for (unsigned int index = 1; index < input.size(); index++)
+		{
+			if (isdigit(input[index]))
+				status = true;
+
+			//if anything other than a number is encountered
+			else
+				return false;
+		}
+	}
+
+	//if the first element is not a negative sign
+	else
+	{
+		for (unsigned int index = 0; index < input.size(); index++)
+		{
+			if (isdigit(input[index]))
+				status = true;
+
+			//if anything other than a number is encountered
+			else
+				return false;
+		}
+	}
+
+	return status;
+}
+
+int getInt()
+{
+	//user input is stored as string
+	string input;
+	//integer variable to store the returned unsigned integer
+	int any;
+
+	do
+	{
+		//getline will get every character from the string
+		getline(cin, input);
+
+		//the following code taken from 
+		//https://stackoverflow.com/questions/16329358/remove-spaces-from-a-string-in-c
+		input.erase(remove(input.begin(), input.end(), ' '), input.end());
+		//end of copied code. this code will remove
+		//all whitespace from the string
+
+		//if the string is found NOT to be an unsigned integer
+		if (!(isInt(input)))
+			cout << KRED "Error.  Please enter an integer." RESET << endl;
+
+	} while (!(isInt(input)));
+
+	//converts string to integer
+	any = atoi(input.c_str());
+
+	return any;
+}
+
 void School::beginGame()
 {
-	setupPlayer();
-	playGame();
+	int menuChoice;
+
+	cout << KCYN "		----------- ZOMBIE MADDNESS --------------" << endl;
+	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
+	cout << endl << endl << "Interesting." RESET << endl;
+
+	while (menuChoice != 3)
+	{
+		cout << KCYN "Please enter the number corresponding to your option" << endl;
+		cout << endl;
+		cout << "1: New Game" << endl;
+		cout << "2: Load Game" << endl;
+		cout << "3: Quit" << endl;
+		cout << endl;
+		
+		cout << "Choice: " RESET;
+		menuChoice = getInt();
+
+		while (menuChoice < 1 || menuChoice > 3)
+		{
+			cout << KRED "Invalid choice. Please enter the correct corresponding number to your choice" RESET << endl;
+			cout << KCYN "Choice: " RESET;
+			menuChoice = getInt();
+		}
+
+		switch (menuChoice)
+		{
+			case 1:
+				setupPlayer();
+				playGame();
+				break;
+
+			case 2:
+				stateManager->startLoadingGame();
+				break;
+
+			case 3:
+				exit(0);
+
+			default:
+				exit(0);
+		}
+	}
 }
 
 int School::playGame()
