@@ -146,7 +146,7 @@ void School::beginGame()
 {
 	int menuChoice;
 
-	cout << KCYN "----------- ZOMBIE MADDNESS --------------" << endl;
+	cout << KCYN "		----------- ZOMBIE MADDNESS --------------" << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
 	cout << endl << endl << "Interesting." RESET << endl;
 
