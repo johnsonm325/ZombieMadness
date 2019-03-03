@@ -75,7 +75,7 @@ School::~School()
 
 void School::beginGame()
 {
-	int choice;
+	int menuChoice;
 
 	cout << KCYN "----------- ZOMBIE MADDNESS --------------" << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
@@ -84,7 +84,7 @@ void School::beginGame()
 	cout << "Please enter the number corresponding to your option" << endl;
 	cout << endl;
 
-	while (choice != 3)
+	while (menuChoice != 3)
 	{
 		cout << "1: New Game" << endl;
 		cout << "2: Load Game" << endl;
@@ -92,16 +92,16 @@ void School::beginGame()
 		cout << endl;
 		
 		cout << "Choice: " RESET;
-		cin >> choice;
+		cin >> menuChoice;
 
-		while (choice < 1 || choice > 3)
+		while (menuChoice < 1 || menuChoice > 3)
 		{
-			cout << KRED "Invalid option. Please choose the correct number corresponding to your choice: " RESET << endl;
+			cout << KRED "Invalid option. Please choose the correct number corresponding to your choice" RESET << endl;
 			cout << KCYN "Choice: " RESET;
-			cin >> choice;
+			cin >> menuChoice;
 		}
 
-		switch (choice)
+		switch (menuChoice)
 		{
 			case 1:
 				setupPlayer();
