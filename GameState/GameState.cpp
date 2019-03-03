@@ -383,6 +383,7 @@ void GameState::copyCreature(Creature* destCr, Creature* sourceCr){
 			destCr->die();
 		}
 		destCr->setHealth(sourceCr->getHealth());
+		destCr->setDefense(sourceCr->getDefense());
 	}
 }
 
@@ -469,6 +470,7 @@ void GameState::compareCreature(Creature* destCr, Creature* sourceCr){
 		cout << "Comparing creatures...\n";
 		printComparison("Creature:", "", "isAlive", destCr->isAlive(), sourceCr->isAlive());
 		printComparison("Creature:", "", "health", destCr->getHealth(), sourceCr->getHealth());
+		printComparison("Creature:", "", "defense", destCr->getDefense(), sourceCr->getDefense());
 	}
 }
 
