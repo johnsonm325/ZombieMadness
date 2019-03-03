@@ -84,7 +84,7 @@ bool isInt(string input)
 	//can be checked
 	if (input[0] == '-')
 	{
-		for (int index = 1; index < input.size(); index++)
+		for (unsigned int index = 1; index < input.size(); index++)
 		{
 			if (isdigit(input[index]))
 				status = true;
@@ -98,7 +98,7 @@ bool isInt(string input)
 	//if the first element is not a negative sign
 	else
 	{
-		for (int index = 0; index < input.size(); index++)
+		for (unsigned int index = 0; index < input.size(); index++)
 		{
 			if (isdigit(input[index]))
 				status = true;
@@ -186,6 +186,7 @@ void School::beginGame()
 			default:
 				exit(0);
 		}
+	}
 }
 
 int School::playGame()
