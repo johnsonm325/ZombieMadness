@@ -16,24 +16,6 @@ SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
 	roomInventory->addItem(bulletinBoard);
 }
 
-SecondFloorHallway::SecondFloorHallway(bool firstTry) : Space("Second Floor Hallway")
-{
-	this->firstTry = firstTry;
-	
-	string name, description;
-	deadBody = new Item();
-	description = "# As you touch the skin of the body, you draw your hand back quickly. The skin\n# feels soft and cold. Your finger indentations are left on the skin and you notice that\n# you actually broke the skin with your light touch. You slowly roll the body over to see a large gaping\n# wound and the smell of rotten meat fill your nose. You gag from the sight and smell and\n# drop the body, quickly stepping away.";
-	name = "dead body";
-	deadBody->setDummyItem(description, name);
-	roomInventory->addItem(deadBody);
-
-	bulletinBoard = new Item();
-	description = "# Lots of papers have been pinned to the board showing different school events this month.\n# Nothing special here.";
-	name = "bulletin board";
-	bulletinBoard->setDummyItem(description, name);
-	roomInventory->addItem(bulletinBoard);
-}
-
 SecondFloorHallway::~SecondFloorHallway(){
 
 }
@@ -66,6 +48,7 @@ void SecondFloorHallway::printExitDesc()
 	if (firstTry == true)
 	{
 		firstTime();
+		disableFirstTries();
 		cout << "# Oh man, the school is not holding up so well. 'I can't believe this is happening!!'" << endl;
 		cout << "# You realize that you can't just sit around, you need to explore to see how you can get the heck" << endl;
 		cout << "# out of here!" << endl;
@@ -90,4 +73,14 @@ int SecondFloorHallway::menu(vector<string> commandVector)
 	}
 
 	return 0;
+}
+
+//Function allows to print long intro only once for all rooms that share the same derived Space type
+void SecondFloorHallway::disableFirstTries(){
+	//Set firstTry boolean to false for all hallway rooms not visited yet 
+	for(int i = 0; i < (int)roomsList.size(); i++){
+		if(roomsList[i]->getType() == "Second Floor Hallway" && roomsList[i]->getFirstTry()){
+			roomsList[i]->firstTime();
+		}
+	}
 }

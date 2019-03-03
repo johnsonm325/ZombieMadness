@@ -36,7 +36,7 @@ public:
 	void lookAtItems(string item);
 	Item* selectItem(string item);
 	Creature* getPlayer();
-
+	void printStats();
 };
 
 #endif

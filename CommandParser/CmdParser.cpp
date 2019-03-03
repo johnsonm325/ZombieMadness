@@ -21,7 +21,7 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("help", "help", " - show list of all available commands"));
 
 	//Moving player through rooms
-	cmdList->addItemToList(new CmdWord("go", "go north - go <direction>, moves players through the indicated direction to the next room"));
+	cmdList->addItemToList(new CmdWord("go", "go north", " - go <direction>, moves players through the indicated direction to the next room"));
 	cmdList->addItemToList(new CmdWord("go", "north"));
 	cmdList->addItemToList(new CmdWord("go", "go south"));
 	cmdList->addItemToList(new CmdWord("go", "south"));
@@ -29,14 +29,13 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("go", "east"));
 	cmdList->addItemToList(new CmdWord("go", "go west"));
 	cmdList->addItemToList(new CmdWord("go", "west"));
+	cmdList->addItemToList(new CmdWord("go", "go hole"));
 	cmdList->addItemToList(new CmdWord("dir", "dir", " - displays all available exits in current room"));
 	cmdList->addItemToList(new CmdWord("dir", "w"));
 	cmdList->addItemToList(new CmdWord("dir", "a"));
 	cmdList->addItemToList(new CmdWord("dir", "s"));
 	cmdList->addItemToList(new CmdWord("dir", "d"));
-	// cmdList->addItemToList(new CmdWord("backtrack", "backtrack", " - player can head back to previous room"));
-	// cmdList->addItemToList(new CmdWord("backtrack", "bk"));
-	//cmdList->addItemToList(new CmdWord("where", "where", " - displays room player is currently in"));
+	cmdList->addItemToList(new CmdWord("where", "where", " - displays room player is currently in"));
 
 	//Interacting with room
 	cmdList->addItemToList(new CmdWord("look", "look", " - display long form description of the room"));
@@ -74,7 +73,8 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("attack", "hit"));
 	cmdList->addItemToList(new CmdWord("block", "block", " - in fight with zombie, player can block to reduce damage"));
 	cmdList->addItemToList(new CmdWord("open", "open", " - open door with key (usually)"));
-	   
+	cmdList->addItemToList(new CmdWord("stats", "stats", " - print player's stats: health, defense, and inventory info"));
+
 	//Saving/Loading Game
 	cmdList->addItemToList(new CmdWord("savegame", "savegame", " - save the current game state to a file"));
 	cmdList->addItemToList(new CmdWord("loadgame", "loadgame", " - on user confirmation, loads previous game state from file"));

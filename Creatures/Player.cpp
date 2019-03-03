@@ -213,3 +213,20 @@ Item* Player::selectItem(string item){
 Creature* Player::getPlayer(){
 	return player;
 }
+
+void Player::printStats(){
+	/*
+		int getAttack();
+	int getDefense();
+	int getHealth();
+	bool isAlive();
+
+	*/
+	cout << " === Player's Stats ===" << endl;
+	cout << " Health: " << player->getHealth() << " HP" << endl;
+	cout << " Defense: " << player->getDefense() << " pts" << endl;
+	cout << " Attack: " << player->getAttack() << " pts" << endl;
+	cout << " Alive?: " << player->isAlive() << endl;
+	playerInventory->printInventoryUsage();
+
+}

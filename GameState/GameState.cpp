@@ -8,8 +8,8 @@ GameState::GameState() {
 	wb = new WomensBathroom(inv);
 	sfh1 = new SecondFloorHallway();
 	sfh2 = new SecondFloorHallway();
-	sfh3 = new SecondFloorHallway(false);
-	sfh4 = new SecondFloorHallway(false);
+	sfh3 = new SecondFloorHallway();
+	sfh4 = new SecondFloorHallway();
 	hist = new History();
 	lit = new Literature();
 	infr = new Infirmary();
@@ -17,9 +17,9 @@ GameState::GameState() {
 	gym2 = new GymnasiumFloor2();
 	gym1 = new GymnasiumFloor1();
 	fb = new Football();
-	ffh1 = new FirstFloorHallway(false);
-	ffh2 = new FirstFloorHallway(false);
-	ffh3 = new FirstFloorHallway(false);
+	ffh1 = new FirstFloorHallway();
+	ffh2 = new FirstFloorHallway();
+	ffh3 = new FirstFloorHallway();
 	ffh4 = new FirstFloorHallway();
 	cafe = new Cafeteria();
 	chem = new Chemistry();
@@ -227,10 +227,8 @@ void GameState::copyRooms(vector<Space*> &dest, const vector<Space*> &source){
 		else{
 			dest[i]->unlockDoor();
 		}
-		dest[i]->setFirstTry(source[i]->isFirstTry());
+		dest[i]->setFirstTry(source[i]->getFirstTry());
 		dest[i]->setColtGone(source[i]->coltGone());
-		// dest[i]->setZombiesDead(source[i]->getZombiesDead());
-		// dest[i]->setLeaveAbility(source[i]->getLeaveAbility());
 
 		//Copying derived room class booleans next
 		if(source[i]->getType() == "Biology"){
@@ -311,6 +309,9 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 	else{
 		dest0 = static_cast<PlayerInventory*>(dest);
 		source0 = static_cast<PlayerInventory*>(source);
+		dest0->setLogLevel(true);	//Silence item additions to player's inventory
+		source0->setLogLevel(true);	//Silence item additions to player's inventory
+
 		//Update size, if needed
 		if(source0->getSize() > 6){
 			dest0->increaseSize();
@@ -319,6 +320,8 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 		for(i = 0; i < (int)movableItems.size(); i++){
 			dest0->addItem(movableItems[i]);
 		}
+		dest0->setLogLevel(false);	//Reset silent flag back to original state
+		source0->setLogLevel(false);	
 	}
 }
 
@@ -410,9 +413,8 @@ void GameState::compareRooms(const vector<Space*> &dest, const vector<Space*> &s
 		cout << "Room: " << source[i]->getType() << endl;
 
 		printComparison("Room:", source[i]->getType(), "doorLocked", dest[i]->getDoorLocked(), source[i]->getDoorLocked());
-		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->isFirstTry(), source[i]->isFirstTry());
+		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->getFirstTry(), source[i]->getFirstTry());
 		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->coltGone(), source[i]->coltGone());
-		// printComparison("Room:", source[i]->getType(), "canLeave", dest[i]->getLeaveAbility(), source[i]->getLeaveAbility());
 
 		//Copying derived room class booleans next
 		if(source[i]->getType() == "Biology"){

@@ -9,6 +9,7 @@ private:
     int openSlots;
     int usedSlots;
     int size;
+    bool silent = false;
 
 public:
     PlayerInventory();
@@ -30,6 +31,8 @@ public:
     void printAvailableMiscItems();
     void printAvailableDefenseItems();
     bool canAdd(Item*);
+    void printInventoryUsage();
+    void setLogLevel(bool);
 };
 
 #endif

@@ -19,27 +19,6 @@ FirstFloorHallway::FirstFloorHallway() : Space("First Floor Hallway")
 	roomInventory->addItem(bulletinBoard);
 }
 
-FirstFloorHallway::FirstFloorHallway(bool firstTry) : Space("First Floor Hallway")
-{
-	this->firstTry = firstTry;
-
-	vomit = new Item();
-	string description = "# You can see you fresh pile of vomit on the floor. The smell comes up to\n# meet your nose and you almost gag.";
-	string name = "vomit";
-	vomit->setDummyItem(description, name);
-	string text = "# You eat the vomit.\n# You are disgusting! What's wrong with you?!";
-	vomit->setAction(text, Eat);
-	roomInventory->addItem(vomit);
-
-	bulletinBoard = new Item();
-	description = "# The bulletin board has a bunch of pamphlets and flyers about events taking\n# place at school this month.";
-	name = "bulletin board";
-	bulletinBoard->setDummyItem(description, name);
-	text = "# 'Football tryouts next Thursday! We'll provide the equipment. Come out and show\n# us what you're made of.";
-	bulletinBoard->setAction(text, Read);
-	roomInventory->addItem(bulletinBoard);
-}
-
 FirstFloorHallway::~FirstFloorHallway(){
 
 }
@@ -68,6 +47,7 @@ void FirstFloorHallway::printExitDesc()
 	if (firstTry == true)
 	{
 		firstTime();
+		disableFirstTries();
 		cout << "# The first floor hallway is really useful in that it is connected to a lot of other rooms." << endl;
 		cout << "# Just be watch your step for that vomit you just beautifully spewed out.... gross." << endl;
 		cout << "#" << endl;
@@ -86,4 +66,14 @@ int FirstFloorHallway::menu(vector<string> commandVector)
 	}
 	printIntro();
 	return 0;
+}
+
+//Function allows to print long intro only once for all rooms that share the same derived Space type
+void FirstFloorHallway::disableFirstTries(){
+	//Set firstTry boolean to false for all hallway rooms not visited yet 
+	for(int i = 0; i < (int)roomsList.size(); i++){
+		if(roomsList[i]->getType() == "First Floor Hallway" && roomsList[i]->getFirstTry()){
+			roomsList[i]->firstTime();
+		}
+	}
 }

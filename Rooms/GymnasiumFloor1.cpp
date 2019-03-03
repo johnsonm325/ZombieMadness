@@ -21,9 +21,7 @@ GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
 
 GymnasiumFloor1::~GymnasiumFloor1()
 {
-	//delete zombie;
-	//delete basketball;
-	//delete bleachers;
+	
 }
 
 void GymnasiumFloor1::printIntro(){

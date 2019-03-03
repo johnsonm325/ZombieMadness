@@ -22,8 +22,7 @@ ComputerScience::ComputerScience() : Space("Computer Science")
 }
 
 ComputerScience::~ComputerScience(){
-	delete computer;
-	delete whiteboard;
+
 }
 
 void ComputerScience::printIntro(){

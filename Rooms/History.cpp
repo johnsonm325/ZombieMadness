@@ -2,7 +2,7 @@
 
 History::History() : Space("History")
 {
-        this->roomInventory->addItem(new Knife());
+	roomInventory->addItem(new Knife());
 
 	georgeWashingtonBust = new Item();
 	string description = "# It's a solid stone bust of George Washington. Would be too heavy to\n# carry. Doesn't seem to be anything special about this item.";
@@ -18,7 +18,6 @@ History::History() : Space("History")
 	billOfRights->setAction(text, Read);
 	roomInventory->addItem(billOfRights);
 
-	roomInventory->addItem(new Knife());
 }
 
 History::~History(){

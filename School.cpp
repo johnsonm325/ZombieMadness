@@ -5,10 +5,10 @@ School::School()
 {
 	mb = new MensBathroom();
 	wb = new WomensBathroom(player->getInventory());
-	sfh1 = new SecondFloorHallway(false);
+	sfh1 = new SecondFloorHallway();
 	sfh2 = new SecondFloorHallway();
-	sfh3 = new SecondFloorHallway(false);
-	sfh4 = new SecondFloorHallway(false);
+	sfh3 = new SecondFloorHallway();
+	sfh4 = new SecondFloorHallway();
 	hist = new History();
 	lit = new Literature();
 	infr = new Infirmary();
@@ -16,9 +16,9 @@ School::School()
 	gym2 = new GymnasiumFloor2();
 	gym1 = new GymnasiumFloor1();
 	fb = new Football();
-	ffh1 = new FirstFloorHallway(false);
-	ffh2 = new FirstFloorHallway(false);
-	ffh3 = new FirstFloorHallway(false);
+	ffh1 = new FirstFloorHallway();
+	ffh2 = new FirstFloorHallway();
+	ffh3 = new FirstFloorHallway();
 	ffh4 = new FirstFloorHallway();
 	cafe = new Cafeteria();
 	chem = new Chemistry();
@@ -100,7 +100,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 	CmdWord* foundCmd = 0;
 
 	//Convert input to lower case to make parsing easier
-	//transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
+	transform(cmd.begin(), cmd.end(), cmd.begin(), ::tolower);
 
 	//Generate cmd vector, moving words into separate elements
 	vector<string> cmdVector = parser->createCmdVector(cmd);
@@ -142,7 +142,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					}
 				}
 				else if(static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false){
-					if(cmd == "go south"){
+					if(cmd == "go south" || cmd == "south"){
 						cout << "# You can't go that direction." << endl;
 						return;
 					}
@@ -150,7 +150,8 @@ void School::processCommand(CmdParser* parser, string cmd) {
             		}
 	
 			if(currentRoom->getType() == "Second Floor Hallway"){
-				if ((wb->getDoorLocked() == true) && (cmd == "go east")  && (currentRoom->getEast() != NULL)) {
+				if ((wb->getDoorLocked() == true) && (cmd == "go east" || cmd == "east" || cmd == "go women's bathroom" || cmd =="women's bathroom" )
+					  && (currentRoom->getEast() != NULL)) {
 					Space *tempRoom;
 					tempRoom = currentRoom->getEast();
 						if (tempRoom->getType() == "Women's Bathroom") {
@@ -159,7 +160,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						}
 				}
 			
-				if ((infr->getDoorLocked() == true) && (cmd == "go west") && (currentRoom->getWest() != NULL)) {
+				if ((infr->getDoorLocked() == true) && ( cmd == "go west" || cmd == "west" ) && (currentRoom->getWest() != NULL)) {
 					Space *tempRoom;
 					tempRoom = currentRoom->getWest();
 						if (tempRoom->getType() == "Infirmary") {
@@ -169,13 +170,12 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 			}
 			
-			if((currentRoom->getType() == "Women's Bathroom") && (cmd == "go west")) {
+			if((currentRoom->getType() == "Women's Bathroom") && ( cmd == "go west" || cmd == "west" )) {
 				currentRoom->unlockDoor();
             }
 
 			if(currentRoom->getType() == "Gymnasium First Floor"){
-				if( cmd == "south" || cmd == "go south" ||
-					cmd == "go Football Field" || cmd == "Football Field" || cmd == "go football field" || cmd == "football field"){
+				if( cmd == "south" || cmd == "go south" || cmd == "go football field" || cmd == "football field"){
 					if(fb->getDoorLocked() == true){
 						cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
 						return;
@@ -185,13 +185,13 @@ void School::processCommand(CmdParser* parser, string cmd) {
 
 			if(currentRoom->getType() == "Chemistry"){
 				if (static_cast<Chemistry*>(currentRoom)->getHoleVisible() == true) {
-					if(cmd == "go hole" || cmd == "go south") {
+					if(cmd == "go hole" || cmd == "go south" || cmd == "south") {
 						moveRooms(cmdVector, "south");
 						return;
 					}
 				}
 				else if(static_cast<Chemistry*>(currentRoom)->getHoleVisible() == false){
-					if(cmd == "go south" || cmd == "go hole"){
+					if(cmd == "go hole" || cmd == "go south" || cmd == "south") {
 						cout << "# You can't go that direction." << endl;
 						return;
 					}
@@ -203,6 +203,10 @@ void School::processCommand(CmdParser* parser, string cmd) {
             }
 
 			moveRooms(cmdVector, cmd);
+		}
+		if (foundCmd->getType() == "where") {
+				cout << "###################################################" << endl;
+				cout << "# You are in the " << currentRoom->getType() << endl;
 		}
 		if (foundCmd->getType() == "dir") {
 			if (cmd == "w") {
@@ -444,6 +448,9 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			//Opening items
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
+		if (foundCmd->getType() == "stats") { //stub
+			player->printStats();
+		}
 		if (foundCmd->getType() == "savegame") { //stub
 			GameState* currentState = createState();
 			stateManager->startSavingGame(currentState);
@@ -451,6 +458,9 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		if (foundCmd->getType() == "loadgame") { //stub 
 			GameState* stateToLoad = stateManager->startLoadingGame();
 			loadState(stateToLoad);
+		}
+		if (foundCmd->getType() == "cleargames") { //stub 
+			stateManager->removeSaves();
 		}
 		if (foundCmd->getType() == "quit") { //stub 
 			cout << "\nExiting game...\n";
@@ -816,7 +826,10 @@ void School::loadState(GameState* loadState){
 	// loadState->comparePlayer(this->player, loadState->getPlayer());
 
 	steps = loadState->getSteps();		//Set steps
-	
+
+	//Loading finished
 	player->movetoRoom(currentRoom);
+	cout << "###################################################" << endl;
+	cout << "# You are in the " << currentRoom->getType() << endl;
 	currentRoom->printIntro();
 }
