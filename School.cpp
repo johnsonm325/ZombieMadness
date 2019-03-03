@@ -172,7 +172,8 @@ void School::beginGame()
 		switch (menuChoice)
 		{
 			case 1:
-				setupPlayer();
+				loadState(stateManager->getNewGameState());
+				//setupPlayer();
 				playGame();
 				break;
 

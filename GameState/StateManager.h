@@ -21,6 +21,7 @@ class StateManager
 {
 private:
 	vector<GameState*> states;
+	GameState* newGameState;	//Used for new game menu option
 	vector<string> fileList;
 	unsigned int maxStates = 3;
 
@@ -70,6 +71,7 @@ public:
 
 	void changeWorkingDir();
 	void resetWorkingDir();
+	GameState* getNewGameState();
 };
 
 #endif
