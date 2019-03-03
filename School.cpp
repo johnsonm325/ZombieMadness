@@ -178,7 +178,8 @@ void School::beginGame()
 				break;
 
 			case 2:
-				stateManager->startLoadingGame();
+				GameState* stateToLoad = stateManager->startLoadingGame();
+				loadState(stateToLoad, true);
 				break;
 
 			case 3:
