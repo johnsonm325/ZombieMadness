@@ -1,4 +1,12 @@
 #include "School.h"
+#define KRED  "\x1B[31m"
+#define KGRN  "\x1B[32m"
+#define KYEL  "\x1B[33m"
+#define KBLU  "\x1B[34m"
+#define KMAG  "\x1B[35m"
+#define KCYN  "\x1B[36m"
+#define KWHT  "\x1B[37m"
+#define RESET "\x1B[0m"
 
 
 School::School()
@@ -67,8 +75,48 @@ School::~School()
 
 void School::beginGame()
 {
-	setupPlayer();
-	playGame();
+	int choice;
+
+	cout << KCYN "----------- ZOMBIE MADDNESS --------------" << endl;
+	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
+	cout << endl << endl << "Interesting." << endl;
+
+	cout << "Please enter the number corresponding to your option" << endl;
+	cout << endl;
+
+	while (choice != 3)
+	{
+		cout << "1: New Game" << endl;
+		cout << "2: Load Game" << endl;
+		cout << "3: Quit" << endl;
+		cout << endl;
+		
+		cout << "Choice: " RESET;
+
+		while (choice < 1 || choice > 3)
+		{
+			cout << KRED "Invalid option. Please choose the correct number corresponding to your choice: " RESET <<;
+			cin >> choice;
+		}
+
+		switch (choice)
+		{
+			case 1:
+				setupPlayer();
+				playGame();
+				break;
+
+			case 2:
+				stateManager->startLoadingGame();
+				break;
+
+			case 3:
+				exit(0);
+
+			default:
+				exit(0);
+		}
+	}
 }
 
 int School::playGame()
