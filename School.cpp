@@ -145,6 +145,7 @@ int getInt()
 void School::beginGame()
 {
 	int menuChoice;
+	GameState* stateToLoad = NULL;
 
 	cout << KCYN "		----------- ZOMBIE MADDNESS --------------" << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
@@ -172,12 +173,17 @@ void School::beginGame()
 		switch (menuChoice)
 		{
 			case 1:
-				setupPlayer();
+				loadState(stateManager->getNewGameState(), false);
+				//setupPlayer();
 				playGame();
 				break;
 
 			case 2:
-				stateManager->startLoadingGame();
+				stateToLoad = stateManager->startLoadingGame();
+				loadState(stateToLoad, false);
+				if(stateToLoad != NULL){	//If selected a valid save, play saved game
+					playGame();
+				}
 				break;
 
 			case 3:
@@ -575,7 +581,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		if (foundCmd->getType() == "loadgame") { //stub 
 			GameState* stateToLoad = stateManager->startLoadingGame();
-			loadState(stateToLoad);
+			loadState(stateToLoad, true);
 		}
 		if (foundCmd->getType() == "cleargames") { //stub 
 			stateManager->removeSaves();
@@ -929,7 +935,7 @@ GameState* School::createState(){
 	return newState;
 }
 
-void School::loadState(GameState* loadState){
+void School::loadState(GameState* loadState, bool printIntro = true){
 	if(loadState == NULL) { return; }
 
 	//Set current room by index
@@ -947,7 +953,10 @@ void School::loadState(GameState* loadState){
 
 	//Loading finished
 	player->movetoRoom(currentRoom);
-	cout << "###################################################" << endl;
-	cout << "# You are in the " << currentRoom->getType() << endl;
-	currentRoom->printIntro();
+	if(printIntro)
+	{
+		cout << "###################################################" << endl;
+		cout << "# You are in the " << currentRoom->getType() << endl;
+		currentRoom->printIntro();
+	}
 }

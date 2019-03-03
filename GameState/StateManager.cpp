@@ -17,6 +17,7 @@ void StateManager::init(){
 	clearStates();
 	getSaveFileList();
 	if (foundSaveFiles()) {
+#ifdef STATE_DEBUG
 		cout << "Found " << fileList.size() << " save files." << endl;
 		//Found files, print their names
 		if(fileList.size() > 0){
@@ -26,8 +27,11 @@ void StateManager::init(){
 			}
 		}
 		cout << endl;
+#endif
 		readAllSaves();
 	}
+	
+	newGameState = new GameState();
 	resetWorkingDir();
 }
 
@@ -852,4 +856,8 @@ chdir("./GameState/");
 
 void StateManager::resetWorkingDir() {
 	chdir("../");
+}
+
+GameState* StateManager::getNewGameState(){
+	return newGameState;
 }
