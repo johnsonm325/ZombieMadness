@@ -527,8 +527,7 @@ Health: 0
 	*/
 	size_t foundStart;
 	bool isValid = true;
-	int numCreatures, isAlive, health;
-	string creatureType;
+	int numCreatures, readValue;
 
 	line++; 	//go to Creatures line
 	foundStart = (*line).find("<Creatures>");
@@ -545,18 +544,25 @@ Health: 0
 
 				if(foundStart != std::string::npos){
 					line +=3;		//go to Type and Name lines
-					isAlive = readInt(line, "IsAlive");
-					if(isAlive != -1){
-						if(isAlive == 0){	//dead creature
+					readValue = readInt(line, "IsAlive");
+					if(readValue != -1){
+						if(readValue == 0){	//dead creature
 							creature->die();			//Make creature die
 						}
 					}
 					else{ 
 						isValid = false;
 					}
-					health = readInt(line, "Health");
-					if(health != -1){
-						creature->setHealth(health);	//Set creature's health
+					readValue = readInt(line, "Health");
+					if(readValue != -1){
+						creature->setHealth(readValue);	//Set creature's health
+					}
+					else{ 
+						isValid = false;
+					}
+					readValue = readInt(line, "Defense");
+					if(readValue != -1){
+						creature->setDefense(readValue);	//Set creature's health
 					}
 					else{ 
 						isValid = false;
@@ -761,6 +767,7 @@ void StateManager::writeCreature(FILE* saveFile, Creature* creature){
 	fprintf(saveFile, "Name: %s\n", creature->getType().c_str());
 	fprintf(saveFile, "IsAlive: %d\n", (int)creature->isAlive());
 	fprintf(saveFile, "Health: %d\n", creature->getHealth());
+	fprintf(saveFile, "Defense: %d\n", creature->getDefense());
 	fprintf(saveFile, "</Creature>\n");
 }
 
