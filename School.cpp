@@ -576,7 +576,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		if (foundCmd->getType() == "loadgame") { //stub 
 			GameState* stateToLoad = stateManager->startLoadingGame();
-			loadState(stateToLoad);
+			loadState(stateToLoad, true);
 		}
 		if (foundCmd->getType() == "cleargames") { //stub 
 			stateManager->removeSaves();
