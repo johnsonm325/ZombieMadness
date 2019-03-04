@@ -978,7 +978,7 @@ void School::startFinalFight(){
 				boss->printStats();
 				cout << "Zombie boss attacking player" << endl;
 				boss->attackEnemy(player->getPlayer());
-				playersTurn !=playersTurn;
+				playersTurn = !playersTurn;
 		}	
 		// else{
 		// 	if(player->getPlayer()->isAlive() == false){
