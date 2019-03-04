@@ -135,8 +135,8 @@ void Player::attackBoss(){
 			return;
 		}
 	}
-	weapon->attackItem();
-	enemy->takeDamage(weapon->getAttack());
+	selectedWeapon->attackItem();
+	enemy->takeDamage(selectedWeapon->getAttack());
 	//playerInventory->removeItem(weapon, true);
 }
 
