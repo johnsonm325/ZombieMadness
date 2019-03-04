@@ -37,12 +37,13 @@ public:
 	void setName(string);
 	void setHealth(int);
 	void gainHealth(int);
-	void attackEnemy(string item);	//Version that Player uses
+	//void attackEnemy(string item);	//Version that Player uses
 	void setDefense(int);
 	void takeDamage(int);
 	void blockAttack();
 	virtual void talkToCreature();
 	void die();
+	void printStats();
 };
 
 #endif

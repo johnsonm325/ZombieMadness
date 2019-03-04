@@ -97,5 +97,7 @@ public:
 	//State methods
 	GameState* createState();
 	void loadState(GameState* loadState, bool printIntro);
+
+	void startFinalFight();
 };
 #endif
