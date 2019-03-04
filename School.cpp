@@ -985,9 +985,12 @@ void School::startFinalFight(){
 		}
 }
 
+void 
+
 void School::printFinalGameState(){
 		Zombie* zombie = currentRoom->getZombie();
 		if(roomZombie != NULL){
+			cout << "Printing final stats..." << endl;
 			player->printStats();
 			zombie->printStats();
 			if(!player->getPlayer()->isAlive() && zombie->isAlive()){
