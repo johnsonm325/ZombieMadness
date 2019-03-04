@@ -967,23 +967,35 @@ void School::loadState(GameState* loadState, bool printIntro = true){
 }
 
 void School::startFinalFight(){
-		bool playersTurn = true;
+		//bool playersTurn = true;
 		Zombie* boss = currentRoom->getZombie();
-		if(player->getPlayer()->isAlive() && boss->isAlive()){
-				player->printStats();
+		if(player->getPlayer()->isAlive() && boss->isAlive()){	
+				//player->printStats();
 				if(player->getSelectedWeapon() != NULL){
 						cout << "Player attacking zombie boss!" << endl;
 				}
 				player->attackBoss();
-				boss->printStats();
+				//boss->printStats();
 				cout << "Zombie boss attacking player" << endl;
 				boss->attackEnemy(player->getPlayer());
-				playersTurn = !playersTurn;
+				//playersTurn = !playersTurn;
 		}	
-		// else{
-		// 	if(player->getPlayer()->isAlive() == false){
+		else{
+				printFinalGameState();
+		}
+}
 
-		// 	}
-		// }
+void School::printFinalGameState(){
+		Zombie* roomZombie = currentRoom->getZombie();
+		if(roomZombie != NULL){
+			player->printStats();
+			zombie->printStats();
+			if(!player->getPlayer()->isAlive() && zombie->isAlive()){
+				cout << PLAYER DIED! GAME OVER... << endl;
+			}
+			if(player->getPlayer()->isAlive() && !zombie->isAlive()){
+				cout << Zombie King Died! GAME WON... << endl;
+			}
+		}
 }
 
