@@ -99,7 +99,7 @@ public:
 	void loadState(GameState* loadState, bool printIntro);
 
 	void startFinalFight();
-	void School::printFinalGameState();
+	void printFinalGameState();
 
 };
 #endif
