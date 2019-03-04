@@ -986,15 +986,15 @@ void School::startFinalFight(){
 }
 
 void School::printFinalGameState(){
-		Zombie* roomZombie = currentRoom->getZombie();
+		Zombie* zombie = currentRoom->getZombie();
 		if(roomZombie != NULL){
 			player->printStats();
 			zombie->printStats();
 			if(!player->getPlayer()->isAlive() && zombie->isAlive()){
-				cout << PLAYER DIED! GAME OVER... << endl;
+				cout << "PLAYER DIED! GAME OVER..." << endl;
 			}
-			if(player->getPlayer()->isAlive() && !zombie->isAlive()){
-				cout << Zombie King Died! GAME WON... << endl;
+			else if(player->getPlayer()->isAlive() && !zombie->isAlive()){
+				cout << "Zombie King Died! GAME WON..." << endl;
 			}
 		}
 }
