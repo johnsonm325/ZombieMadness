@@ -985,8 +985,6 @@ void School::startFinalFight(){
 		}
 }
 
-void 
-
 void School::printFinalGameState(){
 		Zombie* zombie = currentRoom->getZombie();
 		if(roomZombie != NULL){
