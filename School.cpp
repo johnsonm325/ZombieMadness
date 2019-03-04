@@ -972,7 +972,7 @@ void School::startFinalFight(){
 		if(player->getPlayer()->isAlive() && boss->isAlive()){
 				player->printStats();
 				if(player->getSelectedWeapon() != NULL){
-							out << "Player attacking zombie boss!" << endl;
+						cout << "Player attacking zombie boss!" << endl;
 				}
 				player->attackBoss();
 				boss->printStats();
