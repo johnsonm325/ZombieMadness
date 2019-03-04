@@ -19,7 +19,6 @@ Zombie::Zombie(bool boss) : Creature("Zombie")
 		this->defense = 5;
 		this->health = 100;
 	}
-	
 }
 
 Zombie::~Zombie()

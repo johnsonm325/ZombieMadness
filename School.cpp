@@ -296,7 +296,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			if((currentRoom->getType() == "Women's Bathroom") && ( cmd == "go west" || cmd == "west" )) {
 				currentRoom->unlockDoor();
-            }
+      }
 
 			if(currentRoom->getType() == "Gymnasium First Floor"){
 				if( cmd == "south" || cmd == "go south" || cmd == "go football field" || cmd == "football field"){
@@ -320,11 +320,11 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						return;
 					}
 				}
-            		}	
+      }	
 			
 			if((currentRoom->getType() == "Infirmary") && (cmd == "go east")) {
 				currentRoom->unlockDoor();
-            }
+      }
 
 			moveRooms(cmdVector, cmd);
 		}
@@ -546,7 +546,12 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "attack") {
-			player->attackEnemy();
+			if(currentRoom->getType() != "Football Field"){
+				player->attackEnemy();
+			}
+			else{
+				startFinalFight();
+			}
 		}
 		if (foundCmd->getType() == "block") {
 			player->defend();
@@ -960,3 +965,38 @@ void School::loadState(GameState* loadState, bool printIntro = true){
 		currentRoom->printIntro();
 	}
 }
+
+void School::startFinalFight(){
+		//bool playersTurn = true;
+		Zombie* boss = currentRoom->getZombie();
+		if(player->getPlayer()->isAlive() && boss->isAlive()){	
+				//player->printStats();
+				if(player->getSelectedWeapon() != NULL){
+						cout << "Player attacking zombie boss!" << endl;
+				}
+				player->attackBoss();
+				//boss->printStats();
+				cout << "Zombie boss attacking player" << endl;
+				boss->attackEnemy(player->getPlayer());
+				//playersTurn = !playersTurn;
+		}	
+		else{
+				printFinalGameState();
+		}
+}
+
+void School::printFinalGameState(){
+		Zombie* zombie = currentRoom->getZombie();
+		if(zombie != NULL){
+			cout << "Printing final stats..." << endl;
+			player->printStats();
+			zombie->printStats();
+			if(!player->getPlayer()->isAlive() && zombie->isAlive()){
+				cout << "PLAYER DIED! GAME OVER..." << endl;
+			}
+			else if(player->getPlayer()->isAlive() && !zombie->isAlive()){
+				cout << "Zombie King Died! GAME WON..." << endl;
+			}
+		}
+}
+

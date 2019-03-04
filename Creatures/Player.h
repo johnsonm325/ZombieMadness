@@ -21,6 +21,7 @@ private:
 	Zombie *enemy = NULL; 	// passed in enemy
 	Creature *player = NULL;	//Actual player's data
 	Space* currentRoom = NULL;
+	Item* selectedWeapon = NULL;
 public:
 	Player();
 	~Player();
@@ -30,6 +31,7 @@ public:
 	void clearInventory();
 	void useItem(Item* item);
 	void attackEnemy();
+	void attackBoss();
 	void defend();
 	void takeItem(Item*);
 	void dropItem(Item*);
@@ -37,6 +39,7 @@ public:
 	Item* selectItem(string item);
 	Creature* getPlayer();
 	void printStats();
+	Item* getSelectedWeapon();
 };
 
 #endif

@@ -91,8 +91,7 @@ void Creature::takeDamage(int damage)
 
 		else
 			cout << "# Zombie killed!" << endl;
-		
-		
+			
 	}
 
 	else
@@ -103,8 +102,7 @@ void Creature::takeDamage(int damage)
 		else
 			cout << "# Zombie's health is now at " << this->health << endl;
 		
-	}
-	
+	}	
 }
 
 void Creature::setDefense(int d)
@@ -115,9 +113,9 @@ void Creature::setDefense(int d)
 		this->defense = 10;
 }
 
-void Creature::attackEnemy(string item){
+// void Creature::attackEnemy(string item){
 	
-}
+// }
 
 void Creature::blockAttack()
 {
@@ -132,3 +130,12 @@ void Creature::talkToCreature()
 void Creature::die(){
 	isDead = true;
 }
+
+void Creature::printStats(){
+	cout << " === " << this->type << "'s Stats ===" << endl;
+	cout << " Health: " << getHealth() << " HP" << endl;
+	cout << " Defense: " << getDefense() << " pts" << endl;
+	cout << " Attack: " << getAttack() << " pts" << endl;
+	cout << " Alive?: " << isAlive() << endl;
+}
+
