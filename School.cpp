@@ -147,8 +147,8 @@ void School::beginGame()
 	int menuChoice;
 	GameState* stateToLoad = NULL;
 
-	cout << KCYN "		----------- ZOMBIE MADDNESS --------------" << endl;
-	cout << "				A game by Jeremy Einhorn, Michael Johnson, and Artem Slivka" << endl << endl;
+	cout << KCYN "			----------- ZOMBIE MADDNESS --------------" << endl;
+	cout << "			A game by Jeremy Einhorn, Michael Johnson, and Artem Slivka" << endl << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
 	cout << endl << endl << "Interesting." << endl << endl;
 
@@ -222,6 +222,7 @@ int School::playGame()
 	cout << "# You are in the " << currentRoom->getType() << endl;
 	cout << "#" << endl;
 	currentRoom->printIntro();
+	
 	do 
 	{
 		cout << "#\n# Please enter choice: ";
@@ -276,7 +277,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		//Syntax: go <direction> 
 		if (foundCmd->getType() == "go") {
 			if (currentRoom->getZombie() && currentRoom->getZombie()->isAlive()) {
-				cout << "# You cannot leave until the zombie is destroyed!" << endl;
+				cout << KRED "# You cannot leave until the zombie is destroyed!" RESET << endl;
 				return;
 			}
 			if(currentRoom->getType() == "Men's Bathroom"){
@@ -805,6 +806,9 @@ Space *School::moveSouth()
 
 bool School::moveRooms(vector<string> cmdArray, string cmd){
 	Space* nextRoom = currentRoom;
+
+	if (!player->getPlayer()->isAlive())
+		return true;
 
 	// go <direction> or <direction> command
 	if (cmd == "north" || cmd == "go north") {
