@@ -468,7 +468,7 @@ bool StateManager::readInventory(vector<string>::iterator& line, Inventory* inv)
 #ifdef STATE_DEBUG
 				cout << "Found player's inventory size" << endl;
 #endif
-				if(size > 6){
+				if(size > 9){
 					static_cast<PlayerInventory*>(inv)->increaseSize();
 				}
 			}

@@ -193,7 +193,7 @@ int PlayerInventory::getSize(){
 }
 
 void PlayerInventory::printInventoryUsage(){
-    cout << " Inventory usage: " << getUsedSlots() << "/" << getSize()  << " slots" << endl;
+    cout << KCYN "Inventory usage: " << getUsedSlots() << "/" << getSize()  << " slots" RESET << endl;
 }
 
 // If silent, doesn't print add item messages to console. This hides save/loading process 
