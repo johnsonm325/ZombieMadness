@@ -205,7 +205,7 @@ void School::beginGame()
 	}
 }
 
-bool isGameOver(bool isGameWon, Player *player)
+bool isGameOver(bool isGameWon, Creature *player)
 {
 	if (isGameWon)
 		return true;
