@@ -205,7 +205,7 @@ void School::beginGame()
 	}
 }
 
-bool isGameOver()
+bool isGameOver(bool isGameWon, Player *player)
 {
 	if (isGameWon)
 		return true;
@@ -233,7 +233,7 @@ int School::playGame()
 		//	currentRoom->menu(commandVect);
 		//}
 		
-	} while (choice != "q" && choice != "quit" && choice != "exit" && !isGameOver());
+	} while (choice != "q" && choice != "quit" && choice != "exit" && !isGameOver(isGameWon, player->getPlayer()));
 
 	return 0;
 }
