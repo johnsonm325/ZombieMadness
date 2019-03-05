@@ -210,7 +210,7 @@ bool isGameOver(bool isGameWon, Creature *player)
 	if (isGameWon)
 		return true;
 	
-	else if (!player->getPlayer()->isAlive())
+	else if (!player->isAlive())
 		return true;
 
 	return false;
