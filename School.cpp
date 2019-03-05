@@ -148,8 +148,18 @@ void School::beginGame()
 	GameState* stateToLoad = NULL;
 
 	cout << KCYN "		----------- ZOMBIE MADDNESS --------------" << endl;
+	cout << "				A game by Jeremy Einhorn, Michael Johnson, and Artem Slivka" << endl << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
-	cout << endl << endl << "Interesting." RESET << endl;
+	cout << endl << endl << "Interesting." << endl << endl;
+
+	cout << "The objective is to get through the school while efficiently balancing your inventory" << endl;
+	cout << "in order to get to the end where you will use those items to defeat your biggest foe!" << endl << endl;
+	cout << "It is critical you save game often.  If you do not save and you die in game or totally quit the program," << endl;
+	cout << "you will be forced to start a new game entirely." << endl << endl;
+	cout << "As a final reminder, remember to be smart with your invetory management!" << endl;
+	cout << "Just carrying only weapons or only picking up the few first items you come across" << endl;
+	cout << "may bode really badly for you later in the game!" << endl << endl;
+
 
 	while (menuChoice != 3)
 	{
@@ -195,6 +205,17 @@ void School::beginGame()
 	}
 }
 
+bool isGameOver()
+{
+	if (isGameWon)
+		return true;
+	
+	else if (!player->getPlayer()->isAlive())
+		return true;
+
+	return false;
+}
+
 int School::playGame()
 {
 	cout << "###################################################" << endl;
@@ -212,7 +233,7 @@ int School::playGame()
 		//	currentRoom->menu(commandVect);
 		//}
 		
-	} while (choice != "q" && choice != "quit" && choice !="exit");
+	} while (choice != "q" && choice != "quit" && choice != "exit" && !isGameOver());
 
 	return 0;
 }
@@ -967,36 +988,45 @@ void School::loadState(GameState* loadState, bool printIntro = true){
 }
 
 void School::startFinalFight(){
-		//bool playersTurn = true;
+
 		Zombie* boss = currentRoom->getZombie();
-		if(player->getPlayer()->isAlive() && boss->isAlive()){	
-				//player->printStats();
-				if(player->getSelectedWeapon() != NULL){
-						cout << "Player attacking zombie boss!" << endl;
-				}
-				player->attackBoss();
-				//boss->printStats();
-				cout << "Zombie boss attacking player" << endl;
-				boss->attackEnemy(player->getPlayer());
-				//playersTurn = !playersTurn;
-		}	
-		else{
-				printFinalGameState();
+
+		while (player->getPlayer()->isAlive())
+		{
+			if (!player->getInventory()->hasWeapon())
+			{
+				cout << KRED "# Oh no, you ran out of weapons! Scott got you!" RESET << endl << endl;
+				player->getPlayer()->die();
+				break;
+			}
+			
+			player->attackEnemy();
+
+			if (!boss->isAlive())
+			{
+				cout << "# DOWN GOES SCOTT!" << endl << endl;
+				isGameWon = true;
+				break;
+			}
+
+			boss->attackEnemy(player->getPlayer());
 		}
+
+		printFinalGameState();
 }
 
 void School::printFinalGameState(){
+		if (!player->getPlayer()->isAlive())
+			cout << KRED "You died, game over!" RESET << endl << endl;
+		
+		else
+			cout << KGRN "Victory is yours!  Thanks for playing a great game!" RESET << endl << endl;
+
 		Zombie* zombie = currentRoom->getZombie();
 		if(zombie != NULL){
 			cout << "Printing final stats..." << endl;
 			player->printStats();
 			zombie->printStats();
-			if(!player->getPlayer()->isAlive() && zombie->isAlive()){
-				cout << "PLAYER DIED! GAME OVER..." << endl;
-			}
-			else if(player->getPlayer()->isAlive() && !zombie->isAlive()){
-				cout << "Zombie King Died! GAME WON..." << endl;
-			}
 		}
 }
 

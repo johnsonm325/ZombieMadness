@@ -38,6 +38,7 @@ void Player::movetoRoom(Space* room){
 
 		cout << KRED "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
 		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" RESET << endl;
+		player->die();
 		return; // we need to somehow jump to a game menu from here to start the game again
 	}
 }
@@ -107,37 +108,6 @@ void Player::attackEnemy()
 	weapon->attackItem();
 	enemy->takeDamage(weapon->getAttack());
 	playerInventory->removeItem(weapon, true);
-}
-
-void Player::attackBoss(){
-	string input;
-
-	if (!enemy || !enemy->isAlive())
-	{
-		cout << KGRN "# Calm your horses, there are no zombies in sight, no need to attack." RESET << endl;
-		return;
-	}
-	if(selectedWeapon == NULL){
-		cout << KYEL "# Please choose one of the following to attack with" RESET << endl;
-		cout << endl;
-		playerInventory->printAvailableWeapons();
-
-		cout << "# Enter choice: ";
-		getline(cin, input);
-		cout << endl;
-
-		transform(input.begin(), input.end(), input.begin(), ::tolower);
-		selectedWeapon = playerInventory->findItem(input);
-
-		if (!selectedWeapon)
-		{
-			cout << KRED "# That is not an available weapon in your inventory." RESET << endl;
-			return;
-		}
-	}
-	selectedWeapon->attackItem();
-	enemy->takeDamage(selectedWeapon->getAttack());
-	//playerInventory->removeItem(weapon, true);
 }
 
 void Player::defend()

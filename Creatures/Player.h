@@ -31,7 +31,6 @@ public:
 	void clearInventory();
 	void useItem(Item* item);
 	void attackEnemy();
-	void attackBoss();
 	void defend();
 	void takeItem(Item*);
 	void dropItem(Item*);

@@ -49,6 +49,7 @@ private:
 	Space *currentRoom;
 	int steps = 0;
 	string choice;
+	bool isGameWon = false;
 
 	//Rooms
 	Space *mb, *wb, *cafe, *libr;
