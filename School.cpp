@@ -219,7 +219,7 @@ bool isGameOver(bool isGameWon, Creature *player)
 int School::playGame()
 {
 	cout << "###################################################" << endl;
-	cout << "# You are in the " << currentRoom->getType() << endl;
+	cout << "# You are in the " << currentRoom->getType() << " room" << endl;
 	cout << "#" << endl;
 	currentRoom->printIntro();
 	
@@ -806,9 +806,6 @@ Space *School::moveSouth()
 
 bool School::moveRooms(vector<string> cmdArray, string cmd){
 	Space* nextRoom = currentRoom;
-
-	if (!player->getPlayer()->isAlive())
-		return true;
 
 	// go <direction> or <direction> command
 	if (cmd == "north" || cmd == "go north") {
