@@ -219,7 +219,7 @@ bool isGameOver(bool isGameWon, Creature *player)
 int School::playGame()
 {
 	cout << "###################################################" << endl;
-	cout << "# You are in the " << currentRoom->getType() << " room" << endl;
+	cout << "# You are in the " << currentRoom->getType() << endl;
 	cout << "#" << endl;
 	currentRoom->printIntro();
 	
@@ -506,7 +506,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			if (currentRoom->getType() == "Biology") {
 				if(item == "plants" && static_cast<Biology*>(currentRoom)->getPlantsEaten() == false) {
-					srand(time(NULL));
 					int randNum = (rand() % 2) + 1;
 
 					if(randNum == 1) {
@@ -994,6 +993,8 @@ void School::startFinalFight(){
 
 		while (player->getPlayer()->isAlive())
 		{
+			int curBossHealth = boss->getHealth();
+			
 			if (!player->getInventory()->hasWeapon())
 			{
 				cout << KRED "# Oh no, you ran out of weapons! Scott got you!" RESET << endl << endl;
@@ -1001,7 +1002,8 @@ void School::startFinalFight(){
 				break;
 			}
 			
-			player->attackEnemy();
+			while (curBossHealth == boss->getHealth())
+				player->attackEnemy();
 
 			if (!boss->isAlive())
 			{

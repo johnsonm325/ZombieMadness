@@ -31,9 +31,13 @@ void Zombie::attackEnemy(Creature* enemy)
 	if (this->name == "Regular Zombie")
 		return;
 
-	int damage = rand() % 30 + 21;
+	int damage = rand() % 31 + 10;
+	int total = damage - enemy->getDefense();
 
-	enemy->takeDamage(damage);
+	if (total <= 0)
+		total = 0;
+
+	enemy->takeDamage(total);
 }
 
 bool Zombie::getBossStatus()
