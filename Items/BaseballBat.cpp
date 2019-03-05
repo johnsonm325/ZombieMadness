@@ -5,7 +5,7 @@ BaseballBat::BaseballBat() : Item()
 	this->description = "Swing away Colt.  Use this mid-leveled weapon to bash some zombies!";
 	this->type = "Weapon";
 	this->name = "Baseball Bat";
-	this->attack = 20;
+	this->attack = 40;
 	this->defense = 0;
 	this->size = 2;
 }

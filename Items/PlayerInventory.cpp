@@ -11,8 +11,8 @@
 PlayerInventory::PlayerInventory() : Inventory("Player")
 {
     this->type = "Player";
-    this->size = 9; // TBD how many opening slots player should have
-    this->openSlots = 9;
+    this->size = 7; // TBD how many opening slots player should have
+    this->openSlots = 7;
     this->usedSlots = 0;
 }
 
@@ -37,7 +37,7 @@ bool PlayerInventory::canAdd(Item *item)
 
 void PlayerInventory::increaseSize()
 {
-    size += 9; // TBD the size we will increase it to
+    size += 7; // TBD the size we will increase it to
 }
 
 void PlayerInventory::addItem(Item* item)
