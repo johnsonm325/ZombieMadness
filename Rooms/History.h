@@ -18,9 +18,6 @@ public:
 	History();
 	~History();	
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 	void inspectBust();
-
 };
 #endif

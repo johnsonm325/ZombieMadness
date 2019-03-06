@@ -47,36 +47,16 @@ void Chemistry::printIntro(){
 	cout << "# center of the room. Various items can be found inside of cabinets set" << endl;
 	cout << "# against the south wall." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void Chemistry::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'Wow, the fact that I managed NOT to blow myself up in there is amazing'" << endl;
-		cout << "# you think to yourself. You also remember the chemistry room is where you" << endl;
-		cout << "# asked out Sophie to prom... Where she said no..." << endl;
-		cout << "# 'I HATE CHEMISTRY!'" << endl;
+		cout << "# You can get to the Biology room from here, but if you're not ready to" << endl;
+		cout << "# head out that way then you can go to the hallway." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# The hallway that is accessible from the chemistry room is pretty long," << endl;
-	cout << "# rooms like the math room, com sci room, and front lobby are all" << endl;
-	cout << "# reachable from here!" << endl;
-}
-
-int Chemistry::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
+	cout << "# The biology room is to the north and the hallway is out to the east." << endl;
+	cout << "#" << endl;
 }
 
 void Chemistry::inspectCabinet()

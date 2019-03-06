@@ -38,34 +38,19 @@ void FirstFloorHallway::printIntro(){
 
 	cout << "# There are bulletin boards on the wall and your vomit is now on the floor." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void FirstFloorHallway::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
 		disableFirstTries();
-		cout << "# The first floor hallway is really useful in that it is connected to a lot of other rooms." << endl;
-		cout << "# Just be watch your step for that vomit you just beautifully spewed out.... gross." << endl;
+		cout << "# Eight classrooms and other rooms are connected to the hallway." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Keep in mind how many different rooms can be visited from the first floor hallway!" << endl;
+	cout << "# Head south to go back upstairs and north to head towards the front lobby." << endl;
+	cout << "# As you head north, check rooms to your east and west for any items." << endl;
 	cout << "#" << endl;
-}
-
-int FirstFloorHallway::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	printIntro();
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 //Function allows to print long intro only once for all rooms that share the same derived Space type

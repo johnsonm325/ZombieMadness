@@ -14,9 +14,6 @@ public:
 	SecondFloorHallway();
 	~SecondFloorHallway();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 	void disableFirstTries();
-
 };
 #endif

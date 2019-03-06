@@ -16,8 +16,6 @@ public:
 	FrontOffice();
 	~FrontOffice();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 	void usePA();
 };
 #endif

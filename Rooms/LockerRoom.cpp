@@ -39,32 +39,17 @@ void LockerRoom::printIntro(){
 	cout << "# sweaty jockstrap on the bench. A baseball bat is propped against the east wall" << endl;
 	cout << "# and a steel lid from a trash can is turned upside down on the floor." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void LockerRoom::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'Why did Frank feel it was neccessary to always walk around fully naked in here?" << endl;
-		cout << "# There are three ways in and out of this room. One way leads out to the hallway." << endl;
+		cout << "# You know that the door in here leads to the rafters of the gym. It's almost always locked." << endl;
+		cout << "# There are multiple ways out of this room." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Oddly enough, the literature room is directly accessible from here.  You can also" << endl;
-	cout << "# access the 2nd floor of the gym from here, could be useful." << endl;
+	cout << "# The hallway is to the west, and the north leads to a classroom. The south exit is where I'd find" << endl;
+	cout << "# the rafters of the gym." << endl;
 	cout << "#" << endl;
-}
-
-int LockerRoom::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }

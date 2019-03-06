@@ -16,8 +16,6 @@ public:
 	Literature();
 	~Literature();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 	void inspectDesk();
 	bool getNoteVisible();
 };

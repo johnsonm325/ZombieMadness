@@ -15,8 +15,6 @@ public:
 	MensBathroom();
 	~MensBathroom();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 	void inspectToilet();
 	bool getHoleVisible();
 

@@ -20,8 +20,6 @@ public:
 	Cafeteria();
 	~Cafeteria();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 	void throwFood();
 	bool getVendingMachineUsed();
 	void useVendingMachine();

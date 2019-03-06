@@ -36,36 +36,17 @@ void FrontOffice::printIntro(){
 
 	cout << "# There is a PA system on the desk and a piece of paper that says, 'Detention List'" << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void FrontOffice::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# As you leave, you remember how many times you were called down here." << endl;
-		cout << "# 'If only Ray kept his mouth shut about the thumbtack I placed on Ms. Brembal's" << endl;
-		cout << "# chair, I would have gotten away with that cleanly for sure and would have" << endl;
-		cout << "# never had to come down here... Ok well maybe not that one time at least...'" << endl;
+		cout << "# From here, you can head right into the principal's office, or back to the front office." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# You have a clear shot to the principal's office from here, could be some goodies" << endl;
-	cout << "# in there!" << endl;
+	cout << "# Go east to enter the principal's office and west to go back to the front lobby." << endl;
 	cout << "#" << endl;
-}
-
-int FrontOffice::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void FrontOffice::usePA()

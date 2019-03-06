@@ -49,35 +49,17 @@ void FrontLobby::printIntro(){
 	cout << "# Benches line the walls and other benches have been turned over throughout the room." << endl;
 	cout << "# Trophy display cases can also be seen on the east and west walls." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void FrontLobby::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# Why is it that the easiest way to get in is the hardest way to get out? IS ANYTHING" << endl;
-		cout << "# EASY?! Guess that is just the nature of being stuck in this school of death and" << endl;
-		cout << "# horror. 'If I make it through this mess, I will never use a front enterance ever" << endl;
-		cout << "# again, just in spite of how frustrating this is!!!'" << endl;
+		cout << "# The only ways out of this room are back to the hallway or heading into the" << endl;
+		cout << "# front office to get to the principal's office." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# The front lobby has access to some pretty import rooms.  There is the" << endl;
-	cout << "# front office and then the principal's office.  Wait... you can raid the principal's" << endl;
-	cout << "# office without getting in trouble? Maybe this isn't so bad..." << endl;
+	cout << "# Head west to get back to the hallway and east to head into the front office. You" << endl;
+	cout << "# can also head south to get into the math classroom." << endl;
 	cout << "#" << endl;
-}
-
-int FrontLobby::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }

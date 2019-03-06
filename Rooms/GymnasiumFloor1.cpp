@@ -46,33 +46,17 @@ void GymnasiumFloor1::printIntro(){
 	cout << "# Basketball goals are mounted against the west and east walls, and bleachers" << endl;
 	cout << "# are pulled out along the south wall. There is a basketball on the floor." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void GymnasiumFloor1::printExitDesc()
-{
 	if (firstTry == true)
 	{
-		cout << "# 'Wow, thank goodness I was able to take out all these zombies at once," << endl;
-		cout << "# no way could I take them all on!'" << endl;
+		firstTime();
+		cout << "# There are three ways out. One to the football field, one to the first floor" << endl;
+		cout << "# hallway, and another to the rafters." << endl;
 		cout << "#" << endl;
-		cout << "# There are three ways out of the Gym. I can either head up to the second" << endl;
-		cout << "# floor or head out one of two doors." << endl;
 	}
 
-	cout << "# The cafeteria is super close, you remember that from how many times you" << endl;
-	cout << "# went to grab food during gym class.  The football field is easily accessible" << endl;
-	cout << "# from here." << endl;
+	cout << "# Head west to get to the hallway, east to get up to the rafters and south to head" << endl;
+	cout << "# out to the football field." << endl;
 	cout << "#" << endl;
-}
-
-int GymnasiumFloor1::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }

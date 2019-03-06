@@ -34,36 +34,18 @@ void MensBathroom::printIntro(){
 	cout << "# Sinks stand against the west wall, and urinals and toilets line the east wall. Nothing" << endl;
 	cout << "# much going on in here." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void MensBathroom::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'Well, here goes nothing... Let's hope the front doors aren't locked." << endl;
-		cout << "# You really are unsure if anyone is left in the school right now, or if" << endl;
-		cout << "# you'll get in trouble. Looks like there's only one way out." << endl;
+		cout << "# There's only one way out of this room, and that's the door I used to get in here." << endl;
+		cout << "# The hallway seems eeriely quiet, making you more nervous about your situation." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Never forget where you came from! This room managed to keep you alive" << endl;
-	cout << "# while you were asleep, maybe it's a magical bathroom?  Anyways," << endl;
-	cout << "# you can only really go out into the 2nd floor hallway..." << endl;
+	cout << "# The door to the hallway is on the west wall" << endl;
 	cout << "#" << endl;
-}
-
-int MensBathroom::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 0;
-	}
-
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void MensBathroom::inspectToilet()
