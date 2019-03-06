@@ -39,35 +39,17 @@ void Library::printIntro(){
 	cout << "# from east to west. Leaning against one of the bookshelves is a ladder, and the shelves" << endl;
 	cout << "# are filled with books." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void Library::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'Psh libraries... I mean, I probably have access to all these books on my iPad FOR FREE.'" << endl;
-		cout << "# Don't let your misplaced digust for books stop you, the library was always full of cool" << endl;
-		cout << "# things, just none that interested me." << endl;
+		cout << "# The biology classroom and hallway are both accessible from here." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# You have access to the first floow hallway as well as direct access to the" << endl;
-	cout << "# biology room." << endl;
+	cout << "# The classroom is to the south and you can get to the hallway by going east." << endl;
 	cout << "#" << endl;
-}
-
-int Library::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void Library::useLadder()

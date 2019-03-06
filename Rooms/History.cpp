@@ -39,35 +39,17 @@ void History::printIntro(){
 	cout << "# of the room. There is a bust of George Washington and a copy of the Bill of" << endl;
 	cout << "# Rights is mounted on the west wall. There is also a knife on one of the desks" << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void History::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'In reality, I probably should've paid a little more attention here." << endl;
-		cout << "# Aren't we doomed to repeat the past if we don't learn about it?' ...." << endl;
-		cout << "# The only way out seems to be back through the door I came in." << endl;
+		cout << "# 'Some rooms in this school are connected to others, but this one is not." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# This room is connected to the 2nd floor hallway, another area that gives you" << endl;
-	cout << "# access to many other rooms, like the locker room, literature room, and infirmary." << endl;
+	cout << "# The door back out to the hallway is on the east wall." << endl;
 	cout << "#" << endl;
-}
-
-int History::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void History::inspectBust()

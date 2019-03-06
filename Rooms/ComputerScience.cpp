@@ -40,35 +40,15 @@ void ComputerScience::printIntro(){
 	cout << "# north wall has some weird symbols and characters that you don't understand." << endl;
 	cout << "# Must be code." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void ComputerScience::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'I actually am somewhat envious of the com sci kids, they seem really smart" << endl;
-		cout << "# and they really have it made out for them career-wise.' This career path" << endl;
-		cout << "# has a lot to offer so you should keep this one in mind!" << endl;
+		cout << "# Only one way out of here, and that's back through the hallway." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# You vividly remember the math room being right next to the computer science room (makes sense)." << endl;
-	cout << "# You also remember the long hallway you have to take to get in the computer science room." << endl;
+	cout << "# To get back to the hallway, just head west." << endl;
+	cout << "#" << endl;
+	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }
-
-int ComputerScience::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
-}
-
-

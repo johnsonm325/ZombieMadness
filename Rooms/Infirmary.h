@@ -15,7 +15,5 @@ public:
 	Infirmary();
 	~Infirmary();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 };
 #endif

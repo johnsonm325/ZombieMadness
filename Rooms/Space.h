@@ -42,7 +42,6 @@ public:
 
 	string getType();
 	virtual void printIntro() = 0;		// For abstract class
-	virtual void printExitDesc() = 0;	// For abstract class
 	virtual int menu(vector<string>);	
 	virtual void firstTime();		
 	void setFirstTry(bool);

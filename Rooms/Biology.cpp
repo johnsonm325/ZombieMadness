@@ -35,6 +35,17 @@ void Biology::printIntro(){
 	cout << "# The room has a mixture of desks and tables and there are a good deal of dissected" << endl;
 	cout << "# animals in cases, plants and rocks scattered in the room." << endl;
 	cout << "#" << endl;
+	if (firstTry == true)
+	{
+		firstTime();
+		cout << "# The library and chemistry room are connected to this room. You can leave from there," << endl;
+		cout << "# or head out to the hallway." << endl;
+		cout << "#" << endl;
+	}
+
+	cout << "# The hallway is to your east, the chemistry room is to the south and the library is" << endl;
+	cout << "# north of your location." << endl;
+	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }
@@ -48,31 +59,3 @@ void Biology::setPlantsEaten()
 {
 	plantsEaten = true;
 }
-
-void Biology::printExitDesc()
-{
-	if (firstTry == true)
-	{
-		firstTime();
-		cout << "# 'Peace out frogs!  I can't wait to get away from that smell, horrid..." << endl;
-		cout << "# Yet, this entire place could not smell any worse thanks to my lovely dead" << endl;
-		cout << "# classmates and teachers!'" << endl;
-		cout << "#" << endl;
-	}
-
-	cout << "# 'I remember the library being really close to the Biology room, the Math room and" << endl;
-	cout << "# Chemistry room were close by here too.'" << endl;
-	cout << "#" << endl;
-}
-
-int Biology::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
-}
-

@@ -47,25 +47,13 @@ void Football::printIntro()
 		cout << "#" << endl;
 	}
 
+	if (firstTry == true) {
+		firstTime();
+		cout << "# Finally, the exit! I'm so close to getting out of here and back home." << endl;
+		cout << "#" << endl;
+	}
+	cout << "# The exit is through the football field to the gates at the south." << endl;
+	cout << "#" << endl;
 	cout << "# What do you do?" << endl;
 	cout << "#" << endl;
-}
-
-void Football::printExitDesc()
-{
-	cout << "# YOU DID IT!!!! Scott put up on hell of a fight but you didn't let that phase you!" << endl;
-	cout << "# As you run as far away from the school as possible, you look behind you and look at" << endl;
-	cout << "# the devestation. 'Worst day of school... EVER.'" << endl;
-	cout << "#" << endl;
-}
-
-int Football::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
 }

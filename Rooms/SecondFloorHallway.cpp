@@ -39,40 +39,20 @@ void SecondFloorHallway::printIntro(){
 	cout << "# Bulletin boards line the walls and there are lots of dead bodies strewn across" << endl;
 	cout << "# the floor." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void SecondFloorHallway::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
 		disableFirstTries();
-		cout << "# Oh man, the school is not holding up so well. 'I can't believe this is happening!!'" << endl;
-		cout << "# You realize that you can't just sit around, you need to explore to see how you can get the heck" << endl;
-		cout << "# out of here!" << endl;
-		cout << "#" << endl;
-		cout << "# There are many doors in the hallway leading to lots of different classrooms." << endl;
-		cout << "# Too many unknowns behind these doors, but I gotta go somewhere." << endl;
+		cout << "# Lots of classrooms and other rooms are connected to the hallway here. Six to be exact." << endl;
+		cout << "# To get to these rooms." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# This hallway gives you access to the history room, literature room, infirmary," << endl;
-	cout << "# and locker room. You can also head into the women's bathroom (no one is around" << endl;
-	cout << "# to judge you, Colt)." << endl;
+	cout << "# You can move north and south through the hallway to get to the rooms on the east and west." << endl;
+	cout << "# You can also head downstairs using the stairwell on the south side of the hallway." << endl;
 	cout << "#" << endl;
-}
-
-int SecondFloorHallway::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 //Function allows to print long intro only once for all rooms that share the same derived Space type

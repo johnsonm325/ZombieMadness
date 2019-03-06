@@ -16,8 +16,6 @@ public:
 	Math();
 	~Math();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 	void eatApple();
 	bool getAppleEaten();
 };

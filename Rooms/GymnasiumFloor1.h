@@ -14,7 +14,5 @@ public:
 	GymnasiumFloor1();
 	~GymnasiumFloor1();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 };
 #endif

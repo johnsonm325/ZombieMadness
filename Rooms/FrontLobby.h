@@ -14,7 +14,5 @@ public:
 	FrontLobby();
 	~FrontLobby();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 };
 #endif

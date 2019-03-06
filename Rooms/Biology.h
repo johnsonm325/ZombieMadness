@@ -18,8 +18,5 @@ public:
 	void printIntro();
 	bool getPlantsEaten();
 	void setPlantsEaten();
-	void printExitDesc();
-	int menu(vector<string>);
-
 };
 #endif

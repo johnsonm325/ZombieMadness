@@ -44,39 +44,18 @@ void Literature::printIntro(){
 	cout << "# Bookshelves line the north and south walls and a chalkboard is mounted" << endl;
 	cout << "# on the east wall. The teachers desk sits in front of the chalkboard" << endl;
 	cout << "# and desks in the middle of the floor face the chalkboard." << endl;
-
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void Literature::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'I'm gonna be able to write the world's best book after surviving this." << endl;
-		cout << "# I'll show Van Gogh who is really the best author!... Wait... was Van" << endl;
-		cout << "# Gogh an author or artist? ... Man, I should have tried harder." << endl;
+		cout << "# Here is a classroom that connects to another room. Some rooms do." << endl;
 		cout << "#" << endl;
-		cout << "# There are two doors here that can get me out of the room." << endl;
 	}
 
-	cout << "# You remember being able to access the locker room from here as sometimes" << endl;
-	cout << "# the sports teams would randomly come in being all obnoxious from there." << endl;
-	cout << "# The 2nd floor hallway is right outside too." << endl;
+	cout << "# You can exit to the hallway towards the west, or head south to another room." << endl;
 	cout << "#" << endl;
-}
-
-int Literature::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void Literature::inspectDesk()
