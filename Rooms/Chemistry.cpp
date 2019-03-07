@@ -1,6 +1,7 @@
 #include "Chemistry.h"
 #define KMAG  "\x1B[35m"
 #define RESET "\x1B[0m"
+#define KRED  "\x1B[31m"
 
 Chemistry::Chemistry() : Space("Chemistry")
 {
@@ -59,6 +60,14 @@ void Chemistry::printIntro(){
 
 	cout << "# The biology room is to the north and the hallway is out to the east." RESET << endl;
 	cout << "#" << endl;
+
+	if (didDieOnEnter)
+	{
+		cout << KRED "# Oh no! There is a zombie in here and you do not have any weapons to fight it with." << endl;
+		cout << "# It is too late to run and the zombie feasted on you, game over!" RESET << endl;
+		return;
+	}
+
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }

@@ -34,8 +34,7 @@ void Player::movetoRoom(Space* room){
 	// the player is dead and the game is over
 	if (enemy && enemy->isAlive() && !playerInventory->hasWeapon())
 	{
-		cout << KRED "# Oh no! You just entered the " << room->getType() << " room and there is a zombie in here." << endl;
-		cout << "# Unfortunately, your bag has no weapons in it at the zombie ate you!  Game over!" RESET << endl << endl;
+		room->killOnEnter();
 		player->die();
 		return; // we need to somehow jump to a game menu from here to start the game again
 	}

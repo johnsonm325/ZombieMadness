@@ -17,7 +17,8 @@ class Space
 protected:
 	bool doorLocked = false,
 		 firstTry = true,
-		 goneColt = false;
+		 goneColt = false,
+		 didDieOnEnter = false;
 
 	Space *north;		// Pointer to space for up
 	Space *east;		// Pointer to space for forward
@@ -66,6 +67,7 @@ public:
 	bool getDoorLocked();
 	void unlockDoor();
 	void lockDoor();
+	void killOnEnter();
 };
 
 #endif

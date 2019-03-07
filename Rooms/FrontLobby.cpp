@@ -1,6 +1,7 @@
 #include "FrontLobby.h"
 #define KMAG  "\x1B[35m"
 #define RESET "\x1B[0m"
+#define KRED  "\x1B[31m"
 
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {
@@ -62,6 +63,14 @@ void FrontLobby::printIntro(){
 	cout << "# Head west to get back to the hallway and east to head into the front office. You" << endl;
 	cout << "# can also head south to get into the math classroom." RESET << endl;
 	cout << "#" << endl;
+
+	if (didDieOnEnter)
+	{
+		cout << KRED "# Oh no! There is a zombie in here and you do not have any weapons to fight it with." << endl;
+		cout << "# It is too late to run and the zombie feasted on you, game over!" RESET << endl;
+		return;
+	}
+
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }

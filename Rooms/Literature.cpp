@@ -1,6 +1,7 @@
 #include "Literature.h"
 #define KMAG  "\x1B[35m"
 #define RESET "\x1B[0m"
+#define KRED  "\x1B[31m"
 
 Literature::Literature() : Space("Literature")
 {
@@ -31,7 +32,7 @@ void Literature::printIntro(){
 	if (firstTry == true)
 	{
 		if (zombie->isAlive()) {
-			cout << KMAG "# You look across the room and see two zombie that simultaneously look up" << endl;
+			cout << KMAG "# You look across the room and see two zombies that simultaneously look up" << endl;
 			cout << "# to notice you. They begin to make a direct move towards you, paying no" << endl;
 			cout << "# regard for the desks between you and them." << endl; 
 		}
@@ -56,6 +57,14 @@ void Literature::printIntro(){
 
 	cout << "# You can exit to the hallway towards the west, or head south to another room." RESET << endl;
 	cout << "#" << endl;
+
+	if (didDieOnEnter)
+	{
+		cout << KRED "# Oh no! There is a zombie in here and you do not have any weapons to fight it with." << endl;
+		cout << "# It is too late to run and the zombie feasted on you, game over!" RESET << endl;
+		return;
+	}
+
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }

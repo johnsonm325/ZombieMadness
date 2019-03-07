@@ -1,6 +1,7 @@
 #include "Football.h"
 #define KMAG  "\x1B[35m"
 #define RESET "\x1B[0m"
+#define KRED  "\x1B[31m"
 
 Football::Football() : Space("Football Field")
 {
@@ -56,6 +57,14 @@ void Football::printIntro()
 	}
 	cout << "# The exit is through the football field to the gates at the south." RESET << endl;
 	cout << "#" << endl;
+
+	if (didDieOnEnter)
+	{
+		cout << KRED "# Oh no! There is a zombie in here and you do not have any weapons to fight it with." << endl;
+		cout << "# It is too late to run and the zombie feasted on you, game over!" RESET << endl;
+		return;
+	}
+
 	cout << "# What do you do?" << endl;
 	cout << "#" << endl;
 }
