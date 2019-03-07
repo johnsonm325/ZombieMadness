@@ -58,6 +58,14 @@ void GameState::updateTime() {
 	timeStamp = str;
 }
 
+bool GameState::getGameWon(){
+	return isGameWon;
+}
+
+void GameState::setGameWon(bool won){
+	isGameWon = won;
+}
+
 void GameState::connectRooms() {
 	addRoom('s', wb, mb);
 	addRoom('w', sfh1, mb);

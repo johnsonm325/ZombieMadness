@@ -175,7 +175,6 @@ void School::beginGame()
 		{
 			case 1:
 				loadState(stateManager->getNewGameState(), false);
-				isGameWon = false;
 				playGame();
 				break;
 
@@ -909,12 +908,6 @@ vector<Space*> School::getRoomsList() {
 	return rooms;
 }
 
-void School::setupPlayer(){
-
-	player->clearInventory();
-	player->movetoRoom(currentRoom);
-}
-
 int School::getRoomIdx(Space* room){
 	for (int i = 0; i < (int)rooms.size(); i++) {
 		if(rooms[i] == room){
@@ -927,35 +920,38 @@ int School::getRoomIdx(Space* room){
 GameState* School::createState(){
 	GameState* newState = new GameState();
 
+	newState->setSteps(steps);
 	newState->updateTime();	
+	newState->setGameWon(isGameWon);
+
+	//Rooms
 	newState->setCurrentRoom(getRoomIdx(currentRoom));
 	vector<Space*> stateRooms = newState->getRoomsList();
 	newState->copyRooms(stateRooms, this->rooms);
+	//Player
 	newState->copyPlayer(newState->getPlayer(), this->player);
-
 	// newState->compareRooms(stateRooms, this->rooms);
 	// newState->comparePlayer(newState->getPlayer(), this->player);
-
-	newState->setSteps(steps);
-
+	
 	return newState;
 }
 
 void School::loadState(GameState* loadState, bool printIntro = true){
 	if(loadState == NULL) { return; }
 
-	//Set current room by index
+	steps = loadState->getSteps();		//Set steps
+	isGameWon = loadState->getGameWon();
+
+	//Load rooms
 	int curRoomIdx = loadState->getRoomIdx();	
 	currentRoom = rooms[curRoomIdx];
-
 	vector<Space*> stateRooms = loadState->getRoomsList();
 	loadState->copyRooms(this->rooms, stateRooms);
-	loadState->copyPlayer(this->player, loadState->getPlayer());
 
+	//Load player
+	loadState->copyPlayer(this->player, loadState->getPlayer());
 	// loadState->compareRooms(this->rooms, stateRooms);
 	// loadState->comparePlayer(this->player, loadState->getPlayer());
-
-	steps = loadState->getSteps();		//Set steps
 
 	//Loading finished
 	player->movetoRoom(currentRoom);

@@ -91,9 +91,6 @@ public:
 	vector<Space*> getRoomsList();
 	int getRoomIdx(Space*);
 
-	//Player methods
-	void setupPlayer();
-
 	//State methods
 	GameState* createState();
 	void loadState(GameState* loadState, bool printIntro);

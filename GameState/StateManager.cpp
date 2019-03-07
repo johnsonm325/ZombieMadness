@@ -136,23 +136,27 @@ GameState* StateManager::readSaveFile(string filename) {
 }
 
 GameState* StateManager::processFileData(vector<string> lines) {
+	/*
+		fprintf(saveFile, "Filename: %s\n", filename.c_str());
+		fprintf(saveFile, "Time_stamp: %s\n", state->getTime().c_str());
+		fprintf(saveFile, "Current_room: %s\n", state->getCurrentRoom()->getType().c_str());
+		fprintf(saveFile, "Room_idx: %d\n", state->getRoomIdx());
+		fprintf(saveFile, "Steps: %d\n", state->getSteps());
+		fprintf(saveFile, "Game_won: %d\n", state->getGameWon());
+	*/
 	GameState* newState = new GameState();
+	int i;
 	string invalidFile = "Error reading save file! Invalid format";
-	string headerKeys[3];
 	size_t foundRooms, 
-		   foundHeader[3];
+		   foundHeader[4];
 	vector<string>::iterator line; 
-
-	headerKeys[0] = "Time_stamp:";
-	headerKeys[1] = "Current_room:";
-	headerKeys[2] = "Room_idx:";
-	foundHeader[0] = lines[1].find(headerKeys[0]);
-	foundHeader[1] = lines[2].find(headerKeys[1]);
-	foundHeader[2] = lines[3].find(headerKeys[2]);
-
+	string headerKeys[] = {"Time_stamp:", "Current_room:", "Room_idx:", "Game_won:"};
+	for(i = 0; i < 4; i++){
+		foundHeader[i] = lines[i+1].find(headerKeys[i]);
+	}
 	//Didn't find file header
 	if ((foundHeader[0] == std::string::npos) || (foundHeader[1] == std::string::npos) ||
-		(foundHeader[2] == std::string::npos)){	
+		(foundHeader[2] == std::string::npos) || (foundHeader[3] == std::string::npos) ){	
 		cout << invalidFile << endl;
 		delete newState;
 		return NULL;		
@@ -161,20 +165,43 @@ GameState* StateManager::processFileData(vector<string> lines) {
 	//Found it
 	else {
 		// Save header first 
-		string newTime = lines[1].substr(foundHeader[0] + headerKeys[0].length());
-
-		//Adding header info to state object;
-		int rIdx, i;
-		int numValidRooms = 0;
+		int readValue, numValidRooms = 0;
 		bool readSuccess;
 		vector<Space*> rooms = newState->getRoomsList();
 
-		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
-		newState->setCurrentRoom(rIdx);
-		newState->setTime(newTime);
-
 		line = lines.begin();
-		line +=6;
+		line++;		//Skip filename line
+
+		//Set time
+		string newTime =  readStrValue(line, "Time_stamp:");
+		if(newTime.length() == 0){
+			cout << invalidFile << endl;
+			delete newState;
+			return NULL;	
+		}
+		else{
+			newState->setTime(newTime);
+		}
+
+		line +=2; //Skip room name, steps lines
+		readValue = readInt(line, "Room_idx");
+		if(readValue != -1){
+			newState->setCurrentRoom(rIdx);
+		}
+		else{ 
+			delete newState;
+			return NULL;
+		}
+
+		readValue = readInt(line, "Game_won");
+		if(readValue != -1){
+			newState->setGameWon((bool)readValue);
+		}
+		else{ 
+			delete newState;
+			return NULL;
+		}
+		line++;
 
 		while(line != lines.end()){
 			foundRooms = (*line).find("<Rooms>");
@@ -676,6 +703,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 		fprintf(saveFile, "Current_room: %s\n", state->getCurrentRoom()->getType().c_str());
 		fprintf(saveFile, "Room_idx: %d\n", state->getRoomIdx());
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
+		fprintf(saveFile, "Game_won: %d\n", state->getGameWon());
 		vector<Space*> rooms = state->getRoomsList();
 
 		fprintf(saveFile, "\n<Rooms>\n");
