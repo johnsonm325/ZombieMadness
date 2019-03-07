@@ -165,7 +165,8 @@ GameState* StateManager::processFileData(vector<string> lines) {
 	//Found it
 	else {
 		// Save header first 
-		int readValue, numValidRooms = 0;
+		int readValue = -1, 
+			numValidRooms = 0;
 		bool readSuccess;
 		vector<Space*> rooms = newState->getRoomsList();
 
@@ -186,7 +187,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		line +=2; //Skip room name, steps lines
 		readValue = readInt(line, "Room_idx");
 		if(readValue != -1){
-			newState->setCurrentRoom(rIdx);
+			newState->setCurrentRoom(readValue);
 		}
 		else{ 
 			delete newState;
