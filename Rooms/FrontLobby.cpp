@@ -67,7 +67,7 @@ void FrontLobby::printIntro(){
 	if (didDieOnEnter)
 	{
 		cout << KRED "# Oh no! There is a zombie in here and you do not have any weapons to fight it with." << endl;
-		cout << "# It is too late to run and the zombie feasted on you, game over!" RESET << endl;
+		cout << "# It is too late to run and the zombie feasted on you, game over!" RESET << endl << endl;
 		return;
 	}
 
