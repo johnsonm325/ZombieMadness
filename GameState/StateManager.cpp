@@ -147,106 +147,92 @@ GameState* StateManager::processFileData(vector<string> lines) {
 	GameState* newState = new GameState();
 	int i;
 	string invalidFile = "Error reading save file! Invalid format";
-	size_t foundRooms, 
-		   foundHeader[4];
+	size_t foundRooms;		   
 	vector<string>::iterator line; 
-	string headerKeys[] = {"Time_stamp:", "Current_room:", "Room_idx:", "Game_won:"};
-	for(i = 0; i < 4; i++){
-		foundHeader[i] = lines[i+1].find(headerKeys[i]);
-	}
-	//Didn't find file header
-	if ((foundHeader[0] == std::string::npos) || (foundHeader[1] == std::string::npos) ||
-		(foundHeader[2] == std::string::npos) || (foundHeader[3] == std::string::npos) ){	
-		cout << invalidFile << endl;
+	
+	// Parser header first 
+	int readValue = -1, 
+		numValidRooms = 0;
+	bool readSuccess;
+	vector<Space*> rooms = newState->getRoomsList();
+	line = lines.begin();
+	line++;		//Skip filename line
+
+	//Set time
+	string newTime =  readStrValue(line, "Time_stamp:");
+	if(newTime.length() == 0){
 		delete newState;
-		return NULL;		
+		return NULL;	
+	}
+	else{
+		newState->setTime(newTime);
 	}
 
-	//Found it
-	else {
-		// Save header first 
-		int readValue = -1, 
-			numValidRooms = 0;
-		bool readSuccess;
-		vector<Space*> rooms = newState->getRoomsList();
+	line +=2; //Skip room name, steps lines
+	readValue = readInt(line, "Room_idx");
+	if(readValue != -1){
+		newState->setCurrentRoom(readValue);
+	}
+	else{ 
+		delete newState;
+		return NULL;
+	}
 
-		line = lines.begin();
-		line++;		//Skip filename line
+	readValue = readInt(line, "Game_won");
+	if(readValue != -1){
+		newState->setGameWon((bool)readValue);
+	}
+	else{ 
+		delete newState;
+		return NULL;
+	}
+	line++;
+	cout << *line << endl;
+	line++;
+	cout << *line << endl;
 
-		//Set time
-		string newTime =  readStrValue(line, "Time_stamp:");
-		if(newTime.length() == 0){
-			cout << invalidFile << endl;
-			delete newState;
-			return NULL;	
-		}
-		else{
-			newState->setTime(newTime);
-		}
-
-		line +=2; //Skip room name, steps lines
-		readValue = readInt(line, "Room_idx");
-		if(readValue != -1){
-			newState->setCurrentRoom(readValue);
-		}
-		else{ 
-			delete newState;
-			return NULL;
-		}
-
-		readValue = readInt(line, "Game_won");
-		if(readValue != -1){
-			newState->setGameWon((bool)readValue);
-		}
-		else{ 
-			delete newState;
-			return NULL;
-		}
-		line++;
-
-		while(line != lines.end()){
-			foundRooms = (*line).find("<Rooms>");
-			//Found rooms section in file, start processing room data
-			if(foundRooms != std::string::npos){
-				for(i = 0; i < (int)rooms.size(); i++){
-					readSuccess = readRoom(line, rooms[i]);
-					if(readSuccess == false){
-#ifdef STATE_DEBUG
-						cout << invalidFile << endl;
-#endif						
-						delete newState;
-						return NULL;
-					}
-					else{
-						numValidRooms++;
-					}
-				}
-			}
-			else{	//If all rooms weren't read, read state is not valid, so return NULL	
-				if(numValidRooms < ((int)rooms.size() - 1)){				
+	while(line != lines.end()){
+		foundRooms = (*line).find("<Rooms>");
+		//Found rooms section in file, start processing room data
+		if(foundRooms != std::string::npos){
+			for(i = 0; i < (int)rooms.size(); i++){
+				readSuccess = readRoom(line, rooms[i]);
+				if(readSuccess == false){
 #ifdef STATE_DEBUG
 					cout << invalidFile << endl;
-#endif
+#endif						
 					delete newState;
 					return NULL;
 				}
-				//All states read were valid, so now read player's data
 				else{
-					readSuccess = readPlayer(line, newState->getPlayer());
-					if(readSuccess){
-						break;
-					}					
-					else{
-#ifdef STATE_DEBUG
-						cout << invalidFile << endl;
-#endif						
-						delete newState;
-						return NULL;
-					}
+					numValidRooms++;
 				}
 			}
-			line++;
 		}
+		else{	//If all rooms weren't read, read state is not valid, so return NULL	
+			if(numValidRooms < ((int)rooms.size() - 1)){				
+#ifdef STATE_DEBUG
+				cout << invalidFile << endl;
+#endif
+				delete newState;
+				return NULL;
+			}
+			//All states read were valid, so now read player's data
+			else{
+				readSuccess = readPlayer(line, newState->getPlayer());
+				if(readSuccess){
+					break;
+				}					
+				else{
+#ifdef STATE_DEBUG
+					cout << invalidFile << endl;
+#endif						
+					delete newState;
+					return NULL;
+				}
+			}
+		}
+		line++;
 	}
 	return newState;
 }
