@@ -228,7 +228,7 @@ void GameState::copyRooms(vector<Space*> &dest, const vector<Space*> &source){
 			dest[i]->unlockDoor();
 		}
 		dest[i]->setFirstTry(source[i]->getFirstTry());
-		dest[i]->setColtGone(source[i]->coltGone());
+		dest[i]->setDieOnEnter(source[i]->getDieOnEnter());
 
 		//Copying derived room class booleans next
 		if(source[i]->getType() == "Biology"){
@@ -286,7 +286,7 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 	int i;
 
 	//Create vector of all movable objects(copies) in the room
-	for(i = 0; i < (int) sourceItems.size(); i++){
+	for(i = 0; i < (int)sourceItems.size(); i++){
 		if(sourceItems[i]->isMovable()){
 			Item* newItem = GameState::createItem(sourceItems[i]->getName());
 			movableItems.push_back(newItem);
@@ -296,7 +296,7 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 	if(source->getInventoryType() != "Player")
 	{
 		//Remove all movable objects in dest0 inventory for a clear slate
-		for(i = 0; i < (int) destItems.size(); i++){
+		for(i = 0; i < (int)destItems.size(); i++){
 			if(destItems[i]->isMovable()){
 				dest->removeItem(destItems[i]);
 			}
@@ -315,6 +315,15 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 		//Update size, if needed
 		if(source0->getSize() > 7){
 			dest0->increaseSize();
+		}
+		else{
+			dest0->setInitialSize();
+		}
+		//Remove all movable objects in inventory for a clear slate
+		for(i = 0; i < (int)destItems.size(); i++){
+			if(destItems[i]->isMovable()){
+				dest0->removeItem(destItems[i], true);
+			}
 		}
 		//Add all movable objects in source inventory to dest inventory
 		for(i = 0; i < (int)movableItems.size(); i++){
@@ -379,9 +388,7 @@ Item* GameState::createItem(string name){
 
 void GameState::copyCreature(Creature* destCr, Creature* sourceCr){
 	if( sourceCr != NULL && sourceCr != NULL ){
-		if(sourceCr->isAlive() == false){
-			destCr->die();
-		}
+		destCr->setAlive(sourceCr->isAlive());
 		destCr->setHealth(sourceCr->getHealth());
 		destCr->setDefense(sourceCr->getDefense());
 	}
@@ -415,7 +422,7 @@ void GameState::compareRooms(const vector<Space*> &dest, const vector<Space*> &s
 
 		printComparison("Room:", source[i]->getType(), "doorLocked", dest[i]->getDoorLocked(), source[i]->getDoorLocked());
 		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->getFirstTry(), source[i]->getFirstTry());
-		printComparison("Room:", source[i]->getType(), "firstTry", dest[i]->coltGone(), source[i]->coltGone());
+
 
 		//Copying derived room class booleans next
 		if(source[i]->getType() == "Biology"){

@@ -1,7 +1,4 @@
 #include "GymnasiumFloor1.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
-#define KRED  "\x1B[31m"
 
 GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
 {

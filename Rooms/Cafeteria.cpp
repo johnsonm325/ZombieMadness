@@ -1,6 +1,4 @@
 #include "Cafeteria.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
 
 Cafeteria::Cafeteria() : Space("Cafeteria")
 {
@@ -16,15 +14,17 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	description = "# A solitary sloppy joe sandwich sits on the table. It looks so tasty here in\n# lunch lady land.";
 	name = "sloppy joe";
 	sloppyJoe->setDummyItem(description, name);
+	text = "# You take the sandwich, and enjoy it's delicious meaty flavor. Your mouth is covered in leftover sauce. That hit the spot!";
+    sloppyJoe->setAction(text, Eat);
 	roomInventory->addItem(sloppyJoe);
 
 	vendingMachine = new Item();
-        description = "# There is a vending machine against the west wall. It is full of snacks.\n# It appears to be broken; like you can just push buttons for free snacks!";
-        name = "vending machine";
-        vendingMachine->setDummyItem(description, name);
-        text = "# You push a button and a snack drops";
-        vendingMachine->setAction(text, Use);
-        roomInventory->addItem(vendingMachine);
+	description = "# There is a vending machine against the west wall. It is full of snacks.\n# It appears to be broken; like you can just push buttons for free snacks!";
+	name = "vending machine";
+	vendingMachine->setDummyItem(description, name);
+	text = "# You push a button and a snack drops";
+	vendingMachine->setAction(text, Use);
+	roomInventory->addItem(vendingMachine);
 }
 
 Cafeteria::~Cafeteria(){

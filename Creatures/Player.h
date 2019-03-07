@@ -4,12 +4,14 @@
 #include "../Rooms/Space.h"
 #include "Zombie.h"
 #include "../Items/PlayerInventory.h"
-#include "../Items/Inventory.h"
+#include "../Items/Color.h"
 
 #include <string>
 #include <stdlib.h>
 using std::string;
 using std::cin;
+using std::cout;
+using std::endl;
 using std::getline;
 using std::transform;
 
@@ -21,7 +23,7 @@ private:
 	Zombie *enemy = NULL; 	// passed in enemy
 	Creature *player = NULL;	//Actual player's data
 	Space* currentRoom = NULL;
-	Item* selectedWeapon = NULL;
+
 public:
 	Player();
 	~Player();
@@ -38,7 +40,6 @@ public:
 	Item* selectItem(string item);
 	Creature* getPlayer();
 	void printStats();
-	Item* getSelectedWeapon();
 };
 
 #endif

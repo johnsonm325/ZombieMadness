@@ -1,7 +1,4 @@
 #include "FrontLobby.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
-#define KRED  "\x1B[31m"
 
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {

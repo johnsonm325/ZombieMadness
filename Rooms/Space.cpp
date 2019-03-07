@@ -85,16 +85,6 @@ bool Space::getFirstTry()
 	return firstTry;
 }
 
-bool Space::coltGone()
-{
-	return goneColt;
-}
-
-void Space::setColtGone(bool gone)
-{
-	goneColt = gone;
-}
-
 void Space::addRoomsListToSpace(vector<Space*> roomsVector)
 {
 	for(unsigned int i = 0; i < roomsVector.size(); i++)
@@ -195,17 +185,20 @@ void Space::printDirections(){
 	for(int i = 0; i < (int)exits.size(); i++){
 		if(exits[i] == getEast()){
 			cout << "East: ";
+			printDirection(exits[i]);
 		}
-		if(exits[i] == getWest()){
+		else if(exits[i] == getWest()){
 			cout << "West: "; 
+			printDirection(exits[i]);
 		}
-		if(exits[i] == getSouth()){
+		else if(exits[i] == getSouth()){
 			cout << "South: "; 
+			printDirection(exits[i]);
 		}
-		if(exits[i] == getNorth()){
-			cout << "North: "; 
+		else if(exits[i] == getNorth()){
+			cout << "North: ";
+			printDirection(exits[i]); 
 		}
-		printDirection(exits[i]);
 	}
 }
 
@@ -239,5 +232,13 @@ void Space::lockDoor()
 void Space::killOnEnter()
 {
 	didDieOnEnter = true;
+}
+
+bool Space::getDieOnEnter(){
+	return didDieOnEnter;
+}
+
+void Space::setDieOnEnter(bool die){
+	didDieOnEnter = die;
 }
 

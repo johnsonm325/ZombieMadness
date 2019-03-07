@@ -1,6 +1,4 @@
 #include "SecondFloorHallway.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
 
 SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
 {

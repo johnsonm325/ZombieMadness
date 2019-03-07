@@ -1,6 +1,4 @@
 #include "WomensBathroom.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
 
 WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 {

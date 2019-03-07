@@ -17,7 +17,6 @@ class Space
 protected:
 	bool doorLocked = false,
 		 firstTry = true,
-		 goneColt = false,
 		 didDieOnEnter = false;
 
 	Space *north;		// Pointer to space for up
@@ -47,8 +46,6 @@ public:
 	virtual void firstTime();		
 	void setFirstTry(bool);
 	bool getFirstTry();	
-	bool coltGone();
-	void setColtGone(bool gone);
 
 	void addRoomsListToSpace(vector<Space*>);	
 	Space* findRoom(string);
@@ -68,6 +65,8 @@ public:
 	void unlockDoor();
 	void lockDoor();
 	void killOnEnter();
+	bool getDieOnEnter();
+	void setDieOnEnter(bool die);
 };
 
 #endif

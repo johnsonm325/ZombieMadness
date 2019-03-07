@@ -1,6 +1,4 @@
 #include "History.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
 
 History::History() : Space("History")
 {

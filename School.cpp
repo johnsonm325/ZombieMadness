@@ -1,13 +1,4 @@
 #include "School.h"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
-#define RESET "\x1B[0m"
-
 
 School::School()
 {
@@ -229,10 +220,6 @@ int School::playGame()
 		getline(cin, choice);
 		cout << "#" << endl;
 		processCommand(parser, choice);
-
-		//if (commandVect.size() != 0) {
-		//	currentRoom->menu(commandVect);
-		//}
 		
 	} while (choice != "q" && choice != "quit" && choice != "exit" && !isGameOver(isGameWon, player->getPlayer()));
 
@@ -288,15 +275,15 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					}
 				}
 				else if(static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false){
-					if(cmd == "go south" || cmd == "south"){
+					if(cmd == "go south" || cmd == "south" || cmd == "go women's bathroom" || cmd == "women's bathroom"){
 						cout << KRED "# You can't go that direction." RESET << endl;
 						return;
 					}
 				}
-            		}
+      }
 	
 			if(currentRoom->getType() == "Second Floor Hallway"){
-				if ((wb->getDoorLocked() == true) && (cmd == "go east" || cmd == "east" || cmd == "go women's bathroom" || cmd =="women's bathroom" )
+				if ((wb->getDoorLocked() == true) && (cmd == "go east" || cmd == "east" || cmd == "go women's bathroom" || cmd == "women's bathroom")
 					  && (currentRoom->getEast() != NULL)) {
 					Space *tempRoom;
 					tempRoom = currentRoom->getEast();
@@ -306,7 +293,8 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						}
 				}
 			
-				if ((infr->getDoorLocked() == true) && ( cmd == "go west" || cmd == "west" ) && (currentRoom->getWest() != NULL)) {
+				if ((infr->getDoorLocked() == true) && ( cmd == "go west" || cmd == "west" || cmd == "go infirmary" || cmd == "infirmary")
+						&& (currentRoom->getWest() != NULL)) {
 					Space *tempRoom;
 					tempRoom = currentRoom->getWest();
 						if (tempRoom->getType() == "Infirmary") {
@@ -316,7 +304,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 			}
 			
-			if((currentRoom->getType() == "Women's Bathroom") && ( cmd == "go west" || cmd == "west" )) {
+			if((currentRoom->getType() == "Women's Bathroom") && ( cmd == "go west" || cmd == "west" || cmd == "go second floor hallway" || cmd == "second floor hallway")) {
 				currentRoom->unlockDoor();
       }
 
@@ -331,20 +319,20 @@ void School::processCommand(CmdParser* parser, string cmd) {
 
 			if(currentRoom->getType() == "Chemistry"){
 				if (static_cast<Chemistry*>(currentRoom)->getHoleVisible() == true) {
-					if(cmd == "go hole" || cmd == "go south" || cmd == "south") {
+					if(cmd == "go hole" || cmd == "go south" || cmd == "south" || cmd == "go infirmary" || cmd == "infirmary") {
 						moveRooms(cmdVector, "south");
 						return;
 					}
 				}
 				else if(static_cast<Chemistry*>(currentRoom)->getHoleVisible() == false){
-					if(cmd == "go hole" || cmd == "go south" || cmd == "south") {
+					if(cmd == "go hole" || cmd == "go south" || cmd == "south" || cmd == "go infirmary" || cmd == "infirmary") {
 						cout << KRED "# You can't go that direction." RESET << endl;
 						return;
 					}
 				}
       }	
 			
-			if((currentRoom->getType() == "Infirmary") && (cmd == "go east")) {
+			if((currentRoom->getType() == "Infirmary") && (cmd == "go east" || cmd == "east" || cmd == "go second floor hallway" || cmd == "second floor hallway")) {
 				currentRoom->unlockDoor();
       }
 
@@ -447,7 +435,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			}
 			
 			if(currentRoom->getType() == "Front Office") {
-				if(item == "PA system") {
+				if(item == "pa system") {
 					static_cast<FrontOffice*>(currentRoom)->usePA();
 				}
 			}
@@ -474,11 +462,10 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			if (currentRoom->getType() == "Cafeteria") {
 				if(item == "food") {
 					static_cast<Cafeteria*>(currentRoom)->throwFood();
+					doItemAction(foundCmd->getType(), cmdVector);		
 					return;
 				}
 			}
-
-			cout << "#\n# Throwing item" << endl;
 			doItemAction(foundCmd->getType(), cmdVector);		
 		}
 		if (foundCmd->getType() == "push") {
@@ -556,7 +543,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		if (foundCmd->getType() == "cut") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
 			
-			cout << "\nCutting something with a weapon?" << endl;
 			if (currentRoom->getType() == "Gymnasium Second Floor") {
 				if(item == "ropes") {
 					doItemAction(foundCmd->getType(), cmdVector);
@@ -578,11 +564,9 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			player->defend();
 		}
 		if (foundCmd->getType() == "open") {
-			cout << "#\n# Opening..." << endl;
-
 			//Opening rooms
 			if(currentRoom->getType() == "Gymnasium First Floor"){
-				if(cmd == "open Football Field" || cmd == "open football field"){
+				if(cmd == "open football field"){
 					//Try to select item from player's inventory
 					Item* selectedItem = player->getInventory()->selectItem("key");	
 					if(selectedItem != NULL){

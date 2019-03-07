@@ -295,9 +295,9 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 		return false;	
 	}
 
-	readValue = readInt(line, "Colt_gone");
-	if(readValue != -1){
-		room->setColtGone((bool)readValue);	
+	readValue = readInt(line, "Die_on_enter");
+	if(readValue != -1){	
+		room->setDieOnEnter((bool)readValue);	
 	}
 	else{ 
 		return false;	
@@ -546,9 +546,7 @@ Health: 0
 					line +=3;		//go to Type and Name lines
 					readValue = readInt(line, "IsAlive");
 					if(readValue != -1){
-						if(readValue == 0){	//dead creature
-							creature->die();			//Make creature die
-						}
+						creature->setAlive((bool)readValue);
 					}
 					else{ 
 						isValid = false;
@@ -640,6 +638,7 @@ bool StateManager::startSavingGame(GameState* state) {
 		printStates();
 		return true;
 	}
+	delete state;
 	return false;
 }
 
@@ -708,7 +707,7 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 	//Writing Space class booleans
 	fprintf(saveFile, "Locked_door: %d\n", (int)room->getDoorLocked());
 	fprintf(saveFile, "First_try: %d\n", (int)room->getFirstTry());
-	fprintf(saveFile, "Colt_gone: %d\n", (int)room->coltGone());
+	fprintf(saveFile, "Die_on_enter: %d\n", (int)room->getDieOnEnter());
 
 	//Writing derived room class booleans
 	if(room->getType() == "Biology"){

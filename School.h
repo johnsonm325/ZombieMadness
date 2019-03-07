@@ -60,7 +60,6 @@ private:
 	Space *ffh1, *ffh2, *ffh3, *ffh4;
 	Space *fl, *fo, *prin;
 	vector<Space*> rooms;
-	vector<string> commandVect;
 
 	CmdParser* parser = new CmdParser();
 	Player* player = new Player();
