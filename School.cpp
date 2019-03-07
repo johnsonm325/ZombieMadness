@@ -147,9 +147,19 @@ void School::beginGame()
 	int menuChoice;
 	GameState* stateToLoad = NULL;
 
-	cout << KCYN "		----------- ZOMBIE MADDNESS --------------" << endl;
+	cout << KCYN "			----------- ZOMBIE MADDNESS --------------" << endl;
+	cout << "	A game by Jeremy Einhorn, Michael Johnson, and Artem Slivka" << endl << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
-	cout << endl << endl << "Interesting." RESET << endl;
+	cout << endl << endl << "Interesting." << endl << endl;
+
+	cout << "The objective is to get through the school while efficiently balancing your inventory" << endl;
+	cout << "in order to get to the end where you will use those items to defeat your biggest foe!" << endl << endl;
+	cout << "It is critical you save game often.  If you do not save and you die in game or totally quit the program," << endl;
+	cout << "you will be forced to start a new game entirely." << endl << endl;
+	cout << "As a final reminder, remember to be smart with your invetory management!" << endl;
+	cout << "Just carrying only weapons or only picking up the few first items you come across" << endl;
+	cout << "may bode really badly for you later in the game!" << endl << endl;
+
 
 	while (menuChoice != 3)
 	{
@@ -174,7 +184,7 @@ void School::beginGame()
 		{
 			case 1:
 				loadState(stateManager->getNewGameState(), false);
-				//setupPlayer();
+				isGameWon = false;
 				playGame();
 				break;
 
@@ -195,12 +205,24 @@ void School::beginGame()
 	}
 }
 
+bool isGameOver(bool isGameWon, Creature *player)
+{
+	if (isGameWon)
+		return true;
+	
+	else if (!player->isAlive())
+		return true;
+
+	return false;
+}
+
 int School::playGame()
 {
 	cout << "###################################################" << endl;
 	cout << "# You are in the " << currentRoom->getType() << endl;
 	cout << "#" << endl;
 	currentRoom->printIntro();
+	
 	do 
 	{
 		cout << "#\n# Please enter choice: ";
@@ -212,7 +234,7 @@ int School::playGame()
 		//	currentRoom->menu(commandVect);
 		//}
 		
-	} while (choice != "q" && choice != "quit" && choice !="exit");
+	} while (choice != "q" && choice != "quit" && choice != "exit" && !isGameOver(isGameWon, player->getPlayer()));
 
 	return 0;
 }
@@ -255,7 +277,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		//Syntax: go <direction> 
 		if (foundCmd->getType() == "go") {
 			if (currentRoom->getZombie() && currentRoom->getZombie()->isAlive()) {
-				cout << "# You cannot leave until the zombie is destroyed!" << endl;
+				cout << KRED "# You cannot leave until the zombie is destroyed!" RESET << endl;
 				return;
 			}
 			if(currentRoom->getType() == "Men's Bathroom"){
@@ -267,7 +289,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 				else if(static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false){
 					if(cmd == "go south" || cmd == "south"){
-						cout << "# You can't go that direction." << endl;
+						cout << KRED "# You can't go that direction." RESET << endl;
 						return;
 					}
 				}
@@ -296,7 +318,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			if((currentRoom->getType() == "Women's Bathroom") && ( cmd == "go west" || cmd == "west" )) {
 				currentRoom->unlockDoor();
-            }
+      }
 
 			if(currentRoom->getType() == "Gymnasium First Floor"){
 				if( cmd == "south" || cmd == "go south" || cmd == "go football field" || cmd == "football field"){
@@ -316,15 +338,15 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 				else if(static_cast<Chemistry*>(currentRoom)->getHoleVisible() == false){
 					if(cmd == "go hole" || cmd == "go south" || cmd == "south") {
-						cout << "# You can't go that direction." << endl;
+						cout << KRED "# You can't go that direction." RESET << endl;
 						return;
 					}
 				}
-            		}	
+      }	
 			
 			if((currentRoom->getType() == "Infirmary") && (cmd == "go east")) {
 				currentRoom->unlockDoor();
-            }
+      }
 
 			moveRooms(cmdVector, cmd);
 		}
@@ -484,7 +506,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			if (currentRoom->getType() == "Biology") {
 				if(item == "plants" && static_cast<Biology*>(currentRoom)->getPlantsEaten() == false) {
-					srand(time(NULL));
 					int randNum = (rand() % 2) + 1;
 
 					if(randNum == 1) {
@@ -546,7 +567,12 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "attack") {
-			player->attackEnemy();
+			if(currentRoom->getType() != "Football Field"){
+				player->attackEnemy();
+			}
+			else{
+				startFinalFight();
+			}
 		}
 		if (foundCmd->getType() == "block") {
 			player->defend();
@@ -721,7 +747,7 @@ Space *School::moveEast()
 {
 	if (currentRoom->getEast() == NULL)
 	{
-		cout << "# move east, You can't go that direction." << endl;
+		cout << KRED "# You can't go that direction." RESET << endl;
 		return NULL;
 	}
 	else
@@ -735,7 +761,7 @@ Space *School::moveWest()
 {
 	if (currentRoom->getWest() == NULL)
 	{
-		cout << "# move west, You can't go that direction." << endl;
+		cout << KRED "# You can't go that direction." RESET << endl;
 		return NULL;
 	}
 	else
@@ -749,7 +775,7 @@ Space *School::moveNorth()
 {
 	if (currentRoom->getNorth() == NULL)
 	{
-		cout << "# move north, You can't go that direction." << endl;
+		cout << KRED "# You can't go that direction." RESET << endl;
 		return NULL;
 	}
 	else
@@ -763,7 +789,7 @@ Space *School::moveSouth()
 {
 	if (currentRoom->getSouth() == NULL)
 	{
-		cout << "# move south, You can't go that direction." << endl;
+		cout << KRED "# You can't go that direction." RESET << endl;
 		return NULL;
 	}
 	else
@@ -956,3 +982,50 @@ void School::loadState(GameState* loadState, bool printIntro = true){
 		currentRoom->printIntro();
 	}
 }
+
+void School::startFinalFight(){
+
+		Zombie* boss = currentRoom->getZombie();
+
+		while (player->getPlayer()->isAlive())
+		{
+			int curBossHealth = boss->getHealth();
+			
+			if (!player->getInventory()->hasWeapon())
+			{
+				cout << KRED "# Oh no, you ran out of weapons! Scott got you!" RESET << endl << endl;
+				player->getPlayer()->die();
+				break;
+			}
+			
+			while (curBossHealth == boss->getHealth())
+				player->attackEnemy();
+
+			if (!boss->isAlive())
+			{
+				cout << "# DOWN GOES SCOTT!" << endl << endl;
+				isGameWon = true;
+				break;
+			}
+
+			boss->attackEnemy(player->getPlayer());
+		}
+
+		printFinalGameState();
+}
+
+void School::printFinalGameState(){
+		if (!player->getPlayer()->isAlive())
+			cout << KRED "You died, game over!" RESET << endl << endl;
+		
+		else
+			cout << KGRN "Victory is yours!  Thanks for playing a great game!" RESET << endl << endl;
+
+		Zombie* zombie = currentRoom->getZombie();
+		if(zombie != NULL){
+			cout << "Printing final stats..." << endl;
+			player->printStats();
+			zombie->printStats();
+		}
+}
+

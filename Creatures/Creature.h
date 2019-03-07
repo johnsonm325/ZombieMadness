@@ -16,7 +16,7 @@ protected:
 	string description;	//Creature description
 	string name;		//Specific name of creature, if necessary
 	int attack;
-	int defense;
+	int defense = 0;
 	int health;
 	bool isDead = false;
 
@@ -37,12 +37,13 @@ public:
 	void setName(string);
 	void setHealth(int);
 	void gainHealth(int);
-	void attackEnemy(string item);	//Version that Player uses
+	//void attackEnemy(string item);	//Version that Player uses
 	void setDefense(int);
 	void takeDamage(int);
 	void blockAttack();
 	virtual void talkToCreature();
 	void die();
+	void printStats();
 };
 
 #endif

@@ -236,3 +236,8 @@ void Space::lockDoor()
 	doorLocked = true;
 }
 
+void Space::killOnEnter()
+{
+	didDieOnEnter = true;
+}
+

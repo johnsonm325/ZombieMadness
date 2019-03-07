@@ -1,4 +1,6 @@
 #include "ComputerScience.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 ComputerScience::ComputerScience() : Space("Computer Science")
 {
@@ -29,14 +31,14 @@ void ComputerScience::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# 'Ahh, the nerd class. But, now that I think about it, maybe they would be" << endl;
+		cout << KMAG "# 'Ahh, the nerd class. But, now that I think about it, maybe they would be" << endl;
 		cout << "# able to fare better than me right now. They would probably be able to" << endl;
 		cout << "# create some sort of program to hack the school infrastructure and kill" << endl;
 		cout << "# all fo the zombies or something.'" << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Computers fill the room, some of them turned on, and the whiteboard on the" << endl;
+	cout << KMAG "# Computers fill the room, some of them turned on, and the whiteboard on the" << endl;
 	cout << "# north wall has some weird symbols and characters that you don't understand." << endl;
 	cout << "# Must be code." << endl;
 	cout << "#" << endl;
@@ -47,7 +49,7 @@ void ComputerScience::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# To get back to the hallway, just head west." << endl;
+	cout << "# To get back to the hallway, just head west." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

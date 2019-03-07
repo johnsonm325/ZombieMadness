@@ -1,4 +1,6 @@
 #include "LockerRoom.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 LockerRoom::LockerRoom() : Space("Locker Room")
 {
@@ -28,14 +30,14 @@ void LockerRoom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# 'Lots of memories in here getting hyped up for football and basketball games.' You can" << endl;
+		cout << KMAG "# 'Lots of memories in here getting hyped up for football and basketball games.' You can" << endl;
 		cout << "# smell the sweaty jockstraps stored in lockers. Which is actually a plesant smell compared" << endl;
 		cout << "# to the decaying and rotting flesh smell that is filling the hallways. 'I might be able" << endl;
 		cout << "# to find a few items in here to help me take out these zombies.'" << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Lockers fill the room, lined against all walls and a few rows in the middle of the room. There's a" << endl;
+	cout << KMAG "# Lockers fill the room, lined against all walls and a few rows in the middle of the room. There's a" << endl;
 	cout << "# sweaty jockstrap on the bench. A baseball bat is propped against the east wall" << endl;
 	cout << "# and a steel lid from a trash can is turned upside down on the floor." << endl;
 	cout << "#" << endl;
@@ -48,7 +50,7 @@ void LockerRoom::printIntro(){
 	}
 
 	cout << "# The hallway is to the west, and the north leads to a classroom. The south exit is where I'd find" << endl;
-	cout << "# the rafters of the gym." << endl;
+	cout << "# the rafters of the gym." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

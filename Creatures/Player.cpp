@@ -34,10 +34,8 @@ void Player::movetoRoom(Space* room){
 	// the player is dead and the game is over
 	if (enemy && enemy->isAlive() && !playerInventory->hasWeapon())
 	{
-		
-
-		cout << KRED "# Oh no! There is a zombie in this room and you do not have a weapon to kill it with!" << endl;
-		cout << "# Unfortunately, it is too late to run and the zombie got you, you died!  Game over!" RESET << endl;
+		room->killOnEnter();
+		player->die();
 		return; // we need to somehow jump to a game menu from here to start the game again
 	}
 }
@@ -92,12 +90,10 @@ void Player::attackEnemy()
 	playerInventory->printAvailableWeapons();
 
 	cout << "# Enter choice: ";
-
 	getline(cin, input);
 	cout << endl;
 
 	transform(input.begin(), input.end(), input.begin(), ::tolower);
-
 	weapon = playerInventory->findItem(input);
 
 	if (!weapon)
@@ -107,9 +103,7 @@ void Player::attackEnemy()
 	}
 
 	weapon->attackItem();
-
 	enemy->takeDamage(weapon->getAttack());
-
 	playerInventory->removeItem(weapon, true);
 }
 
@@ -153,7 +147,6 @@ void Player::defend()
 	
 
 	player->setDefense(defenseItem->getDefense());
-
 	playerInventory->removeItem(defenseItem, true);
 }
 
@@ -215,18 +208,10 @@ Creature* Player::getPlayer(){
 }
 
 void Player::printStats(){
-	/*
-		int getAttack();
-	int getDefense();
-	int getHealth();
-	bool isAlive();
-
-	*/
-	cout << " === Player's Stats ===" << endl;
-	cout << " Health: " << player->getHealth() << " HP" << endl;
-	cout << " Defense: " << player->getDefense() << " pts" << endl;
-	cout << " Attack: " << player->getAttack() << " pts" << endl;
-	cout << " Alive?: " << player->isAlive() << endl;
+	player->printStats();
 	playerInventory->printInventoryUsage();
+}
 
+Item* Player::getSelectedWeapon(){
+	return selectedWeapon;
 }

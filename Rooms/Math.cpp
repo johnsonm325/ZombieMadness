@@ -1,4 +1,6 @@
 #include "Math.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 Math::Math() : Space("Math")
 {
@@ -29,7 +31,7 @@ void Math::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# As you walk in you're met with a pile of dead bodies on the floor. You can't" << endl;
+		cout << KMAG "# As you walk in you're met with a pile of dead bodies on the floor. You can't" << endl;
 		cout << "# tell if they are dead or undead. You scan the room looking for any kind of" << endl;
 		cout << "# items or clues that will help you get out of this place. You now wish you" << endl;
 		cout << "# had payed a little more attention to your surroundings so you could use some" << endl;
@@ -37,7 +39,7 @@ void Math::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# Desks fill the center of the room and the teacher's desk is on the east wall" << endl;
+	cout << KMAG "# Desks fill the center of the room and the teacher's desk is on the east wall" << endl;
 	cout << "# in the corner. There is an apple on the teacher's desk and calculators on" << endl;
 	cout << "# the the student's desks the north and south walls" << endl;
 	cout << "#" << endl;
@@ -49,7 +51,7 @@ void Math::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# Head north to get out to the lobby and to the west to get back out to the hallway." << endl;
+	cout << "# Head north to get out to the lobby and to the west to get back out to the hallway." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

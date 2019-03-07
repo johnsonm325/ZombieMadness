@@ -11,8 +11,8 @@
 PlayerInventory::PlayerInventory() : Inventory("Player")
 {
     this->type = "Player";
-    this->size = 6; // TBD how many opening slots player should have
-    this->openSlots = 6;
+    this->size = 7; // TBD how many opening slots player should have
+    this->openSlots = 7;
     this->usedSlots = 0;
 }
 
@@ -37,7 +37,7 @@ bool PlayerInventory::canAdd(Item *item)
 
 void PlayerInventory::increaseSize()
 {
-    size += 6; // TBD the size we will increase it to
+    size += 7; // TBD the size we will increase it to
 }
 
 void PlayerInventory::addItem(Item* item)
@@ -193,7 +193,7 @@ int PlayerInventory::getSize(){
 }
 
 void PlayerInventory::printInventoryUsage(){
-    cout << " Inventory usage: " << getUsedSlots() << "/" << getSize()  << " slots" << endl;
+    cout << KCYN "Inventory usage: " << getUsedSlots() << "/" << getSize()  << " slots" RESET << endl;
 }
 
 // If silent, doesn't print add item messages to console. This hides save/loading process 

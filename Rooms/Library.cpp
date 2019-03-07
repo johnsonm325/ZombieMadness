@@ -1,4 +1,6 @@
 #include "Library.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 Library::Library() : Space("Library")
 {
@@ -28,14 +30,14 @@ void Library::printIntro(){
 	// Prints the first time the room is visited	
 	if (firstTry == true)
 	{
-		cout << "# As expected, you wak into a room lined with tall shelves, making it very difficult" << endl;
+		cout << KMAG "# As expected, you wak into a room lined with tall shelves, making it very difficult" << endl;
 		cout << "# to see much of anything. As big as this room is, you know you can probably find" << endl;
 		cout << "# some good items in here to help you survive this school. 'Let's get what we need" << endl;
 		cout << "# and out of here quickly. I don't like libraries.'" << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# There are 5 rows of long book cases that run along most of the length of the room" << endl;
+	cout << KMAG "# There are 5 rows of long book cases that run along most of the length of the room" << endl;
 	cout << "# from east to west. Leaning against one of the bookshelves is a ladder, and the shelves" << endl;
 	cout << "# are filled with books." << endl;
 	cout << "#" << endl;
@@ -46,7 +48,7 @@ void Library::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# The classroom is to the south and you can get to the hallway by going east." << endl;
+	cout << "# The classroom is to the south and you can get to the hallway by going east." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

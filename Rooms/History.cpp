@@ -1,4 +1,6 @@
 #include "History.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 History::History() : Space("History")
 {
@@ -28,14 +30,14 @@ void History::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# Dusty books and pictures of presidents on the wall, must be in" << endl;
+		cout << KMAG "# Dusty books and pictures of presidents on the wall, must be in" << endl;
 		cout << "# history class. 'I've fallen asleep one too many times in here." << endl;
 		cout << "# If I have to hear about one more amendment... Wait, there are" << endl;
 		cout << "# more important matters.'" << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# The north and south walls are lined will bookshelves and desks fill the center" << endl;
+	cout << KMAG "# The north and south walls are lined will bookshelves and desks fill the center" << endl;
 	cout << "# of the room. There is a bust of George Washington and a copy of the Bill of" << endl;
 	cout << "# Rights is mounted on the west wall. There is also a knife on one of the desks" << endl;
 	cout << "#" << endl;
@@ -46,7 +48,7 @@ void History::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# The door back out to the hallway is on the east wall." << endl;
+	cout << "# The door back out to the hallway is on the east wall." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

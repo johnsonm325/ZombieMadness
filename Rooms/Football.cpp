@@ -1,4 +1,7 @@
 #include "Football.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
+#define KRED  "\x1B[31m"
 
 Football::Football() : Space("Football Field")
 {
@@ -30,7 +33,7 @@ Football::~Football()
 void Football::printIntro()
 {
 	if (zombie->isAlive()) {
-		cout << "# 'Looks like this is the way out.' You look across the dark field, fog creeping across" << endl;
+		cout << KMAG "# 'Looks like this is the way out.' You look across the dark field, fog creeping across" << endl;
 		cout << "# the ground and spot a heart-stopping sight as a large zombie is seen standing between" << endl;
 		cout << "# you and your exit. The zombie is larger than most, and you immediately recognize him." << endl;
 		cout << "# It's your fellow football teammate, Scott, the middle linebacker. You remember that he" << endl;
@@ -43,7 +46,7 @@ void Football::printIntro()
 	}
 
 	else {
-		cout << "# There's a football on the field and a pompom over by the bleachers." << endl;
+		cout << KMAG "# There's a football on the field and a pompom over by the bleachers." << endl;
 		cout << "#" << endl;
 	}
 
@@ -52,8 +55,16 @@ void Football::printIntro()
 		cout << "# Finally, the exit! I'm so close to getting out of here and back home." << endl;
 		cout << "#" << endl;
 	}
-	cout << "# The exit is through the football field to the gates at the south." << endl;
+	cout << "# The exit is through the football field to the gates at the south." RESET << endl;
 	cout << "#" << endl;
+
+	if (didDieOnEnter)
+	{
+		cout << KRED "# Oh no! There is a zombie in here and you do not have any weapons to fight it with." << endl;
+		cout << "# It is too late to run and the zombie feasted on you, game over!" RESET << endl << endl;
+		return;
+	}
+
 	cout << "# What do you do?" << endl;
 	cout << "#" << endl;
 }

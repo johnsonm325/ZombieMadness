@@ -1,4 +1,6 @@
 #include "Infirmary.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 Infirmary::Infirmary() : Space("Infirmary")
 {
@@ -28,14 +30,14 @@ void Infirmary::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# 'I'll never forget the story Jacob told about when he accidently walked into" << endl;
+		cout << KMAG "# 'I'll never forget the story Jacob told about when he accidently walked into" << endl;
 		cout << "# the glass door of the front lobby. This must be where they bandaged up the" << endl;
 		cout << "# cut on his head. He walked around the school for days with that gauze on his" << endl;
 		cout << "# forehead.'" << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Lots of medical supplies are neatly tucked into containers and a bed sits along" << endl;
+	cout << KMAG "# Lots of medical supplies are neatly tucked into containers and a bed sits along" << endl;
 	cout << "# the north wall. On a side table, a nurses hat rests. 'I might be able to find" << endl;
 	cout << "# something useful for myself in here. These salves might serve as a good bite cure.'" << endl;
 	cout << "#" << endl;
@@ -48,7 +50,7 @@ void Infirmary::printIntro(){
 	}
 
 	cout << "# The door to the hallway is towards the east, or you can climb back down the ladder" << endl;
-	cout << "# on the west wall." << endl;
+	cout << "# on the west wall." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

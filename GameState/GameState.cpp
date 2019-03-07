@@ -313,7 +313,7 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 		source0->setLogLevel(true);	//Silence item additions to player's inventory
 
 		//Update size, if needed
-		if(source0->getSize() > 6){
+		if(source0->getSize() > 7){
 			dest0->increaseSize();
 		}
 		//Add all movable objects in source inventory to dest inventory

@@ -1,4 +1,6 @@
 #include "FrontOffice.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 FrontOffice::FrontOffice() : Space("Front Office")
 {
@@ -28,13 +30,13 @@ void FrontOffice::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# As you step in, you hear a sound closeby, you're not sure if it's in the room" << endl;
+		cout << KMAG "# As you step in, you hear a sound closeby, you're not sure if it's in the room" << endl;
 		cout << "# you are in, or if it's in another. The stench is strong here though, and it" << endl;
 		cout << "# gives you a very uneasy feeling in your stomach." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# There is a PA system on the desk and a piece of paper that says, 'Detention List'" << endl;
+	cout << KMAG "# There is a PA system on the desk and a piece of paper that says, 'Detention List'" << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
 	{
@@ -43,7 +45,7 @@ void FrontOffice::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# Go east to enter the principal's office and west to go back to the front lobby." << endl;
+	cout << "# Go east to enter the principal's office and west to go back to the front lobby." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

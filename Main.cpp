@@ -14,6 +14,8 @@ using std::string;
 int main()
 {
 
+	srand(time(NULL));
+
 	School school;
 	school.beginGame();
 

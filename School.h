@@ -49,6 +49,7 @@ private:
 	Space *currentRoom;
 	int steps = 0;
 	string choice;
+	bool isGameWon = false;
 
 	//Rooms
 	Space *mb, *wb, *cafe, *libr;
@@ -97,5 +98,9 @@ public:
 	//State methods
 	GameState* createState();
 	void loadState(GameState* loadState, bool printIntro);
+
+	void startFinalFight();
+	void printFinalGameState();
+
 };
 #endif
