@@ -16,7 +16,7 @@ protected:
 	string description;	//Creature description
 	string name;		//Specific name of creature, if necessary
 	int attack;
-	int defense;
+	int defense = 0;
 	int health;
 	bool isDead = false;
 
