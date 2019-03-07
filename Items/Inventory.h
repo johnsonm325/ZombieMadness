@@ -2,6 +2,7 @@
 #define INVENTORY_H
 
 #include "Item.h"
+#include "Color.h"
 
 #include <vector>
 #include <algorithm>

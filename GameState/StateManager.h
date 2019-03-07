@@ -2,7 +2,6 @@
 #define STATE_MANAGER_H
 
 // #define STATE_DEBUG 0
-
 #include "GameState.h"
 #include <fstream>
 #include <string>
@@ -10,11 +9,9 @@
 #include <algorithm>
 #include <cstdio>
 #include <cstdlib>
-
 #include <unistd.h>
 #include <dirent.h>
 #include <sys/types.h>
-
 using namespace std;
 
 class StateManager

@@ -1,12 +1,4 @@
 #include "PlayerInventory.h"
-#define KRED  "\x1B[31m"
-#define KGRN  "\x1B[32m"
-#define KYEL  "\x1B[33m"
-#define KBLU  "\x1B[34m"
-#define KMAG  "\x1B[35m"
-#define KCYN  "\x1B[36m"
-#define KWHT  "\x1B[37m"
-#define RESET "\x1B[0m"
 
 PlayerInventory::PlayerInventory() : Inventory("Player")
 {
@@ -35,9 +27,14 @@ bool PlayerInventory::canAdd(Item *item)
     return item->getSize() + usedSlots <= size;
 }
 
+void PlayerInventory::setInitialSize()
+{
+    size = 7; 
+}
+
 void PlayerInventory::increaseSize()
 {
-    size += 7; // TBD the size we will increase it to
+    size = 14; // TBD the size we will increase it to
 }
 
 void PlayerInventory::addItem(Item* item)
@@ -56,7 +53,6 @@ void PlayerInventory::addItem(Item* item)
     {
         if(!silent){
             cout << KRED "Your inventory is either full or the item size exceeds available capacity." RESET << endl;
-
         }
     }
 }
@@ -79,13 +75,16 @@ void PlayerInventory::removeItem(Item* item, bool wasUsed)
         }
 
         else
+         if(!silent){
             cout << KGRN << item->getName() << " was succesfully removed from your inventory." RESET << endl;
+         }
         
     }
 
     else
+     if(!silent){
         cout << KRED "Your inventory has nothing in it!" RESET << endl;
-    
+     }
 }
 
 bool typeChecker(vector<Item*> items, string type)

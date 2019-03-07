@@ -1,6 +1,4 @@
 #include "FirstFloorHallway.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
 
 FirstFloorHallway::FirstFloorHallway() : Space("First Floor Hallway")
 {

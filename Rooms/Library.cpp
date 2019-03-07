@@ -1,6 +1,4 @@
 #include "Library.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
 
 Library::Library() : Space("Library")
 {

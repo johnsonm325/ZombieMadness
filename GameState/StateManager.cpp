@@ -136,89 +136,101 @@ GameState* StateManager::readSaveFile(string filename) {
 }
 
 GameState* StateManager::processFileData(vector<string> lines) {
+	/*
+		fprintf(saveFile, "Filename: %s\n", filename.c_str());
+		fprintf(saveFile, "Time_stamp: %s\n", state->getTime().c_str());
+		fprintf(saveFile, "Current_room: %s\n", state->getCurrentRoom()->getType().c_str());
+		fprintf(saveFile, "Room_idx: %d\n", state->getRoomIdx());
+		fprintf(saveFile, "Steps: %d\n", state->getSteps());
+		fprintf(saveFile, "Game_won: %d\n", state->getGameWon());
+	*/
 	GameState* newState = new GameState();
+	int i;
 	string invalidFile = "Error reading save file! Invalid format";
-	string headerKeys[3];
-	size_t foundRooms, 
-		   foundHeader[3];
+	size_t foundRooms;		   
 	vector<string>::iterator line; 
+	
+	// Parser header first 
+	int readValue = -1, 
+		numValidRooms = 0;
+	bool readSuccess;
+	vector<Space*> rooms = newState->getRoomsList();
+	line = lines.begin();
+	line++;		//Skip filename line
 
-	headerKeys[0] = "Time_stamp:";
-	headerKeys[1] = "Current_room:";
-	headerKeys[2] = "Room_idx:";
-	foundHeader[0] = lines[1].find(headerKeys[0]);
-	foundHeader[1] = lines[2].find(headerKeys[1]);
-	foundHeader[2] = lines[3].find(headerKeys[2]);
-
-	//Didn't find file header
-	if ((foundHeader[0] == std::string::npos) || (foundHeader[1] == std::string::npos) ||
-		(foundHeader[2] == std::string::npos)){	
-		cout << invalidFile << endl;
+	//Set time
+	string newTime =  readStrValue(line, "Time_stamp:");
+	if(newTime.length() == 0){
 		delete newState;
-		return NULL;		
+		return NULL;	
+	}
+	else{
+		newState->setTime(newTime);
 	}
 
-	//Found it
-	else {
-		// Save header first 
-		string newTime = lines[1].substr(foundHeader[0] + headerKeys[0].length());
+	line++; //Skip room name line
+	readValue = readInt(line, "Room_idx");
+	if(readValue != -1){
+		newState->setCurrentRoom(readValue);
+	}
+	else{ 
+		delete newState;
+		return NULL;
+	}
+	
+	line++; //Skip step line
+	readValue = readInt(line, "Game_won");
+	if(readValue != -1){
+		newState->setGameWon((bool)readValue);
+	}
+	else{ 
+		delete newState;
+		return NULL;
+	}
+	line++;
 
-		//Adding header info to state object;
-		int rIdx, i;
-		int numValidRooms = 0;
-		bool readSuccess;
-		vector<Space*> rooms = newState->getRoomsList();
-
-		sscanf(lines[3].c_str(), "%*s %d ", &rIdx);
-		newState->setCurrentRoom(rIdx);
-		newState->setTime(newTime);
-
-		line = lines.begin();
-		line +=6;
-
-		while(line != lines.end()){
-			foundRooms = (*line).find("<Rooms>");
-			//Found rooms section in file, start processing room data
-			if(foundRooms != std::string::npos){
-				for(i = 0; i < (int)rooms.size(); i++){
-					readSuccess = readRoom(line, rooms[i]);
-					if(readSuccess == false){
-#ifdef STATE_DEBUG
-						cout << invalidFile << endl;
-#endif						
-						delete newState;
-						return NULL;
-					}
-					else{
-						numValidRooms++;
-					}
-				}
-			}
-			else{	//If all rooms weren't read, read state is not valid, so return NULL	
-				if(numValidRooms < ((int)rooms.size() - 1)){				
+	while(line != lines.end()){
+		foundRooms = (*line).find("<Rooms>");
+		//Found rooms section in file, start processing room data
+		if(foundRooms != std::string::npos){
+			for(i = 0; i < (int)rooms.size(); i++){
+				readSuccess = readRoom(line, rooms[i]);
+				if(readSuccess == false){
 #ifdef STATE_DEBUG
 					cout << invalidFile << endl;
-#endif
+#endif						
 					delete newState;
 					return NULL;
 				}
-				//All states read were valid, so now read player's data
 				else{
-					readSuccess = readPlayer(line, newState->getPlayer());
-					if(readSuccess){
-						break;
-					}					
-					else{
-#ifdef STATE_DEBUG
-						cout << invalidFile << endl;
-#endif						
-						delete newState;
-						return NULL;
-					}
+					numValidRooms++;
 				}
 			}
-			line++;
 		}
+		else{	//If all rooms weren't read, read state is not valid, so return NULL	
+			if(numValidRooms < ((int)rooms.size() - 1)){				
+#ifdef STATE_DEBUG
+				cout << invalidFile << endl;
+#endif
+				delete newState;
+				return NULL;
+			}
+			//All states read were valid, so now read player's data
+			else{
+				readSuccess = readPlayer(line, newState->getPlayer());
+				if(readSuccess){
+					break;
+				}					
+				else{
+#ifdef STATE_DEBUG
+					cout << invalidFile << endl;
+#endif						
+					delete newState;
+					return NULL;
+				}
+			}
+		}
+		line++;
 	}
 	return newState;
 }
@@ -295,9 +307,9 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 		return false;	
 	}
 
-	readValue = readInt(line, "Colt_gone");
-	if(readValue != -1){
-		room->setColtGone((bool)readValue);	
+	readValue = readInt(line, "Die_on_enter");
+	if(readValue != -1){	
+		room->setDieOnEnter((bool)readValue);	
 	}
 	else{ 
 		return false;	
@@ -546,9 +558,7 @@ Health: 0
 					line +=3;		//go to Type and Name lines
 					readValue = readInt(line, "IsAlive");
 					if(readValue != -1){
-						if(readValue == 0){	//dead creature
-							creature->die();			//Make creature die
-						}
+						creature->setAlive((bool)readValue);
 					}
 					else{ 
 						isValid = false;
@@ -640,6 +650,7 @@ bool StateManager::startSavingGame(GameState* state) {
 		printStates();
 		return true;
 	}
+	delete state;
 	return false;
 }
 
@@ -677,6 +688,7 @@ void StateManager::writeSaveFile(GameState* state, string filename) {
 		fprintf(saveFile, "Current_room: %s\n", state->getCurrentRoom()->getType().c_str());
 		fprintf(saveFile, "Room_idx: %d\n", state->getRoomIdx());
 		fprintf(saveFile, "Steps: %d\n", state->getSteps());
+		fprintf(saveFile, "Game_won: %d\n", state->getGameWon());
 		vector<Space*> rooms = state->getRoomsList();
 
 		fprintf(saveFile, "\n<Rooms>\n");
@@ -708,7 +720,7 @@ void StateManager::writeRoom(FILE* saveFile, Space* room){
 	//Writing Space class booleans
 	fprintf(saveFile, "Locked_door: %d\n", (int)room->getDoorLocked());
 	fprintf(saveFile, "First_try: %d\n", (int)room->getFirstTry());
-	fprintf(saveFile, "Colt_gone: %d\n", (int)room->coltGone());
+	fprintf(saveFile, "Die_on_enter: %d\n", (int)room->getDieOnEnter());
 
 	//Writing derived room class booleans
 	if(room->getType() == "Biology"){

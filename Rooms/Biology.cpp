@@ -1,6 +1,4 @@
 #include "Biology.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
 
 Biology::Biology() : Space("Biology")
 {

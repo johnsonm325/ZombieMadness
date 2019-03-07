@@ -21,6 +21,7 @@ public:
     int getSize();
     bool isEmpty();
     bool isFull();
+    void setInitialSize();
     void increaseSize(); // called when backpack is obtained
     bool hasWeapon();
     bool hasDefense();

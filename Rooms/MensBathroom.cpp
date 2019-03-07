@@ -1,6 +1,4 @@
 #include "MensBathroom.h"
-#define KMAG  "\x1B[35m"
-#define RESET "\x1B[0m"
 
 MensBathroom::MensBathroom() : Space("Men's Bathroom")
 {

@@ -18,7 +18,7 @@ protected:
 	int attack;
 	int defense = 0;
 	int health;
-	bool isDead = false;
+	bool alive = true;
 
 public:
 	Creature();
@@ -32,12 +32,12 @@ public:
 	int getDefense();
 	int getHealth();
 	bool isAlive();
+	void setAlive(bool alive);
 
 	//setters
 	void setName(string);
 	void setHealth(int);
 	void gainHealth(int);
-	//void attackEnemy(string item);	//Version that Player uses
 	void setDefense(int);
 	void takeDamage(int);
 	void blockAttack();

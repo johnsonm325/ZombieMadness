@@ -44,14 +44,14 @@
 #include <ctime>
 #include <cstdint>
 #include <cstring>
-// #include <algorithm>
 
 class GameState 
 {
 private:
 	Space *currentRoom;
 	int roomIdx = 0;
-	int steps; 
+	int steps = 0;
+	bool isGameWon = false;
 
 	Space *mb, *wb, *cafe, *libr, *sfh1, *sfh2, *sfh3, *sfh4;
 	Space *hist, *lit, *chem, *cs, *bio, *math,*infr, *lr,*gym2, *gym1, *fb;
@@ -67,6 +67,8 @@ public:
 	string getTime();
 	void updateTime();
 	void setTime(string time);
+	bool getGameWon();
+	void setGameWon(bool won);
 
 	//Rooms
 	void connectRooms();

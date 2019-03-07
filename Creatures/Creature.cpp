@@ -25,18 +25,10 @@ string Creature::getDesc()
 	return description;
 }
 
-//Space* Creature::getLocation()
-//{
-//	return location;
-//}
-
 string Creature::getName()
 {
 	return name;
 }
-//void Creature::setLocation(Space* loc) {
-//	this->location = loc;
-//}
 
 int Creature::getAttack()
 {
@@ -55,7 +47,11 @@ int Creature::getHealth()
 }
 
 bool Creature::isAlive(){
-	return isDead == false;
+	return alive;
+}
+
+void Creature::setAlive(bool alive){
+	this->alive = alive;
 }
 
 void Creature::setName(string name)
@@ -83,7 +79,7 @@ void Creature::takeDamage(int damage)
 
 	if (this->health <= 0)
 	{
-		this->isDead = true;
+		this->alive = false;
 		this->health = 0;
 		
 		if (type == "Player")
@@ -113,10 +109,6 @@ void Creature::setDefense(int d)
 		this->defense = 10;
 }
 
-// void Creature::attackEnemy(string item){
-	
-// }
-
 void Creature::blockAttack()
 {
 	//TBD
@@ -128,7 +120,7 @@ void Creature::talkToCreature()
 }
 
 void Creature::die(){
-	isDead = true;
+	alive = false;
 }
 
 void Creature::printStats(){
