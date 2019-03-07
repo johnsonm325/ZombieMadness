@@ -16,8 +16,6 @@ public:
 	Chemistry();
 	~Chemistry();
 	void printIntro();
-	void printExitDesc();
-	int menu(vector<string>);
 	void inspectCabinet();
 	void moveCabinet();
 	bool getHoleVisible();

@@ -752,7 +752,6 @@ Space *School::moveEast()
 	}
 	else
 	{
-		currentRoom->printExitDesc();
 		currentRoom = currentRoom->getEast();
 		return currentRoom;
 	}
@@ -767,7 +766,6 @@ Space *School::moveWest()
 	}
 	else
 	{
-		currentRoom->printExitDesc();
 		currentRoom = currentRoom->getWest();
 		return currentRoom;
 	}
@@ -782,7 +780,6 @@ Space *School::moveNorth()
 	}
 	else
 	{
-		currentRoom->printExitDesc();
 		currentRoom = currentRoom->getNorth();
 		return currentRoom;
 	}
@@ -797,7 +794,6 @@ Space *School::moveSouth()
 	}
 	else
 	{
-		currentRoom->printExitDesc();
 		currentRoom = currentRoom->getSouth();
 		return currentRoom;
 	}

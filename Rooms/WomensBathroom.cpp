@@ -55,37 +55,18 @@ void WomensBathroom::printIntro(){
 	cout << "# There is a couch along the north wall with a pile of magazines on a table" << endl;
 	cout << "# next to it. The door also has a lock on it." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void WomensBathroom::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# Lol, you're a weirdo Colt, heading into the Women's Bathroom... how do" << endl;
-		cout << "# you think your mother would perceive you right now? Well, anyways, it" << endl;
-		cout << "# seems pretty clean in here surprisingly (not surprising maybe?), and" << endl;
-		cout << "# that couch is a nice touch. Why don't the men get one?!" << endl;
+		cout << "# This front door must lead out to the same hallway. I can go that way" << endl;
+		cout << "# or head back through the hole to the men's bathroom." << endl;
 		cout << "#" << endl;
-		cout << "# It's either back through the men's bathroom or out of the main door." << endl;
 	}
 
-	cout << "# You can only really head back out into the hall from here..." << endl;
-	cout << "# These walls seem kind of brittle though..." << endl;
+	cout << "# Theres a door on the west wall and the hole on the north wall leading back." << endl;
 	cout << "#" << endl;
-}
-
-int WomensBathroom::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 0;
-	}
-
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void WomensBathroom::increaseBagSize()

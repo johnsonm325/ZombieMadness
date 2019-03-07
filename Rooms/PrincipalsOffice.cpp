@@ -57,33 +57,15 @@ void PrincipalsOffice::printIntro(){
 	cout << "# There is a single desk and a large leather chair in the room. Mounted on the wall" << endl;
 	cout << "# you see a fire extinguisher." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do?" << endl;
-	cout << "#" << endl;
-}
-
-void PrincipalsOffice::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# How cool was that? You got to be in the principal's office all alone with" << endl;
-		cout << "# with NO ONE to tell you no! So much fun!!" << endl;
-		cout << "# But not really cause you are surrounded by zombies so ..." << endl;
+		cout << "# Only one way out of here and that's back through the front office." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# There is only one way out of here so make sure to really check this room before" << endl;
-	cout << "# you leave, you don't want to get yourself caught in later!" << endl;
+	cout << "# Go west to get back to the front office." << endl;
 	cout << "#" << endl;
-}
-
-int PrincipalsOffice::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
-	return 0;
+	cout << "# What do you do?" << endl;
+	cout << "#" << endl;
 }

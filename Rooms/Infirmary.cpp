@@ -39,39 +39,17 @@ void Infirmary::printIntro(){
 	cout << "# the north wall. On a side table, a nurses hat rests. 'I might be able to find" << endl;
 	cout << "# something useful for myself in here. These salves might serve as a good bite cure.'" << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void Infirmary::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# If there is ever a room that could save you from this nightmare, it'd be this" << endl;
-		cout << "# room. Nurse Peters was always so sweet, a shame that she is just roaming around" << endl;
-		cout << "# here... All dead and what not, probably missing an arm or 2......... ugh, I" << endl;
-		cout << "# want my mommy." << endl;
+		cout << "# There's a door to get out of this room. It must lead to the hallway, since there" << endl;
+		cout << "# are no other doors in here." << endl;
 		cout << "#" << endl;
-		cout << "# It looks like you can use the door to exit the room. Otherwise, you can climb" << endl;
-		cout << "# back down the way you came." << endl;
 	}
 
-	cout << "# Make sure you really give this room a good look, you can find some sweet items!" << endl;
-	cout << "# You have access to the 2nd floor hallway here, lots of connections. Don't forget" << endl;
-	cout << "# about the chemistry room!" << endl;
+	cout << "# The door to the hallway is towards the east, or you can climb back down the ladder" << endl;
+	cout << "# on the west wall." << endl;
 	cout << "#" << endl;
-}
-
-int Infirmary::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
-	printIntro();
-	
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }

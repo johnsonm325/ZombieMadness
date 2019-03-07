@@ -44,35 +44,17 @@ void Cafeteria::printIntro(){
 	cout << "# Long lunch tables fill the room and lunch trays are littered on the tables" << endl;
 	cout << "# and floor. Food debris is thrown about the room." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-}
-
-void Cafeteria::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# You are sad to leave to Cafeteria actually. It didn't smell half as bad as the other" << endl;
-		cout << "# rooms in this school and food! 'I don't want to leave the food room, it has food..." << endl;
-		cout << "# Fooooooooooooooooooddddddddddddd'" << endl;
+		cout << "# The only way out is back out to the hallway." << endl;
 		cout << "#" << endl;
-		cout << "# Only one way out of here, and that's back through the hallway." << endl;
 	}
 
-	cout << "# You remember looking out the massive windows at the Football field during lunch" << endl;
-	cout << "# and remember when you used to grab a quick snack before Gym class in the next room" << endl;
+	cout << "# The first floor hallway is to the east." << endl;
 	cout << "#" << endl;
-}
-
-int Cafeteria::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void Cafeteria::throwFood()

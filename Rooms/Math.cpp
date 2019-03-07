@@ -41,37 +41,18 @@ void Math::printIntro(){
 	cout << "# in the corner. There is an apple on the teacher's desk and calculators on" << endl;
 	cout << "# the the student's desks the north and south walls" << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-}
-
-void Math::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# 'I was so bad at math, it's a miracle I didn't die in that class!'" << endl;
-		cout << "# The math room was not your favorite in general, you always felt like you" << endl;
-		cout << "# were behind all the other students.  Don't worry Colt, if you make it" << endl;
-		cout << "# out of here, you can be assured you are better than they are! Cause, you" << endl;
-		cout << "# know... you're alive and what not... and they are dead..." << endl;
+		cout << "# From here, there are two ways to get to the front lobby from here, through" << endl;
+		cout << "# the door on the north wall or out to the hallway where you can head north." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# The front lobby can be reached from here so maybe check that out. The first floor" << endl;
-	cout << "# hallway is right outside too and that always gives you a lot of places to go." << endl;
+	cout << "# Head north to get out to the lobby and to the west to get back out to the hallway." << endl;
 	cout << "#" << endl;
-}
-
-int Math::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 40;
-	}
-	
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
 }
 
 void Math::eatApple()

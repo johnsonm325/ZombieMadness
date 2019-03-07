@@ -38,39 +38,19 @@ void GymnasiumFloor2::printIntro(){
 	cout << "# Rafters circle the room. There are lots of lights and ropes secured under" << endl;
 	cout << "# the rafters. You also see a gun tucked away in the corner on the walkway." << endl;
 	cout << "#" << endl;
-	cout << "# What do you do now?" << endl;
-	cout << "#" << endl;
-	
-}
-
-void GymnasiumFloor2::printExitDesc()
-{
 	if (firstTry == true)
 	{
 		firstTime();
-		cout << "# As you look down on all the zombies below, you start to have" << endl;
-		cout << "# some serious doubts if you will survive or not. Not gonna help to" << endl;
-		cout << "# mope about it though, onwards we go!" << endl;
-		cout << "#" << endl;
-		cout << "# Only two ways out, either back the way I came to go downstairs" << endl;
-		cout << "# or I need to head down from here" << endl;
+		cout << "# You can head through the locker room to continue exploring this floor," << endl;
+		cout << "# or you can climb down this ladder to get down to the first floor." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# With access to the first floor of the gym and the locker room, you feel" << endl;
-	cout << "# like there can be some good stuff waiting for you soon." << endl;
+	cout << "# The ladder is on the west wall and the locker room is to the north." << endl;
 	cout << "#" << endl;
-}
-
-int GymnasiumFloor2::menu(vector<string> commandVector)
-{
-	// Evaluates if player is dead and exits the function
-	if (coltGone())
-	{
-		return 0;
-	}
-
-	return 0;
+	cout << "# What do you do now?" << endl;
+	cout << "#" << endl;
+	
 }
 
 void GymnasiumFloor2::cutRopes()
@@ -82,5 +62,3 @@ void GymnasiumFloor2::cutRopes()
 	gym1 = static_cast<GymnasiumFloor1*>(findRoom("Gymnasium First Floor"));
 	gym1->getZombie()->die();
 }
-
-
