@@ -184,7 +184,7 @@ void School::beginGame()
 		{
 			case 1:
 				loadState(stateManager->getNewGameState(), false);
-				isGameOver = false;
+				isGameWon = false;
 				playGame();
 				break;
 
