@@ -1,4 +1,6 @@
 #include "Cafeteria.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 Cafeteria::Cafeteria() : Space("Cafeteria")
 {
@@ -35,13 +37,13 @@ void Cafeteria::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# You look around a see a few dead zombies littered throughout the large room." << endl;
+		cout << KMAG "# You look around a see a few dead zombies littered throughout the large room." << endl;
 		cout << "# 'I definitely need to tread lightly in case they aren't dead.' The room is" << endl;
 		cout << "# large, so there is plenty of space to move around." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# Long lunch tables fill the room and lunch trays are littered on the tables" << endl;
+	cout << KMAG "# Long lunch tables fill the room and lunch trays are littered on the tables" << endl;
 	cout << "# and floor. Food debris is thrown about the room." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
@@ -51,7 +53,7 @@ void Cafeteria::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# The first floor hallway is to the east." << endl;
+	cout << "# The first floor hallway is to the east." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

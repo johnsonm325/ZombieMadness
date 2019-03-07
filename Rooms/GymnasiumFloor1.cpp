@@ -1,4 +1,6 @@
 #include "GymnasiumFloor1.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
 {
@@ -29,7 +31,7 @@ void GymnasiumFloor1::printIntro(){
 	if (firstTry == true)
 	{
 		if(!zombie->isAlive()) {
-			cout << "# Dead zombies litter the floor. Great thing you decided to cut those ropes or" << endl;
+			cout << KMAG "# Dead zombies litter the floor. Great thing you decided to cut those ropes or" << endl;
 			cout << "# else you'd have a tough fight on your hands. Basketball doesn't seem like such" << endl;
 			cout << "# of an important event when you're having to fight your way out of this place" << endl;
 			cout << "# to stay alive." << endl;
@@ -37,13 +39,13 @@ void GymnasiumFloor1::printIntro(){
 		}
 
 		else {
-			cout << "# You are surrounded by zombies. Packs of them notice your presence and slowly" << endl;
+			cout << KMAG "# You are surrounded by zombies. Packs of them notice your presence and slowly" << endl;
 			cout << "# begin to shuffle their way in your direction." << endl;
 			cout << "#" << endl;
 		}
 	}
 
-	cout << "# Basketball goals are mounted against the west and east walls, and bleachers" << endl;
+	cout << KMAG "# Basketball goals are mounted against the west and east walls, and bleachers" << endl;
 	cout << "# are pulled out along the south wall. There is a basketball on the floor." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
@@ -55,7 +57,7 @@ void GymnasiumFloor1::printIntro(){
 	}
 
 	cout << "# Head west to get to the hallway, east to get up to the rafters and south to head" << endl;
-	cout << "# out to the football field." << endl;
+	cout << "# out to the football field." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

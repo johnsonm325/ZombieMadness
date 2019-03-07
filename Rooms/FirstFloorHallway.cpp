@@ -1,4 +1,6 @@
 #include "FirstFloorHallway.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 FirstFloorHallway::FirstFloorHallway() : Space("First Floor Hallway")
 {
@@ -27,7 +29,7 @@ void FirstFloorHallway::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# This hallway doesn't look much better than the second floor. Blood is" << endl;
+		cout << KMAG "# This hallway doesn't look much better than the second floor. Blood is" << endl;
 		cout << "# smeared everywhere and there are half-eaten bodies, and some with just" << endl;
 		cout << "# holes chewed into their stomachs, just lying along the hallway. You" << endl;
 		cout << "# wrench at the sight and throw up on the floor. These are people you" << endl;
@@ -36,7 +38,7 @@ void FirstFloorHallway::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# There are bulletin boards on the wall and your vomit is now on the floor." << endl;
+	cout << KMAG "# There are bulletin boards on the wall and your vomit is now on the floor." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
 	{
@@ -47,7 +49,7 @@ void FirstFloorHallway::printIntro(){
 	}
 
 	cout << "# Head south to go back upstairs and north to head towards the front lobby." << endl;
-	cout << "# As you head north, check rooms to your east and west for any items." << endl;
+	cout << "# As you head north, check rooms to your east and west for any items." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

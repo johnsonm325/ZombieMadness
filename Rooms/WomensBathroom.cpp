@@ -1,4 +1,6 @@
 #include "WomensBathroom.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 {
@@ -42,7 +44,7 @@ void WomensBathroom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# Well, you've never been in here before. The forbidden zone. 'The guys" << endl;
+		cout << KMAG "# Well, you've never been in here before. The forbidden zone. 'The guys" << endl;
 		cout << "# will love to hear this story.' The air smells fresh in here; not like" << endl;
 		cout << "# the urine stench you're accustomed to. 'They have A COUCH?!' You see" << endl;
 		cout << "# magazines and various pampering items lined up across the sink counter." << endl;
@@ -52,7 +54,7 @@ void WomensBathroom::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# There is a couch along the north wall with a pile of magazines on a table" << endl;
+	cout << KMAG "# There is a couch along the north wall with a pile of magazines on a table" << endl;
 	cout << "# next to it. The door also has a lock on it." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
@@ -63,7 +65,7 @@ void WomensBathroom::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# Theres a door on the west wall and the hole on the north wall leading back." << endl;
+	cout << "# Theres a door on the west wall and the hole on the north wall leading back." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

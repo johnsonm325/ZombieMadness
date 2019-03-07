@@ -1,4 +1,6 @@
 #include "Biology.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 Biology::Biology() : Space("Biology")
 {
@@ -27,12 +29,12 @@ void Biology::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# 'This was never my favorite subject, but I did enjoy cutting open frogs to see" << endl;
+		cout << KMAG "# 'This was never my favorite subject, but I did enjoy cutting open frogs to see" << endl;
 		cout << "# what was inside of them." << endl;
 		cout << "#" << endl;
 	}
 
-	cout << "# The room has a mixture of desks and tables and there are a good deal of dissected" << endl;
+	cout << KMAG "# The room has a mixture of desks and tables and there are a good deal of dissected" << endl;
 	cout << "# animals in cases, plants and rocks scattered in the room." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
@@ -44,7 +46,7 @@ void Biology::printIntro(){
 	}
 
 	cout << "# The hallway is to your east, the chemistry room is to the south and the library is" << endl;
-	cout << "# north of your location." << endl;
+	cout << "# north of your location." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

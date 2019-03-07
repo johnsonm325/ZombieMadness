@@ -1,4 +1,6 @@
 #include "MensBathroom.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 MensBathroom::MensBathroom() : Space("Men's Bathroom")
 {
@@ -17,7 +19,7 @@ void MensBathroom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# You jump awake, realizing that you've been asleep on the toilet for quit a while." << endl;
+		cout << KMAG "# You jump awake, realizing that you've been asleep on the toilet for quit a while." << endl;
 		cout << "# I guess staying up so late studying has taken its toll on you. 'How long have I" << endl;
 		cout << "# been asleep?' you ask yourself. 'Have I missed all of my classes?' Something" << endl;
 		cout << "# doesn't seem right to you. The emergency lights are on and you don't hear any" << endl;
@@ -31,7 +33,7 @@ void MensBathroom::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# Sinks stand against the west wall, and urinals and toilets line the east wall. Nothing" << endl;
+	cout << KMAG "# Sinks stand against the west wall, and urinals and toilets line the east wall. Nothing" << endl;
 	cout << "# much going on in here." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
@@ -42,7 +44,7 @@ void MensBathroom::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# The door to the hallway is on the west wall" << endl;
+	cout << "# The door to the hallway is on the west wall" RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

@@ -1,4 +1,6 @@
 #include "PrincipalsOffice.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 {
@@ -38,7 +40,7 @@ void PrincipalsOffice::printIntro(){
 	if (firstTry == true)
 	{
 		if (zombie->isAlive()) {
-			cout << "# As soon as you open the door, you are attacked from the north. You are quick" << endl;
+			cout << KMAG "# As soon as you open the door, you are attacked from the north. You are quick" << endl;
 			cout << "# enough to fight off the first push as you grab the zombie by the throat and" << endl;
 			cout << "# shove it back. As it falls down, you realize it's already working to" << endl;
 			cout << "# get itself back up. You know you don't have much time." << endl;
@@ -47,14 +49,14 @@ void PrincipalsOffice::printIntro(){
 			cout << "#" << endl;
 		}
 		else {
-			cout << "# This small room is where the principal works. All of his meetings and" << endl;
+			cout << KMAG "# This small room is where the principal works. All of his meetings and" << endl;
 			cout << "# disciplinary conferences go down right here. 'If only I weren't so familiar" << endl;
 			cout << "# with them." << endl;
 			cout << "#" << endl;
 		}
 	}
 
-	cout << "# There is a single desk and a large leather chair in the room. Mounted on the wall" << endl;
+	cout << KMAG "# There is a single desk and a large leather chair in the room. Mounted on the wall" << endl;
 	cout << "# you see a fire extinguisher." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
@@ -64,7 +66,7 @@ void PrincipalsOffice::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# Go west to get back to the front office." << endl;
+	cout << "# Go west to get back to the front office." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do?" << endl;
 	cout << "#" << endl;

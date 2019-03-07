@@ -1,4 +1,6 @@
 #include "SecondFloorHallway.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 SecondFloorHallway::SecondFloorHallway() : Space("Second Floor Hallway")
 {
@@ -24,7 +26,7 @@ void SecondFloorHallway::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << "# You walk into the second floor hallway and immediately notice that everything is dark," << endl;
+		cout << KMAG "# You walk into the second floor hallway and immediately notice that everything is dark," << endl;
 		cout << "# save the emergency lights. Something is not right here, you tell yourself. The air has" << endl;
 		cout << "# an awful smell that you can't describe. And what's worse, you can see blood smears on" << endl;
 		cout << "# the walls and floor. 'Oh my god, what has happened here?!' You feel your heart begin" << endl;
@@ -36,7 +38,7 @@ void SecondFloorHallway::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# Bulletin boards line the walls and there are lots of dead bodies strewn across" << endl;
+	cout << KMAG "# Bulletin boards line the walls and there are lots of dead bodies strewn across" << endl;
 	cout << "# the floor." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
@@ -49,7 +51,7 @@ void SecondFloorHallway::printIntro(){
 	}
 
 	cout << "# You can move north and south through the hallway to get to the rooms on the east and west." << endl;
-	cout << "# You can also head downstairs using the stairwell on the south side of the hallway." << endl;
+	cout << "# You can also head downstairs using the stairwell on the south side of the hallway." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

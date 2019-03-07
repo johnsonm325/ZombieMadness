@@ -1,4 +1,6 @@
 #include "FrontLobby.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 FrontLobby::FrontLobby() : Space("Front Lobby")
 {
@@ -29,14 +31,14 @@ void FrontLobby::printIntro(){
 	if (firstTry == true)
 	{
 		if (zombie->isAlive() == true) {
-			cout << "# A solitary zombie is standing in the middle of the room. She appears to just be" << endl;
+			cout << KMAG "# A solitary zombie is standing in the middle of the room. She appears to just be" << endl;
 			cout << "# standing there, looking at nothing. 'I guess they don't really have anything to" << endl;
 			cout << "# but eat' you say." << endl;
 			cout << "#" << endl;
 			cout << "# The zombie hears your voice and begins to make her way towards you... to feast." << endl;
 		}
 		else {
-			cout << "# As you enter this large foyer, you can see the struggle that students and teachers" << endl;
+			cout << KMAG "# As you enter this large foyer, you can see the struggle that students and teachers" << endl;
 			cout << "# had to get out. Many bodies are still there and it's just a matter of time before" << endl;
 			cout << "# they all turn into zombies. As you look at the front door for your exit, you" << endl;
 			cout << "# immediately see a large group of zombies standing at the entrance, trying to push" << endl;
@@ -46,7 +48,7 @@ void FrontLobby::printIntro(){
 		}
 	}
 
-	cout << "# Benches line the walls and other benches have been turned over throughout the room." << endl;
+	cout << KMAG "# Benches line the walls and other benches have been turned over throughout the room." << endl;
 	cout << "# Trophy display cases can also be seen on the east and west walls." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
@@ -58,7 +60,7 @@ void FrontLobby::printIntro(){
 	}
 
 	cout << "# Head west to get back to the hallway and east to head into the front office. You" << endl;
-	cout << "# can also head south to get into the math classroom." << endl;
+	cout << "# can also head south to get into the math classroom." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

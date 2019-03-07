@@ -1,4 +1,6 @@
 #include "Literature.h"
+#define KMAG  "\x1B[35m"
+#define RESET "\x1B[0m"
 
 Literature::Literature() : Space("Literature")
 {
@@ -29,19 +31,19 @@ void Literature::printIntro(){
 	if (firstTry == true)
 	{
 		if (zombie->isAlive()) {
-			cout << "# You look across the room and see two zombie that simultaneously look up" << endl;
+			cout << KMAG "# You look across the room and see two zombie that simultaneously look up" << endl;
 			cout << "# to notice you. They begin to make a direct move towards you, paying no" << endl;
 			cout << "# regard for the desks between you and them." << endl; 
 		}
 		else {
-			cout << "# To be or not to be, that is the question. 'More like, to get out of" << endl;
+			cout << KMAG "# To be or not to be, that is the question. 'More like, to get out of" << endl;
 			cout << "# here or die!' Maybe that Shakespeare was on to something. Perhaps" << endl;
 			cout << "# I can find some useful items in here to help me get out of here." << endl;
 			cout << "#" << endl;
 		}
 	}
 
-	cout << "# Bookshelves line the north and south walls and a chalkboard is mounted" << endl;
+	cout << KMAG "# Bookshelves line the north and south walls and a chalkboard is mounted" << endl;
 	cout << "# on the east wall. The teachers desk sits in front of the chalkboard" << endl;
 	cout << "# and desks in the middle of the floor face the chalkboard." << endl;
 	cout << "#" << endl;
@@ -52,7 +54,7 @@ void Literature::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# You can exit to the hallway towards the west, or head south to another room." << endl;
+	cout << "# You can exit to the hallway towards the west, or head south to another room." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;

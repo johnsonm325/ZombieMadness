@@ -148,7 +148,7 @@ void School::beginGame()
 	GameState* stateToLoad = NULL;
 
 	cout << KCYN "			----------- ZOMBIE MADDNESS --------------" << endl;
-	cout << "			A game by Jeremy Einhorn, Michael Johnson, and Artem Slivka" << endl << endl;
+	cout << "	A game by Jeremy Einhorn, Michael Johnson, and Artem Slivka" << endl << endl;
 	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
 	cout << endl << endl << "Interesting." << endl << endl;
 
@@ -289,7 +289,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 				else if(static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false){
 					if(cmd == "go south" || cmd == "south"){
-						cout << "# You can't go that direction." << endl;
+						cout << KRED "# You can't go that direction." RESET << endl;
 						return;
 					}
 				}
@@ -338,7 +338,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 				}
 				else if(static_cast<Chemistry*>(currentRoom)->getHoleVisible() == false){
 					if(cmd == "go hole" || cmd == "go south" || cmd == "south") {
-						cout << "# You can't go that direction." << endl;
+						cout << KRED "# You can't go that direction." RESET << endl;
 						return;
 					}
 				}
@@ -747,7 +747,7 @@ Space *School::moveEast()
 {
 	if (currentRoom->getEast() == NULL)
 	{
-		cout << "# move east, You can't go that direction." << endl;
+		cout << KRED "# You can't go that direction." RESET << endl;
 		return NULL;
 	}
 	else
@@ -761,7 +761,7 @@ Space *School::moveWest()
 {
 	if (currentRoom->getWest() == NULL)
 	{
-		cout << "# move west, You can't go that direction." << endl;
+		cout << KRED "# You can't go that direction." RESET << endl;
 		return NULL;
 	}
 	else
@@ -775,7 +775,7 @@ Space *School::moveNorth()
 {
 	if (currentRoom->getNorth() == NULL)
 	{
-		cout << "# move north, You can't go that direction." << endl;
+		cout << KRED "# You can't go that direction." RESET << endl;
 		return NULL;
 	}
 	else
@@ -789,7 +789,7 @@ Space *School::moveSouth()
 {
 	if (currentRoom->getSouth() == NULL)
 	{
-		cout << "# move south, You can't go that direction." << endl;
+		cout << KRED "# You can't go that direction." RESET << endl;
 		return NULL;
 	}
 	else
