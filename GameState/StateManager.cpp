@@ -168,7 +168,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		newState->setTime(newTime);
 	}
 
-	line++; //Skip room name, steps lines
+	line++; //Skip room name line
 	readValue = readInt(line, "Room_idx");
 	if(readValue != -1){
 		newState->setCurrentRoom(readValue);
@@ -177,7 +177,8 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		delete newState;
 		return NULL;
 	}
-
+	
+	line++; //Skip step line
 	readValue = readInt(line, "Game_won");
 	if(readValue != -1){
 		newState->setGameWon((bool)readValue);
@@ -187,9 +188,6 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		return NULL;
 	}
 	line++;
-	cout << *line << endl;
-	line++;
-	cout << *line << endl;
 
 	while(line != lines.end()){
 		foundRooms = (*line).find("<Rooms>");
