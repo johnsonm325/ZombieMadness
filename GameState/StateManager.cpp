@@ -168,7 +168,7 @@ GameState* StateManager::processFileData(vector<string> lines) {
 		newState->setTime(newTime);
 	}
 
-	line +=2; //Skip room name, steps lines
+	line++; //Skip room name, steps lines
 	readValue = readInt(line, "Room_idx");
 	if(readValue != -1){
 		newState->setCurrentRoom(readValue);
