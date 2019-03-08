@@ -60,8 +60,10 @@ void Player::useItem(Item* item) {
 	else
 		item->useItem();
 
-	playerInventory->removeItem(item, true);
-		
+	//if bookbag is used and there are no items
+	//in the inventory currently
+	if (!playerInventory->isEmpty())
+		playerInventory->removeItem(item, true);	
 }
 
 void Player::attackEnemy() 
@@ -76,7 +78,7 @@ void Player::attackEnemy()
 	}
 	
 	cout << KYEL "# Please choose one of the following to attack with," << endl;
-	cout << "# or type 'health' to use a health item, or 'block' to equip a defense item" << endl;
+	cout << "# or type 'health' to use a health item, or 'block' to equip a defense item" << endl << endl;
 	cout << KRED "# PLEASE NOTE: If you choose to use a health item or a defense item during a fight," << endl;
 	cout << "# that will count as your turn!" RESET << endl << endl;
 

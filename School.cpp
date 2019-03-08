@@ -151,6 +151,8 @@ void School::beginGame()
 	cout << "Just carrying only weapons or only picking up the few first items you come across" << endl;
 	cout << "may bode really badly for you later in the game!" << endl << endl;
 
+	cout << "Type 'help' to get a list of valid commands to help you get started!" << endl << endl;
+
 
 	while (menuChoice != 3)
 	{
