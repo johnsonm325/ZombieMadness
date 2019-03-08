@@ -4,7 +4,7 @@ Player::Player()
 {
 	player = new Creature("Player");
 	player->setName("Colt");
-	player->setHealth(50);
+	player->setHealth(100);
 	this->playerInventory = new PlayerInventory();
 }
 
