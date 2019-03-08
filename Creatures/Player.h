@@ -34,6 +34,7 @@ public:
 	void useItem(Item* item);
 	void attackEnemy();
 	void defend();
+	void healthDuringAttack();
 	void takeItem(Item*);
 	void dropItem(Item*);
 	void lookAtItems(string item);

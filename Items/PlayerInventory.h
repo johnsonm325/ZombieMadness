@@ -25,6 +25,7 @@ public:
     void increaseSize(); // called when backpack is obtained
     bool hasWeapon();
     bool hasDefense();
+    bool hasHealth();
 	void printInventory();
     void printAvailableWeapons();
     void printAvailableSupplies();

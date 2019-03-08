@@ -108,6 +108,11 @@ bool PlayerInventory::hasDefense()
     return typeChecker(items, "Defense");
 }
 
+bool PlayerInventory::hasHealth()
+{
+    return typeChecker(items, "Supply");
+}
+
 void printInventoryHelper(vector<Item*> items, string type, bool isEmpty)
 {   
     if (isEmpty)
@@ -161,7 +166,7 @@ int PlayerInventory::getUsedSlots()
 
 void PlayerInventory::printAvailableSupplies()
 {
-    cout << KYEL "=== Available Supplies ===" RESET << endl;
+    cout << KYEL "=== Available Health Items ===" RESET << endl;
 
     printInventoryHelper(items, "Supply", isEmpty());
 }

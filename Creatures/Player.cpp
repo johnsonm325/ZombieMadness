@@ -4,7 +4,7 @@ Player::Player()
 {
 	player = new Creature("Player");
 	player->setName("Colt");
-	player->setHealth(80);
+	player->setHealth(100);
 	this->playerInventory = new PlayerInventory();
 }
 
@@ -75,8 +75,10 @@ void Player::attackEnemy()
 		return;
 	}
 	
-	cout << KYEL "# Please choose one of the following to attack with" RESET << endl;
-	cout << endl;
+	cout << KYEL "# Please choose one of the following to attack with," << endl;
+	cout << "# or type 'health' to use a health item, or 'block' to equip a defense item" << endl;
+	cout << KRED "# PLEASE NOTE: If you choose to use a health item or a defense item during a fight," << endl;
+	cout << "# that will count as your turn!" RESET << endl << endl;
 
 	playerInventory->printAvailableWeapons();
 
@@ -85,6 +87,29 @@ void Player::attackEnemy()
 	cout << endl;
 
 	transform(input.begin(), input.end(), input.begin(), ::tolower);
+
+	if (input == "health")
+	{
+		if (player->getHealth() >= 100)
+			cout << KGRN "# No need to use a health item, you are at full health!" RESET << endl;
+
+		else
+			healthDuringAttack();
+
+		return;
+	}
+
+	else if (input == "block")
+	{
+		if (player->getDefense() >= 10)
+			cout << KGRN << "# No need to block, you are have full defense points!" RESET << endl;
+
+		else
+			defend();
+		
+		return;
+	}
+
 	weapon = playerInventory->findItem(input);
 
 	if (!weapon)
@@ -96,6 +121,42 @@ void Player::attackEnemy()
 	weapon->attackItem();
 	enemy->takeDamage(weapon->getAttack());
 	playerInventory->removeItem(weapon, true);
+}
+
+void Player::healthDuringAttack()
+{
+	string input;
+	Item* healthItem;
+
+	if (!playerInventory->hasHealth())
+	{
+		cout << KRED "# You have no health items!" RESET << endl;
+		return;
+	}
+
+	cout << KYEL "# Please select a health item to use" RESET << endl << endl;
+
+	playerInventory->printAvailableSupplies();
+
+	cout << "Enter choice: ";
+	getline(cin, input);
+	cout << endl;
+
+	transform(input.begin(), input.end(), input.begin(), ::tolower);
+
+	healthItem = playerInventory->findItem(input);
+
+	if (!healthItem)
+	{
+		cout << KRED "# That is not an availabe item" RESET << endl;
+		return;
+	}
+
+	player->gainHealth(healthItem->getHealthBoost());
+
+	cout << KGRN << "# Your health now at " << player->getHealth() << RESET << endl;
+
+	playerInventory->removeItem(healthItem, true);
 }
 
 void Player::defend()
