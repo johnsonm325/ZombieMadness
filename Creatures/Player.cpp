@@ -59,6 +59,8 @@ void Player::useItem(Item* item) {
 
 	else
 		item->useItem();
+
+	playerInventory->removeItem(item, true);
 		
 }
 
