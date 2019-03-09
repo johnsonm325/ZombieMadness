@@ -281,7 +281,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						return;
 					}
 				}
-      }
+      		}
 	
 			if(currentRoom->getType() == "Second Floor Hallway"){
 				if ((wb->getDoorLocked() == true) && (cmd == "go east" || cmd == "east" || cmd == "go women's bathroom" || cmd == "women's bathroom")
@@ -307,7 +307,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			if((currentRoom->getType() == "Women's Bathroom") && ( cmd == "go west" || cmd == "west" || cmd == "go second floor hallway" || cmd == "second floor hallway")) {
 				currentRoom->unlockDoor();
-      }
+      		}
 
 			if(currentRoom->getType() == "Gymnasium First Floor"){
 				if( cmd == "south" || cmd == "go south" || cmd == "go football field" || cmd == "football field"){
@@ -331,11 +331,11 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						return;
 					}
 				}
-      }	
+      		}	
 			
 			if((currentRoom->getType() == "Infirmary") && (cmd == "go east" || cmd == "east" || cmd == "go second floor hallway" || cmd == "second floor hallway")) {
 				currentRoom->unlockDoor();
-      }
+      		}
 
 			moveRooms(cmdVector, cmd);
 		}
@@ -1010,4 +1010,3 @@ void School::printFinalGameState(){
 			zombie->printStats();
 		}
 }
-

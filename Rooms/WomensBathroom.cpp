@@ -4,10 +4,11 @@ WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 {
 	this->lockDoor();
 	this->bag = bag;
+	string description, text, name;
 
 	couch = new Item();
-	string description = "# A couch with pink upholstry sits in the corner of the bathroom,\n# inviting you to sit. It's flower pattern cushions look so comfortable,\n# that you take a moment to sit down and relax. The dangers\n# seem to melt away while you rest here.";
-	string name = "couch";
+	description = "# A couch with pink upholstry sits in the corner of the bathroom,\n# inviting you to sit. It's flower pattern cushions look so comfortable,\n# that you take a moment to sit down and relax. The dangers\n# seem to melt away while you rest here.";
+	name = "couch";
 	couch->setDummyItem(description, name);
 	roomInventory->addItem(couch);
 
@@ -21,17 +22,11 @@ WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 	description = "# At the top of the stack of magazines you see one called 'Cosmopolitan'.\n# You're pretty sure you've seen your older sister with this one. On\n# the front it reads, '24 ways to make your ...' 'WOAH!'";
 	name = "magazine";
 	magazine->setDummyItem(description, name);
-	string text = "# Want to make your man beg for ... ' 'Ehh, maybe I don't want to read this.'";
+	text = "# Want to make your man beg for ... ' 'Ehh, maybe I don't want to read this.'";
 	magazine->setAction(text, Read);
 	roomInventory->addItem(magazine);
 
-	bookbag = new Item();
-	description = "# It's a bookbag. Should help me to carry a few more items.";
-	name = "bookbag";
-	text = "# You put on the bookbag and your carrying capacity is increased by 7.";
-	bookbag->setDummyItem(description, name);
-	bookbag->setAction(text, Use);
-	roomInventory->addItem(bookbag);
+	roomInventory->addItem(new Bookbag());
 }
 
 WomensBathroom::~WomensBathroom(){
@@ -71,7 +66,6 @@ void WomensBathroom::printIntro(){
 
 void WomensBathroom::increaseBagSize()
 {
-	roomInventory->removeItem(bookbag);
-	delete bookbag;
+	roomInventory->removeItem(roomInventory->findItem("Bookbag"));
 	bag->increaseSize();
 }
