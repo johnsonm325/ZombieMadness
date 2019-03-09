@@ -204,7 +204,7 @@ void Player::defend()
 
 void Player::takeItem(Item* item){
 
-	if (item->isMovable())
+	if (item->isMovable() && item->getType() != "Dummy")
 	{
 		playerInventory->addItem(item);
 

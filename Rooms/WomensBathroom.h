@@ -3,6 +3,7 @@
 
 #include "Space.h"
 #include "../Items/PlayerInventory.h"
+#include "../Items/Bookbag.h"
 
 class WomensBathroom : public Space
 {
@@ -12,7 +13,6 @@ private:
 	Item *couch;
 	Item *lock;
 	Item *magazine;
-	Item *bookbag;
 
 public:
 	WomensBathroom(PlayerInventory*);
