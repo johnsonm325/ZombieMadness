@@ -12,5 +12,5 @@ Sword::Sword() : Item()
 
 void Sword::attackItem()
 {
-	cout << "# Slice n' dice baby, attacking with Sword!" << endl;
+	cout << KGRN "# Slice n' dice baby, attacking with Sword!" RESET << endl;
 }

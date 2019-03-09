@@ -12,5 +12,5 @@ Knife::Knife() : Item()
 
 void Knife::attackItem()
 {
-	cout << "# Shank em' and run, attacking with the knife!" << endl;
+	cout << KGRN "# Shank em' and run, attacking with the knife!" RESET << endl;
 }

@@ -118,7 +118,8 @@ void Player::attackEnemy()
 		return;
 	}
 
-	weapon->attackItem();
+	weapon->getName() == "Rocks" ? weapon->throwItem() : weapon->attackItem();
+	
 	enemy->takeDamage(weapon->getAttack());
 	playerInventory->removeItem(weapon, true);
 }
@@ -191,11 +192,7 @@ void Player::defend()
 		return;
 	}
 
-	if (defenseItem->getName() == "Jersey")
-		defenseItem->wearItem();
-
-	else
-		defenseItem->blockItem();
+	defenseItem->getName() == "Jersey" ? defenseItem->wearItem() : defenseItem->blockItem();
 	
 
 	player->setDefense(defenseItem->getDefense());

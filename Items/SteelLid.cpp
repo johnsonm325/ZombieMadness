@@ -12,5 +12,5 @@ SteelLid::SteelLid() : Item()
 
 void SteelLid::blockItem()
 {
-	cout << "# Ah, a nice sturdy, smelly steel lid to block with! You know have some defense points to reduce damage taken." << endl;
+	cout << KGRN "# Ah, a nice sturdy, smelly steel lid to block with! You know have some defense points to reduce damage taken." RESET << endl;
 }

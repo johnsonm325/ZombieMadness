@@ -12,5 +12,5 @@ Jersey::Jersey() : Item()
 
 void Jersey::wearItem()
 {
-	cout << "# Hey, looking pretty snazy with that jersey! You now have some defense points to reduce damage taken." << endl;
+	cout << KGRN "# Hey, looking pretty snazy with that jersey! You now have some defense points to reduce damage taken." RESET << endl;
 }
