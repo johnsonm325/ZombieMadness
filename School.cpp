@@ -609,7 +609,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 	else {
 		bool moved = moveRooms(cmdVector, cmd);
 		if(!moved){	//Didn't move rooms
-			cout << "# Invalid command!" << endl;
+			cout << KRED "# Invalid command!" RESET << endl;
 		}
 	}
 }
@@ -849,7 +849,7 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 				currentRoom->printIntro();
 			}
 			else{
-				cout << "Invalid room name!" << endl;
+				cout << KRED "Invalid room name!" RESET << endl;
 			}
 		}
 	}
