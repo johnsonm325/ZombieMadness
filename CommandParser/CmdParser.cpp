@@ -78,7 +78,7 @@ void CmdParser::initCmdList() {
 	//Saving/Loading Game
 	cmdList->addItemToList(new CmdWord("savegame", "savegame", " - save the current game state to a file"));
 	cmdList->addItemToList(new CmdWord("loadgame", "loadgame", " - on user confirmation, loads previous game state from file"));
-	cmdList->addItemToList(new CmdWord("cleargames", "cleargames", " - on user confirmation, clears alls saved games from list"));
+	cmdList->addItemToList(new CmdWord("cleargames", "cleargames", " - on user confirmation, clears all saved games from list"));
 	
 	//Debug and quit actions
 	cmdList->addItemToList(new CmdWord("debug", "debug", " - shows useful debug info for developers"));
