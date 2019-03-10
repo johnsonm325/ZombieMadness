@@ -1,6 +1,8 @@
 #ifndef ITEM_H
 #define ITEM_H
 
+#include "Color.h"
+
 #include <string>
 #include <iostream>
 #include <vector>

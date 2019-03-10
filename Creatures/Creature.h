@@ -1,5 +1,6 @@
 #ifndef CREATURE_H
 #define CREATURE_H
+#include "../Items/Color.h"
 
 //#include "../Rooms/Space.h"
 

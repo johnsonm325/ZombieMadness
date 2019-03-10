@@ -83,20 +83,20 @@ void Creature::takeDamage(int damage)
 		this->health = 0;
 		
 		if (type == "Player")
-			cout << "# You were killed!" << endl;
+			cout << KRED "# You were killed!" RESET << endl;
 
 		else
-			cout << "# Zombie killed!" << endl;
+			cout << KRED "# Zombie killed!" RESET << endl;
 			
 	}
 
 	else
 	{
 		if (type == "Player")
-			cout << "# Your health is now at " << this->health << endl;
+			cout << KGRN "# Your health is now at " << this->health << RESET << endl;
 
 		else
-			cout << "# Zombie's health is now at " << this->health << endl;
+			cout << KGRN "# Zombie's health is now at " << this->health << RESET << endl;
 		
 	}	
 }

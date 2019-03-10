@@ -12,5 +12,5 @@ FireExtinguisher::FireExtinguisher() : Item()
 
 void FireExtinguisher::attackItem()
 {
-	cout << "# Time to bash some skulls and put some fires out, attacking with the fire extinguisher!" << endl;
+	cout << KGRN "# Time to bash some skulls and put some fires out, attacking with the fire extinguisher!" RESET << endl;
 }

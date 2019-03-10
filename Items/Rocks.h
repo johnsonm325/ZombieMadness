@@ -5,14 +5,10 @@
 
 class Rocks : public Item
 {
-private:
-	int count;
 
 public:
 	Rocks();
-	void decrementRocks();
-	void distract();
-	void useItem();
+	void throwItem();
 };
 
 #endif

@@ -12,5 +12,5 @@ Gun::Gun() : Item()
 
 void Gun::attackItem()
 {
-	cout << "# That's some serious fiyah powah, attacking with the gun!" << endl;
+	cout << KGRN "# That's some serious fiyah powah, attacking with the gun!" RESET << endl;
 }

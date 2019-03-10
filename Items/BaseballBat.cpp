@@ -12,5 +12,5 @@ BaseballBat::BaseballBat() : Item()
 
 void BaseballBat::attackItem()
 {
-	cout << "# Attacking creature with the baseball bat, smash their brains in!" << endl;
+	cout << KGRN "# Attacking creature with the baseball bat, smash their brains in!" RESET << endl;
 }
