@@ -2,13 +2,8 @@
 
 GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 {
-	ropes = new Item();
-	string description = "# Ropes appear to be strung across the rafters, holding up many\n# of the spotlights and scoreboards.";
-	string name = "ropes";
-	ropes->setDummyItem(description, name);
-	string text = "# As you cut the ropes, the tension is released and all of the lights and\n# scoreboards go crashing to the lower level of the gym.";
-	ropes->setAction(text, Cut);	
-	roomInventory->addItem(ropes);
+	string description, text, name;
+	roomInventory->addItem(new Ropes());
 
 	lights = new Item();
 	description = "# There are a lot of lights hanging in the ceiling, and there is a switch\n# close by. 'Maybe that turns them on.'";
@@ -17,7 +12,7 @@ GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 	text = "# You turn on the lights, which shine down below to show a room full of zombies.";
 	lights->setAction(text, Use);
 	roomInventory->addItem(lights);
-
+	
 	roomInventory->addItem(new Gun());
 }
 
@@ -55,10 +50,9 @@ void GymnasiumFloor2::printIntro(){
 
 void GymnasiumFloor2::cutRopes()
 {
-	roomInventory->removeItem(ropes);
-	delete ropes;
-	roomInventory->removeItem(lights);
-	delete lights;
+	roomInventory->removeItem(roomInventory->findItem("Ropes"));
+	//roomInventory->removeItem(lights);
+	//delete lights;
 	gym1 = static_cast<GymnasiumFloor1*>(findRoom("Gymnasium First Floor"));
 	gym1->getZombie()->die();
 }

@@ -35,11 +35,12 @@
 #include "../Items/Jersey.h"
 #include "../Items/Key.h"
 #include "../Items/Knife.h"
-#include "../Items/Map.h"
 #include "../Items/Paperclip.h"
 #include "../Items/Rocks.h"
 #include "../Items/SteelLid.h"
 #include "../Items/Sword.h"
+#include "../Items/Ropes.h"
+#include "../Items/Bookbag.h"
 
 #include <ctime>
 #include <cstdint>
