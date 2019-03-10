@@ -138,9 +138,9 @@ void School::beginGame()
 	int menuChoice;
 	GameState* stateToLoad = NULL;
 
-	cout << KCYN "			----------- ZOMBIE MADDNESS --------------" << endl;
+	cout << KCYN "			----------- ZOMBIE MADNESS --------------" << endl;
 	cout << "	A game by Jeremy Einhorn, Michael Johnson, and Artem Slivka" << endl << endl;
-	cout << "Welcome to Zombie Maddness, the text-based survival game where going to school becomes a little more..." << endl;
+	cout << "Welcome to Zombie Madness, the text-based survival game where going to school becomes a little more..." << endl;
 	cout << endl << endl << "Interesting." << endl << endl;
 
 	cout << "The objective is to get through the school while efficiently balancing your inventory" << endl;
@@ -985,7 +985,7 @@ void School::startFinalFight(){
 
 			if (!boss->isAlive())
 			{
-				cout << "# DOWN GOES SCOTT!" << endl << endl;
+				cout << KGRN "# DOWN GOES SCOTT!" RESET << endl << endl;
 				isGameWon = true;
 				break;
 			}
