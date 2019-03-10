@@ -68,6 +68,5 @@ void WomensBathroom::increaseBagSize()
 {
 	roomInventory->removeItem(roomInventory->findItem("Bookbag"));
 	bag->increaseSize();
-	roomInventory->removeItem(bookbag);
 	// delete bookbag;
 }
