@@ -75,52 +75,52 @@ bool Item::isMovable(){
 
 void Item::useItem()
 {
-	cout << KRED << actions[Use] << RESET << endl;
+	cout << actions[Use] << endl;
 }
 
 void Item::throwItem()
 {
-	cout << KRED << actions[Throw] << RESET << endl;
+	cout << actions[Throw] << endl;
 }
 
 void Item::pushItem()
 {
-	cout << KRED << actions[Push] << RESET << endl;
+	cout << actions[Push] << endl;
 }
 
 void Item::readItem()
 {
-	cout << KRED << actions[Read] << RESET << endl;
+	cout << actions[Read] << endl;
 }
 
 void Item::wearItem()
 {
-	cout << KRED << actions[Wear] << RESET << endl;
+	cout << actions[Wear] << endl;
 }
 
 void Item::eatItem()
 {
-	cout << KRED << actions[Eat] << RESET << endl;
+	cout << actions[Eat] << endl;
 }
 
 void Item::cutItem()
 {
-	cout << KRED << actions[Cut] << RESET << endl;
+	cout << actions[Cut] << endl;
 }
 
 void Item::attackItem()
 {
-	cout << KRED << actions[Attack] << RESET << endl;
+	cout << actions[Attack] << endl;
 }
 
 void Item::blockItem()
 {
-	cout << KRED << actions[Block] << RESET << endl;
+	cout << actions[Block] << endl;
 }
 
 void Item::openItem()
 {
-	cout << KRED << actions[Open] << RESET << endl;
+	cout << actions[Open] << endl;
 }
 
 //Action setter
