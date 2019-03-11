@@ -52,6 +52,7 @@ void MensBathroom::inspectToilet()
 {
 	holeVisible = true;
 	if(hole != NULL){
+		roomInventory->removeItem(hole);
 		delete hole;
 		hole = NULL;
 	}
