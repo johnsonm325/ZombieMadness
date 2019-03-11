@@ -3,16 +3,16 @@
 Item::Item()
 {
 	actions = vector<string> (10);
-	setAction("You cannot use this item.", Use);
-	setAction("You cannot throw this item.", Throw);
-	setAction("You cannot push this item.", Push);
-	setAction("You cannot read this item.", Read);
-	setAction("You cannot wear this item.", Wear);
-	setAction("You cannot eat this item.", Eat);
-	setAction("You cannot cut with this item.", Cut);
-	setAction("You cannot attack with this item.", Attack);
-	setAction("You cannot block with this item.", Block);
-	setAction("You cannot open anything this item.", Open);
+	setAction("# You cannot use this item.", Use);
+	setAction("# You cannot throw this item.", Throw);
+	setAction("# You cannot push this item.", Push);
+	setAction("# You cannot read this item.", Read);
+	setAction("# You cannot wear this item.", Wear);
+	setAction("# You cannot eat this item.", Eat);
+	setAction("# You cannot cut with this item.", Cut);
+	setAction("# You cannot attack with this item.", Attack);
+	setAction("# You cannot block with this item.", Block);
+	setAction("# You cannot open with this item.", Open);
 
 }
 

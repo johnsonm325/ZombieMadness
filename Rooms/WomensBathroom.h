@@ -11,7 +11,6 @@ private:
 	string action;		//string action typed in by the user
 	PlayerInventory *bag;
 	Item *couch;
-	Item *lock;
 	Item *magazine;
 
 public:

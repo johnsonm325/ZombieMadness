@@ -95,13 +95,14 @@ void CmdList::printList() {
 void CmdList::printListDetailed(){
 
 	int cmdNum = 0;
-	cout << "\n === List of Commands ===";
+	cout << endl;
+	cout << " === List of Commands ===" << endl;
 	if (!isListEmpty()) {
 		for (unsigned int i = 0; i < list.size(); i++) {
 			for (unsigned int j = 0; j < list[i].size(); j++) {
 				if (j == 0 && list[i].size() > 0) {
 					cmdNum++;
-					cout << "\n " << cmdNum << ": " << list[i][0]->getType() << list[i][0]->getDescription();
+					cout << " " << cmdNum << ": " << list[i][0]->getType() << list[i][0]->getDescription() << endl;
 					break;
 				}
 			}

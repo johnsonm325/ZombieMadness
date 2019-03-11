@@ -64,8 +64,8 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("push", "push", " - push an item in room"));
 	cmdList->addItemToList(new CmdWord("read", "read", " - read text on item in room (like note or book)"));
 	cmdList->addItemToList(new CmdWord("wear", "wear", " - wear an item for defense against attacks"));
-	cmdList->addItemToList(new CmdWord("eat", "eat", " - eat an item (ex: Energy Drink)"));
-	cmdList->addItemToList(new CmdWord("cut", "cut", " - cut item in room"));
+	cmdList->addItemToList(new CmdWord("eat", "eat", " - eat an item"));
+	cmdList->addItemToList(new CmdWord("cut", "cut", " - cut item in room (ex: ropes)"));
 	
 	//Player actions
 	// cmdList->addItemToList(new CmdWord("jump", "jump", " - jump to higher ground or over an obstacle"));

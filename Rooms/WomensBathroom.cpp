@@ -12,12 +12,6 @@ WomensBathroom::WomensBathroom(PlayerInventory *bag) : Space("Women's Bathroom")
 	couch->setDummyItem(description, name);
 	roomInventory->addItem(couch);
 
-	lock = new Item();
-	description = "# It looks like someone tampered with the locks and forced it so it\n# couldn't be unlocked from the outside. I should be able to unlock it from\n# the inside though.";
-	name = "lock";
-	lock->setDummyItem(description, name);
-	roomInventory->addItem(lock);
-
 	magazine = new Item();
 	description = "# At the top of the stack of magazines you see one called 'Cosmopolitan'.\n# You're pretty sure you've seen your older sister with this one. On\n# the front it reads, '24 ways to make your ...' 'WOAH!'";
 	name = "magazine";
@@ -68,5 +62,4 @@ void WomensBathroom::increaseBagSize()
 {
 	roomInventory->removeItem(roomInventory->findItem("Bookbag"));
 	bag->increaseSize();
-	// delete bookbag;
 }

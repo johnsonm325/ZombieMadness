@@ -141,7 +141,7 @@ void School::beginGame()
 	cout << KCYN "			----------- ZOMBIE MADNESS --------------" << endl;
 	cout << "	A game by Jeremy Einhorn, Michael Johnson, and Artem Slivka" << endl << endl;
 	cout << "Welcome to Zombie Madness, the text-based survival game where going to school becomes a little more..." << endl;
-	cout << endl << endl << "Interesting." << endl << endl;
+	cout << endl << "Interesting." << endl << endl;
 
 	cout << "The objective is to get through the school while efficiently balancing your inventory" << endl;
 	cout << "in order to get to the end where you will use those items to defeat your biggest foe!" << endl << endl;
@@ -420,7 +420,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		if (foundCmd->getType() == "use") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
-			cout << "#\n# Using item" << endl;
 			
 			if(currentRoom->getType() == "Chemistry") {
 				if(item == "ladder") {
@@ -481,7 +480,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "read") {
-			cout << "#\n# Reading item" << endl;
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "wear") {
