@@ -420,7 +420,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		if (foundCmd->getType() == "use") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
-			cout << "#\n# Using item" << endl;
 			
 			if(currentRoom->getType() == "Chemistry") {
 				if(item == "ladder") {
