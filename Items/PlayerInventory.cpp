@@ -30,6 +30,8 @@ bool PlayerInventory::canAdd(Item *item)
 void PlayerInventory::setInitialSize()
 {
     size = 7; 
+    openSlots = 7;
+    usedSlots = 0;
 }
 
 void PlayerInventory::increaseSize()
