@@ -3,16 +3,16 @@
 Item::Item()
 {
 	actions = vector<string> (10);
-	setAction("You cannot use this item.", Use);
-	setAction("You cannot throw this item.", Throw);
-	setAction("You cannot push this item.", Push);
-	setAction("You cannot read this item.", Read);
-	setAction("You cannot wear this item.", Wear);
-	setAction("You cannot eat this item.", Eat);
-	setAction("You cannot cut with this item.", Cut);
-	setAction("You cannot attack with this item.", Attack);
-	setAction("You cannot block with this item.", Block);
-	setAction("You cannot open anything this item.", Open);
+	setAction("# You cannot use this item.", Use);
+	setAction("# You cannot throw this item.", Throw);
+	setAction("# You cannot push this item.", Push);
+	setAction("# You cannot read this item.", Read);
+	setAction("# You cannot wear this item.", Wear);
+	setAction("# You cannot eat this item.", Eat);
+	setAction("# You cannot cut with this item.", Cut);
+	setAction("# You cannot attack with this item.", Attack);
+	setAction("# You cannot block with this item.", Block);
+	setAction("# You cannot open with this item.", Open);
 
 }
 
@@ -75,52 +75,52 @@ bool Item::isMovable(){
 
 void Item::useItem()
 {
-	cout << actions[Use] << endl;
+	cout << KRED actions[Use] RESET << endl;
 }
 
 void Item::throwItem()
 {
-	cout << actions[Throw] << endl;
+	cout << KRED actions[Throw] RESET << endl;
 }
 
 void Item::pushItem()
 {
-	cout << actions[Push] << endl;
+	cout << KRED actions[Push] RESET << endl;
 }
 
 void Item::readItem()
 {
-	cout << actions[Read] << endl;
+	cout << KRED actions[Read] RESET << endl;
 }
 
 void Item::wearItem()
 {
-	cout << actions[Wear] << endl;
+	cout << KRED actions[Wear] RESET << endl;
 }
 
 void Item::eatItem()
 {
-	cout << actions[Eat] << endl;
+	cout << KRED actions[Eat] RESET << endl;
 }
 
 void Item::cutItem()
 {
-	cout << actions[Cut] << endl;
+	cout << KRED actions[Cut] RESET << endl;
 }
 
 void Item::attackItem()
 {
-	cout << actions[Attack] << endl;
+	cout << KRED actions[Attack] RESET << endl;
 }
 
 void Item::blockItem()
 {
-	cout << actions[Block] << endl;
+	cout << KRED actions[Block] RESET << endl;
 }
 
 void Item::openItem()
 {
-	cout << actions[Open] << endl;
+	cout << KRED actions[Open] RESET << endl;
 }
 
 //Action setter

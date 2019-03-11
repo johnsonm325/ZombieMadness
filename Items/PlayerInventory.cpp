@@ -35,6 +35,7 @@ void PlayerInventory::setInitialSize()
 void PlayerInventory::increaseSize()
 {
     size = 14; // TBD the size we will increase it to
+    openSlots = size - usedSlots;
 }
 
 void PlayerInventory::addItem(Item* item)

@@ -481,7 +481,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "read") {
-			cout << "#\n# Reading item" << endl;
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "wear") {
