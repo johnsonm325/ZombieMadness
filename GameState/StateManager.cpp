@@ -483,6 +483,9 @@ bool StateManager::readInventory(vector<string>::iterator& line, Inventory* inv)
 				if(size > 7){
 					static_cast<PlayerInventory*>(inv)->increaseSize();
 				}
+				else{
+					static_cast<PlayerInventory*>(inv)->setInitialSize();
+				}
 			}
 			else{ isValid = false;}
 			line++;
