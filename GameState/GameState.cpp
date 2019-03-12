@@ -241,15 +241,11 @@ void GameState::copyRooms(vector<Space*> &dest, const vector<Space*> &source){
 		//Copying derived room class booleans next
 		if(source[i]->getType() == "Biology"){
 			Biology* bioRoom = static_cast<Biology*>(dest[i]); 
-			if(static_cast<Biology*>(source[i])->getPlantsEaten() == true){
-				bioRoom->setPlantsEaten();
-			}
+			bioRoom->setPlantsEaten(source[i])->getPlantsEaten());
 		}
 		if(source[i]->getType() == "Chemistry"){
 			Chemistry* chemRoom = static_cast<Chemistry*>(dest[i]); 
-			if(static_cast<Chemistry*>(source[i])->getHoleVisible() == true){
-				chemRoom->moveCabinet();
-			}
+			chemRoom->setHoleVisible(source[i])->getHoleVisible());
 		}
 		if(source[i]->getType() == "Cafeteria"){
 			Cafeteria* cafRoom = static_cast<Cafeteria*>(dest[i]); 
@@ -271,9 +267,7 @@ void GameState::copyRooms(vector<Space*> &dest, const vector<Space*> &source){
 		}
 		if(source[i]->getType() == "Men's Bathroom"){
 			MensBathroom* mbRoom = static_cast<MensBathroom*>(dest[i]); 
-			if(static_cast<MensBathroom*>(source[i])->getHoleVisible() == true){
-				mbRoom->inspectToilet();
-			}
+			mbRoom->setHoleVisible(static_cast<MensBathroom*>(source[i])->getHoleVisible());
 		}
 
 		//Copying room inventory from source to dest

@@ -55,7 +55,7 @@ bool Biology::getPlantsEaten()
 	return plantsEaten;
 }
 
-void Biology::setPlantsEaten()
+void Biology::setPlantsEaten(bool eaten)
 {
-	plantsEaten = true;
+	plantsEaten = eaten;
 }

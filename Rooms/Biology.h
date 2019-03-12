@@ -17,6 +17,6 @@ public:
 	~Biology();
 	void printIntro();
 	bool getPlantsEaten();
-	void setPlantsEaten();
+	void setPlantsEaten(bool);
 };
 #endif

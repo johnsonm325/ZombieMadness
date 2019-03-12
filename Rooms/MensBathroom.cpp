@@ -50,18 +50,7 @@ void MensBathroom::printIntro(){
 
 void MensBathroom::inspectToilet()
 {
-	holeVisible = true;
-	if(hole != NULL){
-		roomInventory->removeItem(hole);
-		delete hole;
-		hole = NULL;
-	}
-
-	hole = new Item();
-	string description = "# There is a small hole behind the toilet. It looks like you could\n# probably fit through it.";
-	string name = "hole";
-	hole->setDummyItem(description, name);
-	roomInventory->addItem(hole);
+	setHoleVisible(true);
 }
 
 bool MensBathroom::getHoleVisible()
@@ -69,3 +58,21 @@ bool MensBathroom::getHoleVisible()
 	return holeVisible;
 }
 
+void MensBathroom::setHoleVisible(bool visible){
+	holeVisible = visible;
+
+	hole = roomInventory->findItem("hole");
+	if(hole != NULL){
+		roomInv->removeItem(hole);
+		delete hole;
+		hole = NULL;
+	}
+
+	if(holeVisible){
+		hole = new Item();
+		string description = "# There is a small hole behind the toilet. It looks like you could\n# probably fit through it.";
+		string name = "hole";
+		hole->setDummyItem(description, name);
+		roomInventory->addItem(hole);
+	}
+}

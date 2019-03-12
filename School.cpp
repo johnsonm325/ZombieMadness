@@ -498,14 +498,14 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						(player->getPlayer())->setHealth((player->getPlayer())->getHealth() - 30);
 						doItemAction(foundCmd->getType(), cmdVector);
 						cout << "#\n# You took the wrong ones and your health was damaged by 30 points.\n";
-						static_cast<Biology*>(currentRoom)->setPlantsEaten();
+						static_cast<Biology*>(currentRoom)->setPlantsEaten(true);
 						return;
 					}
 					else {
 						(player->getPlayer())->setHealth((player->getPlayer())->getHealth() + 20);
 						doItemAction(foundCmd->getType(), cmdVector);
 						cout << "#\n# You took the right one and your health was increased by 20 points.\n";
-						static_cast<Biology*>(currentRoom)->setPlantsEaten();
+						static_cast<Biology*>(currentRoom)->setPlantsEaten(true);
 						return;
 					}
 				}

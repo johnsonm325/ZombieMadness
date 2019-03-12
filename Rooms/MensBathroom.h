@@ -17,6 +17,6 @@ public:
 	void printIntro();
 	void inspectToilet();
 	bool getHoleVisible();
-
+	void setHoleVisible(bool);
 };
 #endif
