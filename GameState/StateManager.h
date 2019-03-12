@@ -66,8 +66,6 @@ public:
 	void clearStates();
 	void printStates();
 
-	void changeWorkingDir();
-	void resetWorkingDir();
 	GameState* getNewGameState();
 };
 

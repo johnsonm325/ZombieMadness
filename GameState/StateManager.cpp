@@ -12,7 +12,6 @@ StateManager::~StateManager() {
 }
 
 void StateManager::init(){
-	changeWorkingDir();
 	
 	clearStates();
 	getSaveFileList();
@@ -32,7 +31,6 @@ void StateManager::init(){
 	}
 	
 	newGameState = new GameState();
-	resetWorkingDir();
 }
 
 bool StateManager::foundSaveFiles() {
@@ -662,8 +660,6 @@ void StateManager::saveState(GameState* state) {
 	char fileCnt[8];
 
 	removeSaveFiles();	
-
-	changeWorkingDir(); //set working directory  to ./GameState
 	addGameState(state);
 	
 	//Update all save files
@@ -674,7 +670,6 @@ void StateManager::saveState(GameState* state) {
 		cout << "Writing save file: " << fileName << endl;
 		writeSaveFile(states[i], fileName);
 	}
-	resetWorkingDir();	//reset directory back to root 
 }
 
 void StateManager::writeSaveFile(GameState* state, string filename) {
@@ -818,7 +813,6 @@ void StateManager::addGameState(GameState* state) {
 }
 
 void StateManager::removeSaveFiles(){
-	changeWorkingDir(); // Navigate to ./GameState/ folder
 	getSaveFileList();	// Get latest file list
 
 	//Now delete all of them
@@ -829,7 +823,6 @@ void StateManager::removeSaveFiles(){
 			perror(error.c_str());
 		}
 	}
-	resetWorkingDir();
 }
 
 void StateManager::removeSaves(){
@@ -870,14 +863,6 @@ void StateManager::clearStates(){
 		delete states[i];
 	}
 	states.clear();
-}
-
-void StateManager::changeWorkingDir() {
-chdir("./GameState/");
-}
-
-void StateManager::resetWorkingDir() {
-	chdir("../");
 }
 
 GameState* StateManager::getNewGameState(){
