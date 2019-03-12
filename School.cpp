@@ -813,31 +813,15 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 	// go <direction> or <direction> command
 	if (cmd == "north" || cmd == "go north") {
 		moveNorth();
-		player->movetoRoom(currentRoom);
-		cout << "###################################################" << endl;
-		cout << "# You are in the " << currentRoom->getType() << endl;
-		currentRoom->printIntro();
 	}
 	else if (cmd == "west" || cmd == "go west") {
 		moveWest();
-		player->movetoRoom(currentRoom);
-		cout << "###################################################" << endl;
-		cout << "# You are in the " << currentRoom->getType() << endl;
-		currentRoom->printIntro();
 	}
 	else if (cmd == "south" || cmd == "go south") {
 		moveSouth();
-		player->movetoRoom(currentRoom);
-		cout << "###################################################" << endl;
-		cout << "# You are in the " << currentRoom->getType() << endl;
-		currentRoom->printIntro();
 	}
 	else if (cmd == "east" || cmd == "go east") {	
 		moveEast();
-		player->movetoRoom(currentRoom);
-		cout << "###################################################" << endl;
-		cout << "# You are in the " << currentRoom->getType() << endl;
-		currentRoom->printIntro();
 	}
 	else{	// go <room> command
 		string roomName = parser->extractArgument(cmdArray, "go");
@@ -845,31 +829,15 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 		if(adjacentRoom != NULL){
 			if(adjacentRoom == currentRoom->getNorth()){
 				moveNorth();
-				player->movetoRoom(currentRoom);
-				cout << "###################################################" << endl;
-				cout << "# You are in the " << currentRoom->getType() << endl;
-				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getWest()){
 				moveWest();
-				player->movetoRoom(currentRoom);
-				cout << "###################################################" << endl;
-				cout << "# You are in the " << currentRoom->getType() << endl;
-				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getSouth()){
 				moveSouth();
-				player->movetoRoom(currentRoom);
-				cout << "###################################################" << endl;
-				cout << "# You are in the " << currentRoom->getType() << endl;
-				currentRoom->printIntro();
 			}
 			else if(adjacentRoom == currentRoom->getEast()){
 				moveEast();
-				player->movetoRoom(currentRoom);
-				cout << "###################################################" << endl;
-				cout << "# You are in the " << currentRoom->getType() << endl;
-				currentRoom->printIntro();
 			}
 			else{
 				cout << KRED "Invalid room name!" RESET << endl;
@@ -878,6 +846,10 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 	}
 
 	if(nextRoom != currentRoom){	//Player moved rooms
+		player->movetoRoom(currentRoom);
+		cout << "###################################################" << endl;
+		cout << "# You are in the " << currentRoom->getType() << endl;
+		currentRoom->printIntro();
 		return true;
 	}
 	return false;	//Player didn't move rooms
