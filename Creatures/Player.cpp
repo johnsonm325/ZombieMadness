@@ -54,16 +54,13 @@ void Player::useItem(Item* item) {
 		{
 			player->gainHealth(item->getHealthBoost());
 			cout << KGRN "# Your health now at " << player->getHealth() << RESET << endl;
+			
+			playerInventory->removeItem(item, true);	
 		}
 	}
 
 	else
 		item->useItem();
-
-	//if bookbag is used and there are no items
-	//in the inventory currently
-	if (!playerInventory->isEmpty())
-		playerInventory->removeItem(item, true);	
 }
 
 void Player::attackEnemy() 
