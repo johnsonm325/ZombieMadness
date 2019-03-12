@@ -606,9 +606,10 @@ void School::processCommand(CmdParser* parser, string cmd) {
 	// Ex: cmd = women's bathroom
 	else {
 		bool moved = moveRooms(cmdVector, cmd);
-		if(!moved){	//Didn't move rooms
+		if(!moved && !triedLockedRoom){	//Didn't move rooms
 			cout << KRED "# Invalid command!" RESET << endl;
 		}
+		triedLockedRoom = false;
 	}
 }
 
@@ -737,6 +738,7 @@ Space *School::moveEast()
 	{
 		if(currentRoom->getEast()->getDoorLocked()){
 			cout << "# The door is locked !" << endl;
+			triedLockedRoom = true;
 		}
 		else{
 			currentRoom = currentRoom->getEast();
@@ -756,6 +758,7 @@ Space *School::moveWest()
 	{
 		if(currentRoom->getWest()->getDoorLocked()){
 			cout << "# The door is locked !" << endl;
+			triedLockedRoom = true;
 		}
 		else{
 			currentRoom = currentRoom->getWest();
@@ -775,6 +778,7 @@ Space *School::moveNorth()
 	{
 		if(currentRoom->getNorth()->getDoorLocked()){
 			cout << "# The door is locked !" << endl;
+			triedLockedRoom = true;
 		}
 		else{
 			currentRoom = currentRoom->getNorth();
@@ -794,6 +798,7 @@ Space *School::moveSouth()
 	{
 		if(currentRoom->getSouth()->getDoorLocked()){
 			cout << "# The door is locked !" << endl;
+			triedLockedRoom = true;
 		}
 		else{
 			currentRoom = currentRoom->getSouth();
