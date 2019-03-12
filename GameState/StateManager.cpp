@@ -356,9 +356,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(roomName.find("Math") != std::string::npos){
 		readValue = readInt(line, "Apple_eaten");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<Math*>(room)->eatApple();	
-			}
+			static_cast<Math*>(room)->eatApple((bool)readValue);
 		}
 		else{ 
 			return false;	
