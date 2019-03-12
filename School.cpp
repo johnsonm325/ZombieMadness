@@ -735,7 +735,12 @@ Space *School::moveEast()
 	}
 	else
 	{
-		currentRoom = currentRoom->getEast();
+		if(currentRoom->getEast()->getDoorLocked()){
+			cout << "# The door is locked !" << endl;
+		}
+		else{
+			currentRoom = currentRoom->getEast();
+		}
 		return currentRoom;
 	}
 }
@@ -749,7 +754,12 @@ Space *School::moveWest()
 	}
 	else
 	{
-		currentRoom = currentRoom->getWest();
+		if(currentRoom->getWest()->getDoorLocked()){
+			cout << "# The door is locked !" << endl;
+		}
+		else{
+			currentRoom = currentRoom->getWest();
+		}
 		return currentRoom;
 	}
 }
@@ -763,7 +773,12 @@ Space *School::moveNorth()
 	}
 	else
 	{
-		currentRoom = currentRoom->getNorth();
+		if(currentRoom->getNorth()->getDoorLocked()){
+			cout << "# The door is locked !" << endl;
+		}
+		else{
+			currentRoom = currentRoom->getNorth();
+		}
 		return currentRoom;
 	}
 }
@@ -777,7 +792,12 @@ Space *School::moveSouth()
 	}
 	else
 	{
-		currentRoom = currentRoom->getSouth();
+		if(currentRoom->getSouth()->getDoorLocked()){
+			cout << "# The door is locked !" << endl;
+		}
+		else{
+			currentRoom = currentRoom->getSouth();
+		}
 		return currentRoom;
 	}
 }
