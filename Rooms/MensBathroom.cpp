@@ -63,7 +63,7 @@ void MensBathroom::setHoleVisible(bool visible){
 
 	hole = roomInventory->findItem("hole");
 	if(hole != NULL){
-		roomInv->removeItem(hole);
+		roomInventory->removeItem(hole);
 		delete hole;
 		hole = NULL;
 	}
