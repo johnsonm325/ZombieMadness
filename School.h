@@ -50,6 +50,7 @@ private:
 	int steps = 0;
 	string choice;
 	bool isGameWon = false;
+	bool triedLockedRoom = false;
 
 	//Rooms
 	Space *mb, *wb, *cafe, *libr;
