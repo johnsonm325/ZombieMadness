@@ -77,22 +77,31 @@ void Chemistry::inspectCabinet()
 
 void Chemistry::moveCabinet()
 {
-	holeVisible = true;
-	if(ladder != NULL){
-		delete ladder;
-		ladder = NULL;
-	}
-	
-	ladder = new Item();
-	string description = "# A metal ladder is mounted against the wall. It seems sturdy enough to climb.";
-	string name = "ladder";
-	ladder->setDummyItem(description, name);
-	string text = "# You ascend the ladder, step by step, inching closer to the hole in the ceiling.";
-	ladder->setAction(text, Use);
-	roomInventory->addItem(ladder);
+	setHoleVisible(true);
 }
 
 bool Chemistry::getHoleVisible()
 {
 	return holeVisible;
+}
+
+void Chemistry::setHoleVisible(bool visible){
+	holeVisible = visible;
+
+	if(ladder != NULL){
+		ladder = roomInventory->findItem("ladder");
+		roomInventory->removeItem(ladder);
+		delete ladder;
+		ladder = NULL;
+	}
+
+	if(holeVisible){
+		ladder = new Item();
+		string description = "# A metal ladder is mounted against the wall. It seems sturdy enough to climb.";
+		string name = "ladder";
+		ladder->setDummyItem(description, name);
+		string text = "# You ascend the ladder, step by step, inching closer to the hole in the ceiling.";
+		ladder->setAction(text, Use);
+		roomInventory->addItem(ladder);
+	}
 }

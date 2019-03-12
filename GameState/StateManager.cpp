@@ -296,7 +296,6 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	else{ 
 		return false;
 	}
-
 	readValue = readInt(line, "First_try");
 	if(readValue != -1){	
 		room->setFirstTry((bool)readValue);	
@@ -304,7 +303,6 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	else{ 
 		return false;	
 	}
-
 	readValue = readInt(line, "Die_on_enter");
 	if(readValue != -1){	
 		room->setDieOnEnter((bool)readValue);	
@@ -317,9 +315,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(roomName.find("Biology") != std::string::npos){
 		readValue = readInt(line, "Plants_eaten");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<Biology*>(room)->setPlantsEaten();	
-			}
+			static_cast<Biology*>(room)->setPlantsEaten((bool)readValue);
 		}
 		else{ 
 			return false;	
@@ -328,9 +324,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(roomName.find("Chemistry") != std::string::npos){
 		readValue = readInt(line, "Hole_visible");
 		if(readValue != -1){
-			if(readValue == 1){	
-				static_cast<Chemistry*>(room)->moveCabinet();	
-			}
+			static_cast<Chemistry*>(room)->setHoleVisible((bool)readValue);		
 		}
 		else{ 
 			return false;	
@@ -342,6 +336,9 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 			if(readValue == 1){
 				static_cast<Cafeteria*>(room)->useVendingMachine();	
 			}
+			else{
+				static_cast<Cafeteria*>(room)->eatSnack();
+			}
 		}
 		else{ 
 			return false;	
@@ -350,9 +347,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(roomName.find("Literature") != std::string::npos){
 		readValue = readInt(line, "Note_visible");
 		if(readValue != -1){
-			if(readValue == 1){	
-				static_cast<Literature*>(room)->inspectDesk();		
-			}
+			static_cast<Literature*>(room)->setNoteVisible((bool)readValue);
 		}
 		else{ 
 			return false;	
@@ -361,9 +356,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(roomName.find("Math") != std::string::npos){
 		readValue = readInt(line, "Apple_eaten");
 		if(readValue != -1){
-			if(readValue == 1){
-				static_cast<Math*>(room)->eatApple();	
-			}
+			static_cast<Math*>(room)->eatApple((bool)readValue);
 		}
 		else{ 
 			return false;	
@@ -372,9 +365,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(roomName.find("Men's Bathroom") != std::string::npos){
 		readValue = readInt(line, "Hole_visible");
 		if(readValue != -1){
-			if(readValue == 1){	
-				static_cast<MensBathroom*>(room)->inspectToilet();	
-			}
+			static_cast<MensBathroom*>(room)->setHoleVisible((bool)readValue);
 		}
 		else{
 			return false;	

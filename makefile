@@ -85,3 +85,4 @@ clean: $(CLEAN)
 	rm -rf Creatures/*.o
 	rm -rf CommandParser/*.o
 	rm -rf GameState/*.o
+	rm -rf ./save.*

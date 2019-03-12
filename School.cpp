@@ -498,14 +498,14 @@ void School::processCommand(CmdParser* parser, string cmd) {
 						(player->getPlayer())->setHealth((player->getPlayer())->getHealth() - 30);
 						doItemAction(foundCmd->getType(), cmdVector);
 						cout << "#\n# You took the wrong ones and your health was damaged by 30 points.\n";
-						static_cast<Biology*>(currentRoom)->setPlantsEaten();
+						static_cast<Biology*>(currentRoom)->setPlantsEaten(true);
 						return;
 					}
 					else {
 						(player->getPlayer())->setHealth((player->getPlayer())->getHealth() + 20);
 						doItemAction(foundCmd->getType(), cmdVector);
 						cout << "#\n# You took the right one and your health was increased by 20 points.\n";
-						static_cast<Biology*>(currentRoom)->setPlantsEaten();
+						static_cast<Biology*>(currentRoom)->setPlantsEaten(true);
 						return;
 					}
 				}
@@ -517,7 +517,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			if (currentRoom->getType() == "Math") {
 				if(item == "apple" && static_cast<Math*>(currentRoom)->getAppleEaten() == false) {
-					static_cast<Math*>(currentRoom)->eatApple();
+					static_cast<Math*>(currentRoom)->eatApple(true);
 				}
 				else {
 					cout << "# You've already eaten the apple." << endl;
@@ -950,7 +950,7 @@ void School::loadState(GameState* loadState, bool printIntro = true){
 
 	//Load player
 	loadState->copyPlayer(this->player, loadState->getPlayer());
-	// loadState->compareRooms(this->rooms, stateRooms);
+	//loadState->compareRooms(this->rooms, stateRooms);
 	// loadState->comparePlayer(this->player, loadState->getPlayer());
 
 	//Loading finished

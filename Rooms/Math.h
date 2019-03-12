@@ -16,7 +16,7 @@ public:
 	Math();
 	~Math();
 	void printIntro();
-	void eatApple();
+	void eatApple(bool);
 	bool getAppleEaten();
 };
 #endif
