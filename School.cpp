@@ -950,7 +950,7 @@ void School::loadState(GameState* loadState, bool printIntro = true){
 
 	//Load player
 	loadState->copyPlayer(this->player, loadState->getPlayer());
-	 loadState->compareRooms(this->rooms, stateRooms);
+	//loadState->compareRooms(this->rooms, stateRooms);
 	// loadState->comparePlayer(this->player, loadState->getPlayer());
 
 	//Loading finished
