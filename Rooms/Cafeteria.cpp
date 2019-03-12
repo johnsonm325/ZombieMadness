@@ -67,24 +67,32 @@ void Cafeteria::throwFood()
 
 bool Cafeteria::getVendingMachineUsed()
 {
-        return vendingMachineUsed;
+    return vendingMachineUsed;
 }
 
 void Cafeteria::useVendingMachine()
 {
-        vendingMachineUsed = true;
-        snack = new Item();
-        string description = "# You lift the door and a Snickers bar sits at the bottom of the machine.";
-        string name = "snack";
-        snack->setDummyItem(description, name);
-        string text = "# You grab the snack, open the wrapper and eat the candy bar. Delicious.";
-        snack->setAction(text, Eat);
-        roomInventory->addItem(snack);
+	vendingMachineUsed = true;
+	if(snack != NULL){
+		roomInventory->removeItem(snack);
+		delete snack;
+	}
+
+	snack = new Item();
+	string description = "# You lift the door and a Snickers bar sits at the bottom of the machine.";
+	string name = "snack";
+	snack->setDummyItem(description, name);
+	string text = "# You grab the snack, open the wrapper and eat the candy bar. Delicious.";
+	snack->setAction(text, Eat);
+	roomInventory->addItem(snack);
 }
 
 void Cafeteria::eatSnack()
 {
-        roomInventory->removeItem(snack);
-        delete snack;
-        vendingMachineUsed = false;
+	if(snack != NULL)
+	{
+		roomInventory->removeItem(snack);
+		delete snack;
+		vendingMachineUsed = false;
+	}	
 }

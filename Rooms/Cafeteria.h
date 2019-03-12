@@ -14,7 +14,7 @@ private:
 	Item *food;
 	Item *sloppyJoe;
 	Item *vendingMachine;
-	Item *snack;
+	Item *snack = NULL;
 
 public:
 	Cafeteria();

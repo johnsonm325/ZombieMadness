@@ -336,6 +336,9 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 			if(readValue == 1){
 				static_cast<Cafeteria*>(room)->useVendingMachine();	
 			}
+			else{
+				static_cast<Cafeteria*>(room)->eatSnack();
+			}
 		}
 		else{ 
 			return false;	
@@ -344,9 +347,7 @@ bool StateManager::readRoomBools(vector<string>::iterator& line, Space* room, st
 	if(roomName.find("Literature") != std::string::npos){
 		readValue = readInt(line, "Note_visible");
 		if(readValue != -1){
-			if(readValue == 1){	
-				static_cast<Literature*>(room)->inspectDesk();		
-			}
+			static_cast<Literature*>(room)->setNoteVisible((bool)readValue);
 		}
 		else{ 
 			return false;	

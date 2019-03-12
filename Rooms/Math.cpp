@@ -55,12 +55,13 @@ void Math::printIntro(){
 	cout << "#" << endl;
 }
 
-void Math::eatApple()
+void Math::eatApple(bool eat)
 {
-	appleEaten = true;
+	appleEaten = eat;
 }
 
 bool Math::getAppleEaten()
 {
 	return appleEaten;
 }
+

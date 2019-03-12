@@ -68,18 +68,29 @@ void Literature::printIntro(){
 
 void Literature::inspectDesk()
 {
-	noteVisible = true;
-
-	note = new Item();
-	string description = "# A small piece of paper sits in the middle of the desk and has a\n# short note written on it.";
-	string name = "note";
-	note->setDummyItem(description, name);
-	string text = "# Get the sword in the computer science room.";
-	note->setAction(text, Read);
-	roomInventory->addItem(note);
+	setNoteVisible(true);	
 }
 
 bool Literature::getNoteVisible()
 {
 	return noteVisible;
+}
+
+void Literature::setNoteVisible(bool visible){
+	noteVisible = visible;
+
+	if(note != NULL){
+		roomInventory->removeItem(note);
+		delete note;
+		note = NULL;
+	}
+	if(noteVisible){
+		note = new Item();
+		string description = "# A small piece of paper sits in the middle of the desk and has a\n# short note written on it.";
+		string name = "note";
+		note->setDummyItem(description, name);
+		string text = "# Get the sword in the computer science room.";
+		note->setAction(text, Read);
+		roomInventory->addItem(note);
+	}
 }

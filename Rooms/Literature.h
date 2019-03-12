@@ -10,7 +10,7 @@ private:
 	bool noteVisible = false;
 	Item *chalkboard;
 	Item *desk;
-	Item *note;
+	Item *note = NULL;
 
 public:
 	Literature();
@@ -18,5 +18,6 @@ public:
 	void printIntro();
 	void inspectDesk();
 	bool getNoteVisible();
+	void setNoteVisible(bool visible);
 };
 #endif

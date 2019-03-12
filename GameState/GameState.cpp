@@ -252,18 +252,17 @@ void GameState::copyRooms(vector<Space*> &dest, const vector<Space*> &source){
 			if(static_cast<Cafeteria*>(source[i])->getVendingMachineUsed() == true){
 				cafRoom->useVendingMachine();
 			}
+			else{
+				cafRoom->eatSnack();
+			}
 		}
 		if(source[i]->getType() == "Literature"){
 			Literature* litRoom = static_cast<Literature*>(dest[i]); 
-			if(static_cast<Literature*>(source[i])->getNoteVisible() == true){
-				litRoom->inspectDesk();
-			}
+			litRoom->setNoteVisible(static_cast<Literature*>(source[i])->getNoteVisible());
 		}
 		if(source[i]->getType() == "Math"){
 			Math* mathRoom = static_cast<Math*>(dest[i]); 
-			if(static_cast<Math*>(source[i])->getAppleEaten() == true){
-				mathRoom->eatApple();
-			}
+			mathRoom->eatApple(source[i])->getAppleEaten());
 		}
 		if(source[i]->getType() == "Men's Bathroom"){
 			MensBathroom* mbRoom = static_cast<MensBathroom*>(dest[i]); 

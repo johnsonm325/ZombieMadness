@@ -517,7 +517,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			if (currentRoom->getType() == "Math") {
 				if(item == "apple" && static_cast<Math*>(currentRoom)->getAppleEaten() == false) {
-					static_cast<Math*>(currentRoom)->eatApple();
+					static_cast<Math*>(currentRoom)->eatApple(true);
 				}
 				else {
 					cout << "# You've already eaten the apple." << endl;
