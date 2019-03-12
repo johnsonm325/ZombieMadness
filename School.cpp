@@ -818,6 +818,27 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 		string roomName = parser->extractArgument(cmdArray, "go");
 		Space* adjacentRoom = currentRoom->findAdjRoom(roomName);
 		if(adjacentRoom != NULL){
+			//Check locked doors first
+			if(currentRoom->getType() == "Men's Bathroom"){
+				if (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false) {
+					if(adjacentRoom->getType() == "Women's Bathroom"){
+						cout << KRED "# You can't go that direction." RESET << endl;
+						return false;
+					}
+				}
+			}	
+			if(currentRoom->getType() == "Second Floor Hallway"){
+				if (wb->getDoorLocked() == true && adjacentRoom->getType() == "Women's Bathroom"){
+					cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+					return false;	
+				}
+				if (infr->getDoorLocked() == true && adjacentRoom->getType() == "Infirmary"){
+					cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+					return false;	
+				}
+			}
+			// Done checking
+
 			if(adjacentRoom == currentRoom->getNorth()){
 				moveNorth();
 				player->movetoRoom(currentRoom);
