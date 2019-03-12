@@ -262,7 +262,7 @@ void GameState::copyRooms(vector<Space*> &dest, const vector<Space*> &source){
 		}
 		if(source[i]->getType() == "Math"){
 			Math* mathRoom = static_cast<Math*>(dest[i]); 
-			mathRoom->eatApple(source[i])->getAppleEaten());
+			mathRoom->eatApple(static_cast<Math*>(source[i])->getAppleEaten());
 		}
 		if(source[i]->getType() == "Men's Bathroom"){
 			MensBathroom* mbRoom = static_cast<MensBathroom*>(dest[i]); 
