@@ -29,9 +29,9 @@ void Literature::printIntro(){
 	if (firstTry == true)
 	{
 		if (zombie->isAlive()) {
-			cout << KMAG "# You look across the room and see two zombies that simultaneously look up" << endl;
-			cout << "# to notice you. They begin to make a direct move towards you, paying no" << endl;
-			cout << "# regard for the desks between you and them." << endl; 
+			cout << KMAG "# You look across the room and see a zombie that simultaneously look up" << endl;
+			cout << "# to notice you. It slowly begins to make it's way in your direction. You have" << endl;
+			cout << "# a little big of time before he's too close" << endl; 
 		}
 		else {
 			cout << KMAG "# To be or not to be, that is the question. 'More like, to get out of" << endl;

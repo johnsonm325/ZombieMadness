@@ -3,6 +3,7 @@
 GymnasiumFloor1::GymnasiumFloor1() : Space("Gymnasium First Floor")
 {
 	this->zombie = new Zombie(false);
+	this->roomInventory->addItem(new Jersey());
 	
 	basketball = new Item();
 	string description = "# A single basketball is seen in the middle of the gym floor. It\n# looks like it's filled with air.";
@@ -37,8 +38,8 @@ void GymnasiumFloor1::printIntro(){
 		}
 
 		else {
-			cout << KMAG "# You are surrounded by zombies. Packs of them notice your presence and slowly" << endl;
-			cout << "# begin to shuffle their way in your direction." << endl;
+			cout << KMAG "# You spot a zombie in the room. This one saw you climbing down and is on his" << endl;
+			cout << "# way towards you." << endl;
 			cout << "#" << endl;
 		}
 	}

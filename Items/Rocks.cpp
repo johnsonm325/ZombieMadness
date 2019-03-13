@@ -3,7 +3,7 @@
 Rocks::Rocks() : Item()
 {
 	this->name = "Rocks";
-	this->description = "Everyone needs a distraction! Throw these Rocks to distract a zombie to buy you some time.";
+	this->description = "# Everyone needs a distraction! Throw these Rocks to distract a zombie to buy you some time.";
 	this->type = "Weapon";
 	this->size = 3;
 	this->attack = 20;

@@ -14,6 +14,8 @@ Chemistry::Chemistry() : Space("Chemistry")
 	description = "# A tall cabinet is pushed up against the south wall. It is filled\n# with chemicals and mixing agents.";
 	name = "cabinet";
 	cabinet->setDummyItem(description, name);
+	string text = "# You walk to the side of the cabinet, setting your shoulder against the wood,\n# and begin pushing. The cabinet slowly slides across the floor with a loud\n# screeching sound. You take a step back and notice a ladder mounted\n# to the wall that leads up into another room.";
+	cabinet->setAction(text, Push);
 	roomInventory->addItem(cabinet);
 }
 
@@ -67,12 +69,6 @@ void Chemistry::printIntro(){
 
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
-}
-
-void Chemistry::inspectCabinet()
-{
-	string text = "# You walk to the side of the cabinet, setting your shoulder against the wood,\n# and begin pushing. The cabinet slowly slides across the floor with a loud\n# screeching sound. You take a step back and notice a ladder mounted\n# to the wall that leads up into another room.";
-	cabinet->setAction(text, Push);
 }
 
 void Chemistry::moveCabinet()

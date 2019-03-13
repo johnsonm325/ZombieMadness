@@ -2,6 +2,7 @@
 #define GYMNASIUMFLOOR1_H
 
 #include "Space.h"
+#include "../Items/Jersey.h"
 
 class GymnasiumFloor1 : public Space
 {

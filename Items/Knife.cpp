@@ -2,7 +2,7 @@
 
 Knife::Knife() : Item()
 {
-	this->description = "Probably the weakest weapon you can find, but hey, better than trying to fist fight a zombie huh?";
+	this->description = "# Probably the weakest weapon you can find, but hey, better than trying to fist\n# fight a zombie huh?";
 	this->type = "Weapon";
 	this->name = "Knife";
 	this->attack = 30;

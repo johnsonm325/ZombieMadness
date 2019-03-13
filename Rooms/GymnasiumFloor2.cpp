@@ -9,7 +9,7 @@ GymnasiumFloor2::GymnasiumFloor2() : Space("Gymnasium Second Floor")
 	description = "# There are a lot of lights hanging in the ceiling, and there is a switch\n# close by. 'Maybe that turns them on.'";
 	name = "lights";
 	lights->setDummyItem(description, name);
-	text = "# You turn on the lights, which shine down below to show a room full of zombies.";
+	text = "# You turn on the lights, which shine down below to show a zombie wandering around.";
 	lights->setAction(text, Use);
 	roomInventory->addItem(lights);
 	
@@ -51,8 +51,7 @@ void GymnasiumFloor2::printIntro(){
 void GymnasiumFloor2::cutRopes()
 {
 	roomInventory->removeItem(roomInventory->findItem("Ropes"));
-	//roomInventory->removeItem(lights);
-	//delete lights;
+
 	gym1 = static_cast<GymnasiumFloor1*>(findRoom("Gymnasium First Floor"));
 	gym1->getZombie()->die();
 }

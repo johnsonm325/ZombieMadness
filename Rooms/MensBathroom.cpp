@@ -17,7 +17,7 @@ void MensBathroom::printIntro(){
 	// Prints the first time the room is visited
 	if (firstTry == true)
 	{
-		cout << KMAG "# You jump awake, realizing that you've been asleep on the toilet for quit a while." << endl;
+		cout << KMAG "# You jump awake, realizing that you've been asleep on the toilet for quite a while." << endl;
 		cout << "# I guess staying up so late studying has taken its toll on you. 'How long have I" << endl;
 		cout << "# been asleep?' you ask yourself. 'Have I missed all of my classes?' Something" << endl;
 		cout << "# doesn't seem right to you. The emergency lights are on and you don't hear any" << endl;

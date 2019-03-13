@@ -392,12 +392,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					static_cast<Literature*>(currentRoom)->inspectDesk();
 				}
 			}
-
-			if(currentRoom->getType() == "Chemistry") {
-				if(item == "cabinet") {
-					static_cast<Chemistry*>(currentRoom)->inspectCabinet();
-				}
-			}
 		}
 		if (foundCmd->getType() == "take") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
@@ -470,7 +464,6 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		}
 		if (foundCmd->getType() == "push") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
-			cout << "#\n# Pushing item" << endl;
 			
 			if(currentRoom->getType() == "Chemistry") {
 				if(item == "cabinet") {
@@ -483,12 +476,10 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "wear") {
-			cout << "#\n# Wearing item" << endl;
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "eat") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
-			cout << "#\n# Eating item" << endl;
 			
 			if (currentRoom->getType() == "Biology") {
 				if(item == "plants" && static_cast<Biology*>(currentRoom)->getPlantsEaten() == false) {
@@ -636,7 +627,7 @@ void School::doItemAction(string cmdType, vector<string> cmdVector){
 		}
 		else if (cmdType == "eat") {
 			selectedItem->eatItem();
-			if(selectedItem->isMovable() == true) {
+			if(selectedItem->isMovable() == true && selectedItem->getType() == "Support") {
 				player->useItem(selectedItem);
 			}
 		}
@@ -664,7 +655,6 @@ void School::connectRooms() {
 	addRoom('s', chem, infr);
 	addRoom('s', gym2, lr);
 	addRoom('s', ffh4, sfh4);
-	addRoom('s', sfh4, ffh4);
 	addRoom('w', gym1, gym2);
 	addRoom('s', fb, gym1);
 	addRoom('w', ffh4, gym1);
@@ -710,7 +700,7 @@ void School::addRoom(char direction, Space *nextRoom, Space *prevRoom)
 	else if (direction == 's')
 	{
 		// to set the non-standard joining of chemistry and infirmary rooms
-		if (nextRoom->getType() == "Chemistry")
+		if (nextRoom->getType() == "Chemistry" || (nextRoom->getType() == "First Floor Hallway" && prevRoom->getType() == "Second Floor Hallway"))
 		{
 			prevRoom->setSouth(nextRoom);
 			nextRoom->setSouth(prevRoom);

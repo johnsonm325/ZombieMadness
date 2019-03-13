@@ -52,7 +52,7 @@ void WomensBathroom::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << "# Theres a door on the west wall and the hole on the north wall leading back." RESET << endl;
+	cout << "# Theres a door on the west wall and the hole on the north wall leading back to the men's bathroom." RESET << endl;
 	cout << "#" << endl;
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
