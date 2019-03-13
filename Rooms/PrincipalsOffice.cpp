@@ -5,7 +5,7 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	string description, name, text;
 	this->zombie = new Zombie(false);
 
-	key = new Key();
+	//key = new Key();
 	fireExt = new FireExtinguisher();
 
 	//Setting dummy items
@@ -17,7 +17,7 @@ PrincipalsOffice::PrincipalsOffice() : Space("Principal's Office")
 	desk->setAction(text, Open);
 	
 	roomInventory->addItem(fireExt);
-	roomInventory->addItem(key);
+	//roomInventory->addItem(key);
 	roomInventory->addItem(desk);
 
 	chair = new Item();
@@ -74,6 +74,23 @@ void PrincipalsOffice::printIntro(){
 		return;
 	}
 
+        if (zombie->isAlive()) {
+                cout << KRED "# Oh no! There is a zombie in here!" RESET << endl;
+                cout << "#" << endl;
+        }
+
 	cout << "# What do you do?" << endl;
 	cout << "#" << endl;
+}
+
+void PrincipalsOffice::inspectDesk(){
+        if(key != NULL){
+                key = roomInventory->findItem("key");
+                roomInventory->removeItem(key);
+                delete key;
+                key = NULL;
+        }
+
+	key = new Key();
+	roomInventory->addItem(key);
 }

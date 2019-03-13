@@ -18,6 +18,14 @@ Infirmary::Infirmary() : Space("Infirmary")
 	name = "nurses hat";
 	nursesHat->setDummyItem(description, name);
 	roomInventory->addItem(nursesHat);
+
+	ladder = new Item();
+	description = "# A metal ladder is mounted against the wall. It It leads back down.";
+	name = "ladder";
+	ladder->setDummyItem(description, name);
+	text = "# You descend the ladder, step by step.";
+	ladder->setAction(text, Use);
+	roomInventory->addItem(ladder);
 }
 
 Infirmary::~Infirmary(){

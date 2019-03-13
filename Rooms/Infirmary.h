@@ -10,6 +10,7 @@ private:
 	string action;		//string action typed in by the user
 	Item *bed;
 	Item *nursesHat;
+	Item *ladder;
 
 public:
 	Infirmary();

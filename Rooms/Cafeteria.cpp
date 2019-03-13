@@ -15,7 +15,7 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 	name = "sloppy joe";
 	sloppyJoe->setDummyItem(description, name);
 	text = "# You take the sandwich, and enjoy it's delicious meaty flavor. Your mouth is covered in leftover sauce. That hit the spot!";
-    sloppyJoe->setAction(text, Eat);
+    	sloppyJoe->setAction(text, Eat);
 	roomInventory->addItem(sloppyJoe);
 
 	vendingMachine = new Item();
@@ -28,9 +28,6 @@ Cafeteria::Cafeteria() : Space("Cafeteria")
 }
 
 Cafeteria::~Cafeteria(){
-	//delete food;
-	//delete sloppyJoe;
-	//delete vendingMachine;
 }
 
 void Cafeteria::printIntro(){
@@ -75,7 +72,6 @@ void Cafeteria::useVendingMachine()
 	vendingMachineUsed = true;
 	if(snack != NULL){
 		roomInventory->removeItem(snack);
-		delete snack;
 	}
 
 	snack = new Item();
@@ -92,7 +88,6 @@ void Cafeteria::eatSnack()
 	if(snack != NULL)
 	{
 		roomInventory->removeItem(snack);
-		delete snack;
 		vendingMachineUsed = false;
 	}	
 }
