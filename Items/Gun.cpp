@@ -2,7 +2,7 @@
 
 Gun::Gun() : Item()
 {
-	this->description = "Now this is some serious power.  This high-leveled weapon will cause some serious damage.";
+	this->description = "# Now this is some serious power. This high-leveled weapon will cause\n# some serious damage.";
 	this->type = "Weapon";
 	this->name = "Gun";
 	this->attack = 60;

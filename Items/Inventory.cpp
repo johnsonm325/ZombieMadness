@@ -41,7 +41,7 @@ Item* Inventory::selectItem(string item){
 
 	Item* selectedItem = findItem(item);
 	if(selectedItem == NULL){
-		cout << KRED "Item not found in inventory!" RESET << endl;
+		cout << KRED "# Item not found in inventory!" RESET << endl;
 		return 0;
 	}
 	else{
@@ -70,14 +70,14 @@ void Inventory::removeItem(Item* item)
 }
 
 void Inventory::printInventory() {
-	cout << KYEL "=== Room Inventory ===" RESET << endl;
+	cout << KYEL "# === Room Inventory ===" RESET << endl;
 	if (isEmpty()) {
 		cout << KYEL "None!" RESET << endl;
         return;
 	}
 
     for (unsigned int i = 0; i < items.size(); i++) {
-        cout << KYEL << (i + 1) << ": " << items[i]->getName() << endl;
+        cout << KYEL << "# " << (i + 1) << ": " << items[i]->getName() << endl;
     }
 
     cout << "#" RESET << endl;

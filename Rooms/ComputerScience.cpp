@@ -36,9 +36,9 @@ void ComputerScience::printIntro(){
 		cout << "#" << endl;
 	}
 
-	cout << KMAG "# Computers fill the room, some of them turned on, and the whiteboard on the" << endl;
-	cout << "# north wall has some weird symbols and characters that you don't understand." << endl;
-	cout << "# Must be code." << endl;
+	cout << KMAG "# Computers fill the room, some of them turned on. The whiteboard on the" << endl;
+	cout << "# north wall has definition on it and one computer has some weird symbols and" << endl;
+	cout << "# characters that you don't understand. Must be code." << endl;
 	cout << "#" << endl;
 	if (firstTry == true)
 	{

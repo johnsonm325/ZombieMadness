@@ -41,7 +41,7 @@ void PrincipalsOffice::printIntro(){
 			cout << KMAG "# As soon as you open the door, you are attacked from the north. You are quick" << endl;
 			cout << "# enough to fight off the first push as you grab the zombie by the throat and" << endl;
 			cout << "# shove it back. As it falls down, you realize it's already working to" << endl;
-			cout << "# get itself back up. You know you don't have much time." << endl;
+			cout << "# get itself back up." << endl;
 			cout << "#" << endl;
 			cout << "# What do you do?" << endl;
 			cout << "#" << endl;

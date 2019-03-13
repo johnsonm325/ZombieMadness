@@ -345,12 +345,6 @@ Item* GameState::createItem(string name){
 	else if( name.find("Bite Cure") !=std::string::npos ){
 		newItem = new BiteCure();
 	}
-	else if ( name.find("Energy Drink LV1") !=std::string::npos ){
-		newItem = new EnergyDrink(1);
-	}
-	else if ( name.find("Energy Drink LV2") !=std::string::npos ){
-		newItem = new EnergyDrink(2);
-	}
 	else if ( name.find("Fire Extinguisher") !=std::string::npos ){
 		newItem = new FireExtinguisher();
 	}
@@ -368,9 +362,6 @@ Item* GameState::createItem(string name){
 	}
 	else if ( name.find("Knife") !=std::string::npos ){
 		newItem = new Knife();
-	}
-	else if ( name.find("Paperclip") !=std::string::npos ){
-		newItem = new Paperclip();
 	}
 	else if ( name.find("Rocks") !=std::string::npos ){
 		newItem = new Rocks();

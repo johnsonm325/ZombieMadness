@@ -14,7 +14,7 @@ LockerRoom::LockerRoom() : Space("Locker Room")
 	roomInventory->addItem(jockstrap);
 
 	locker = new Item();
-	description = "# A metal locker stands against the wall, doors closed, full of items from one of\n# your fellow students.";
+	description = "# A metal locker stands against the wall, doors closed. There are lots here with\n# nothing useful in them.";
 	name = "locker";
 	locker->setDummyItem(description, name);
 	roomInventory->addItem(locker);
