@@ -11,5 +11,5 @@ Key::Key() : Item()
 
 void Key::useItem()
 {
-	// undefined
+	cout << "# Opening door to Football room..." << endl;
 }

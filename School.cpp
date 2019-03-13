@@ -310,7 +310,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
       		}
 
 			if(currentRoom->getType() == "Gymnasium First Floor"){
-				if( cmd == "south" || cmd == "go south" || cmd == "go football field" || cmd == "football field"){
+				if( cmd == "south" || cmd == "go south"){
 					if(fb->getDoorLocked() == true){
 						cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
 						return;
@@ -447,6 +447,19 @@ void School::processCommand(CmdParser* parser, string cmd) {
 					return;
 				}
 			}
+			if(currentRoom->getType() == "Gymnasium First Floor"){
+				if(item == "key"){
+					//Try to select item from player's inventory
+					Item* selectedItem = player->getInventory()->findItem("key");	
+					if(selectedItem != NULL){
+						fb->unlockDoor();
+					}
+					else{
+						cout << "# Didn't find key in player's inventory, cannot open door!" << endl;
+						return;
+					}
+				}
+			}
 
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
@@ -553,23 +566,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		if (foundCmd->getType() == "block") {
 			player->defend();
 		}
-		if (foundCmd->getType() == "open") {
-			//Opening rooms
-			if(currentRoom->getType() == "Gymnasium First Floor"){
-				if(cmd == "open football field"){
-					//Try to select item from player's inventory
-					Item* selectedItem = player->getInventory()->selectItem("key");	
-					if(selectedItem != NULL){
-						cout << "Opening/unlocking door to Football room" << endl;
-						fb->unlockDoor();
-					}
-					else{
-						cout << "Didn't find key in player's inventory, cannot open door!" << endl;
-					}
-				}
-				return;
-			}
-			//Opening items
+		if (foundCmd->getType() == "open") {		
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "stats") { //stub
@@ -793,7 +790,14 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 		string roomName = parser->extractArgument(cmdArray, "go");
 		Space* adjacentRoom = currentRoom->findAdjRoom(roomName);
 		if(adjacentRoom != NULL){
-			//Check locked doors first
+			//Check zombies first
+			if (currentRoom->getZombie() && currentRoom->getZombie()->isAlive()) {
+				cout << KRED "# You cannot leave until the zombie is destroyed!" RESET << endl;
+				triedLockedRoom = true;
+				return false;
+			}
+
+			//Check locked doors next
 			if(currentRoom->getType() == "Men's Bathroom"){
 				if (static_cast<MensBathroom*>(currentRoom)->getHoleVisible() == false) {
 					if(adjacentRoom->getType() == "Women's Bathroom"){
@@ -814,6 +818,13 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 					triedLockedRoom = true;
 					return false;	
 				}
+			}
+			if(currentRoom->getType() == "Gymnasium First Floor"){
+				if(fb->getDoorLocked() == true && adjacentRoom->getType() == "Football Field"){
+					cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+					triedLockedRoom = true;
+					return false;
+				}	
 			}
 			// Done checking
 
