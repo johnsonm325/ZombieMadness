@@ -147,7 +147,7 @@ void School::beginGame()
 	cout << "in order to get to the end where you will use those items to defeat your biggest foe!" << endl << endl;
 	cout << "It is critical you save game often.  If you do not save and you die in game or totally quit the program," << endl;
 	cout << "you will be forced to start a new game entirely." << endl << endl;
-	cout << "As a final reminder, remember to be smart with your invetory management!" << endl;
+	cout << "As a final reminder, remember to be smart with your inventory management!" << endl;
 	cout << "Just carrying only weapons or only picking up the few first items you come across" << endl;
 	cout << "may bode really badly for you later in the game!" << endl << endl;
 
