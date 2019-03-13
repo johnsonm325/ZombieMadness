@@ -81,7 +81,6 @@ void GameState::connectRooms() {
 	addRoom('s', chem, infr);
 	addRoom('s', gym2, lr);
 	addRoom('s', ffh4, sfh4);
-	addRoom('s', sfh4, ffh4);
 	addRoom('w', gym1, gym2);
 	addRoom('s', fb, gym1);
 	addRoom('w', ffh4, gym1);
