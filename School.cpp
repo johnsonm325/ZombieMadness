@@ -312,7 +312,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			if(currentRoom->getType() == "Gymnasium First Floor"){
 				if( cmd == "south" || cmd == "go south"){
 					if(fb->getDoorLocked() == true){
-						cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+						cout << "# The door is locked from the inside and needs a key to unlock it." << endl;
 						return;
 					}
 				}	
@@ -821,7 +821,7 @@ bool School::moveRooms(vector<string> cmdArray, string cmd){
 			}
 			if(currentRoom->getType() == "Gymnasium First Floor"){
 				if(fb->getDoorLocked() == true && adjacentRoom->getType() == "Football Field"){
-					cout << "# The door is locked from the inside and can't be picked or unlocked from the outside." << endl;
+					cout << "# The door is locked from the inside and needs a key to unlock it." << endl;
 					triedLockedRoom = true;
 					return false;
 				}	
