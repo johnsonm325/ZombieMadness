@@ -312,18 +312,16 @@ void GameState::copyInventory(Inventory* dest, Inventory* source){
 		dest0->setLogLevel(true);	//Silence item additions to player's inventory
 		source0->setLogLevel(true);	//Silence item additions to player's inventory
 
+		//Remove all movable objects in inventory for a clear slate
+		for(i = 0; i < (int)destItems.size(); i++){
+			dest->removeItem(destItems[i]);
+		}
 		//Update size, if needed
 		if(source0->getSize() > 7){
 			dest0->increaseSize();
 		}
 		else{
 			dest0->setInitialSize();
-		}
-		//Remove all movable objects in inventory for a clear slate
-		for(i = 0; i < (int)destItems.size(); i++){
-			if(destItems[i]->isMovable()){
-				dest0->removeItem(destItems[i], true);
-			}
 		}
 		//Add all movable objects in source inventory to dest inventory
 		for(i = 0; i < (int)movableItems.size(); i++){
