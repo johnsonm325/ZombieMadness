@@ -38,7 +38,7 @@ void CmdParser::initCmdList() {
 	cmdList->addItemToList(new CmdWord("where", "where", " - displays room player is currently in"));
 
 	//Interacting with room
-	cmdList->addItemToList(new CmdWord("look", "look", " - display long form description of the room"));
+	cmdList->addItemToList(new CmdWord("look", "look", " - display short-form description of the room"));
 	cmdList->addItemToList(new CmdWord("look", "see"));
 
 	//Interacting with objects
@@ -60,7 +60,7 @@ void CmdParser::initCmdList() {
 	// Additional item commands
 	cmdList->addItemToList(new CmdWord("drop", "drop", " - drop an object from player's inventory"));
 	cmdList->addItemToList(new CmdWord("use", "use", " - use an item player has obtained, results in some event"));
-	cmdList->addItemToList(new CmdWord("throw", "throw", " - throw an item in direction of zombie"));
+	cmdList->addItemToList(new CmdWord("throw", "throw", " - throw an item"));
 	cmdList->addItemToList(new CmdWord("push", "push", " - push an item in room"));
 	cmdList->addItemToList(new CmdWord("read", "read", " - read text on item in room (like note or book)"));
 	cmdList->addItemToList(new CmdWord("wear", "wear", " - wear an item for defense against attacks"));
@@ -71,7 +71,7 @@ void CmdParser::initCmdList() {
 	// cmdList->addItemToList(new CmdWord("jump", "jump", " - jump to higher ground or over an obstacle"));
 	cmdList->addItemToList(new CmdWord("attack", "attack", " - attack zombie with a weapon from inventory"));
 	cmdList->addItemToList(new CmdWord("attack", "hit"));
-	cmdList->addItemToList(new CmdWord("block", "block", " - in fight with zombie, player can block to reduce damage"));
+	cmdList->addItemToList(new CmdWord("block", "block", " - equip defense item from inventory"));
 	cmdList->addItemToList(new CmdWord("open", "open", " - open door with key (usually)"));
 	cmdList->addItemToList(new CmdWord("stats", "stats", " - print player's stats: health, defense, and inventory info"));
 
