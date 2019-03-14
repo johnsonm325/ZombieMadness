@@ -15,5 +15,6 @@ public:
 	PrincipalsOffice();
 	~PrincipalsOffice();
 	void printIntro();
+	void inspectDesk();
 };
 #endif

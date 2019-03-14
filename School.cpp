@@ -396,6 +396,14 @@ void School::processCommand(CmdParser* parser, string cmd) {
 		if (foundCmd->getType() == "take") {
 			string item = parser->extractArgument(cmdVector, foundCmd->getType());
 
+			if(currentRoom->getType() == "Women's Bathroom"){
+				if(item == "bookbag") {
+					doItemAction("use", cmdVector);
+					static_cast<WomensBathroom*>(currentRoom)->increaseBagSize();
+					return;
+				}
+			}
+			
 			//Try to select item from room's inventory
 			Item* selectedItem = player->getRoomInventory()->selectItem(item);
 			if(selectedItem != NULL){
@@ -417,6 +425,7 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			
 			if(currentRoom->getType() == "Chemistry") {
 				if(item == "ladder") {
+					doItemAction(foundCmd->getType(), cmdVector);
 					moveRooms(cmdVector, "south");
 					return;
 				}
@@ -425,6 +434,14 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			if(currentRoom->getType() == "Library") {
 				if(item == "ladder") {
 					static_cast<Library*>(currentRoom)->useLadder();
+				}
+			}
+
+			if(currentRoom->getType() == "Infirmary") {
+				if(item == "ladder") {
+					doItemAction(foundCmd->getType(), cmdVector);
+					moveRooms(cmdVector, "south");
+					return;
 				}
 			}
 			
@@ -567,6 +584,14 @@ void School::processCommand(CmdParser* parser, string cmd) {
 			player->defend();
 		}
 		if (foundCmd->getType() == "open") {		
+			string item = parser->extractArgument(cmdVector, foundCmd->getType());
+			
+			if(currentRoom->getType() == "Principal's Office") {
+				if(item == "desk") {
+					static_cast<PrincipalsOffice*>(currentRoom)->inspectDesk();
+				}
+			}
+			
 			doItemAction(foundCmd->getType(), cmdVector);
 		}
 		if (foundCmd->getType() == "stats") { //stub

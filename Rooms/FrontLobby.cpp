@@ -68,6 +68,11 @@ void FrontLobby::printIntro(){
 		return;
 	}
 
+        if (zombie->isAlive()) {
+                cout << KRED "# Oh no! There is a zombie in here!" RESET << endl;
+                cout << "#" << endl;
+        }
+
 	cout << "# What do you do now?" << endl;
 	cout << "#" << endl;
 }
